@@ -1238,7 +1238,7 @@ Tilemap:
     second:
       serializedVersion: 2
       m_TileIndex: 0
-      m_TileSpriteIndex: 0
+      m_TileSpriteIndex: 5
       m_TileMatrixIndex: 0
       m_TileColorIndex: 0
       m_TileObjectToInstantiateIndex: 65535
@@ -1720,9 +1720,8 @@ Tilemap:
   - m_RefCount: 26
     m_Data: {fileID: 11400000, guid: ccc45f6c9dde4434eaa5e16819f82c60, type: 2}
   m_TileSpriteArray:
-  - m_RefCount: 1
-    m_Data: {fileID: -5342368469925002225, guid: 8aca2103d1cf2be44b8c1a0359e681c8,
-      type: 3}
+  - m_RefCount: 0
+    m_Data: {fileID: 0}
   - m_RefCount: 26
     m_Data: {fileID: 7138571786469096115, guid: 8aca2103d1cf2be44b8c1a0359e681c8,
       type: 3}
@@ -1734,6 +1733,9 @@ Tilemap:
       type: 3}
   - m_RefCount: 39
     m_Data: {fileID: -1799925587257728388, guid: 8aca2103d1cf2be44b8c1a0359e681c8,
+      type: 3}
+  - m_RefCount: 1
+    m_Data: {fileID: -5342368469925002225, guid: 8aca2103d1cf2be44b8c1a0359e681c8,
       type: 3}
   m_TileMatrixArray:
   - m_RefCount: 81
@@ -1868,6 +1870,7 @@ MonoBehaviour:
   input: {fileID: 1309897902}
   tileTracker: {fileID: 1382567044}
   tilemapVisuals: {fileID: 1962441417}
+  clearedTile: {fileID: 11400000, guid: c27bc74127fe34d44a9038e4118c2450, type: 2}
 --- !u!1 &1991477987
 GameObject:
   m_ObjectHideFlags: 0

@@ -15,7 +15,7 @@ public class TileTracker : MonoBehaviour {
 	public static readonly string letters = "abcdefghijklmnopqrstuvwxyz";
 
 	void Start() {
-		// TODO: might need to improve this
+		// TODO: might need to improve this find logic
 		tilemap = GameObject.FindObjectOfType<Tilemap>();
 		origin = tilemap.cellBounds.min;
 		tileContainer = Instantiate(new GameObject(), this.transform);
@@ -26,7 +26,7 @@ public class TileTracker : MonoBehaviour {
 				Vector3Int currentPos = new Vector3Int(x, y, 0);
 				ScriptableTile tile = tilemap.GetTile<ScriptableTile>(origin+currentPos);
 				if (tile == null) {
-					CommandInput.Log($"null tile at ({x},{y})!");
+					CommandInput.Log($"Null tile at ({x},{y})!");
 					// preserve array shape
 					xRow.Add(null);
 					continue;
@@ -40,7 +40,11 @@ public class TileTracker : MonoBehaviour {
 	}
 
 	public GameTile GetTile(int x, int y) {
-		return tiles[x][y].GetComponent<GameTile>();
+		try {
+			return tiles[x][y].GetComponent<GameTile>();
+		} catch (ArgumentOutOfRangeException) {
+			return null;
+		}
 	}
 
 	public GameTile GetTile(Vector3Int pos) {
@@ -78,6 +82,16 @@ public class TileTracker : MonoBehaviour {
 		return tileBackend;
 	}
 
+	public void RepairTile(Vector3Int pos) {
+		GameTile tile = tiles[pos.x][pos.y];
+		if (tile.GetComponent<TileAge>()) {
+			tile.GetComponent<TileAge>().Repair();
+			CommandInput.Log("Repaired "+tile.name+" at "+PosToStr(pos));
+		} else {
+			CommandInput.Log("Can't fix tile "+tile.name+" at "+PosToStr(pos));
+		}
+	}
+
 	public Vector3Int StrToPos(string coords, bool validate=true) {
 		int x = 0, y = 0;
 		try {
@@ -104,6 +118,6 @@ public class TileTracker : MonoBehaviour {
 	}
 
 	public string PosToStr(Vector3Int pos) {
-		return letters[pos.x] + (pos.y + 1).ToString();
+		return letters[pos.x].ToString().ToUpper() + (pos.y + 1);
 	}
 }

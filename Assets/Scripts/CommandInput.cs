@@ -1,5 +1,6 @@
 using UnityEngine;
 using UnityEngine.UI;
+using System.Collections;
 
 public class CommandInput : MonoBehaviour {
 	[SerializeField] Text scrollback;
@@ -57,13 +58,10 @@ public class CommandInput : MonoBehaviour {
 			string coords = args[1];
 
 			GameTile t = tileTracker.GetTile(tileTracker.StrToPos(coords));
-			Log(t.name + $" at {coords.ToUpper()}");
-			if (t.GetComponent<TileAge>()) {
-				Log($"age: {t.GetComponent<TileAge>().GetAge()}");
-			} else {
-				Log($"age: {nullAges[Random.Range(0, nullAges.Length)]}");
+			IStat[] s = t.GetComponents<IStat>();
+			for (int i=0; i<s.Length; i++) {
+				Log(s[i].Stat());
 			}
-			Log("object hash: " + t.GetHashCode());
 		}
 
 		else if (args[0] == "clear") {
@@ -72,19 +70,39 @@ public class CommandInput : MonoBehaviour {
 
 		else if (args[0] == "tick" || args[0] == "tock") {
 			int time = 1;
-			if (args.Length > 1) {
+			if (args.Length > 1 && !string.IsNullOrEmpty(args[1])) {
 				time = int.Parse(args[1]);
+				Tick(time);
 			}
-			GameTile[] tiles = tileTracker.GetTiles<GameTile>();
-			for (int t=0; t<time; t++) {
-				for (int i=0; i<tiles.Length; i++) {
-					tiles[i].Clockwork();
-				}
-			}
+		}
+
+		else if (args[0] == "slowtick") {
+			StartCoroutine(SlowTick(int.Parse(args[1])));
 		}
 
 		else if (args[0] == "cut") {
 			tileTracker.ReplaceTile(tileTracker.StrToPos(args[1]), clearedTile);
 		}
+
+		else if (args[0] == "fix") {
+			tileTracker.RepairTile(tileTracker.StrToPos(args[1]));
+		}
+	}
+
+	void Tick(int time) {
+		for (int t=0; t<time; t++) {
+			GameTile[] tiles = tileTracker.GetTiles<GameTile>();
+			for (int i=0; i<tiles.Length; i++) {
+				tiles[i].Clockwork();
+			}
+		}
+	}
+
+	IEnumerator SlowTick(int time) {
+		yield return new WaitForSeconds(1f);
+		Tick(1);
+		Log("1 day done");
+		time--;
+		if (time > 0) StartCoroutine(SlowTick(time));
 	}
 }

@@ -11,7 +11,8 @@ GameObject:
   - component: {fileID: 1746792694980168620}
   - component: {fileID: 2720854070056184511}
   - component: {fileID: 2108050923225129482}
-  - component: {fileID: 8746748265048618677}
+  - component: {fileID: 1274134660944338837}
+  - component: {fileID: 5577352026264279431}
   m_Layer: 0
   m_Name: Dirt
   m_TagString: Untagged
@@ -57,7 +58,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8cf6ec2134cc25e4aa160e030e55ad6c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &8746748265048618677
+--- !u!114 &1274134660944338837
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -66,8 +67,26 @@ MonoBehaviour:
   m_GameObject: {fileID: 6974022749902546844}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5ac7d643dc63d004cb9803be5bdaa77a, type: 3}
+  m_Script: {fileID: 11500000, guid: f93068a956a7cd14ba0bc0f748bb1109, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  decayTo: {fileID: 11400000, guid: ea089a2b162bee14a83b010a12f19909, type: 2}
+  decayThreshold: 7
+  decayTo: {fileID: 11400000, guid: ccc45f6c9dde4434eaa5e16819f82c60, type: 2}
+  gracePeriod: 1
+  neighbor: {fileID: 11400000, guid: ccc45f6c9dde4434eaa5e16819f82c60, type: 2}
+--- !u!114 &5577352026264279431
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6974022749902546844}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f93068a956a7cd14ba0bc0f748bb1109, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
   decayThreshold: 3
+  decayTo: {fileID: 11400000, guid: ea089a2b162bee14a83b010a12f19909, type: 2}
+  gracePeriod: 1
+  neighbor: {fileID: 11400000, guid: ea089a2b162bee14a83b010a12f19909, type: 2}
