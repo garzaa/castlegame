@@ -12,16 +12,15 @@ public class TilemapVisuals : MonoBehaviour {
 	Vector3Int origin;
 
 	void Awake() {
-		console.Log("tightening tilemap bounds");
 		tilemap = GetComponent<Tilemap>();
 		tilemap.CompressBounds();
 	}
 
 	void Start() {
-		console.Log("initializing legend");
+		CommandInput.Log("initializing legend");
 		origin = tilemap.cellBounds.min;
-		console.Log("computed origin: "+ origin.ToString());
-		console.Log("tilemap size: "+tilemap.cellBounds.size);
+		CommandInput.Log("computed origin: "+ origin.ToString());
+		CommandInput.Log("tilemap size: "+tilemap.cellBounds.size);
 
 		for (int i=0; i<tilemap.cellBounds.size.x; i++) {
 			AddLetterLegend(i);
@@ -42,6 +41,6 @@ public class TilemapVisuals : MonoBehaviour {
 	void AddNumberLegend(int idx) {
 		GameObject g = Instantiate(legendTemplate, Vector3.zero, Quaternion.identity, doubleScaleCanvas.transform);
 		g.GetComponent<WorldPointCanvas>().position = tilemap.CellToWorld(origin + Vector3Int.up*(idx+1)) + Vector3.down*tilemap.cellSize.y/2f;
-		g.GetComponent<Text>().text = idx.ToString();
+		g.GetComponent<Text>().text = (idx+1).ToString();
 	}
 }

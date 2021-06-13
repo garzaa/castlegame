@@ -9,10 +9,13 @@ public class CommandInput : MonoBehaviour {
 
 	public ScriptableTile clearedTile;
 
+	public static CommandInput c;
+
 	readonly string[] nullAges = new string[] {"eternal", "immeasurable", "unfathomable"};
 
 	void Awake() {
 		ClearConsole();
+		c = this;
 	}
 
 	void Start() {
@@ -30,8 +33,8 @@ public class CommandInput : MonoBehaviour {
 		}
 		string command = input.text;
 		scrollback.text += $"\n<color=#C7CFDD>{command}</color>";
-		ParseCommand(command.ToLower());
 		SelectInput();
+		ParseCommand(command.ToLower());
 	}
 
 	void SelectInput() {
@@ -40,30 +43,27 @@ public class CommandInput : MonoBehaviour {
 		input.ActivateInputField();
 	}
 
-	public void Log(Object text) {
+	public static void Log(Object text) {
 		Log(text.ToString());
 	}
 
-	public void Log(string s) {
-		scrollback.text += "\n"+s;
+	public static void Log(string s) {
+		c.scrollback.text += "\n"+s;
 	}
 
 	void ParseCommand(string command) {
 		string[] args = command.Split(' ');
 		if (args[0] == "stat") {
 			string coords = args[1];
-			int idx = TileTracker.letters.IndexOf(coords[0]);
-			int x = int.Parse(idx.ToString());
-			int y = int.Parse(coords[1].ToString());
 
-			GameTile t = tileTracker.GetTile(x, y);
+			GameTile t = tileTracker.GetTile(tileTracker.StrToPos(coords));
 			Log(t.name + $" at {coords.ToUpper()}");
 			if (t.GetComponent<TileAge>()) {
 				Log($"age: {t.GetComponent<TileAge>().GetAge()}");
 			} else {
 				Log($"age: {nullAges[Random.Range(0, nullAges.Length)]}");
 			}
-			Log("object hash: " + tileTracker.GetTile(x, y).GetHashCode());
+			Log("object hash: " + t.GetHashCode());
 		}
 
 		else if (args[0] == "clear") {

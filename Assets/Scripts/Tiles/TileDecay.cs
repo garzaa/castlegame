@@ -14,6 +14,7 @@ public class TileDecay : TileBehaviour {
 
 	public void Clockwork() {
 		if (tileAge.GetAge() > decayThreshold) {
+			CommandInput.Log(gameTile.gameObject.name + " decayed to "+decayTo.tileObject.name+" at age "+tileAge.GetAge());
 			gameTile.ReplaceSelf(decayTo);
 		}
 	}

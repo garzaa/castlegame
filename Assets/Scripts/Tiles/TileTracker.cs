@@ -20,23 +20,19 @@ public class TileTracker : MonoBehaviour {
 		origin = tilemap.cellBounds.min;
 		tileContainer = Instantiate(new GameObject(), this.transform);
 
-
 		for (int x=0; x<tilemap.cellBounds.size.x; x++) {
 			List<GameTile> xRow = new List<GameTile>();
 			for (int y=0; y<tilemap.cellBounds.size.y; y++) {
-				Vector3Int normalized = origin;
-				normalized.x += x;
-				normalized.y += y;
-
-				ScriptableTile tile = tilemap.GetTile<ScriptableTile>(normalized);
+				Vector3Int currentPos = new Vector3Int(x, y, 0);
+				ScriptableTile tile = tilemap.GetTile<ScriptableTile>(origin+currentPos);
 				if (tile == null) {
-					console.Log($"null tile at ({x},{y})");
+					CommandInput.Log($"null tile at ({x},{y})!");
 					// preserve array shape
 					xRow.Add(null);
 					continue;
 				}
 				
-				GameTile gameTile = SpawnTile(tile, normalized - origin);
+				GameTile gameTile = SpawnTile(tile, currentPos);
 				xRow.Add(gameTile);
 			}
 			tiles.Add(xRow);
@@ -82,10 +78,32 @@ public class TileTracker : MonoBehaviour {
 		return tileBackend;
 	}
 
-	public Vector3Int StrToPos(string coords) {
-		int idx = letters.IndexOf(coords[0]);
-		int x = int.Parse(idx.ToString());
-		int y = int.Parse(coords[1].ToString());
-		return new Vector3Int(x, y, 0);
+	public Vector3Int StrToPos(string coords, bool validate=true) {
+		int x = 0, y = 0;
+		try {
+			int idx = letters.IndexOf(coords[0]);
+			x = int.Parse(idx.ToString());
+			y = int.Parse(coords[1].ToString())-1;
+		} catch (Exception) {
+			CommandInput.Log("Invalid coordinates "+coords);
+		}
+		Vector3Int pos = new Vector3Int(x, y, 0);
+		if (validate) {
+			if (pos.x > tilemap.cellBounds.size.x 
+			|| pos.y > tilemap.cellBounds.size.y
+			|| pos.x < 0 || pos.y < 0) {
+				Debug.Log(pos);
+				Debug.Log(origin);
+				Debug.Log(tilemap.cellBounds.size);
+				CommandInput.Log("Invalid coordinates "+coords);
+				throw new IndexOutOfRangeException("Invalid tilemap coordinates "+pos);
+			}
+			
+		}
+		return pos;
+	}
+
+	public string PosToStr(Vector3Int pos) {
+		return letters[pos.x] + (pos.y + 1).ToString();
 	}
 }
