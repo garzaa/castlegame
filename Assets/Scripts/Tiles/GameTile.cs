@@ -3,6 +3,7 @@ using UnityEngine.Tilemaps;
 using System.Collections;
 using System.Collections.Generic;
 
+[CreateAssetMenu(menuName="Game Tile")]
 public class GameTile : ScriptableObject {
 	Tilemap tilemap;
 	Vector3Int position;

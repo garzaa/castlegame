@@ -13,7 +13,9 @@ public class TileTracker : MonoBehaviour {
 	/**
 		on init, iterate through all the tiles
 		create a new backing class of the tile
-		has to be accessed with Y first? or no
+
+		todo: it might actually be better to make each backing type a GameObject
+		because Age things and shit fits the entity-compoennt system perfectly...hough
 		
 	*/
 	void Start() {
@@ -32,11 +34,8 @@ public class TileTracker : MonoBehaviour {
 					continue;
 				}
 				
-				GameTile tileBackend = tile.backingScript;
-
-				GameTile instance = GameTile.CreateInstance<GameTile>();
-				instance.Initialize(tilemap, normalized - origin);
-				xRow.Add(instance);
+				GameTile tileBackend = Instantiate(tile.backingScript);
+				xRow.Add(tileBackend);
 			}
 			tiles.Add(xRow);
 		}

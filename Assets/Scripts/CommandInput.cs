@@ -52,7 +52,8 @@ public class CommandInput : MonoBehaviour {
 			int x = int.Parse(idx.ToString());
 			int y = int.Parse(coords[1].ToString());
 
-			Log($"tile at {coords.ToUpper()} named "+tileTracker.GetTilemapTile(x, y).name);
+			GameTile t = tileTracker.GetTile(x, y);
+			Log(t.name + $" at {coords.ToUpper()}");
 			Log("object hash: " + tileTracker.GetTile(x, y).GetHashCode());
 		}
 
