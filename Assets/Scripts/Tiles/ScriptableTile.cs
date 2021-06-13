@@ -4,9 +4,9 @@ using UnityEngine.Tilemaps;
 using UnityEditor;
 #endif
 
-[CreateAssetMenu(menuName = "Custom Tiles/Scriptable Tile")]
+[CreateAssetMenu]
 public class ScriptableTile : RuleTile {
-	public GameTile backingScript;
+	public GameObject tileObject;
 }
 
 #if UNITY_EDITOR

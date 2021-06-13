@@ -10,10 +10,12 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 088e44299747c984b87165029a9c2838, type: 3}
-  m_Name: ScriptableTreeTile
+  m_Name: ForestTile
   m_EditorClassIdentifier: 
-  m_DefaultSprite: {fileID: 0}
+  m_DefaultSprite: {fileID: 7138571786469096115, guid: 8aca2103d1cf2be44b8c1a0359e681c8,
+    type: 3}
   m_DefaultGameObject: {fileID: 0}
   m_DefaultColliderType: 1
   m_TilingRules: []
-  backingScript: {fileID: 0}
+  tileObject: {fileID: 2737695222724372424, guid: 088a2f3885796b643857098bfc5123e8,
+    type: 3}
