@@ -11,6 +11,7 @@ public class GameTile : ScriptableObject {
 	// how do we do this without a recursive loop
 	// if tile.neighbors.doesn't contain this then call updateNeighbors
 	// that'll cascade it across the entire tilemap
+	// or jjust get it on every call, it's not that bad
 	List<GameTile> neighbors = new List<GameTile>();
 
 	virtual public void Initialize(Tilemap tilemap, Vector3Int position) {
@@ -39,4 +40,4 @@ public class GameTile : ScriptableObject {
 	virtual public void Clockwork() {
 		
 	}
-} 
+}

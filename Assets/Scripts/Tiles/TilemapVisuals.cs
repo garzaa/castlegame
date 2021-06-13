@@ -8,15 +8,19 @@ public class TilemapVisuals : MonoBehaviour {
 	[SerializeField] Canvas doubleScaleCanvas;
 	[SerializeField] GameObject legendTemplate;
 
-	const string letters = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+	public const string letters = "abcdefghijklmnopqrstuvwxyz";
 
 	Tilemap tilemap;
 	Vector3Int origin;
 
-	void Start() {
-		console.Log("initializing legend");
+	void Awake() {
+		console.Log("tightening tilemap bounds");
 		tilemap = GetComponent<Tilemap>();
 		tilemap.CompressBounds();
+	}
+
+	void Start() {
+		console.Log("initializing legend");
 		origin = tilemap.cellBounds.min;
 		console.Log("computed origin: "+ origin.ToString());
 		console.Log("tilemap size: "+tilemap.cellBounds.size);
@@ -31,10 +35,14 @@ public class TilemapVisuals : MonoBehaviour {
 
 	}
 
+	public string GetLetters() {
+		return letters;
+	}
+
 	void AddLetterLegend(int idx) {
 		GameObject g = Instantiate(legendTemplate, Vector3.zero, Quaternion.identity, doubleScaleCanvas.transform);
 		g.GetComponent<WorldPointCanvas>().position = tilemap.CellToWorld(origin + Vector3Int.right*(idx+1)) + Vector3.down*tilemap.cellSize.y/2f;
-		g.GetComponent<Text>().text = letters[idx].ToString();
+		g.GetComponent<Text>().text = letters[idx].ToString().ToUpper();
 	}
 
 	void AddNumberLegend(int idx) {

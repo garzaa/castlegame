@@ -2,8 +2,10 @@ using UnityEngine;
 using UnityEngine.UI;
 
 public class CommandInput : MonoBehaviour {
-	public Text scrollback;
-	public InputField input;
+	[SerializeField] Text scrollback;
+	[SerializeField] InputField input;
+	[SerializeField] TileTracker tileTracker;
+	[SerializeField] TilemapVisuals tilemapVisuals;
 
 	void Awake() {
 		ClearConsole();
@@ -22,7 +24,9 @@ public class CommandInput : MonoBehaviour {
 			input.text = "";
 			return;
 		}
-		scrollback.text += "\n"+input.text;
+		string command = input.text;
+		scrollback.text += $"\n<color=#C7CFDD>{command}</color>";
+		ParseCommand(command.ToLower());
 		SelectInput();
 	}
 
@@ -38,5 +42,22 @@ public class CommandInput : MonoBehaviour {
 
 	public void Log(string s) {
 		scrollback.text += "\n"+s;
+	}
+
+	void ParseCommand(string command) {
+		string[] args = command.Split(' ');
+		if (args[0] == "stat") {
+			string coords = args[1];
+			int idx = tilemapVisuals.GetLetters().ToLower().IndexOf(coords[0]);
+			int x = int.Parse(idx.ToString());
+			int y = int.Parse(coords[1].ToString());
+
+			Log($"tile at {coords.ToUpper()} named "+tileTracker.GetTilemapTile(x, y).name);
+			Log("object hash: " + tileTracker.GetTile(x, y).GetHashCode());
+		}
+
+		else if (args[0] == "clear") {
+			ClearConsole();
+		} 
 	}
 }
