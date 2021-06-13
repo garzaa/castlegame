@@ -69,8 +69,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f93068a956a7cd14ba0bc0f748bb1109, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  decayThreshold: 12
+  decayThreshold: 5
   decayTo: {fileID: 11400000, guid: ccc45f6c9dde4434eaa5e16819f82c60, type: 2}
   multiplier: 1
-  gracePeriod: 10
+  gracePeriod: 5
   neighbor: {fileID: 11400000, guid: ccc45f6c9dde4434eaa5e16819f82c60, type: 2}

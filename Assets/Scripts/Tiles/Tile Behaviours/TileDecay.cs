@@ -20,7 +20,6 @@ public class TileDecay : TileBehaviour, IStat {
 
 	virtual public void Clockwork() {
 		if (GetDecay() > decayThreshold) {
-			CommandInput.Log(gameTile.gameObject.name + " decayed to "+decayTo.tileObject.name+" at age "+tileAge.GetAge());
 			gameTile.ReplaceSelf(decayTo);
 		}
 	}

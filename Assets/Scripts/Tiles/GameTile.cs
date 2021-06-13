@@ -44,6 +44,7 @@ public class GameTile : MonoBehaviour, IStat {
 	}
 
 	public void ReplaceSelf(ScriptableTile newTile) {
+		CommandInput.Log($"{gameObject.name} at {tileTracker.PosToStr(this.position)} turned into {newTile.tileObject.name}");
 		tileTracker.ReplaceTile(this.position, newTile);
 	}
 
