@@ -1,0 +1,24 @@
+using UnityEngine;
+
+[CreateAssetMenu]
+public class StructureTiles : ScriptableObject {
+	// link structure-type tiles here
+}
+
+// and then have nature tiles somewhere else?
+// and then above this, a manager class for the other tiles
+// and then a script for each tile type
+
+houseTile.Clockwork = function( ){
+	base.Move
+
+}
+
+getTile() {
+	return this? (for mirror tiles);
+}
+
+houseTile.Decay = function() {
+	base.Decay
+
+}
