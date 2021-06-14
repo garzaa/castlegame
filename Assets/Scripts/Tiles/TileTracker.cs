@@ -33,7 +33,7 @@ public class TileTracker : MonoBehaviour {
 					continue;
 				}
 				
-				GameTile gameTile = SpawnTile(tile, currentPos);
+				GameTile gameTile = SpawnGameTile(tile, currentPos);
 				xRow.Add(gameTile);
 			}
 			tiles.Add(xRow);
@@ -64,25 +64,33 @@ public class TileTracker : MonoBehaviour {
 	}
 
 	public T[] GetTiles<T>() {
-		return tileContainer.GetComponentsInChildren<T>();
+		return tileContainer.GetComponentsInChildren<T>(includeInactive: false);
 	}
 
-	public void ReplaceTile(Vector3Int position, ScriptableTile newTile) {
+	public bool ReplaceTile(Vector3Int position, ScriptableTile newTile) {
 		// check if it's valid
 		if (!ValidPlacement(tilemap.GetTile(origin + position) as ScriptableTile, newTile, position)) {
-			return;
+			return false;
 		}
 
-		// update the tilemap, then the internal data to reflect it
-		tilemap.SetTile(position+origin, newTile);
+		RemoveTile(position);
 
-		// then add/initialize it in the internal data structure
-		GameTile tileBackend = SpawnTile(newTile, position);
-		GameObject.Destroy(tiles[position.x][position.y].gameObject);
+		tilemap.SetTile(position+origin, newTile);
+		GameTile tileBackend = SpawnGameTile(newTile, position);
 		tiles[position.x][position.y] = tileBackend;
+
+		return true;
 	}
 
-	GameTile SpawnTile(ScriptableTile tile, Vector3Int position) {
+	void RemoveTile(Vector3Int position) {
+		tilemap.SetTile(origin+position, null);
+		GameTile old = tiles[position.x][position.y];
+		old.Remove();
+		old.gameObject.SetActive(false);
+		GameObject.Destroy(old.gameObject);
+	}
+
+	GameTile SpawnGameTile(ScriptableTile tile, Vector3Int position) {
 		GameTile tileBackend = Instantiate(tile.tileObject, tileContainer.transform).GetComponent<GameTile>();
 		tileBackend.gameObject.name = tile.tileObject.name;
 		tileBackend.Initialize(this, position, tile);
@@ -123,9 +131,6 @@ public class TileTracker : MonoBehaviour {
 			if (pos.x > tilemap.cellBounds.size.x 
 			|| pos.y > tilemap.cellBounds.size.y
 			|| pos.x < 0 || pos.y < 0) {
-				Debug.Log(pos);
-				Debug.Log(origin);
-				Debug.Log(tilemap.cellBounds.size);
 				CommandInput.Log("Invalid coordinates "+coords);
 				throw new IndexOutOfRangeException("Invalid tilemap coordinates "+pos);
 			}

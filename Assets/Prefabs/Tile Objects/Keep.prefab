@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &2288087300475062031
+--- !u!1 &4222326780701236331
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -8,101 +8,88 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 6560974438330578228}
-  - component: {fileID: 7034336241186723529}
-  - component: {fileID: 554221811539725594}
-  - component: {fileID: -3407128921206021161}
-  - component: {fileID: -356992460171105038}
-  - component: {fileID: 8276244485657843313}
+  - component: {fileID: 819559911229272962}
+  - component: {fileID: 6566677945837271623}
+  - component: {fileID: 4244420699313337950}
+  - component: {fileID: 910303307167455321}
+  - component: {fileID: 5832555853396630499}
   m_Layer: 0
-  m_Name: Meadow
+  m_Name: Keep
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &6560974438330578228
+--- !u!4 &819559911229272962
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2288087300475062031}
+  m_GameObject: {fileID: 4222326780701236331}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 2.8045285, y: -1.1549379, z: -105.1656}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &7034336241186723529
+--- !u!114 &6566677945837271623
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2288087300475062031}
+  m_GameObject: {fileID: 4222326780701236331}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1f257f2dba2daf043844440ba0759d2d, type: 3}
+  m_Script: {fileID: 11500000, guid: 1e74267d04afa5842a40bc4e7c70d37d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  description: Pine seeds lurk just under the surface.
---- !u!114 &554221811539725594
+  description: Don't let the forest swallow it.
+--- !u!114 &4244420699313337950
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2288087300475062031}
+  m_GameObject: {fileID: 4222326780701236331}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 8cf6ec2134cc25e4aa160e030e55ad6c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &-3407128921206021161
+--- !u!114 &910303307167455321
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2288087300475062031}
+  m_GameObject: {fileID: 4222326780701236331}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: f93068a956a7cd14ba0bc0f748bb1109, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  decayThreshold: 8
-  decayTo: {fileID: 11400000, guid: ccc45f6c9dde4434eaa5e16819f82c60, type: 2}
+  decayThreshold: 1
+  decayTo: {fileID: 11400000, guid: 575a523c0ccac4a4395f0534ec1eebe6, type: 2}
   baseMultiplier: 1
-  gracePeriod: 5
+  gracePeriod: 0
   neighbor: {fileID: 11400000, guid: ccc45f6c9dde4434eaa5e16819f82c60, type: 2}
-  decayMode: 0
---- !u!114 &-356992460171105038
+  decayMode: 1
+--- !u!114 &5832555853396630499
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2288087300475062031}
+  m_GameObject: {fileID: 4222326780701236331}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5ec7ff127d91a5145aae8bca3e6e3197, type: 3}
+  m_Script: {fileID: 11500000, guid: 5ac7d643dc63d004cb9803be5bdaa77a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  resources:
-  - amount: 1
-    resource: {fileID: 11400000, guid: 4535e9995cbc6b0459e235cc06effc67, type: 2}
---- !u!114 &8276244485657843313
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2288087300475062031}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f3278cbc2f6c8f34aaa94ebcde6aa858, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  cutTo: {fileID: 11400000, guid: c27bc74127fe34d44a9038e4118c2450, type: 2}
+  decayThreshold: 7
+  decayTo: {fileID: 11400000, guid: 575a523c0ccac4a4395f0534ec1eebe6, type: 2}
+  baseMultiplier: 1
+  gracePeriod: 0

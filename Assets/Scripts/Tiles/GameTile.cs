@@ -7,19 +7,20 @@ public class GameTile : MonoBehaviour, IStat {
 	TileTracker tileTracker;
 	Vector3Int position;
 	ScriptableTile tile;
+	string OnPlace;
+	string OnRemove;
 
 	[TextArea] public string description;
 
-	// neighbors will have to be updated every time the tilemap is updated
-	// how do we do this without a recursive loop
-	// if tile.neighbors.doesn't contain this then call updateNeighbors
-	// that'll cascade it across the entire tilemap
-	// or jjust get it on every call, it's not that bad
-
-	virtual public void Initialize(TileTracker tileTracker, Vector3Int position, ScriptableTile tile) {
+	public void Initialize(TileTracker tileTracker, Vector3Int position, ScriptableTile tile) {
 		this.tileTracker = tileTracker;
 		this.position = position;
 		this.tile = tile;
+		SendMessage(nameof(OnPlace), SendMessageOptions.DontRequireReceiver);
+	}
+
+	public void Remove() {
+		SendMessage(nameof(OnRemove), SendMessageOptions.DontRequireReceiver);
 	}
 
 	public List<GameTile> GetNeighbors() {
@@ -37,7 +38,7 @@ public class GameTile : MonoBehaviour, IStat {
 			GetComponent<TileAge>().Clockwork();
 		}
 
-
+		//TODO: put generic clockwork here
 
 		if (GetComponent<TileDecay>() != null) {
 			TileDecay[] d = GetComponents<TileDecay>();

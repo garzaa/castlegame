@@ -12,9 +12,6 @@ public class CommandInput : MonoBehaviour {
 	public List<BuildCommand> buildCommands;
 	Dictionary<string, ScriptableTile> buildTiles;
 
-	public ScriptableTile clearedTile;
-	public ScriptableTile gardenTile;
-
 	int actions = 0;
 	const int actionsPerTick = 3;
 
@@ -100,12 +97,18 @@ public class CommandInput : MonoBehaviour {
 		}
 
 		else if (args[0] == "cut") {
-			if (tileTracker.GetTile(tileTracker.StrToPos(args[1])).GetTile().name == clearedTile.name) {
-				Log(args[1].ToUpper() + " already cleared");
+			GameTile tile = tileTracker.GetTile(tileTracker.StrToPos(args[1]));
+			TileCuttable cut = tile.GetComponent<TileCuttable>();
+			if (!cut) {
+				Log($"{tile.name} at {args[1].ToUpper()} can't be cut");
 			} else {
 				actions++;
-				tileTracker.ReplaceTile(tileTracker.StrToPos(args[1]), clearedTile);
+				tileTracker.ReplaceTile(tileTracker.StrToPos(args[1]), cut.cutTo);
 			}
+		}
+
+		else if (args[0] == "resources") {
+			Log(PlayerResources.Stat());
 		}
 
 		else if (args[0] == "fix") {
@@ -114,30 +117,31 @@ public class CommandInput : MonoBehaviour {
 		}
 
 		else if (args[0] == "build") {
-			Build(args[1], tileTracker.StrToPos(args[2]));
+			if (Build(args[1], tileTracker.StrToPos(args[2]))) {
+				actions++;
+			}
 		}
 
 		if (actions >= actionsPerTick) {
 			Log("Sunset");
 			Tick();
-			Log("Sunrise\n"+ actionsPerTick + " actions remaining today");
+			Log("Sunrise\n"+ actionsPerTick + " actions remaining");
 		} else {
 			int remaining = actionsPerTick - actions;
 			if (remaining > 1) {
-				Log(remaining + " actions remaining today");
+				Log(remaining + " actions remaining");
 			} else {
-				Log(remaining + " action remaining today");
+				Log(remaining + " action remaining");
 			}
 		}
 	}
 
-	void Build(string name, Vector3Int pos) {
+	bool Build(string name, Vector3Int pos) {
 		if (!buildTiles.ContainsKey(name)) {
 			Log("Unknown build command "+name);
-			return;
+			return false;
 		}
-		actions++;
-		tileTracker.ReplaceTile(pos, buildTiles[name]);
+		return tileTracker.ReplaceTile(pos, buildTiles[name]);
 	}
 
 	void Tick(int time=1) {

@@ -9,11 +9,12 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 970874656581175622}
-  - component: {fileID: 4980264089815005697}
+  - component: {fileID: -7047045590849799275}
   - component: {fileID: 6726653392267514890}
   - component: {fileID: 7969450915691859759}
   - component: {fileID: 7425281676867835060}
   - component: {fileID: -8123393665578110194}
+  - component: {fileID: 5280526993796324451}
   m_Layer: 0
   m_Name: House
   m_TagString: Untagged
@@ -35,7 +36,7 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &4980264089815005697
+--- !u!114 &-7047045590849799275
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -44,7 +45,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 4771183308089857777}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1f257f2dba2daf043844440ba0759d2d, type: 3}
+  m_Script: {fileID: 11500000, guid: 1e74267d04afa5842a40bc4e7c70d37d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   description: Live here. Work elsewhere.
@@ -108,3 +109,18 @@ MonoBehaviour:
   decayTo: {fileID: 11400000, guid: 575a523c0ccac4a4395f0534ec1eebe6, type: 2}
   baseMultiplier: 1
   gracePeriod: 0
+--- !u!114 &5280526993796324451
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4771183308089857777}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f8d0a376d2d2a4a40ac40e94ea69332a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  resources:
+  - amount: 1
+    resource: {fileID: 11400000, guid: 4535e9995cbc6b0459e235cc06effc67, type: 2}

@@ -13,7 +13,7 @@ public class TileDecay : TileBehaviour, IStat {
 
 	[SerializeField]
 	[Tooltip("Amount of days before decay is compounded.")]
-	protected int gracePeriod = 3;
+	protected int gracePeriod = 0;
 
 	TileAge tileAge;
 

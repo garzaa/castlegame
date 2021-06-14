@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6723966241171830883}
-  - component: {fileID: 953546295975996868}
+  - component: {fileID: 7336445815057853658}
   - component: {fileID: 548085062186487813}
   - component: {fileID: 6297691773090121052}
   - component: {fileID: 2221221603057038484}
@@ -35,7 +35,7 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &953546295975996868
+--- !u!114 &7336445815057853658
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -44,7 +44,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 7406095483696277000}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1f257f2dba2daf043844440ba0759d2d, type: 3}
+  m_Script: {fileID: 11500000, guid: 1e74267d04afa5842a40bc4e7c70d37d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   description: Provides food. Fragile...
