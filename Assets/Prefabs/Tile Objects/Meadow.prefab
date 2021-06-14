@@ -12,7 +12,6 @@ GameObject:
   - component: {fileID: 7034336241186723529}
   - component: {fileID: 554221811539725594}
   - component: {fileID: -3407128921206021161}
-  - component: {fileID: -356992460171105038}
   - component: {fileID: 8276244485657843313}
   m_Layer: 0
   m_Name: Meadow
@@ -78,21 +77,6 @@ MonoBehaviour:
   gracePeriod: 5
   neighbor: {fileID: 11400000, guid: ccc45f6c9dde4434eaa5e16819f82c60, type: 2}
   decayMode: 0
---- !u!114 &-356992460171105038
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2288087300475062031}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5ec7ff127d91a5145aae8bca3e6e3197, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  resources:
-  - amount: 1
-    resource: {fileID: 11400000, guid: 4535e9995cbc6b0459e235cc06effc67, type: 2}
 --- !u!114 &8276244485657843313
 MonoBehaviour:
   m_ObjectHideFlags: 0

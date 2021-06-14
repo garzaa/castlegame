@@ -147,11 +147,7 @@ public class CommandInput : MonoBehaviour {
 	void Tick(int time=1) {
 		actions = 0;
 		for (int t=0; t<time; t++) {
-			GameTile[] tiles = tileTracker.GetTiles<GameTile>();
-			for (int i=0; i<tiles.Length; i++) {
-				tiles[i].Clockwork();
-			}
-			tileTracker.FinishTick();
+			tileTracker.Tick();
 		}
 	}
 

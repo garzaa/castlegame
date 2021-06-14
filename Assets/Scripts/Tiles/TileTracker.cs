@@ -151,11 +151,32 @@ public class TileTracker : MonoBehaviour {
 		ReplaceTile(placement.position, placement.newTile);
 	}
 
-	public void FinishTick() {
+	public void Tick() {
+		foreach (TileAge tileAge in GetTiles<TileAge>()) {
+			tileAge.Clockwork();
+		}
+
+		foreach (Clockwork clockwork in GetTiles<Clockwork>()) {
+			clockwork.Tick();
+		}
+
+		foreach (TileDecay decay in GetTiles<TileDecay>()) {
+			decay.Clockwork();
+		}
+
 		while (placements.Count > 0) {
 			ApplyPlacement(placements.Dequeue());
 		}
-
 		placements.Clear();
+	}
+
+	public List<GameTile> GetNeighbors(Vector3Int position) {
+		List<GameTile> neighbors = new List<GameTile>();
+		neighbors.Add(GetTile(position + Vector3Int.up));
+		neighbors.Add(GetTile(position + Vector3Int.down));
+		neighbors.Add(GetTile(position + Vector3Int.right));
+		neighbors.Add(GetTile(position + Vector3Int.left));
+		neighbors.RemoveAll(x => x==null);
+		return neighbors;
 	}
 }

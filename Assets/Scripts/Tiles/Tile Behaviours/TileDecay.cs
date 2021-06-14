@@ -17,8 +17,8 @@ public class TileDecay : TileBehaviour, IStat {
 
 	TileAge tileAge;
 
-	override protected void Start() {
-		base.Start();
+	override protected void Awake() {
+		base.Awake();
 		tileAge = GetComponent<TileAge>();
 	}
 

@@ -23,31 +23,6 @@ public class GameTile : MonoBehaviour, IStat {
 		SendMessage(nameof(OnRemove), SendMessageOptions.DontRequireReceiver);
 	}
 
-	public List<GameTile> GetNeighbors() {
-		List<GameTile> neighbors = new List<GameTile>();
-		neighbors.Add(tileTracker.GetTile(position + Vector3Int.up));
-		neighbors.Add(tileTracker.GetTile(position + Vector3Int.down));
-		neighbors.Add(tileTracker.GetTile(position + Vector3Int.right));
-		neighbors.Add(tileTracker.GetTile(position + Vector3Int.left));
-		neighbors.RemoveAll(x => x==null);
-		return neighbors;
-	}
-
-	public void Clockwork() {
-		if (GetComponent<TileAge>() != null) {
-			GetComponent<TileAge>().Clockwork();
-		}
-
-		//TODO: put generic clockwork here
-
-		if (GetComponent<TileDecay>() != null) {
-			TileDecay[] d = GetComponents<TileDecay>();
-			for (int i=0; i<d.Length; i++) {
-				d[i].Clockwork();
-			}
-		}
-	}
-
 	public void ReplaceSelf(ScriptableTile newTile) {
 		CommandInput.Log($"{gameObject.name} at {tileTracker.PosToStr(this.position)} turned into {newTile.tileObject.name}");
 		tileTracker.ReplaceTile(this.position, newTile);
@@ -64,5 +39,17 @@ public class GameTile : MonoBehaviour, IStat {
 
 	public string Stat() {
 		return $"{name} at {tileTracker.PosToStr(this.position)}\n{description}";
+	}
+
+	public List<GameTile> GetNeighbors() {
+		return tileTracker.GetNeighbors(position);
+	}
+
+	public TileTracker GetTracker() {
+		return tileTracker;
+	}
+
+	public Vector3Int GetPosition() {
+		return position;
 	}
 }
