@@ -27,6 +27,7 @@ public class PlayerResources : MonoBehaviour {
 	public static void Remove(List<ResourceAmount> requirements) {
 		foreach (ResourceAmount r in requirements) {
 			pr.resources[r.resource] -= r.amount;
+			pr.resources[r.resource] = Mathf.Max(pr.resources[r.resource], 0);
 			CommandInput.Log($"{r.amount} {r.resource.name} removed");
 		}
 	}

@@ -1,8 +1,6 @@
 using UnityEngine;
 using System.Collections.Generic;
 
-public class ClockworkAction : ScriptableObject {
-	virtual public void Apply(List<GameTile> tiles, GameTile from) {
-
-	}
+public abstract class ClockworkAction : ScriptableObject {
+	abstract public void Apply(List<GameTile> tiles, GameTile from);
 }

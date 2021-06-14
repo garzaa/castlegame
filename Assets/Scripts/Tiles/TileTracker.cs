@@ -1,6 +1,7 @@
 using UnityEngine;
 using System;
 using UnityEngine.Tilemaps;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -11,6 +12,7 @@ public class TileTracker : MonoBehaviour {
 	Tilemap tilemap;
 	List<List<GameTile>> tiles = new List<List<GameTile>>();
 	Queue<TilePlacement> placements = new Queue<TilePlacement>();
+	Dictionary<ExclusiveClockworkAction, List<ClockworkApply>> exclusiveActions = new Dictionary<ExclusiveClockworkAction, List<ClockworkApply>>();
 	GameObject tileContainer;
 
 	public static readonly string letters = "abcdefghijklmnopqrstuvwxyz";
@@ -160,6 +162,8 @@ public class TileTracker : MonoBehaviour {
 			clockwork.Tick();
 		}
 
+		ReconcileExclusiveActions();
+
 		foreach (TileDecay decay in GetTiles<TileDecay>()) {
 			decay.Clockwork();
 		}
@@ -178,5 +182,74 @@ public class TileTracker : MonoBehaviour {
 		neighbors.Add(GetTile(position + Vector3Int.left));
 		neighbors.RemoveAll(x => x==null);
 		return neighbors;
+	}
+
+	public void QueueExclusiveAction(ExclusiveClockworkAction actionType, ClockworkApply spec) {
+		if (!exclusiveActions.ContainsKey(actionType)) {
+			exclusiveActions[actionType] = new List<ClockworkApply>();
+		}
+		exclusiveActions[actionType].Add(spec);
+	}
+
+	void ReconcileExclusiveActions() {
+		foreach (var action in exclusiveActions) {
+			ReconcileExclusiveAction(action.Key, action.Value);
+		}
+		exclusiveActions.Clear();
+	}
+
+	void ReconcileExclusiveAction(ExclusiveClockworkAction actionType, List<ClockworkApply> actions) {
+		List<ClockworkApply> singularActions;
+		while ((singularActions = GetSingularActions(actions)).Count > 0) {
+			GameTile sourceTile = singularActions[0].sourceTile;
+			List<GameTile> targets = singularActions[0].targets;
+			if (targets.Count > 1) Debug.Log("UH OH SINGULAR TARGET HAS MUILTUPE");
+			
+			// apply the action to that tile
+			actionType.ExecuteApply(actions[0]);
+
+			// then remove all references to that tile from the list of actions
+			PruneTargetsFromActions(targets, actions);
+		}
+
+		// after this, there could just be multiple actions
+		// so do the same thing
+		while (actions.Count > 0) {
+			actionType.ExecuteApply(actions[0]);
+			PruneTargetsFromActions(actions[0].targets, actions);
+		}
+	}
+
+	void PruneTargetsFromActions(List<GameTile> targets, List<ClockworkApply> actions) {
+		List<ClockworkApply> toRemove = new List<ClockworkApply>();
+		foreach (ClockworkApply currentAction in actions) {
+			// remove targets
+			foreach (GameTile target in targets) {
+				if (currentAction.targets.Contains(target)) {
+					currentAction.targets.Remove(target);
+				}
+			}
+
+			// if no targets left in the action, remove it from the list
+			if (currentAction.targets.Count == 0) {
+				toRemove.Add(currentAction);
+			}
+		}
+
+		foreach (ClockworkApply emptyAction in toRemove) {
+			actions.Remove(emptyAction);
+		}
+	}
+
+	List<ClockworkApply> GetSingularActions(List<ClockworkApply> actions) {
+		return actions.Where(x => x.targets.Count == 1).ToList();
+	}
+
+	GameTile GetFirstTile(Dictionary<GameTile, List<GameTile>> d) {
+		foreach (var kv in d) {
+			return kv.Key;
+		}
+		Debug.Log("GetFirstTile given a dict with no keys!");
+		return null;
 	}
 }
