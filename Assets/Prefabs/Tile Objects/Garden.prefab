@@ -47,6 +47,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1f257f2dba2daf043844440ba0759d2d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  description: Provides food. Fragile...
 --- !u!114 &548085062186487813
 MonoBehaviour:
   m_ObjectHideFlags: 0

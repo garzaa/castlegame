@@ -8,6 +8,8 @@ public class GameTile : MonoBehaviour, IStat {
 	Vector3Int position;
 	ScriptableTile tile;
 
+	[TextArea] public string description;
+
 	// neighbors will have to be updated every time the tilemap is updated
 	// how do we do this without a recursive loop
 	// if tile.neighbors.doesn't contain this then call updateNeighbors
@@ -35,6 +37,8 @@ public class GameTile : MonoBehaviour, IStat {
 			GetComponent<TileAge>().Clockwork();
 		}
 
+
+
 		if (GetComponent<TileDecay>() != null) {
 			TileDecay[] d = GetComponents<TileDecay>();
 			for (int i=0; i<d.Length; i++) {
@@ -58,6 +62,6 @@ public class GameTile : MonoBehaviour, IStat {
 	}
 
 	public string Stat() {
-		return $"{name} at {tileTracker.PosToStr(this.position)}";
+		return $"{name} at {tileTracker.PosToStr(this.position)}\n{description}";
 	}
 }

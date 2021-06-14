@@ -4,11 +4,15 @@ using UnityEngine;
 public class TileDecay : TileBehaviour, IStat {
 	[SerializeField]
 	int decayThreshold = 7;
-	public ScriptableTile decayTo;
+
+	[SerializeField]
+	ScriptableTile decayTo;
 
 	[SerializeField]
 	int baseMultiplier = 1;
+
 	[SerializeField]
+	[Tooltip("Amount of days before decay is compounded.")]
 	protected int gracePeriod = 3;
 
 	TileAge tileAge;
@@ -19,6 +23,8 @@ public class TileDecay : TileBehaviour, IStat {
 	}
 
 	virtual public void Clockwork() {
+		// if it was already removed
+		if (gameTile == null) return;
 		// call the inherited version
 		if (GetDecay() > decayThreshold) {
 			gameTile.QueueForReplace(decayTo);
@@ -26,7 +32,6 @@ public class TileDecay : TileBehaviour, IStat {
 	}
 
 	virtual public int GetDecay() {
-		Debug.Log("root getting decay");
 		int decay = tileAge.GetAge()-gracePeriod;
 		if (decay > 0) decay *= baseMultiplier;
 		return decay;

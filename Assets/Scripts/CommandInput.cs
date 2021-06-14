@@ -1,6 +1,7 @@
 using UnityEngine;
 using UnityEngine.UI;
 using System.Collections;
+using System.Collections.Generic;
 
 public class CommandInput : MonoBehaviour {
 	[SerializeField] Text scrollback;
@@ -8,8 +9,14 @@ public class CommandInput : MonoBehaviour {
 	[SerializeField] TileTracker tileTracker;
 	[SerializeField] TilemapVisuals tilemapVisuals;
 
+	public List<BuildCommand> buildCommands;
+	Dictionary<string, ScriptableTile> buildTiles;
+
 	public ScriptableTile clearedTile;
 	public ScriptableTile gardenTile;
+
+	int actions = 0;
+	const int actionsPerTick = 3;
 
 	public static CommandInput c;
 
@@ -21,6 +28,12 @@ public class CommandInput : MonoBehaviour {
 	}
 
 	void Start() {
+		buildTiles = new Dictionary<string, ScriptableTile>();
+		foreach (BuildCommand bc in buildCommands) {
+			buildTiles[bc.name] = bc.tile;
+		}
+		buildCommands.Clear();
+
 		ClearInput();
 		SelectInput();
 	}
@@ -87,19 +100,48 @@ public class CommandInput : MonoBehaviour {
 		}
 
 		else if (args[0] == "cut") {
-			tileTracker.ReplaceTile(tileTracker.StrToPos(args[1]), clearedTile);
+			if (tileTracker.GetTile(tileTracker.StrToPos(args[1])).GetTile().name == clearedTile.name) {
+				Log(args[1].ToUpper() + " already cleared");
+			} else {
+				actions++;
+				tileTracker.ReplaceTile(tileTracker.StrToPos(args[1]), clearedTile);
+			}
 		}
 
 		else if (args[0] == "fix") {
+			actions++;
 			tileTracker.RepairTile(tileTracker.StrToPos(args[1]));
 		}
 
-		else if (args[0] == "till") {
-			tileTracker.ReplaceTile(tileTracker.StrToPos(args[1]), gardenTile);
+		else if (args[0] == "build") {
+			Build(args[1], tileTracker.StrToPos(args[2]));
+		}
+
+		if (actions >= actionsPerTick) {
+			Log("Sunset");
+			Tick();
+			Log("Sunrise\n"+ actionsPerTick + " actions remaining today");
+		} else {
+			int remaining = actionsPerTick - actions;
+			if (remaining > 1) {
+				Log(remaining + " actions remaining today");
+			} else {
+				Log(remaining + " action remaining today");
+			}
 		}
 	}
 
-	void Tick(int time) {
+	void Build(string name, Vector3Int pos) {
+		if (!buildTiles.ContainsKey(name)) {
+			Log("Unknown build command "+name);
+			return;
+		}
+		actions++;
+		tileTracker.ReplaceTile(pos, buildTiles[name]);
+	}
+
+	void Tick(int time=1) {
+		actions = 0;
 		for (int t=0; t<time; t++) {
 			GameTile[] tiles = tileTracker.GetTiles<GameTile>();
 			for (int i=0; i<tiles.Length; i++) {
@@ -116,4 +158,10 @@ public class CommandInput : MonoBehaviour {
 		time--;
 		if (time > 0) StartCoroutine(SlowTick(time));
 	}
+}
+
+[System.Serializable]
+public class BuildCommand {
+	public string name;
+	public ScriptableTile tile;
 }

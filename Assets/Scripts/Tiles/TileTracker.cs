@@ -69,7 +69,7 @@ public class TileTracker : MonoBehaviour {
 
 	public void ReplaceTile(Vector3Int position, ScriptableTile newTile) {
 		// check if it's valid
-		if (!ValidPlacement(tilemap.GetTile(origin + position) as ScriptableTile, newTile)) {
+		if (!ValidPlacement(tilemap.GetTile(origin + position) as ScriptableTile, newTile, position)) {
 			return;
 		}
 
@@ -89,13 +89,12 @@ public class TileTracker : MonoBehaviour {
 		return tileBackend;
 	}
 
-	bool ValidPlacement(ScriptableTile oldTile, ScriptableTile newTile) {
-		TileRequiredBase required = newTile.tileObject.GetComponent<TileRequiredBase>();
-		if (!required) return true;
-		else if (!required.validBases.Contains(oldTile)) {
-			List<String> validBases = required.validBases.Select(x => x.name).ToList();
-			CommandInput.Log("Invalid build base for "+newTile.tileObject.name+". Valid bases: "+ PrettyList(validBases));
-			return false;
+	bool ValidPlacement(ScriptableTile oldTile, ScriptableTile newTile, Vector3Int pos) {
+		TileCriterion[] criteria = newTile.tileObject.GetComponents<TileCriterion>();
+		for (int i=0; i<criteria.Length; i++) {
+			if (!criteria[i].Valid(this, pos)) {
+				return false;
+			}
 		}
 		return true;
 	}
@@ -153,14 +152,5 @@ public class TileTracker : MonoBehaviour {
 		}
 
 		placements.Clear();
-	}
-
-	public string PrettyList(List<String> l) {
-		string s = "[ ";
-		foreach (String x in l) {
-			s += x + " ";
-		}
-		s += "]";
-		return s;
 	}
 }

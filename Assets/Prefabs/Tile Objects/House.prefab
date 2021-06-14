@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &2288087300475062031
+--- !u!1 &4771183308089857777
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -8,71 +8,67 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 6560974438330578228}
-  - component: {fileID: 7034336241186723529}
-  - component: {fileID: 554221811539725594}
-  - component: {fileID: -3407128921206021161}
+  - component: {fileID: 970874656581175622}
+  - component: {fileID: 4980264089815005697}
+  - component: {fileID: 6726653392267514890}
+  - component: {fileID: 7969450915691859759}
   m_Layer: 0
-  m_Name: Meadow
+  m_Name: House
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &6560974438330578228
+--- !u!4 &970874656581175622
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2288087300475062031}
+  m_GameObject: {fileID: 4771183308089857777}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 2.3458602, y: -1.2990289, z: -1.7299805}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &7034336241186723529
+--- !u!114 &4980264089815005697
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2288087300475062031}
+  m_GameObject: {fileID: 4771183308089857777}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 1f257f2dba2daf043844440ba0759d2d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  description: Pine seeds lurk just under the surface.
---- !u!114 &554221811539725594
+  description: Live here. Work elsewhere.
+--- !u!114 &6726653392267514890
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2288087300475062031}
+  m_GameObject: {fileID: 4771183308089857777}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 8cf6ec2134cc25e4aa160e030e55ad6c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &-3407128921206021161
+--- !u!114 &7969450915691859759
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2288087300475062031}
+  m_GameObject: {fileID: 4771183308089857777}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f93068a956a7cd14ba0bc0f748bb1109, type: 3}
+  m_Script: {fileID: 11500000, guid: 966dc023b85eb154cb9a9905d12fe875, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  decayThreshold: 8
-  decayTo: {fileID: 11400000, guid: ccc45f6c9dde4434eaa5e16819f82c60, type: 2}
-  baseMultiplier: 1
-  gracePeriod: 5
-  neighbor: {fileID: 11400000, guid: ccc45f6c9dde4434eaa5e16819f82c60, type: 2}
-  decayMode: 0
+  validBases:
+  - {fileID: 11400000, guid: 3fd74c4aa6bf0b443b15f6f171617b95, type: 2}
