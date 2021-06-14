@@ -21,6 +21,7 @@ public class CommandInput : MonoBehaviour {
 	}
 
 	void Start() {
+		ClearInput();
 		SelectInput();
 	}
 
@@ -35,12 +36,16 @@ public class CommandInput : MonoBehaviour {
 		}
 		string command = input.text;
 		scrollback.text += $"\n<color=#C7CFDD>{command}</color>";
+		ClearInput();
 		SelectInput();
 		ParseCommand(command.ToLower());
 	}
 
-	void SelectInput() {
+	void ClearInput() {
 		input.text = "";
+	}
+
+	public void SelectInput() {
 		input.Select();
 		input.ActivateInputField();
 	}
@@ -73,8 +78,8 @@ public class CommandInput : MonoBehaviour {
 			int time = 1;
 			if (args.Length > 1 && !string.IsNullOrEmpty(args[1])) {
 				time = int.Parse(args[1]);
-				Tick(time);
 			}
+			Tick(time);
 		}
 
 		else if (args[0] == "slowtick") {
@@ -101,6 +106,7 @@ public class CommandInput : MonoBehaviour {
 				tiles[i].Clockwork();
 			}
 		}
+		tileTracker.FinishTick();
 	}
 
 	IEnumerator SlowTick(int time) {

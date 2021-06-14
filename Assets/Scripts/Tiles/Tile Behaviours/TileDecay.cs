@@ -19,18 +19,20 @@ public class TileDecay : TileBehaviour, IStat {
 	}
 
 	virtual public void Clockwork() {
+		// call the inherited version
 		if (GetDecay() > decayThreshold) {
-			gameTile.ReplaceSelf(decayTo);
+			gameTile.QueueForReplace(decayTo);
 		}
 	}
 
 	virtual public int GetDecay() {
+		Debug.Log("root getting decay");
 		int decay = tileAge.GetAge()-gracePeriod;
 		if (decay > 0) decay *= baseMultiplier;
 		return decay;
 	}
 
 	virtual public string Stat() {
-		return $"decay {GetDecay()}/{decayThreshold} to {decayTo.tileObject.name}";
+		return $"Decay {GetDecay()}/{decayThreshold} to {decayTo.tileObject.name}";
 	}
 }

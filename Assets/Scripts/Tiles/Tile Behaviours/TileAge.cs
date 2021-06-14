@@ -16,6 +16,6 @@ public class TileAge : TileBehaviour, IStat {
 	}
 
 	public string Stat() {
-		return "age: "+GetAge();
+		return "Age: "+GetAge();
 	}
 }

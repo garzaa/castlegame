@@ -10,6 +10,7 @@ public class TileTracker : MonoBehaviour {
 	Vector3Int origin;
 	Tilemap tilemap;
 	List<List<GameTile>> tiles = new List<List<GameTile>>();
+	Queue<TilePlacement> placements = new Queue<TilePlacement>();
 	GameObject tileContainer;
 
 	public static readonly string letters = "abcdefghijklmnopqrstuvwxyz";
@@ -67,8 +68,14 @@ public class TileTracker : MonoBehaviour {
 	}
 
 	public void ReplaceTile(Vector3Int position, ScriptableTile newTile) {
+		// check if it's valid
+		if (!ValidPlacement(tilemap.GetTile(origin + position) as ScriptableTile, newTile)) {
+			return;
+		}
+
 		// update the tilemap, then the internal data to reflect it
 		tilemap.SetTile(position+origin, newTile);
+
 		// then add/initialize it in the internal data structure
 		GameTile tileBackend = SpawnTile(newTile, position);
 		GameObject.Destroy(tiles[position.x][position.y].gameObject);
@@ -80,6 +87,17 @@ public class TileTracker : MonoBehaviour {
 		tileBackend.gameObject.name = tile.tileObject.name;
 		tileBackend.Initialize(this, position, tile);
 		return tileBackend;
+	}
+
+	bool ValidPlacement(ScriptableTile oldTile, ScriptableTile newTile) {
+		TileRequiredBase required = newTile.tileObject.GetComponent<TileRequiredBase>();
+		if (!required) return true;
+		else if (!required.validBases.Contains(oldTile)) {
+			List<String> validBases = required.validBases.Select(x => x.name).ToList();
+			CommandInput.Log("Invalid build base for "+newTile.tileObject.name+". Valid bases: "+ PrettyList(validBases));
+			return false;
+		}
+		return true;
 	}
 
 	public void RepairTile(Vector3Int pos) {
@@ -119,5 +137,30 @@ public class TileTracker : MonoBehaviour {
 
 	public string PosToStr(Vector3Int pos) {
 		return letters[pos.x].ToString().ToUpper() + (pos.y + 1);
+	}
+
+	public void QueueReplacement(Vector3Int position, ScriptableTile newTile) {
+		placements.Enqueue(new TilePlacement(position, newTile));
+	}
+
+	void ApplyPlacement(TilePlacement placement) {
+		ReplaceTile(placement.position, placement.newTile);
+	}
+
+	public void FinishTick() {
+		while (placements.Count > 0) {
+			ApplyPlacement(placements.Dequeue());
+		}
+
+		placements.Clear();
+	}
+
+	public string PrettyList(List<String> l) {
+		string s = "[ ";
+		foreach (String x in l) {
+			s += x + " ";
+		}
+		s += "]";
+		return s;
 	}
 }

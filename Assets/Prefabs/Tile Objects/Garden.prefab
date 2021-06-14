@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 548085062186487813}
   - component: {fileID: 6297691773090121052}
   - component: {fileID: 2221221603057038484}
+  - component: {fileID: -4982842824184917296}
   m_Layer: 0
   m_Name: Garden
   m_TagString: Untagged
@@ -70,10 +71,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5ac7d643dc63d004cb9803be5bdaa77a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  decayThreshold: 7
+  decayThreshold: 2
   decayTo: {fileID: 11400000, guid: ea089a2b162bee14a83b010a12f19909, type: 2}
   baseMultiplier: 1
-  gracePeriod: 3
+  gracePeriod: 0
 --- !u!114 &2221221603057038484
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -89,6 +90,20 @@ MonoBehaviour:
   decayThreshold: 7
   decayTo: {fileID: 11400000, guid: ccc45f6c9dde4434eaa5e16819f82c60, type: 2}
   baseMultiplier: 2
-  gracePeriod: 3
+  gracePeriod: 1
   neighbor: {fileID: 11400000, guid: ccc45f6c9dde4434eaa5e16819f82c60, type: 2}
   decayMode: 1
+--- !u!114 &-4982842824184917296
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7406095483696277000}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 966dc023b85eb154cb9a9905d12fe875, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  validBases:
+  - {fileID: 11400000, guid: c27bc74127fe34d44a9038e4118c2450, type: 2}

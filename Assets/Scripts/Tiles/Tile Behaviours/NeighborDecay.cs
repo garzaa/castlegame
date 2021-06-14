@@ -12,10 +12,12 @@ public class NeighborDecay : TileDecay, IStat {
 	}
 
 	public override int GetDecay() {
+		int n = GetNumNeighbors();
+		if (n == 0) return 0;
 		if (decayMode == DecayMode.ADD) {
-			return base.GetDecay() + GetNumNeighbors();
+			return base.GetDecay() + n;
 		} else if (decayMode == DecayMode.MUL) {
-			return base.GetDecay() * GetNumNeighbors();
+			return base.GetDecay() * n;
 		} else {
 			// this should NEVER be called
 			return base.GetDecay();

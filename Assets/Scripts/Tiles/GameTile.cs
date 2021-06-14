@@ -48,6 +48,11 @@ public class GameTile : MonoBehaviour, IStat {
 		tileTracker.ReplaceTile(this.position, newTile);
 	}
 
+	public void QueueForReplace(ScriptableTile newTile) {
+		CommandInput.Log($"{gameObject.name} at {tileTracker.PosToStr(this.position)} is turning into {newTile.tileObject.name}");
+		tileTracker.QueueReplacement(this.position, newTile);
+	}
+
 	public ScriptableTile GetTile() {
 		return tile;
 	}
