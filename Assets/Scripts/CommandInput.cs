@@ -9,6 +9,7 @@ public class CommandInput : MonoBehaviour {
 	[SerializeField] TilemapVisuals tilemapVisuals;
 
 	public ScriptableTile clearedTile;
+	public ScriptableTile gardenTile;
 
 	public static CommandInput c;
 
@@ -87,6 +88,10 @@ public class CommandInput : MonoBehaviour {
 		else if (args[0] == "fix") {
 			tileTracker.RepairTile(tileTracker.StrToPos(args[1]));
 		}
+
+		else if (args[0] == "till") {
+			tileTracker.ReplaceTile(tileTracker.StrToPos(args[1]), gardenTile);
+		}
 	}
 
 	void Tick(int time) {
@@ -99,7 +104,7 @@ public class CommandInput : MonoBehaviour {
 	}
 
 	IEnumerator SlowTick(int time) {
-		yield return new WaitForSeconds(1f);
+		yield return new WaitForSeconds(0.5f);
 		Tick(1);
 		Log("1 day done");
 		time--;

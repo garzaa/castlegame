@@ -7,7 +7,7 @@ public class TileDecay : TileBehaviour, IStat {
 	public ScriptableTile decayTo;
 
 	[SerializeField]
-	protected int multiplier = 1;
+	int baseMultiplier = 1;
 	[SerializeField]
 	protected int gracePeriod = 3;
 
@@ -24,9 +24,9 @@ public class TileDecay : TileBehaviour, IStat {
 		}
 	}
 
-	public int GetDecay() {
+	virtual public int GetDecay() {
 		int decay = tileAge.GetAge()-gracePeriod;
-		if (decay > 0) decay *= multiplier;
+		if (decay > 0) decay *= baseMultiplier;
 		return decay;
 	}
 

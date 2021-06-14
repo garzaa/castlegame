@@ -4,17 +4,25 @@ using System.Collections.Generic;
 public class NeighborDecay : TileDecay, IStat {
 	public ScriptableTile neighbor;
 
+	[SerializeField]
+	DecayMode decayMode = DecayMode.MUL;
+
 	override protected void Start() {
 		base.Start();
-		multiplier = GetMultiplier();
 	}
 
-	public override void Clockwork() {
-		multiplier = GetMultiplier();
-		base.Clockwork();
+	public override int GetDecay() {
+		if (decayMode == DecayMode.ADD) {
+			return base.GetDecay() + GetNumNeighbors();
+		} else if (decayMode == DecayMode.MUL) {
+			return base.GetDecay() * GetNumNeighbors();
+		} else {
+			// this should NEVER be called
+			return base.GetDecay();
+		}
 	}
 
-	int GetMultiplier() {
+	int GetNumNeighbors() {
 		int m = 0;
 		List<GameTile> neighbors = gameTile.GetNeighbors();
 		for (int i=0; i<neighbors.Count; i++) {
@@ -26,6 +34,11 @@ public class NeighborDecay : TileDecay, IStat {
 	}
 
 	override public string Stat() {
-		return $"{neighbor.tileObject.name} neighbors: {GetMultiplier()} -> {base.Stat()}";
+		return $"{neighbor.tileObject.name} neighbors: {GetNumNeighbors()} -> {base.Stat()}";
 	}
+}
+
+public enum DecayMode {
+	ADD = 0,
+	MUL = 1
 }

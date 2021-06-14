@@ -10,19 +10,19 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 088e44299747c984b87165029a9c2838, type: 3}
-  m_Name: GrassTile
+  m_Name: GardenTile
   m_EditorClassIdentifier: 
-  m_DefaultSprite: {fileID: -5342368469925002225, guid: 8aca2103d1cf2be44b8c1a0359e681c8,
+  m_DefaultSprite: {fileID: -5623194428626525839, guid: 8aca2103d1cf2be44b8c1a0359e681c8,
     type: 3}
   m_DefaultGameObject: {fileID: 0}
   m_DefaultColliderType: 1
   m_TilingRules:
   - m_Id: 0
     m_Sprites:
-    - {fileID: -5342368469925002225, guid: 8aca2103d1cf2be44b8c1a0359e681c8, type: 3}
-    - {fileID: -1799925587257728388, guid: 8aca2103d1cf2be44b8c1a0359e681c8, type: 3}
-    - {fileID: 7263770034074671417, guid: 8aca2103d1cf2be44b8c1a0359e681c8, type: 3}
-    - {fileID: -6927681105904999893, guid: 8aca2103d1cf2be44b8c1a0359e681c8, type: 3}
+    - {fileID: -2646800685242748869, guid: 8aca2103d1cf2be44b8c1a0359e681c8, type: 3}
+    - {fileID: -5623194428626525839, guid: 8aca2103d1cf2be44b8c1a0359e681c8, type: 3}
+    - {fileID: 8435826616607337010, guid: 8aca2103d1cf2be44b8c1a0359e681c8, type: 3}
+    - {fileID: -7811834608892705033, guid: 8aca2103d1cf2be44b8c1a0359e681c8, type: 3}
     m_GameObject: {fileID: 0}
     m_AnimationSpeed: 1
     m_PerlinScale: 0.5
@@ -40,5 +40,5 @@ MonoBehaviour:
     - {x: 0, y: -1, z: 0}
     - {x: 1, y: -1, z: 0}
     m_RuleTransform: 0
-  tileObject: {fileID: 2288087300475062031, guid: 26ba873b904d1e44a9efeb39b3b3396b,
+  tileObject: {fileID: 7406095483696277000, guid: 807206931c4cabc4b9209e2fe6b64061,
     type: 3}
