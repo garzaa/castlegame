@@ -22,7 +22,7 @@ public class TileDecay : TileBehaviour, IStat {
 		tileAge = GetComponent<TileAge>();
 	}
 
-	virtual public void Clockwork() {
+	public void Clockwork() {
 		// if it was already removed
 		if (gameTile == null) return;
 		// call the inherited version

@@ -147,8 +147,8 @@ public class CommandInput : MonoBehaviour {
 			for (int i=0; i<tiles.Length; i++) {
 				tiles[i].Clockwork();
 			}
+			tileTracker.FinishTick();
 		}
-		tileTracker.FinishTick();
 	}
 
 	IEnumerator SlowTick(int time) {
