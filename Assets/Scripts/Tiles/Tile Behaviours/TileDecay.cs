@@ -40,4 +40,8 @@ public class TileDecay : TileBehaviour, IStat {
 	virtual public string Stat() {
 		return $"Decay {GetDecay()}/{decayThreshold} to {decayTo.tileObject.name}";
 	}
+
+	public int GetDecayThreshold() {
+		return decayThreshold;
+	}
 }

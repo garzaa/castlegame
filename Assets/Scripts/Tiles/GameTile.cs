@@ -52,4 +52,8 @@ public class GameTile : MonoBehaviour, IStat {
 	public Vector3Int GetPosition() {
 		return position;
 	}
+
+	public override string ToString() {
+		return $"{tileTracker.PosToStr(this.position)} {this.name}";
+	}
 }

@@ -200,16 +200,17 @@ public class TileTracker : MonoBehaviour {
 
 	void ReconcileExclusiveAction(ExclusiveClockworkAction actionType, List<ClockworkApply> actions) {
 		List<ClockworkApply> singularActions;
+
+		// do this instead of iterating since actions will be modified each loop
 		while ((singularActions = GetSingularActions(actions)).Count > 0) {
-			GameTile sourceTile = singularActions[0].sourceTile;
-			List<GameTile> targets = singularActions[0].targets;
-			if (targets.Count > 1) Debug.Log("UH OH SINGULAR TARGET HAS MUILTUPE");
+			ClockworkApply currentAction = singularActions[0];
+			GameTile sourceTile = currentAction.sourceTile;
 			
 			// apply the action to that tile
-			actionType.ExecuteApply(actions[0]);
+			actionType.ExecuteApply(currentAction);
 
 			// then remove all references to that tile from the list of actions
-			PruneTargetsFromActions(targets, actions);
+			PruneTargetsFromActions(currentAction.targets, actions);
 		}
 
 		// after this, there could just be multiple actions
@@ -222,20 +223,24 @@ public class TileTracker : MonoBehaviour {
 
 	void PruneTargetsFromActions(List<GameTile> targets, List<ClockworkApply> actions) {
 		List<ClockworkApply> toRemove = new List<ClockworkApply>();
+
+		// if the action contains the target, remove it
 		foreach (ClockworkApply currentAction in actions) {
-			// remove targets
+			List<GameTile> removeTargets = new List<GameTile>();
 			foreach (GameTile target in targets) {
 				if (currentAction.targets.Contains(target)) {
-					currentAction.targets.Remove(target);
+					removeTargets.Add(target);
 				}
 			}
+			foreach(GameTile target in removeTargets) {
+				currentAction.targets.Remove(target);
+			}
 
-			// if no targets left in the action, remove it from the list
+			// if no targets left in the action, remove it from the list of actions
 			if (currentAction.targets.Count == 0) {
 				toRemove.Add(currentAction);
 			}
 		}
-
 		foreach (ClockworkApply emptyAction in toRemove) {
 			actions.Remove(emptyAction);
 		}
@@ -243,13 +248,5 @@ public class TileTracker : MonoBehaviour {
 
 	List<ClockworkApply> GetSingularActions(List<ClockworkApply> actions) {
 		return actions.Where(x => x.targets.Count == 1).ToList();
-	}
-
-	GameTile GetFirstTile(Dictionary<GameTile, List<GameTile>> d) {
-		foreach (var kv in d) {
-			return kv.Key;
-		}
-		Debug.Log("GetFirstTile given a dict with no keys!");
-		return null;
 	}
 }

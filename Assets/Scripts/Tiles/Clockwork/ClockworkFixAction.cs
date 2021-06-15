@@ -10,8 +10,7 @@ public class ClockworkFixAction : ExclusiveClockworkAction {
 	public override void ExecuteApply(ClockworkApply action) {
 		List<GameTile> toFix = action.targets
 			.Where(x=> x.GetComponent<TileAge>())
-			.OrderBy(x => x.GetComponent<TileAge>().GetAge())
-			.ThenByDescending(x => GetAverageDecay(x))
+			.OrderBy(x => GetNearestDecay(x))
 			.ToList();
 		
 		if (limit > 0) {
@@ -37,26 +36,15 @@ public class ClockworkFixAction : ExclusiveClockworkAction {
 		CommandInput.Log(msg);
 	}
 
-	float GetAverageDecay(GameTile tile) {
-		int decay = 0;
-		int counter = 0;
+	float GetNearestDecay(GameTile tile) {
+		// doesn't account for multipliers but whatever
+		// maybe neighbor decay should just alter the base multiplier
+		int decayWindow = int.MaxValue;
 
 		foreach (TileDecay d in tile.GetComponents<TileDecay>()) {
-			counter++;
-			decay += d.GetDecay();
+			decayWindow = Mathf.Min(d.GetDecayThreshold() - d.GetDecay(), decayWindow);
 		}
-		
-		if (counter == 0) return 0;
 
-		return (float) decay / (float) counter;
+		return decayWindow;
 	}
 }
-
-/**
-	TODO: multiple repair reconciling algorithm
-	1. have a dict of <gameTile, List<GameTile>> repairs
-	2. while there are tiles that can only do one repair, do them and take them out of possible repairs
-	3. if there are tiles left with multiple, look for commonalities? just do em anyway?
-
-
-*/
