@@ -10,12 +10,12 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 088e44299747c984b87165029a9c2838, type: 3}
-  m_Name: MirrorTile
+  m_Name: PoolTile
   m_EditorClassIdentifier: 
-  m_DefaultSprite: {fileID: 330035807481742118, guid: 376ff37984ea0084890ccb172d46603c,
+  m_DefaultSprite: {fileID: 4011421391013169510, guid: 376ff37984ea0084890ccb172d46603c,
     type: 3}
   m_DefaultGameObject: {fileID: 0}
   m_DefaultColliderType: 1
   m_TilingRules: []
-  tileObject: {fileID: 6964423682973066455, guid: a776b06b1d1f3204abffc6ceee32b7fc,
+  tileObject: {fileID: 2494658351783309265, guid: 97d6e0632f3d1af4898028159c573830,
     type: 3}

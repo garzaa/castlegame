@@ -36,11 +36,26 @@ public class TileTracker : MonoBehaviour {
 					continue;
 				}
 				
-				GameTile gameTile = SpawnGameTile(tile, currentPos);
+				GameTile gameTile = SpawnGameTile(tile, currentPos, initialize:false);
 				xRow.Add(gameTile);
 			}
 			tiles.Add(xRow);
 		}
+
+		InitializeAllTiles();
+	}
+
+	void InitializeAllTiles() {
+		for (int x=0; x<tiles.Count; x++) {
+			for (int y=0; y<tiles.Count; y++) {
+				Vector3Int currentPos = new Vector3Int(x, y, 0);
+				tiles[x][y].Initialize(this, currentPos, tilemap.GetTile<ScriptableTile>(origin+currentPos));
+			}
+		}
+	}
+
+	public GameTile GetTileNoRedirect(Vector3Int pos) {
+		return GetTileNoRedirect(pos.x, pos.y);
 	}
 
 	public GameTile GetTileNoRedirect(int x, int y) {
@@ -65,7 +80,7 @@ public class TileTracker : MonoBehaviour {
 	}
 
 	public GameTile FollowRedirects(GameTile currentTile, GameTile from, List<GameTile> visited) {
-		if (redirects.ContainsKey(currentTile) && !visited.Contains(currentTile)) {
+		if (redirects.ContainsKey(currentTile) && !visited.Contains(redirects[currentTile])) {
 			// redirection to null == outside bounds or reflector
 			if (redirects[currentTile]==null) {
 				return from;
@@ -114,10 +129,10 @@ public class TileTracker : MonoBehaviour {
 		GameObject.Destroy(old.gameObject);
 	}
 
-	GameTile SpawnGameTile(ScriptableTile tile, Vector3Int position) {
+	GameTile SpawnGameTile(ScriptableTile tile, Vector3Int position, bool initialize = true) {
 		GameTile tileBackend = Instantiate(tile.tileObject, tileContainer.transform).GetComponent<GameTile>();
 		tileBackend.gameObject.name = tile.tileObject.name;
-		tileBackend.Initialize(this, position, tile);
+		if (initialize) tileBackend.Initialize(this, position, tile);
 		return tileBackend;
 	}
 
@@ -198,7 +213,6 @@ public class TileTracker : MonoBehaviour {
 
 	public List<GameTile> GetNeighbors(Vector3Int position) {
 		List<GameTile> neighbors = new List<GameTile>();
-		// get neighbors from the current tile
 		neighbors.Add(GetTile(position + Vector3Int.up, GetTileNoRedirect(position.x, position.y)));
 		neighbors.Add(GetTile(position + Vector3Int.down, GetTileNoRedirect(position.x, position.y)));
 		neighbors.Add(GetTile(position + Vector3Int.right, GetTileNoRedirect(position.x, position.y)));
@@ -236,6 +250,9 @@ public class TileTracker : MonoBehaviour {
 			PruneTargetsFromActions(currentAction.targets, actions);
 		}
 
+		// this has to be here
+		actions.RemoveAll(x => x.targets.Count == 0);
+
 		// after this, there could just be multiple actions
 		// so do the same thing
 		while (actions.Count > 0) {
@@ -256,6 +273,8 @@ public class TileTracker : MonoBehaviour {
 	}
 
 	public void AddRedirect(TileRedirect redirect) {
+		// target null means reflect, origin null means out of bounds
+		if (redirect.origin == null) return;
 		redirects[redirect.origin] = redirect.target;
 	}
 

@@ -50,8 +50,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1e74267d04afa5842a40bc4e7c70d37d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  description: "Live here. Work elsewhere. \nRequires an adjacent garden to be built.\nRepairs
-    the oldest neighbor tile."
+  description: "Live here. Work elsewhere. \nRepairs the oldest neighbor structure."
 --- !u!114 &6726653392267514890
 MonoBehaviour:
   m_ObjectHideFlags: 0

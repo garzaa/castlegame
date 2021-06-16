@@ -73,7 +73,7 @@ public class CommandInput : MonoBehaviour {
 		if (args[0] == "stat") {
 			string coords = args[1];
 
-			GameTile t = tileTracker.GetTile(tileTracker.StrToPos(coords), null);
+			GameTile t = tileTracker.GetTileNoRedirect(tileTracker.StrToPos(coords));
 			IStat[] s = t.GetComponents<IStat>();
 			for (int i=0; i<s.Length; i++) {
 				Log(s[i].Stat());
