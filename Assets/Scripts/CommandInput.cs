@@ -47,10 +47,10 @@ public class CommandInput : MonoBehaviour {
 			return;
 		}
 		string command = input.text;
-		Log(command);
+		Log("<color='#c7cfdd'>"+command+"</color>");
 		ClearInput();
 		SelectInput();
-		ParseCommand(command.ToLower());
+		ParseCommand(command);
 	}
 
 	void ClearInput() {
@@ -71,7 +71,9 @@ public class CommandInput : MonoBehaviour {
 		g.GetComponent<Text>().text = s;
 	}
 
-	void ParseCommand(string command) {
+	void ParseCommand(string originalCommand) {
+		string command = originalCommand.ToLower();
+
 		string[] args = command.Split(' ');
 		if (args[0] == "stat") {
 			string coords = args[1];
@@ -123,6 +125,10 @@ public class CommandInput : MonoBehaviour {
 			if (Build(args[1], tileTracker.StrToPos(args[2]))) {
 				actions++;
 			}
+		}
+
+		else {
+			Log("'"+originalCommand+"' not a known command");
 		}
 
 		if (actions >= actionsPerTick) {
