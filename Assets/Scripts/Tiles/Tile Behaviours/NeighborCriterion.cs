@@ -1,9 +1,9 @@
 using UnityEngine;
 
-public class NeighborCriterion : TileCriterion {
+public class NeighborCriterion : TileBehaviour, ITileValidator {
 	public ScriptableTile neighborTile;
 
-	public override bool Valid(TileTracker tracker, Vector3Int pos) {
+	public bool Valid(TileTracker tracker, Vector3Int pos) {
 		foreach (GameTile tile in tracker.GetNeighbors(pos)) {
 			if (tile.GetTile().name == neighborTile.name) {
 				return true;

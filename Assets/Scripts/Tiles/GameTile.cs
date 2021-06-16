@@ -5,14 +5,14 @@ using System.Collections.Generic;
 
 public class GameTile : MonoBehaviour, IStat {
 	TileTracker tileTracker;
-	Vector3Int position;
+	public Vector3Int position {get; private set; }
 	ScriptableTile tile;
 	string OnPlace;
 	string OnRemove;
 
 	[TextArea] public string description;
 
-	public void Initialize(TileTracker tileTracker, Vector3Int position, ScriptableTile tile) {
+	public virtual void Initialize(TileTracker tileTracker, Vector3Int position, ScriptableTile tile) {
 		this.tileTracker = tileTracker;
 		this.position = position;
 		this.tile = tile;
@@ -47,10 +47,6 @@ public class GameTile : MonoBehaviour, IStat {
 
 	public TileTracker GetTracker() {
 		return tileTracker;
-	}
-
-	public Vector3Int GetPosition() {
-		return position;
 	}
 
 	public override string ToString() {

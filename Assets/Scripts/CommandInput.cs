@@ -73,7 +73,7 @@ public class CommandInput : MonoBehaviour {
 		if (args[0] == "stat") {
 			string coords = args[1];
 
-			GameTile t = tileTracker.GetTile(tileTracker.StrToPos(coords));
+			GameTile t = tileTracker.GetTile(tileTracker.StrToPos(coords), null);
 			IStat[] s = t.GetComponents<IStat>();
 			for (int i=0; i<s.Length; i++) {
 				Log(s[i].Stat());
@@ -97,7 +97,7 @@ public class CommandInput : MonoBehaviour {
 		}
 
 		else if (args[0] == "cut") {
-			GameTile tile = tileTracker.GetTile(tileTracker.StrToPos(args[1]));
+			GameTile tile = tileTracker.GetTile(tileTracker.StrToPos(args[1]), null);
 			TileCuttable cut = tile.GetComponent<TileCuttable>();
 			if (!cut) {
 				Log($"{tile.name} at {args[1].ToUpper()} can't be cut");

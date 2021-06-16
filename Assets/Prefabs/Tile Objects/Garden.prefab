@@ -90,7 +90,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   decayThreshold: 3
   decayTo: {fileID: 11400000, guid: ccc45f6c9dde4434eaa5e16819f82c60, type: 2}
-  baseMultiplier: 1
+  baseMultiplier: 2
   gracePeriod: 1
   neighbor: {fileID: 11400000, guid: ccc45f6c9dde4434eaa5e16819f82c60, type: 2}
   decayMode: 1

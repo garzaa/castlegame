@@ -13,6 +13,7 @@ public class TileTracker : MonoBehaviour {
 	List<List<GameTile>> tiles = new List<List<GameTile>>();
 	Queue<TilePlacement> placements = new Queue<TilePlacement>();
 	Dictionary<ExclusiveClockworkAction, List<ClockworkApply>> exclusiveActions = new Dictionary<ExclusiveClockworkAction, List<ClockworkApply>>();
+	Dictionary<GameTile, GameTile> redirects = new Dictionary<GameTile, GameTile>();
 	GameObject tileContainer;
 
 	public static readonly string letters = "abcdefghijklmnopqrstuvwxyz";
@@ -42,7 +43,7 @@ public class TileTracker : MonoBehaviour {
 		}
 	}
 
-	public GameTile GetTile(int x, int y) {
+	public GameTile GetTileNoRedirect(int x, int y) {
 		try {
 			return tiles[x][y].GetComponent<GameTile>();
 		} catch (ArgumentOutOfRangeException) {
@@ -50,8 +51,29 @@ public class TileTracker : MonoBehaviour {
 		}
 	}
 
-	public GameTile GetTile(Vector3Int pos) {
-		return GetTile(pos.x, pos.y);
+	public GameTile GetTile(int x, int y, GameTile from) {
+		try {
+			GameTile tile = tiles[x][y].GetComponent<GameTile>();
+			return FollowRedirects(tile, from, new List<GameTile>());
+		} catch (ArgumentOutOfRangeException) {
+			return null;
+		}
+	}
+
+	public GameTile GetTile(Vector3Int pos, GameTile from) {
+		return GetTile(pos.x, pos.y, from);
+	}
+
+	public GameTile FollowRedirects(GameTile currentTile, GameTile from, List<GameTile> visited) {
+		if (redirects.ContainsKey(currentTile) && !visited.Contains(currentTile)) {
+			// redirection to null == outside bounds or reflector
+			if (redirects[currentTile]==null) {
+				return from;
+			}
+			visited.Add(currentTile);
+			return FollowRedirects(redirects[currentTile], from, visited);
+		}
+		return currentTile;
 	}
 
 	public TileBase GetTilemapTile(int x, int y) {
@@ -100,7 +122,7 @@ public class TileTracker : MonoBehaviour {
 	}
 
 	bool ValidPlacement(ScriptableTile oldTile, ScriptableTile newTile, Vector3Int pos) {
-		TileCriterion[] criteria = newTile.tileObject.GetComponents<TileCriterion>();
+		ITileValidator[] criteria = newTile.tileObject.GetComponents<ITileValidator>();
 		for (int i=0; i<criteria.Length; i++) {
 			if (!criteria[i].Valid(this, pos)) {
 				return false;
@@ -176,10 +198,11 @@ public class TileTracker : MonoBehaviour {
 
 	public List<GameTile> GetNeighbors(Vector3Int position) {
 		List<GameTile> neighbors = new List<GameTile>();
-		neighbors.Add(GetTile(position + Vector3Int.up));
-		neighbors.Add(GetTile(position + Vector3Int.down));
-		neighbors.Add(GetTile(position + Vector3Int.right));
-		neighbors.Add(GetTile(position + Vector3Int.left));
+		// get neighbors from the current tile
+		neighbors.Add(GetTile(position + Vector3Int.up, GetTileNoRedirect(position.x, position.y)));
+		neighbors.Add(GetTile(position + Vector3Int.down, GetTileNoRedirect(position.x, position.y)));
+		neighbors.Add(GetTile(position + Vector3Int.right, GetTileNoRedirect(position.x, position.y)));
+		neighbors.Add(GetTile(position + Vector3Int.left, GetTileNoRedirect(position.x, position.y)));
 		neighbors.RemoveAll(x => x==null);
 		return neighbors;
 	}
@@ -222,31 +245,25 @@ public class TileTracker : MonoBehaviour {
 	}
 
 	void PruneTargetsFromActions(List<GameTile> targets, List<ClockworkApply> actions) {
-		List<ClockworkApply> toRemove = new List<ClockworkApply>();
-
-		// if the action contains the target, remove it
-		foreach (ClockworkApply currentAction in actions) {
-			List<GameTile> removeTargets = new List<GameTile>();
-			foreach (GameTile target in targets) {
-				if (currentAction.targets.Contains(target)) {
-					removeTargets.Add(target);
-				}
-			}
-			foreach(GameTile target in removeTargets) {
-				currentAction.targets.Remove(target);
-			}
-
-			// if no targets left in the action, remove it from the list of actions
-			if (currentAction.targets.Count == 0) {
-				toRemove.Add(currentAction);
-			}
+		foreach (ClockworkApply action in actions) {
+			action.targets.RemoveAll(x => targets.Contains(x));
 		}
-		foreach (ClockworkApply emptyAction in toRemove) {
-			actions.Remove(emptyAction);
-		}
+		actions.RemoveAll(x => x.targets.Count == 0);
 	}
 
 	List<ClockworkApply> GetSingularActions(List<ClockworkApply> actions) {
 		return actions.Where(x => x.targets.Count == 1).ToList();
+	}
+
+	public void AddRedirect(TileRedirect redirect) {
+		redirects[redirect.origin] = redirect.target;
+	}
+
+	public void RemoveRedirect(TileRedirect redirect) {
+		redirects.Remove(redirect.origin);
+	}
+
+	public bool HasRedirect(int x, int y) {
+		return redirects.ContainsKey(GetTileNoRedirect(x, y));
 	}
 }

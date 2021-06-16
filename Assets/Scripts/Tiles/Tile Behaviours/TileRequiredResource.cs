@@ -1,10 +1,10 @@
 using UnityEngine;
 using System.Collections.Generic;
 
-public class TileRequiredResource : TileCriterion {
+public class TileRequiredResource : TileBehaviour, ITileValidator {
 	public List<ResourceAmount> resources;
 
-	public override bool Valid(TileTracker tracker, Vector3Int pos) {
+	public bool Valid(TileTracker tracker, Vector3Int pos) {
 		if (PlayerResources.Has(resources)) {
 			return true;
 		}

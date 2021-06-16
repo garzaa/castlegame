@@ -6,7 +6,7 @@ public class Clockwork : TileBehaviour {
 
 	public void Tick() {
 		if (!gameObject.activeSelf) return;
-		action.Apply(target.GetTargets(gameTile.GetPosition(), gameTile.GetTracker()), gameTile);
+		action.Apply(target.GetTargets(gameTile.position, gameTile.GetTracker()), gameTile);
 	}
 
 }

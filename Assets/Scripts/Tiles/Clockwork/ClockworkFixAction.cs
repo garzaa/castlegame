@@ -31,8 +31,8 @@ public class ClockworkFixAction : ExclusiveClockworkAction {
 
 		a.Repair();
 		TileTracker tracker = targetTile.GetTracker();
-		string msg = $"{sourceTile.name} at {tracker.PosToStr(sourceTile.GetPosition())}";
-		msg += $" repaired {targetTile.name} at {tracker.PosToStr(targetTile.GetPosition())}";
+		string msg = $"{sourceTile.name} at {tracker.PosToStr(sourceTile.position)}";
+		msg += $" repaired {targetTile.name} at {tracker.PosToStr(targetTile.position)}";
 		CommandInput.Log(msg);
 	}
 
