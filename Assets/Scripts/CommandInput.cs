@@ -17,7 +17,6 @@ public class CommandInput : MonoBehaviour {
 
 	public static CommandInput c;
 
-	readonly string[] nullAges = new string[] {"eternal", "immeasurable", "unfathomable"};
 
 	void Awake() {
 		ClearConsole();

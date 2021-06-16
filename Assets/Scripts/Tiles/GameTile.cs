@@ -12,6 +12,8 @@ public class GameTile : MonoBehaviour, IStat {
 	string OnRemove;
 
 	[TextArea] public string description;
+	
+	static readonly string[] nullAges = new string[] {"eternal", "immeasurable", "unfathomable"};
 
 	public virtual void Initialize(TileTracker tileTracker, Vector3Int position, ScriptableTile tile) {
 		this.tileTracker = tileTracker;
@@ -39,7 +41,12 @@ public class GameTile : MonoBehaviour, IStat {
 	}
 
 	public string Stat() {
-		return $"{name} at {tileTracker.PosToStr(this.position)}\n{description}";
+		string stat = $"{name} at {tileTracker.PosToStr(this.position)}\n{description}";
+		if (tileTracker.HasRedirect(this)) {
+			string target = tileTracker.GetRedirect(this) == null ? "watcher" : tileTracker.GetRedirect(this).ToString();
+			stat += "\nRedirects to "+target;
+		}
+		return stat;
 	}
 
 	public List<GameTile> GetNeighbors() {
@@ -51,6 +58,6 @@ public class GameTile : MonoBehaviour, IStat {
 	}
 
 	public override string ToString() {
-		return $"{tileTracker.PosToStr(this.position)} {this.name}";
+		return $"{tileTracker.PosToStr(this.position)} at {this.name}";
 	}
 }

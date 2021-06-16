@@ -285,4 +285,12 @@ public class TileTracker : MonoBehaviour {
 	public bool HasRedirect(int x, int y) {
 		return redirects.ContainsKey(GetTileNoRedirect(x, y));
 	}
+
+	public bool HasRedirect(GameTile tile) {
+		return redirects.ContainsKey(tile);
+	}
+
+	public GameTile GetRedirect(GameTile tile) {
+		return redirects[tile];
+	}
 }

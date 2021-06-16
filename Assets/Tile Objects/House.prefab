@@ -107,7 +107,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5ac7d643dc63d004cb9803be5bdaa77a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  decayThreshold: 10
+  decayThreshold: 5
   decayTo: {fileID: 11400000, guid: 575a523c0ccac4a4395f0534ec1eebe6, type: 2}
   baseMultiplier: 1
   gracePeriod: 0
