@@ -97,4 +97,5 @@ MonoBehaviour:
     m_NeighborPositions:
     - {x: -1, y: 0, z: 0}
     m_RuleTransform: 0
-  tileObject: {fileID: 0}
+  tileObject: {fileID: 411952914854454334, guid: 05a4d75ede2629a4c8456fe504012b11,
+    type: 3}

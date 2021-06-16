@@ -84,7 +84,7 @@ public class CommandInput : MonoBehaviour {
 			ClearConsole();
 		}
 
-		else if (args[0] == "tick" || args[0] == "tock") {
+		else if (args[0] == "sleep") {
 			int time = 1;
 			if (args.Length > 1 && !string.IsNullOrEmpty(args[1])) {
 				time = int.Parse(args[1]);
@@ -92,7 +92,7 @@ public class CommandInput : MonoBehaviour {
 			Tick(time);
 		}
 
-		else if (args[0] == "slowtick") {
+		else if (args[0] == "slowsleep") {
 			StartCoroutine(SlowTick(int.Parse(args[1])));
 		}
 
