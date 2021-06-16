@@ -58,6 +58,6 @@ public class GameTile : MonoBehaviour, IStat {
 	}
 
 	public override string ToString() {
-		return $"{tileTracker.PosToStr(this.position)} at {this.name}";
+		return $"{this.name} at {tileTracker.PosToStr(this.position)}";
 	}
 }
