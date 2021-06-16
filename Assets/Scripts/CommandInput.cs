@@ -4,10 +4,11 @@ using System.Collections;
 using System.Collections.Generic;
 
 public class CommandInput : MonoBehaviour {
-	[SerializeField] Text scrollback;
+	[SerializeField] RectTransform textOutputParent;
 	[SerializeField] InputField input;
 	[SerializeField] TileTracker tileTracker;
 	[SerializeField] TilemapVisuals tilemapVisuals;
+	[SerializeField] GameObject textOutput;
 
 	public List<BuildCommand> buildCommands;
 	Dictionary<string, ScriptableTile> buildTiles;
@@ -35,7 +36,9 @@ public class CommandInput : MonoBehaviour {
 	}
 
 	void ClearConsole() {
-		scrollback.text = "";
+		foreach(RectTransform t in textOutputParent.transform) {
+			GameObject.Destroy(t.gameObject);
+		}
 	}
 
 	public void OnCommandSubmit() {
@@ -44,7 +47,7 @@ public class CommandInput : MonoBehaviour {
 			return;
 		}
 		string command = input.text;
-		scrollback.text += $"\n<color=#C7CFDD>{command}</color>";
+		Log(command);
 		ClearInput();
 		SelectInput();
 		ParseCommand(command.ToLower());
@@ -64,7 +67,8 @@ public class CommandInput : MonoBehaviour {
 	}
 
 	public static void Log(string s) {
-		c.scrollback.text += "\n"+s;
+		GameObject g = Instantiate(c.textOutput, c.textOutputParent);
+		g.GetComponent<Text>().text = s;
 	}
 
 	void ParseCommand(string command) {
