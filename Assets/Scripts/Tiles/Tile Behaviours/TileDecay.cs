@@ -3,16 +3,14 @@ using UnityEngine;
 [RequireComponent(typeof(TileAge))]
 public class TileDecay : TileBehaviour, IStat {
 	[SerializeField]
-	int decayThreshold = 7;
+	protected int decayThreshold = 7;
+	protected int originalDecayThreshold { get; private set; }
 
 	[SerializeField]
 	ScriptableTile decayTo;
 
 	[SerializeField]
-	int baseMultiplier = 1;
-
-	[SerializeField]
-	[Tooltip("Amount of days before decay is compounded.")]
+	[Tooltip("Amount of days before decay is compounded by neighbors")]
 	protected int gracePeriod = 0;
 
 	TileAge tileAge;
@@ -20,6 +18,7 @@ public class TileDecay : TileBehaviour, IStat {
 	override protected void Awake() {
 		base.Awake();
 		tileAge = GetComponent<TileAge>();
+		originalDecayThreshold = decayThreshold;
 	}
 
 	public void Clockwork() {
@@ -33,7 +32,6 @@ public class TileDecay : TileBehaviour, IStat {
 
 	virtual public int GetDecay() {
 		int decay = tileAge.GetAge()-gracePeriod;
-		if (decay > 0) decay *= baseMultiplier;
 		return decay;
 	}
 

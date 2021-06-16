@@ -15,9 +15,11 @@ public class NeighborDecay : TileDecay, IStat {
 		int n = GetNumNeighbors();
 		if (n == 0) return 0;
 		if (decayMode == DecayMode.ADD) {
-			return base.GetDecay() + n;
+			base.decayThreshold = base.originalDecayThreshold - n;
+			return base.GetDecay();
 		} else if (decayMode == DecayMode.MUL) {
-			return base.GetDecay() * n;
+			base.decayThreshold = Mathf.CeilToInt((float) base.originalDecayThreshold / (float) n);
+			return base.GetDecay();
 		} else {
 			// this should NEVER be called
 			return base.GetDecay();
@@ -36,7 +38,7 @@ public class NeighborDecay : TileDecay, IStat {
 	}
 
 	override public string Stat() {
-		return $"{neighbor.tileObject.name} neighbors: {GetNumNeighbors()} -> {base.Stat()}";
+		return $"{decayMode.ToString()} {neighbor.tileObject.name} neighbors: {GetNumNeighbors()} -> {base.Stat()}";
 	}
 }
 
