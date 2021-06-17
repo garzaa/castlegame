@@ -22,7 +22,8 @@ public class CommandInput : MonoBehaviour {
 	int actions = 0;
 	const int actionsPerTick = 3;
 
-	public int daysWithoutActions;
+	int daysWithoutActions;
+	int totalDays;
 
 	public static CommandInput c;
 	TileTracker tileTracker;
@@ -262,6 +263,7 @@ public class CommandInput : MonoBehaviour {
 
 	void Tick() {
 		if (actions == 0) daysWithoutActions++;
+		totalDays++;
 		actions = 0;
 		tileTracker.Tick();
 		CheckWinConditions();
@@ -292,7 +294,8 @@ public class CommandInput : MonoBehaviour {
 		}
 		if (won) {
 			wonLevel = true;
-			Log("<color='#00cdf9'>Win condition satisfied!</color>");
+			Log($"<color='#00cdf9'>{SceneManager.GetActiveScene().name} won after {totalDays} days!</color>");
+			Log($"<color='#00cdf9'>Board condition satisfied:</color>");
 			Log($"<color='#00cdf9'>{won.GetDescription()}</color>");
 			Log("You can keep playing or load the next level.");
 		}
