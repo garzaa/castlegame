@@ -1018,13 +1018,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   textOutputParent: {fileID: 3948093379735237337}
   input: {fileID: 3948093379859624870}
-  tileTracker: {fileID: 0}
-  tilemapVisuals: {fileID: 0}
   textOutput: {fileID: 5616161420329661508, guid: 85aba606e53fc6c448588f777c87945e,
     type: 3}
   levels:
   - sceneAsset: {fileID: 102900000, guid: 2cda990e2423bbf4892e6590ba056729, type: 3}
-    scenePath: Assets/Scenes/Tutorial.unity
+    scenePath: Assets/Scenes/Build.unity
   - sceneAsset: {fileID: 102900000, guid: 4482025da657ab44e926cb4a84a3a569, type: 3}
     scenePath: Assets/Scenes/Sustain.unity
   buildCommands:

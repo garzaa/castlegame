@@ -113,7 +113,9 @@ public class CommandInput : MonoBehaviour {
 
 		else if (args[0] == "levels") {
 			foreach (SceneReference level in levels) {
-				Log(SceneManager.GetSceneByPath(level.ScenePath).name);
+				// levels/level.unity
+				string[] path = level.ScenePath.Split('/');
+				Log(path[path.Length-1].Split('.')[0]);
 			}
 			return;
 		}
@@ -123,7 +125,7 @@ public class CommandInput : MonoBehaviour {
 			string scenePath = "";
 			foreach (SceneReference level in levels) {
 				scenePath = level.ScenePath;
-				if (scenePath.Contains(args[1])) {
+				if (scenePath.ToLower().Contains(args[1])) {
 					valid = true;
 					break;
 				}
@@ -218,7 +220,7 @@ public class CommandInput : MonoBehaviour {
 
 		else if (args[0] == "blueprints") {
 			foreach (string blueprint in buildTiles.Keys) {
-				Log(blueprint.ToString().Substring(0, 1).ToUpper() + blueprint.ToString().Substring(1));
+				Log(ToSentence(blueprint));
 				foreach (TileRequiredResource r in buildTiles[blueprint].tileObject.GetComponents<TileRequiredResource>()) {
 					Log(r);
 				}
@@ -296,6 +298,10 @@ public class CommandInput : MonoBehaviour {
 
 	public static int GetDaysWithoutActions() {
 		return c.daysWithoutActions;
+	}
+
+	string ToSentence(string s) {
+		return s.ToString().Substring(0, 1).ToUpper() + s.ToString().Substring(1);
 	}
 }
 
