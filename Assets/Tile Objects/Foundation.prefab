@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 4264298943003706949}
   - component: {fileID: 5953914988494769298}
   - component: {fileID: 1338158770668015625}
+  - component: {fileID: -3916108195818966489}
   m_Layer: 0
   m_Name: Foundation
   m_TagString: Untagged
@@ -74,7 +75,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   decayThreshold: 2
   decayTo: {fileID: 11400000, guid: c27bc74127fe34d44a9038e4118c2450, type: 2}
-  baseMultiplier: 1
   gracePeriod: 0
 --- !u!114 &5953914988494769298
 MonoBehaviour:
@@ -105,3 +105,16 @@ MonoBehaviour:
   resources:
   - amount: 1
     resource: {fileID: 11400000, guid: 4535e9995cbc6b0459e235cc06effc67, type: 2}
+--- !u!114 &-3916108195818966489
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3544250914789974257}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f3278cbc2f6c8f34aaa94ebcde6aa858, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  cutTo: {fileID: 11400000, guid: c27bc74127fe34d44a9038e4118c2450, type: 2}

@@ -24,8 +24,11 @@ public class CameraControls : MonoBehaviour {
 			tilePos.z = tilemap.transform.position.z;
 
 			if (tilemap.localBounds.Contains(tilePos/2f)) {
-				transform.position = positionOnDragStart - worldDelta;
+				Vector3 closest = tilemap.localBounds.ClosestPoint(targetPos);
+				targetPos.x = closest.x;
+				targetPos.y = closest.y;
 			} 
+			transform.position = targetPos;
 		}
     }
 }

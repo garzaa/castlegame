@@ -298,4 +298,11 @@ public class TileTracker : MonoBehaviour {
 	public GameTile GetRedirect(GameTile tile) {
 		return redirects[tile];
 	}
+
+	public int ContainsTile(ScriptableTile targetTile) {
+		int count = tilemap.GetTilesBlock(tilemap.cellBounds)
+			.Where(x=> x.name == targetTile.name)
+			.Count();
+		return count;
+	}
 }

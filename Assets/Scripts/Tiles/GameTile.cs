@@ -25,13 +25,8 @@ public class GameTile : MonoBehaviour, IStat {
 		SendMessage(nameof(OnRemove), SendMessageOptions.DontRequireReceiver);
 	}
 
-	public void ReplaceSelf(ScriptableTile newTile) {
-		CommandInput.Log($"{gameObject.name} at {tileTracker.PosToStr(this.position)} turned into {newTile.tileObject.name}");
-		tileTracker.ReplaceTile(this.position, newTile);
-	}
-
 	public void QueueForReplace(ScriptableTile newTile) {
-		CommandInput.Log($"{gameObject.name} at {tileTracker.PosToStr(this.position)} is turning into {newTile.tileObject.name}");
+		CommandInput.Log($"{gameObject.name} at {tileTracker.PosToStr(this.position)} turned into {newTile.tileObject.name}");
 		tileTracker.QueueReplacement(this.position, newTile);
 	}
 

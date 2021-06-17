@@ -17,10 +17,10 @@ public class TilemapVisuals : MonoBehaviour {
 	}
 
 	void Start() {
-		CommandInput.Log("initializing legend");
 		origin = tilemap.cellBounds.min;
-		CommandInput.Log("computed origin: "+ origin.ToString());
-		CommandInput.Log("board size: "+tilemap.cellBounds.size);
+		// CommandInput.Log("initializing legend");
+		// CommandInput.Log("computed origin: "+ origin.ToString());
+		// CommandInput.Log("board size: "+tilemap.cellBounds.size);
 
 		for (int i=0; i<tilemap.cellBounds.size.x; i++) {
 			AddLetterLegend(i);

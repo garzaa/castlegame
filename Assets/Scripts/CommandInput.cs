@@ -12,12 +12,14 @@ public class CommandInput : MonoBehaviour {
 	[SerializeField] TilemapVisuals tilemapVisuals;
 	[SerializeField] GameObject textOutput;
 	[SerializeField] List<SceneReference> levels;
+	[SerializeField] List<BuildCommand> buildCommands;
 	#pragma warning restore 0649
 
-	public List<BuildCommand> buildCommands;
 	Dictionary<string, ScriptableTile> buildTiles;
-	
+	WinCondition[] winConditions;
+
 	bool gameOver = false;
+	bool wonLevel = false;
 
 	int actions = 0;
 	const int actionsPerTick = 3;
@@ -35,6 +37,12 @@ public class CommandInput : MonoBehaviour {
 			buildTiles[bc.name] = bc.tile;
 		}
 		buildCommands.Clear();
+
+		winConditions = GameObject.FindObjectsOfType<WinCondition>();
+		Log("Win conditions: ");
+		foreach (WinCondition c in winConditions) {
+			Log(c.GetDescription());
+		}
 
 		ClearInput();
 		SelectInput();
@@ -200,6 +208,7 @@ public class CommandInput : MonoBehaviour {
 		actions = 0;
 		for (int t=0; t<time; t++) {
 			tileTracker.Tick();
+			CheckWinConditions();
 		}
 	}
 
@@ -215,6 +224,23 @@ public class CommandInput : MonoBehaviour {
 		gameOver = true;
 		Log("Your Keep has been taken by the Forest.");
 		Log("<color='#c42430'>GAME OVER</color>");
+	}
+
+	void CheckWinConditions() {
+		if (wonLevel) return;
+		WinCondition won = null;
+		foreach (WinCondition c in winConditions) {
+			if (c.Satisfied(tileTracker)) {
+				won = c;
+				break;
+			}
+		}
+		if (won) {
+			wonLevel = true;
+			Log("<color='#00cdf9'>Win condition satisfied!</color>");
+			Log("<color='#00cdf9'>won.GetDescription()</color>");
+			Log("You can keep playing or load the next level.");
+		}
 	}
 }
 
