@@ -8,8 +8,6 @@ public class CommandInput : MonoBehaviour {
 	#pragma warning disable 0649
 	[SerializeField] RectTransform textOutputParent;
 	[SerializeField] InputField input;
-	[SerializeField] TileTracker tileTracker;
-	[SerializeField] TilemapVisuals tilemapVisuals;
 	[SerializeField] GameObject textOutput;
 	[SerializeField] List<SceneReference> levels;
 	[SerializeField] List<BuildCommand> buildCommands;
@@ -24,7 +22,11 @@ public class CommandInput : MonoBehaviour {
 	int actions = 0;
 	const int actionsPerTick = 3;
 
+	int daysWithoutActions;
+
 	public static CommandInput c;
+	TileTracker tileTracker;
+	TilemapVisuals tilemapVisuals;
 
 	void Awake() {
 		ClearConsole();
@@ -32,6 +34,9 @@ public class CommandInput : MonoBehaviour {
 	}
 
 	void Start() {
+		tileTracker = GameObject.FindObjectOfType<TileTracker>();
+		tilemapVisuals = GameObject.FindObjectOfType<TilemapVisuals>();
+
 		buildTiles = new Dictionary<string, ScriptableTile>();
 		foreach (BuildCommand bc in buildCommands) {
 			buildTiles[bc.name] = bc.tile;
@@ -45,7 +50,11 @@ public class CommandInput : MonoBehaviour {
 				break;
 			}
 		}
-		Log($"Level {levelNumber}: {SceneManager.GetActiveScene().name}");
+		Log($"Level {levelNumber+1}: {SceneManager.GetActiveScene().name}");
+
+		foreach (SceneFlavorText t in GameObject.FindObjectsOfType<SceneFlavorText>()) {
+			Log(t.text);
+		}
 
 		winConditions = GameObject.FindObjectsOfType<WinCondition>();
 		Log("Win condition"+(winConditions.Length>1 ? "s" : "")+": ");
@@ -246,6 +255,7 @@ public class CommandInput : MonoBehaviour {
 	}
 
 	void Tick(int time=1) {
+		if (actions == 0) daysWithoutActions++;
 		actions = 0;
 		for (int t=0; t<time; t++) {
 			tileTracker.Tick();
@@ -268,7 +278,7 @@ public class CommandInput : MonoBehaviour {
 	}
 
 	void CheckWinConditions() {
-		if (wonLevel) return;
+		if (wonLevel || gameOver) return;
 		WinCondition won = null;
 		foreach (WinCondition c in winConditions) {
 			if (c.Satisfied(tileTracker)) {
@@ -282,6 +292,10 @@ public class CommandInput : MonoBehaviour {
 			Log($"<color='#00cdf9'>{won.GetDescription()}</color>");
 			Log("You can keep playing or load the next level.");
 		}
+	}
+
+	public static int GetDaysWithoutActions() {
+		return c.daysWithoutActions;
 	}
 }
 

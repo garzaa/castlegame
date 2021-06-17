@@ -7,8 +7,11 @@ public class GameTile : MonoBehaviour, IStat {
 	TileTracker tileTracker;
 	public Vector3Int position {get; private set; }
 	ScriptableTile tile;
+
+	#pragma warning disable 0649
 	string OnPlace;
 	string OnRemove;
+	#pragma warning restore 0649
 
 	[TextArea] public string description;
 	

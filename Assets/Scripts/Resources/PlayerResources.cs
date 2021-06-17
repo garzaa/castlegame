@@ -5,7 +5,9 @@ public class PlayerResources : MonoBehaviour {
 	Dictionary<Resource, int> resources = new Dictionary<Resource, int>();
 	static PlayerResources pr;
 
+	#pragma warning disable 0649
 	[SerializeField] List<ResourceAmount> startingResources;
+	#pragma warning restore 0649
 
 	void Start() {
 		pr = this;

@@ -2,6 +2,7 @@ using UnityEngine;
 
 [RequireComponent(typeof(TileAge))]
 public class TileDecay : TileBehaviour, IStat {
+	#pragma warning disable 0649
 	[SerializeField]
 	protected int decayThreshold = 7;
 	protected int originalDecayThreshold { get; private set; }
@@ -12,6 +13,7 @@ public class TileDecay : TileBehaviour, IStat {
 	[SerializeField]
 	[Tooltip("Amount of days before decay is compounded by neighbors")]
 	protected int gracePeriod = 0;
+	#pragma warning restore 0649
 
 	TileAge tileAge;
 

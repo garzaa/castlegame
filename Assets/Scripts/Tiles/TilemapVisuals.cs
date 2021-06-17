@@ -4,9 +4,11 @@ using UnityEngine.UI;
 using System.Collections.Generic;
 
 public class TilemapVisuals : MonoBehaviour {
+	#pragma warning disable 0649
 	[SerializeField] CommandInput console;
 	[SerializeField] Canvas doubleScaleCanvas;
 	[SerializeField] GameObject legendTemplate;
+	#pragma warning restore 0649
 
 	Tilemap tilemap;
 	Vector3Int origin;

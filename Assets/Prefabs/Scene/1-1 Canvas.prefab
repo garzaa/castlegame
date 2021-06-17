@@ -1025,6 +1025,8 @@ MonoBehaviour:
   levels:
   - sceneAsset: {fileID: 102900000, guid: 2cda990e2423bbf4892e6590ba056729, type: 3}
     scenePath: Assets/Scenes/Tutorial.unity
+  - sceneAsset: {fileID: 102900000, guid: 4482025da657ab44e926cb4a84a3a569, type: 3}
+    scenePath: Assets/Scenes/Sustain.unity
   buildCommands:
   - name: garden
     tile: {fileID: 11400000, guid: 88f19096a45f3344591736101331d0e9, type: 2}
