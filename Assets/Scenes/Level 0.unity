@@ -1083,7 +1083,7 @@ GameObject:
   - component: {fileID: 1382567045}
   - component: {fileID: 1382567044}
   m_Layer: 0
-  m_Name: TileLogic
+  m_Name: Tile Tracker
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1101,7 +1101,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4ffc3aad005209246a5d3dd9d7caf98b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  console: {fileID: 1973327658}
 --- !u!4 &1382567045
 Transform:
   m_ObjectHideFlags: 0
@@ -2459,7 +2458,7 @@ MonoBehaviour:
   tilemapVisuals: {fileID: 1962441417}
   textOutput: {fileID: 5616161420329661508, guid: 85aba606e53fc6c448588f777c87945e,
     type: 3}
-  scenes:
+  levels:
   - sceneAsset: {fileID: 102900000, guid: 2cda990e2423bbf4892e6590ba056729, type: 3}
     scenePath: Assets/Scenes/Level 0.unity
   buildCommands:

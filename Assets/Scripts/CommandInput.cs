@@ -11,7 +11,7 @@ public class CommandInput : MonoBehaviour {
 	[SerializeField] TileTracker tileTracker;
 	[SerializeField] TilemapVisuals tilemapVisuals;
 	[SerializeField] GameObject textOutput;
-	[SerializeField] List<SceneReference> scenes;
+	[SerializeField] List<SceneReference> levels;
 	#pragma warning restore 0649
 
 	public List<BuildCommand> buildCommands;
@@ -82,13 +82,38 @@ public class CommandInput : MonoBehaviour {
 		string[] args = command.Split(' ');
 		if (args[0] == "reload") {
 			SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+			return;
 		}
 
 		else if (args[0] == "levels") {
-
+			foreach (SceneReference level in levels) {
+				Log(SceneManager.GetSceneByPath(level.ScenePath).name);
+			}
+			return;
 		}
 
-		if (gameOver) return;
+		else if (args[0] == "load") {
+			bool valid = false;
+			string scenePath = "";
+			foreach (SceneReference level in levels) {
+				scenePath = level.ScenePath;
+				if (scenePath.Contains(args[1])) {
+					valid = true;
+					break;
+				}
+			}
+			if (!valid) {
+				Log(args[1]+" not a valid level, use >levels for a full list");
+				return;
+			}
+			SceneManager.LoadScene(scenePath);
+			return;
+		}
+
+		if (gameOver) {
+			Log("Your keep has been reclaimed.");
+			return;
+		}
 
 		if (args[0] == "stat") {
 			string coords = args[1];
