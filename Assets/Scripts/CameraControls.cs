@@ -7,28 +7,26 @@ public class CameraControls : MonoBehaviour {
 	Tilemap tilemap;
 
 	void Start() {
-		tilemap = GameObject.FindObjectOfType<Tilemap>();
-	}	
+		tilemap = GetComponentInChildren<Tilemap>();
+	}
 
-    void Update() {
-		if (Input.GetMouseButtonDown(0)) {
-			mouseDragStart = Input.mousePosition;
-			positionOnDragStart = transform.position;
-		}
+	void OnMouseDown() {
+		mouseDragStart = Input.mousePosition;
+		positionOnDragStart = Camera.main.transform.position;
+	}
 
-		if (Input.GetMouseButton(0)) {
-			Vector3 worldDelta = Camera.main.ScreenToWorldPoint(Input.mousePosition) - Camera.main.ScreenToWorldPoint(mouseDragStart);
-			Vector3 targetPos = positionOnDragStart - worldDelta;
+    void OnMouseDrag() {
+		Vector3 worldDelta = Camera.main.ScreenToWorldPoint(Input.mousePosition) - Camera.main.ScreenToWorldPoint(mouseDragStart);
+		Vector3 targetPos = positionOnDragStart - worldDelta;
 
-			Vector3 tilePos = targetPos;
-			tilePos.z = tilemap.transform.position.z;
+		Vector3 tilePos = targetPos;
+		tilePos.z = tilemap.transform.position.z;
 
-			if (tilemap.localBounds.Contains(tilePos/2f)) {
-				Vector3 closest = tilemap.localBounds.ClosestPoint(targetPos);
-				targetPos.x = closest.x;
-				targetPos.y = closest.y;
-			} 
-			transform.position = targetPos;
-		}
+		if (!tilemap.localBounds.Contains(tilePos)) {
+			Vector3 closest = tilemap.localBounds.ClosestPoint(targetPos);
+			targetPos.x = closest.x;
+			targetPos.y = closest.y;
+		} 
+		Camera.main.transform.position = targetPos;
     }
 }

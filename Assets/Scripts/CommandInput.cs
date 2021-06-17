@@ -16,8 +16,6 @@ public class CommandInput : MonoBehaviour {
 	#pragma warning restore 0649
 
 	Dictionary<string, ScriptableTile> buildTiles;
-	Text[] texts;
-	int defaultFontSize;
 	WinCondition[] winConditions;
 
 	bool gameOver = false;
@@ -55,9 +53,6 @@ public class CommandInput : MonoBehaviour {
 			Log(c.GetDescription());
 		}
 
-		texts = GameObject.FindObjectsOfType<Text>();
-		defaultFontSize = texts[0].fontSize;
-
 		ClearInput();
 		SelectInput();
 	}
@@ -73,7 +68,7 @@ public class CommandInput : MonoBehaviour {
 			input.text = "";
 			return;
 		}
-		string command = input.text;
+		string command = input.text.Trim();
 		Log("<color='#c7cfdd'>"+command+"</color>");
 		ClearInput();
 		SelectInput();
@@ -132,6 +127,17 @@ public class CommandInput : MonoBehaviour {
 			return;
 		}
 
+		else if (args[0] == "stat") {
+			string coords = args[1];
+
+			GameTile t = tileTracker.GetTileNoRedirect(tileTracker.StrToPos(coords));
+			IStat[] s = t.GetComponents<IStat>();
+			for (int i=0; i<s.Length; i++) {
+				Log(s[i].Stat());
+			}
+			return;
+		}
+
 		else if (args[0] == "help") {
 			Log("");
 			Log("All structures decay.");
@@ -143,12 +149,13 @@ public class CommandInput : MonoBehaviour {
 			Log("<color='#c7cfdd'>load [level]</color>: load the specified level");
 			Log("<color='#c7cfdd'>stat [tile]</color>: display status of a tile");
 			Log("<color='#c7cfdd'>clear</color>: clear console");
-			Log("<color='#c7cfdd'>sleep [days]</color>: sleep for the number of days, default 1");
+			Log("<color='#c7cfdd'>sleep </color>: end turn and advance time");
+			Log("<color='#c7cfdd'>sleep [days]</color>: sleep for [days]");
 			Log("<color='#c7cfdd'>cut [tile]</color>: cut a tile");
 			Log("<color='#c7cfdd'>resources</color>: show player resources");
 			Log("<color='#c7cfdd'>fix</color>: repair a structure");
 			Log("<color='#c7cfdd'>blueprints</color>: show available blueprints");
-			Log("<color='#c7cfdd'>build [blueprint] [tile]</color>: build the blueprint on the tile");
+			Log("<color='#c7cfdd'>build [blueprint] [tile]</color>: build blueprint on tile");
 			return;
 		}
 
@@ -156,16 +163,6 @@ public class CommandInput : MonoBehaviour {
 			Log("Your Keep has been reclaimed by the Forest.");
 			Log("Reload or choose a new level.");
 			return;
-		}
-
-		if (args[0] == "stat") {
-			string coords = args[1];
-
-			GameTile t = tileTracker.GetTileNoRedirect(tileTracker.StrToPos(coords));
-			IStat[] s = t.GetComponents<IStat>();
-			for (int i=0; i<s.Length; i++) {
-				Log(s[i].Stat());
-			}
 		}
 
 		else if (args[0] == "clear") {
