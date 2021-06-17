@@ -10,6 +10,7 @@ public class TileRequiredResource : TileBehaviour, ITileValidator {
 		}
 
 		CommandInput.Log($"Inadequate resources for tile {name}");
+		CommandInput.Log(this);
 		return false;
 	}
 

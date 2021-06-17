@@ -11,4 +11,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Sustain.unity
     guid: 4482025da657ab44e926cb4a84a3a569
+  - enabled: 1
+    path: Assets/Scenes/Stamp.unity
+    guid: e5324c34f46450e49bc5e8fe764a9ad7
   m_configObjects: {}

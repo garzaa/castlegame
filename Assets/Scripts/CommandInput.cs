@@ -22,7 +22,7 @@ public class CommandInput : MonoBehaviour {
 	int actions = 0;
 	const int actionsPerTick = 3;
 
-	int daysWithoutActions;
+	public int daysWithoutActions;
 
 	public static CommandInput c;
 	TileTracker tileTracker;
@@ -185,7 +185,11 @@ public class CommandInput : MonoBehaviour {
 			if (args.Length > 1 && !string.IsNullOrEmpty(args[1])) {
 				time = int.Parse(args[1]);
 			}
-			Tick(time);
+			actions = 0;
+			for (int i=0; i<time; i++) {
+				Tick();
+			}
+			return;
 		}
 
 		else if (args[0] == "slowsleep") {
@@ -256,18 +260,16 @@ public class CommandInput : MonoBehaviour {
 		return tileTracker.ReplaceTile(pos, buildTiles[name]);
 	}
 
-	void Tick(int time=1) {
+	void Tick() {
 		if (actions == 0) daysWithoutActions++;
 		actions = 0;
-		for (int t=0; t<time; t++) {
-			tileTracker.Tick();
-			CheckWinConditions();
-		}
+		tileTracker.Tick();
+		CheckWinConditions();
 	}
 
 	IEnumerator SlowTick(int time) {
 		yield return new WaitForSeconds(0.5f);
-		Tick(1);
+		Tick();
 		Log("1 day done");
 		time--;
 		if (time > 0) StartCoroutine(SlowTick(time));
