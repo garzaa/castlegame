@@ -16,4 +16,12 @@ public class TileRequiredResource : TileBehaviour, ITileValidator {
 	public void OnBuild() {
 		PlayerResources.Remove(resources);
 	}
+
+	public override string ToString() {
+		string ret = "Requires: ";
+		foreach (var s in resources) {
+			ret +="\n"+s;
+		}
+		return ret;
+	}
 }

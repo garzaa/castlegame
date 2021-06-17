@@ -315,6 +315,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   tile: {fileID: 11400000, guid: 0db2b7e7ee07f2446913de4d3fa920ea, type: 2}
   number: 1
+  comparisonType: 0
 --- !u!114 &257079267
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -811,9 +812,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9e98f6e9b38159442b5a9433da5905d4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  startingResources:
-  - amount: 3
-    resource: {fileID: 11400000, guid: 4535e9995cbc6b0459e235cc06effc67, type: 2}
+  startingResources: []
 --- !u!4 &882559857
 Transform:
   m_ObjectHideFlags: 0
@@ -2696,7 +2695,7 @@ MonoBehaviour:
     type: 3}
   levels:
   - sceneAsset: {fileID: 102900000, guid: 2cda990e2423bbf4892e6590ba056729, type: 3}
-    scenePath: Assets/Scenes/Level 0.unity
+    scenePath: Assets/Scenes/Tutorial.unity
   buildCommands:
   - name: garden
     tile: {fileID: 11400000, guid: 88f19096a45f3344591736101331d0e9, type: 2}
@@ -2704,8 +2703,6 @@ MonoBehaviour:
     tile: {fileID: 11400000, guid: 3fd74c4aa6bf0b443b15f6f171617b95, type: 2}
   - name: house
     tile: {fileID: 11400000, guid: 0db2b7e7ee07f2446913de4d3fa920ea, type: 2}
-  - name: pool
-    tile: {fileID: 11400000, guid: 7091f6f44e232d34fbb65ed25ba7e285, type: 2}
 --- !u!114 &1973327659
 MonoBehaviour:
   m_ObjectHideFlags: 0

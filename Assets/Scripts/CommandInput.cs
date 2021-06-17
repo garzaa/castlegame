@@ -16,6 +16,8 @@ public class CommandInput : MonoBehaviour {
 	#pragma warning restore 0649
 
 	Dictionary<string, ScriptableTile> buildTiles;
+	Text[] texts;
+	int defaultFontSize;
 	WinCondition[] winConditions;
 
 	bool gameOver = false;
@@ -38,11 +40,23 @@ public class CommandInput : MonoBehaviour {
 		}
 		buildCommands.Clear();
 
+		int levelNumber = 0;
+		for (int i=0; i<levels.Count; i++) {
+			if (levels[i].ScenePath.Equals(SceneManager.GetActiveScene().path)) {
+				levelNumber = i;
+				break;
+			}
+		}
+		Log($"Level {levelNumber}: {SceneManager.GetActiveScene().name}");
+
 		winConditions = GameObject.FindObjectsOfType<WinCondition>();
-		Log("Win conditions: ");
+		Log("Win condition"+(winConditions.Length>1 ? "s" : "")+": ");
 		foreach (WinCondition c in winConditions) {
 			Log(c.GetDescription());
 		}
+
+		texts = GameObject.FindObjectsOfType<Text>();
+		defaultFontSize = texts[0].fontSize;
 
 		ClearInput();
 		SelectInput();
@@ -118,6 +132,26 @@ public class CommandInput : MonoBehaviour {
 			return;
 		}
 
+		else if (args[0] == "help") {
+			Log("");
+			Log("All structures decay.");
+			Log("Some repair others.");
+			Log("");
+			Log("COMMANDS:");
+			Log("<color='#c7cfdd'>reload</color>: reload the current level");
+			Log("<color='#c7cfdd'>levels</color>: show a list of playable levels");
+			Log("<color='#c7cfdd'>load [level]</color>: load the specified level");
+			Log("<color='#c7cfdd'>stat [tile]</color>: display status of a tile");
+			Log("<color='#c7cfdd'>clear</color>: clear console");
+			Log("<color='#c7cfdd'>sleep [days]</color>: sleep for the number of days, default 1");
+			Log("<color='#c7cfdd'>cut [tile]</color>: cut a tile");
+			Log("<color='#c7cfdd'>resources</color>: show player resources");
+			Log("<color='#c7cfdd'>fix</color>: repair a structure");
+			Log("<color='#c7cfdd'>blueprints</color>: show available blueprints");
+			Log("<color='#c7cfdd'>build [blueprint] [tile]</color>: build the blueprint on the tile");
+			return;
+		}
+
 		if (gameOver) {
 			Log("Your Keep has been reclaimed by the Forest.");
 			Log("Reload or choose a new level.");
@@ -176,8 +210,18 @@ public class CommandInput : MonoBehaviour {
 			}
 		}
 
+		else if (args[0] == "blueprints") {
+			foreach (string blueprint in buildTiles.Keys) {
+				Log(blueprint.ToString().Substring(0, 1).ToUpper() + blueprint.ToString().Substring(1));
+				foreach (TileRequiredResource r in buildTiles[blueprint].tileObject.GetComponents<TileRequiredResource>()) {
+					Log(r);
+				}
+				Log("");
+			}
+		}
+
 		else {
-			Log("'"+originalCommand+"' not a known command");
+			Log("'"+originalCommand+"' bad command");
 		}
 
 		if (gameOver) return;
@@ -238,7 +282,7 @@ public class CommandInput : MonoBehaviour {
 		if (won) {
 			wonLevel = true;
 			Log("<color='#00cdf9'>Win condition satisfied!</color>");
-			Log("<color='#00cdf9'>won.GetDescription()</color>");
+			Log($"<color='#00cdf9'>{won.GetDescription()}</color>");
 			Log("You can keep playing or load the next level.");
 		}
 	}

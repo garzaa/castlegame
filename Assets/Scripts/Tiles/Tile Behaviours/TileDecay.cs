@@ -25,8 +25,11 @@ public class TileDecay : TileBehaviour, IStat {
 		// if it was already removed
 		if (gameTile == null) return;
 		// call the inherited version
-		if (GetDecay() > decayThreshold) {
+		int decay = GetDecay();
+		if (decay > decayThreshold) {
 			gameTile.QueueForReplace(decayTo);
+		} else if (decay == decayThreshold && !(this is NeighborDecay && decay==0)) {
+			CommandInput.Log(gameTile + " is about to decay to "+decayTo.tileObject.name);
 		}
 	}
 

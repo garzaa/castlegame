@@ -43,5 +43,4 @@ sysinfo.txt
 .vscode/
 
 # Particles
-Assets/EffectExamples/
-Assets/EffectExamples.meta
+Demos/
