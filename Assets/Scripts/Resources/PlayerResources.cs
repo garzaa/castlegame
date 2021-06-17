@@ -9,7 +9,7 @@ public class PlayerResources : MonoBehaviour {
 
 	void Start() {
 		pr = this;
-		Add(startingResources);
+		Add(startingResources, log:false);
 	}
 
 	public static bool Has(List<ResourceAmount> requirements) {
@@ -24,22 +24,22 @@ public class PlayerResources : MonoBehaviour {
 		return true;
 	}
 
-	public static void Remove(List<ResourceAmount> requirements) {
+	public static void Remove(List<ResourceAmount> requirements, bool log=true) {
 		foreach (ResourceAmount r in requirements) {
 			pr.resources[r.resource] -= r.amount;
 			pr.resources[r.resource] = Mathf.Max(pr.resources[r.resource], 0);
-			CommandInput.Log($"{r.amount} {r.resource.name} removed");
+			if (log) CommandInput.Log($"{r.amount} {r.resource.name} removed");
 		}
 	}
 
-	public static void Add(List<ResourceAmount> requirements) {
+	public static void Add(List<ResourceAmount> requirements, bool log=true) {
 		foreach (ResourceAmount r in requirements) {
 			if (pr.resources.ContainsKey(r.resource)) {
 				pr.resources[r.resource] += r.amount;
 			} else {
 				pr.resources[r.resource] = r.amount;
 			}
-			CommandInput.Log($"{r.amount} {r.resource.name} added");
+			if (log) CommandInput.Log($"{r.amount} {r.resource.name} added");
 		}
 	}
 

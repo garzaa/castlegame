@@ -6,7 +6,7 @@ using System.Collections.Generic;
 using System.Linq;
 
 public class TileTracker : MonoBehaviour {
-	[SerializeField] CommandInput console;
+	CommandInput console;
 
 	Vector3Int origin;
 	Tilemap tilemap;
@@ -19,6 +19,7 @@ public class TileTracker : MonoBehaviour {
 	public static readonly string letters = "abcdefghijklmnopqrstuvwxyz";
 
 	void Start() {
+		console = GameObject.FindObjectOfType<CommandInput>();
 		// TODO: might need to improve this find logic
 		tilemap = GameObject.FindObjectOfType<Tilemap>();
 		origin = tilemap.cellBounds.min;
@@ -116,6 +117,7 @@ public class TileTracker : MonoBehaviour {
 
 		tilemap.SetTile(position+origin, newTile);
 		GameTile tileBackend = SpawnGameTile(newTile, position);
+		tileBackend.SendMessage("OnBuild", SendMessageOptions.DontRequireReceiver);
 		tiles[position.x][position.y] = tileBackend;
 
 		return true;
@@ -161,7 +163,7 @@ public class TileTracker : MonoBehaviour {
 		try {
 			int idx = letters.IndexOf(coords[0]);
 			x = int.Parse(idx.ToString());
-			y = int.Parse(coords[1].ToString())-1;
+			y = int.Parse(coords.Substring(1).ToString())-1;
 		} catch (Exception) {
 			CommandInput.Log("Invalid coordinates "+coords);
 		}

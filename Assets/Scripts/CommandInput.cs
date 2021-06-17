@@ -2,22 +2,27 @@ using UnityEngine;
 using UnityEngine.UI;
 using System.Collections;
 using System.Collections.Generic;
+using UnityEngine.SceneManagement;
 
 public class CommandInput : MonoBehaviour {
+	#pragma warning disable 0649
 	[SerializeField] RectTransform textOutputParent;
 	[SerializeField] InputField input;
 	[SerializeField] TileTracker tileTracker;
 	[SerializeField] TilemapVisuals tilemapVisuals;
 	[SerializeField] GameObject textOutput;
+	[SerializeField] List<SceneReference> scenes;
+	#pragma warning restore 0649
 
 	public List<BuildCommand> buildCommands;
 	Dictionary<string, ScriptableTile> buildTiles;
+	
+	bool gameOver = false;
 
 	int actions = 0;
 	const int actionsPerTick = 3;
 
 	public static CommandInput c;
-
 
 	void Awake() {
 		ClearConsole();
@@ -75,6 +80,16 @@ public class CommandInput : MonoBehaviour {
 		string command = originalCommand.ToLower();
 
 		string[] args = command.Split(' ');
+		if (args[0] == "reload") {
+			SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+		}
+
+		else if (args[0] == "levels") {
+
+		}
+
+		if (gameOver) return;
+
 		if (args[0] == "stat") {
 			string coords = args[1];
 
@@ -166,6 +181,12 @@ public class CommandInput : MonoBehaviour {
 		Log("1 day done");
 		time--;
 		if (time > 0) StartCoroutine(SlowTick(time));
+	}
+
+	public void OnKeepDestroyed() {
+		gameOver = true;
+		Log("Your keep has been taken by the forest.");
+		Log("<color='#891e2b'>GAME OVER</color>");
 	}
 }
 

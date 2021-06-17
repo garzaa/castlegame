@@ -13,7 +13,7 @@ public class TileRequiredResource : TileBehaviour, ITileValidator {
 		return false;
 	}
 
-	public void OnPlace() {
+	public void OnBuild() {
 		PlayerResources.Remove(resources);
 	}
 }

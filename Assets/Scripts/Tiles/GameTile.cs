@@ -8,7 +8,6 @@ public class GameTile : MonoBehaviour, IStat {
 	public Vector3Int position {get; private set; }
 	ScriptableTile tile;
 	string OnPlace;
-	string AfterPlace;
 	string OnRemove;
 
 	[TextArea] public string description;
