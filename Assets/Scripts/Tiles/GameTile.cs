@@ -14,7 +14,6 @@ public class GameTile : MonoBehaviour, IStat {
 	#pragma warning restore 0649
 
 	[TextArea] public string description;
-	
 	static readonly string[] nullAges = new string[] {"eternal", "immeasurable", "unfathomable"};
 
 	public virtual void Initialize(TileTracker tileTracker, Vector3Int position, ScriptableTile tile) {

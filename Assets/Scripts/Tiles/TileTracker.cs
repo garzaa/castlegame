@@ -48,7 +48,7 @@ public class TileTracker : MonoBehaviour {
 
 	void InitializeAllTiles() {
 		for (int x=0; x<tiles.Count; x++) {
-			for (int y=0; y<tiles.Count; y++) {
+			for (int y=0; y<tiles[x].Count; y++) {
 				Vector3Int currentPos = new Vector3Int(x, y, 0);
 				tiles[x][y].Initialize(this, currentPos, tilemap.GetTile<ScriptableTile>(origin+currentPos));
 			}
@@ -220,6 +220,9 @@ public class TileTracker : MonoBehaviour {
 		neighbors.Add(GetTile(position + Vector3Int.right, GetTileNoRedirect(position.x, position.y)));
 		neighbors.Add(GetTile(position + Vector3Int.left, GetTileNoRedirect(position.x, position.y)));
 		neighbors.RemoveAll(x => x==null);
+		foreach (GameTile g in neighbors) {
+			Debug.Log(g.gameObject);
+		}
 		return neighbors;
 	}
 
