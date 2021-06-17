@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 4244420699313337950}
   - component: {fileID: 910303307167455321}
   - component: {fileID: 5832555853396630499}
+  - component: {fileID: -5654490410555087767}
   m_Layer: 0
   m_Name: Keep
   m_TagString: Untagged
@@ -73,7 +74,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   decayThreshold: 1
   decayTo: {fileID: 11400000, guid: 575a523c0ccac4a4395f0534ec1eebe6, type: 2}
-  baseMultiplier: 1
   gracePeriod: 0
   neighbor: {fileID: 11400000, guid: ccc45f6c9dde4434eaa5e16819f82c60, type: 2}
   decayMode: 1
@@ -91,5 +91,17 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   decayThreshold: 7
   decayTo: {fileID: 11400000, guid: 575a523c0ccac4a4395f0534ec1eebe6, type: 2}
-  baseMultiplier: 1
   gracePeriod: 0
+--- !u!114 &-5654490410555087767
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4222326780701236331}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d5a3dc9b68c474a4daebcbff26122366, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  target: {fileID: 11400000, guid: 903e77eb8d3615a40909f193527c835a, type: 2}

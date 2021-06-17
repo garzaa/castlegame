@@ -111,7 +111,8 @@ public class CommandInput : MonoBehaviour {
 		}
 
 		if (gameOver) {
-			Log("Your keep has been reclaimed.");
+			Log("Your Keep has been reclaimed by the Forest.");
+			Log("Reload or choose a new level.");
 			return;
 		}
 
@@ -171,6 +172,8 @@ public class CommandInput : MonoBehaviour {
 			Log("'"+originalCommand+"' not a known command");
 		}
 
+		if (gameOver) return;
+
 		if (actions >= actionsPerTick) {
 			Log("Sunset");
 			Tick();
@@ -210,8 +213,8 @@ public class CommandInput : MonoBehaviour {
 
 	public void OnKeepDestroyed() {
 		gameOver = true;
-		Log("Your keep has been taken by the forest.");
-		Log("<color='#891e2b'>GAME OVER</color>");
+		Log("Your Keep has been taken by the Forest.");
+		Log("<color='#c42430'>GAME OVER</color>");
 	}
 }
 
