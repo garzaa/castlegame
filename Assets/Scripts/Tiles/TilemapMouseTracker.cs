@@ -10,4 +10,8 @@ public class TilemapMouseTracker : MonoBehaviour {
 	void OnMouseOver() {
 		tracker.OnMouseOver(Camera.main.ScreenToWorldPoint(Input.mousePosition));
 	}
+
+	void OnMouseDown() {
+		tracker.OnMouseDown();
+	}
 }

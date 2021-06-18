@@ -21,6 +21,7 @@ public class TileTracker : MonoBehaviour {
 	Dictionary<ExclusiveClockworkAction, List<ClockworkApply>> exclusiveActions = new Dictionary<ExclusiveClockworkAction, List<ClockworkApply>>();
 	Dictionary<GameTile, GameTile> redirects = new Dictionary<GameTile, GameTile>();
 	GameObject tileContainer;
+	Vector3Int gridMousePos;
 
 	public static readonly string letters = "abcdefghijklmnopqrstuvwxyz";
 
@@ -58,13 +59,24 @@ public class TileTracker : MonoBehaviour {
 	}
 
 	public void OnMouseOver(Vector3 mouseWorldPos) {
-		Vector3Int gridMousePos = highlight.WorldToCell(mouseWorldPos);
+		gridMousePos = highlight.WorldToCell(mouseWorldPos);
 		gridMousePos.z = 0;
 		highlight.ClearAllTiles();
 		if (!tilemap.cellBounds.Contains(gridMousePos)) {
 			return;
 		}
 		highlight.SetTile(gridMousePos, highlightTile);
+	}
+
+	public void OnMouseDown() {
+		GameTile gameTile = GetTileNoRedirect(CellToBoard(gridMousePos));
+		foreach (IStat s in gameTile.GetComponents<IStat>()) {
+			CommandInput.Log(s.Stat());
+		}
+	}
+
+	Vector3Int CellToBoard(Vector3Int pos) {
+		return pos - origin;
 	}
 
 	void InitializeAllTiles() {
