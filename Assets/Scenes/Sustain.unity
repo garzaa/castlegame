@@ -181,7 +181,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9e98f6e9b38159442b5a9433da5905d4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  startingResources: []
+  startingResources:
+  - amount: 0
+    resource: {fileID: 11400000, guid: 4535e9995cbc6b0459e235cc06effc67, type: 2}
 --- !u!4 &882559857
 Transform:
   m_ObjectHideFlags: 0
@@ -320,7 +322,7 @@ GameObject:
   - component: {fileID: 965712839}
   - component: {fileID: 965712838}
   m_Layer: 0
-  m_Name: Sustain10
+  m_Name: Survive
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -352,7 +354,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d3fcd01105206b347bf0cbf22f15be7b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  days: 10
+  days: 20
 --- !u!114 &965712839
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -365,7 +367,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5d3b1605f5fdc7a4bb05c67c0a738a12, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  description: Survive 10 days without taking any actions.
+  description: Survive a 20-day streak without taking any actions.
 --- !u!1 &1382567043
 GameObject:
   m_ObjectHideFlags: 0
@@ -4669,27 +4671,27 @@ PrefabInstance:
     - target: {fileID: 8879672452531621117, guid: becfc499e503fa74592404d4e952d7a1,
         type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 191.5
+      value: 216.5
       objectReference: {fileID: 0}
     - target: {fileID: 8879672452531621117, guid: becfc499e503fa74592404d4e952d7a1,
         type: 3}
       propertyPath: m_SizeDelta.x
-      value: 377
+      value: 427
       objectReference: {fileID: 0}
     - target: {fileID: 8879672452531621117, guid: becfc499e503fa74592404d4e952d7a1,
         type: 3}
       propertyPath: m_AnchorMin.y
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8879672452531621117, guid: becfc499e503fa74592404d4e952d7a1,
         type: 3}
       propertyPath: m_AnchorMax.y
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8879672452531621117, guid: becfc499e503fa74592404d4e952d7a1,
         type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: -3
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8879672452531621117, guid: becfc499e503fa74592404d4e952d7a1,
         type: 3}

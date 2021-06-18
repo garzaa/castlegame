@@ -108,7 +108,6 @@ public class TileTracker : MonoBehaviour {
 	}
 
 	public bool ReplaceTile(Vector3Int position, ScriptableTile newTile) {
-		// check if it's valid
 		if (!ValidPlacement(tilemap.GetTile(origin + position) as ScriptableTile, newTile, position)) {
 			return false;
 		}
@@ -220,9 +219,6 @@ public class TileTracker : MonoBehaviour {
 		neighbors.Add(GetTile(position + Vector3Int.right, GetTileNoRedirect(position.x, position.y)));
 		neighbors.Add(GetTile(position + Vector3Int.left, GetTileNoRedirect(position.x, position.y)));
 		neighbors.RemoveAll(x => x==null);
-		foreach (GameTile g in neighbors) {
-			Debug.Log(g.gameObject);
-		}
 		return neighbors;
 	}
 

@@ -10,8 +10,8 @@ GameObject:
   m_Component:
   - component: {fileID: 4676033917445893880}
   - component: {fileID: 1928471116790334924}
-  - component: {fileID: 541418968482730504}
   - component: {fileID: 7756228249160621346}
+  - component: {fileID: 541418968482730504}
   m_Layer: 0
   m_Name: Stones
   m_TagString: Untagged
@@ -45,22 +45,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1f257f2dba2daf043844440ba0759d2d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  description: A good supply of building material.
---- !u!114 &541418968482730504
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 573174320173654342}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5ec7ff127d91a5145aae8bca3e6e3197, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  resources:
-  - amount: 3
-    resource: {fileID: 11400000, guid: 4535e9995cbc6b0459e235cc06effc67, type: 2}
+  description: A supply of building material.
 --- !u!114 &7756228249160621346
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -74,3 +59,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   cutTo: {fileID: 11400000, guid: ea089a2b162bee14a83b010a12f19909, type: 2}
+--- !u!114 &541418968482730504
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 573174320173654342}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5ec7ff127d91a5145aae8bca3e6e3197, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  resources:
+  - amount: 2
+    resource: {fileID: 11400000, guid: 4535e9995cbc6b0459e235cc06effc67, type: 2}

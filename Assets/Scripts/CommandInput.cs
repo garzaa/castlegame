@@ -29,6 +29,9 @@ public class CommandInput : MonoBehaviour {
 	TileTracker tileTracker;
 	TilemapVisuals tilemapVisuals;
 
+	bool sleeping = false;
+	int daysSlept = 0;
+
 	void Awake() {
 		ClearConsole();
 		c = this;
@@ -171,14 +174,28 @@ public class CommandInput : MonoBehaviour {
 			return;
 		}
 
+		else if (args[0] == "clear") {
+			ClearConsole();
+			return;
+		}
+
+		else if (args[0] == "wake") {
+			if (sleeping) WakeUp();
+			else Log("Not currently sleeping");
+			return;
+		}
+
+
+		// non-action commands have ended, everything below this takes an action
+
+		if (sleeping) {
+			Log("Can't act while sleeping, abort with wake");
+		}
+
 		if (gameOver) {
 			Log("Your Keep has been reclaimed by the Forest.");
 			Log("Reload or choose a new level.");
 			return;
-		}
-
-		else if (args[0] == "clear") {
-			ClearConsole();
 		}
 
 		else if (args[0] == "sleep") {
@@ -186,15 +203,9 @@ public class CommandInput : MonoBehaviour {
 			if (args.Length > 1 && !string.IsNullOrEmpty(args[1])) {
 				time = int.Parse(args[1]);
 			}
-			actions = 0;
-			for (int i=0; i<time; i++) {
-				Tick();
-			}
+			sleeping = true;
+			StartCoroutine(SlowTick(time));
 			return;
-		}
-
-		else if (args[0] == "slowsleep") {
-			StartCoroutine(SlowTick(int.Parse(args[1])));
 		}
 
 		else if (args[0] == "cut") {
@@ -262,7 +273,11 @@ public class CommandInput : MonoBehaviour {
 	}
 
 	void Tick() {
-		if (actions == 0) daysWithoutActions++;
+		if (actions == 0) {
+			daysWithoutActions++;
+		} else {
+			daysWithoutActions = 0;
+		}
 		totalDays++;
 		actions = 0;
 		tileTracker.Tick();
@@ -270,11 +285,28 @@ public class CommandInput : MonoBehaviour {
 	}
 
 	IEnumerator SlowTick(int time) {
-		yield return new WaitForSeconds(0.5f);
+		if (!sleeping) yield break;
 		Tick();
-		Log("1 day done");
+		if (time > 1) yield return new WaitForSeconds(0.5f);
+		daysSlept += 1;
+		if (daysSlept == 1) {
+			Log("1 day passed");
+		} else {
+			Log($"{daysSlept} days passed");
+		}
 		time--;
-		if (time > 0) StartCoroutine(SlowTick(time));
+		if (time > 0) {
+			StartCoroutine(SlowTick(time));
+		} else {
+			WakeUp();
+		}
+	}
+
+	void WakeUp() {
+		Log($"Woke after {daysSlept} days");
+		daysSlept = 0;
+		sleeping = false;
+		actions = 0;
 	}
 
 	public void OnKeepDestroyed() {
