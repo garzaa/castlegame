@@ -42,7 +42,7 @@ public class ProjectBuilder {
     }
 
     static string BuildFolder(string platform, string extension) {
-        return $"../demos/ForestKeepMirror-{platform}/ForestKeepMirror{extension}";
+        return $"./demos/ForestKeepMirror-{platform}/ForestKeepMirror{extension}";
     }
 
     static EditorBuildSettingsScene[] GetEnabledScenes() {
