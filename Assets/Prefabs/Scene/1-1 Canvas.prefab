@@ -1027,6 +1027,8 @@ MonoBehaviour:
     scenePath: Assets/Scenes/Sustain.unity
   - sceneAsset: {fileID: 102900000, guid: e5324c34f46450e49bc5e8fe764a9ad7, type: 3}
     scenePath: Assets/Scenes/Stamp.unity
+  - sceneAsset: {fileID: 102900000, guid: 6e0cd63cef6417145943be3105241795, type: 3}
+    scenePath: Assets/Scenes/Transit.unity
   buildCommands:
   - name: garden
     tile: {fileID: 11400000, guid: 88f19096a45f3344591736101331d0e9, type: 2}

@@ -29,6 +29,18 @@ TextureImporter:
   - first:
       213: -2740290441555968558
     second: water_4
+  - first:
+      213: 3302515722267327716
+    second: water_4
+  - first:
+      213: 7149751655148466542
+    second: water_5
+  - first:
+      213: -7655527456229970072
+    second: water_6
+  - first:
+      213: -1984912068192422301
+    second: water_7
   externalObjects: {}
   serializedVersion: 11
   mipmaps:
@@ -224,8 +236,71 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 2dd78a1bc5888f9d0800000000000000
-      internalID: -2740290441555968558
+      spriteID: 4ecf2ea4d84e4dd20800000000000000
+      internalID: 3302515722267327716
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: water_5
+      rect:
+        serializedVersion: 2
+        x: 320
+        y: 0
+        width: 64
+        height: 64
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e61b265df35093360800000000000000
+      internalID: 7149751655148466542
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: water_6
+      rect:
+        serializedVersion: 2
+        x: 384
+        y: 0
+        width: 64
+        height: 64
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 86fa92bd65a12c590800000000000000
+      internalID: -7655527456229970072
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: water_7
+      rect:
+        serializedVersion: 2
+        x: 448
+        y: 0
+        width: 64
+        height: 64
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 36631019dfc2474e0800000000000000
+      internalID: -1984912068192422301
       vertices: []
       indices: 
       edges: []

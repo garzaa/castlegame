@@ -61,13 +61,17 @@ public class CommandInput : MonoBehaviour {
 		}
 
 		winConditions = GameObject.FindObjectsOfType<WinCondition>();
+		LogWinConditions();
+
+		ClearInput();
+		SelectInput();
+	}
+
+	void LogWinConditions() {
 		Log("Win condition"+(winConditions.Length>1 ? "s" : "")+": ");
 		foreach (WinCondition c in winConditions) {
 			Log(c.GetDescription());
 		}
-
-		ClearInput();
-		SelectInput();
 	}
 
 	void ClearConsole() {
@@ -160,6 +164,7 @@ public class CommandInput : MonoBehaviour {
 			Log("");
 			Log("COMMANDS:");
 			Log("<color='#c7cfdd'>reload</color>: reload the current level");
+			Log("<color='#c7cfdd'>win</color>: show win conditions for current level");
 			Log("<color='#c7cfdd'>levels</color>: show a list of playable levels");
 			Log("<color='#c7cfdd'>load [level]</color>: load the specified level");
 			Log("<color='#c7cfdd'>stat [tile]</color>: display status of a tile");
@@ -200,6 +205,11 @@ public class CommandInput : MonoBehaviour {
 				}
 				Log("");
 			}
+			return;
+		}
+
+		else if (args[0] == "win") {
+			LogWinConditions();
 			return;
 		}
 
