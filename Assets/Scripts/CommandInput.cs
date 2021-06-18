@@ -185,6 +185,24 @@ public class CommandInput : MonoBehaviour {
 			return;
 		}
 
+		else if (args[0] == "resources") {
+			Log(PlayerResources.Stat());
+			return;
+		}
+
+		else if (args[0] == "blueprints") {
+			foreach (string blueprint in buildTiles.Keys) {
+				Log(ToSentence(blueprint));
+				GameTile tileObject = buildTiles[blueprint].tileObject.GetComponent<GameTile>();
+				Log(tileObject.description);
+				foreach (TileRequiredResource r in tileObject.GetComponents<TileRequiredResource>()) {
+					Log(r);
+				}
+				Log("");
+			}
+			return;
+		}
+
 
 		// non-action commands have ended, everything below this takes an action
 
@@ -219,10 +237,6 @@ public class CommandInput : MonoBehaviour {
 			}
 		}
 
-		else if (args[0] == "resources") {
-			Log(PlayerResources.Stat());
-		}
-
 		else if (args[0] == "fix") {
 			actions++;
 			tileTracker.RepairTile(tileTracker.StrToPos(args[1]));
@@ -231,16 +245,6 @@ public class CommandInput : MonoBehaviour {
 		else if (args[0] == "build") {
 			if (Build(args[1], tileTracker.StrToPos(args[2]))) {
 				actions++;
-			}
-		}
-
-		else if (args[0] == "blueprints") {
-			foreach (string blueprint in buildTiles.Keys) {
-				Log(ToSentence(blueprint));
-				foreach (TileRequiredResource r in buildTiles[blueprint].tileObject.GetComponents<TileRequiredResource>()) {
-					Log(r);
-				}
-				Log("");
 			}
 		}
 

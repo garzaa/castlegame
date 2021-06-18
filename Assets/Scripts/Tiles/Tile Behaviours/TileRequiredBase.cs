@@ -2,6 +2,7 @@ using UnityEngine;
 using System.Linq;
 using System.Collections.Generic;
 
+[DisallowMultipleComponent]
 public class TileRequiredBase : TileBehaviour, ITileValidator {
 	public List<ScriptableTile> validBases;
 
@@ -9,7 +10,7 @@ public class TileRequiredBase : TileBehaviour, ITileValidator {
 		ScriptableTile currentBase = tracker.GetTile(pos, null).GetTile();
 		if (!validBases.Contains(currentBase)) {
 			List<string> validBases = this.validBases.Select(x => x.tileObject.name).ToList();
-			CommandInput.Log("Invalid base for "+gameObject.name+". Build on: "+ PrettyList(validBases));
+			CommandInput.Log("Invalid base for "+gameObject.name+". "+this);
 			return false;
 		}
 		return true;
@@ -22,5 +23,9 @@ public class TileRequiredBase : TileBehaviour, ITileValidator {
 		}
 		s += "]";
 		return s;
+	}
+
+	public override string ToString() {
+		return "Build on: "+ PrettyList(validBases.Select(x => x.tileObject.name).ToList());
 	}
 }
