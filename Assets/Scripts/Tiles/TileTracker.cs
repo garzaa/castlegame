@@ -6,10 +6,16 @@ using System.Collections.Generic;
 using System.Linq;
 
 public class TileTracker : MonoBehaviour {
-	CommandInput console;
 
+	#pragma warning disable 0649
+	[SerializeField] Tile highlightTile;
+	[SerializeField] Tilemap highlightTilemap;
+	#pragma warning restore 0649
+
+	CommandInput console;
 	Vector3Int origin;
 	Tilemap tilemap;
+	Tilemap highlight;
 	List<List<GameTile>> tiles = new List<List<GameTile>>();
 	Queue<TilePlacement> placements = new Queue<TilePlacement>();
 	Dictionary<ExclusiveClockworkAction, List<ClockworkApply>> exclusiveActions = new Dictionary<ExclusiveClockworkAction, List<ClockworkApply>>();
@@ -20,8 +26,7 @@ public class TileTracker : MonoBehaviour {
 
 	void Start() {
 		console = GameObject.FindObjectOfType<CommandInput>();
-		// TODO: might need to improve this find logic
-		tilemap = GameObject.FindObjectOfType<Tilemap>();
+		tilemap = GameObject.FindObjectOfType<MainTilemap>().GetComponentInChildren<Tilemap>();
 		origin = tilemap.cellBounds.min;
 		tileContainer = Instantiate(new GameObject(), this.transform);
 
@@ -44,6 +49,22 @@ public class TileTracker : MonoBehaviour {
 		}
 
 		InitializeAllTiles();
+		CreateHighlightTilemap();
+	}
+
+	void CreateHighlightTilemap() {
+		highlight = Instantiate(highlightTilemap, tilemap.transform.parent);
+		highlight.GetComponent<TilemapRenderer>().sortingOrder = tilemap.GetComponent<TilemapRenderer>().sortingOrder + 1;
+	}
+
+	public void OnMouseOver(Vector3 mouseWorldPos) {
+		Vector3Int gridMousePos = highlight.WorldToCell(mouseWorldPos);
+		gridMousePos.z = 0;
+		highlight.ClearAllTiles();
+		if (!tilemap.cellBounds.Contains(gridMousePos)) {
+			return;
+		}
+		highlight.SetTile(gridMousePos, highlightTile);
 	}
 
 	void InitializeAllTiles() {
