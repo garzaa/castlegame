@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 088e44299747c984b87165029a9c2838, type: 3}
   m_Name: WaterTile
   m_EditorClassIdentifier: 
-  m_DefaultSprite: {fileID: -1984912068192422301, guid: 4cb459272b505f644934a2f5e9b071cf,
+  m_DefaultSprite: {fileID: 7149751655148466542, guid: 4cb459272b505f644934a2f5e9b071cf,
     type: 3}
   m_DefaultGameObject: {fileID: 0}
   m_DefaultColliderType: 1
@@ -113,7 +113,7 @@ MonoBehaviour:
     m_Output: 0
     m_ColliderType: 1
     m_RandomTransform: 0
-    m_Neighbors: 0100000002000000
+    m_Neighbors: 0100000001000000
     m_NeighborPositions:
     - {x: -1, y: 0, z: 0}
     - {x: 1, y: 0, z: 0}
