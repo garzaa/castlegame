@@ -9,8 +9,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: cfc60cb10b404af46b3615019b01ef1f, type: 3}
-  m_Name: FixAllStructures
+  m_Script: {fileID: 11500000, guid: 83a7be98f2048b7418d6e247ee2a156f, type: 3}
+  m_Name: Structure
   m_EditorClassIdentifier: 
-  limit: -1
-  onlyStructures: 1
+  ancestor: {fileID: 11400000, guid: 98718ff1143773b45972735c48d75e1a, type: 2}

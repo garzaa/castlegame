@@ -11,6 +11,7 @@ public class GameTile : MonoBehaviour, IStat {
 	#pragma warning disable 0649
 	string OnPlace;
 	string OnRemove;
+	[SerializeField] TileType tileType;
 	#pragma warning restore 0649
 
 	[TextArea] public string description;
@@ -55,5 +56,9 @@ public class GameTile : MonoBehaviour, IStat {
 
 	public override string ToString() {
 		return $"{this.name} at {tileTracker.PosToStr(this.position)}";
+	}
+
+	public bool IsTileType(TileType t) {
+		return this.tileType.IsType(t);
 	}
 }

@@ -44,6 +44,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1f257f2dba2daf043844440ba0759d2d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  tileType: {fileID: 11400000, guid: 4492d5fc2578b224084316369b0f88a4, type: 2}
   description: Each side of the mirror sees its own reflection.
 --- !u!114 &2282854688981197085
 MonoBehaviour:

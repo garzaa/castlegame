@@ -45,6 +45,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1f257f2dba2daf043844440ba0759d2d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  tileType: {fileID: 11400000, guid: be2fc18f7d3b20940ad9b5cac2acdb0c, type: 2}
   description: A supply of building material.
 --- !u!114 &7756228249160621346
 MonoBehaviour:

@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 819559911229272962}
-  - component: {fileID: 6566677945837271623}
+  - component: {fileID: 7732087444156205817}
   - component: {fileID: 4244420699313337950}
   - component: {fileID: 910303307167455321}
   - component: {fileID: 5832555853396630499}
@@ -35,7 +35,7 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &6566677945837271623
+--- !u!114 &7732087444156205817
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -44,9 +44,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 4222326780701236331}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1e74267d04afa5842a40bc4e7c70d37d, type: 3}
+  m_Script: {fileID: 11500000, guid: 1f257f2dba2daf043844440ba0759d2d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  tileType: {fileID: 11400000, guid: 746dc2fc1d4caef40a0d54946c7b8323, type: 2}
   description: Don't let the forest swallow it.
 --- !u!114 &4244420699313337950
 MonoBehaviour:

@@ -46,6 +46,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1f257f2dba2daf043844440ba0759d2d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  tileType: {fileID: 11400000, guid: be2fc18f7d3b20940ad9b5cac2acdb0c, type: 2}
   description: Fraught with possiblity. Grass is already beginning to grow in it.
 --- !u!114 &2108050923225129482
 MonoBehaviour:
@@ -73,7 +74,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   decayThreshold: 7
   decayTo: {fileID: 11400000, guid: ccc45f6c9dde4434eaa5e16819f82c60, type: 2}
-  baseMultiplier: 1
   gracePeriod: 1
   neighbor: {fileID: 11400000, guid: ccc45f6c9dde4434eaa5e16819f82c60, type: 2}
   decayMode: 1
@@ -91,7 +91,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   decayThreshold: 1
   decayTo: {fileID: 11400000, guid: ea089a2b162bee14a83b010a12f19909, type: 2}
-  baseMultiplier: 1
   gracePeriod: 0
   neighbor: {fileID: 11400000, guid: ea089a2b162bee14a83b010a12f19909, type: 2}
   decayMode: 0

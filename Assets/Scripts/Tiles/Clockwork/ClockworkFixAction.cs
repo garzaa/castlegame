@@ -5,7 +5,6 @@ using System.Linq;
 [CreateAssetMenu(menuName = "Clockwork/Fix Action")]
 public class ClockworkFixAction : ExclusiveClockworkAction {
 	public int limit = -1;
-	public bool onlyStructures;
 
 	public override void ExecuteApply(ClockworkApply action) {
 		List<GameTile> toFix = action.targets
@@ -27,7 +26,6 @@ public class ClockworkFixAction : ExclusiveClockworkAction {
 	void RepairTile(GameTile targetTile, GameTile sourceTile) {
 		TileAge a = targetTile.GetComponent<TileAge>();
 		if (a.GetAge() < 1) return;
-		if (onlyStructures && !targetTile.GetComponent<StructureTile>()) return;
 
 		a.Repair();
 		TileTracker tracker = targetTile.GetTracker();

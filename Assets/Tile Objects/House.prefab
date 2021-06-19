@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 970874656581175622}
-  - component: {fileID: -7047045590849799275}
+  - component: {fileID: 6188893002852522429}
   - component: {fileID: 6726653392267514890}
   - component: {fileID: 7969450915691859759}
   - component: {fileID: 7425281676867835060}
@@ -38,7 +38,7 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &-7047045590849799275
+--- !u!114 &6188893002852522429
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -47,9 +47,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 4771183308089857777}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1e74267d04afa5842a40bc4e7c70d37d, type: 3}
+  m_Script: {fileID: 11500000, guid: 1f257f2dba2daf043844440ba0759d2d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  tileType: {fileID: 11400000, guid: 64c537d4d2d88b746b7a61ab54f13fa2, type: 2}
   description: "Live here. Work elsewhere. \nRepairs the oldest neighbor structure."
 --- !u!114 &6726653392267514890
 MonoBehaviour:
