@@ -12,4 +12,10 @@ public class TileType : ScriptableObject {
 		else if (ancestor != null) return ancestor.IsType(tileType);
 		else return false;
 	}
+
+	void OnValidate() {
+		if (this.name == ancestor.name) {
+			Debug.LogWarning("Enjoy your infinite loops idiot");
+		}
+	}
 }
