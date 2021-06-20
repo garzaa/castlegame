@@ -12,6 +12,6 @@ public class ClockworkTarget : ScriptableObject {
 	}
 
 	public virtual string GetTargetInfo(Vector3Int position, TileTracker tracker) {
-		throw new System.NotImplementedException();
+		return $"\nTargeting {GetTargets(position, tracker).Count} tiles.";
 	}
 }
