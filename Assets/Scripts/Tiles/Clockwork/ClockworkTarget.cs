@@ -9,5 +9,9 @@ public class ClockworkTarget : ScriptableObject {
 
 	public virtual List<GameTile> GetTargets(Vector3Int position, TileTracker tracker) {
 		return null;
-	}	
+	}
+
+	public virtual string GetTargetInfo(Vector3Int position, TileTracker tracker) {
+		throw new System.NotImplementedException();
+	}
 }

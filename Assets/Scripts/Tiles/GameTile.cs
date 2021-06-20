@@ -43,6 +43,9 @@ public class GameTile : MonoBehaviour, IStat {
 			string target = tileTracker.GetRedirect(this) == null ? "watcher" : tileTracker.GetRedirect(this).ToString();
 			stat += "\nRedirects to "+target;
 		}
+		foreach (Clockwork c in GetComponents<Clockwork>()) {
+			stat += c.Stat();
+		}
 		return stat;
 	}
 

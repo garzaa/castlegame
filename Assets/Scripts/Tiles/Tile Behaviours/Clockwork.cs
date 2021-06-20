@@ -9,4 +9,7 @@ public class Clockwork : TileBehaviour {
 		action.Apply(target.GetTargets(gameTile.position, gameTile.GetTracker()), gameTile);
 	}
 
+	public string Stat() {
+		return target.GetTargetInfo(gameTile.position, gameTile.GetTracker());
+	}
 }
