@@ -9,7 +9,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 83a7be98f2048b7418d6e247ee2a156f, type: 3}
-  m_Name: Stone
+  m_Script: {fileID: 11500000, guid: 6f7b784501f7d2443b3f2b2815bf6197, type: 3}
+  m_Name: NetworkStone
   m_EditorClassIdentifier: 
-  ancestor: {fileID: 11400000, guid: 64c537d4d2d88b746b7a61ab54f13fa2, type: 2}
+  tileFilter: {fileID: 11400000, guid: 746dc2fc1d4caef40a0d54946c7b8323, type: 2}
+  maxDepth: 4
+  networkFilters:
+  - {fileID: 11400000, guid: 64c537d4d2d88b746b7a61ab54f13fa2, type: 2}

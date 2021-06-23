@@ -14,12 +14,6 @@ public class ClockworkTargetNetworked : ClockworkTarget {
 	#pragma warning restore 0649
 	
 	override public List<GameTile> GetTargets(Vector3Int position, TileTracker tracker) {
-		// algorithm: 
-		// getfilteredneighbor:
-		// if depth > maxdepth return
-		// for every neighbor:
-		// if neighbor in visited return
-		// getfilteredneighbor: depth+1, results, visited
 		List<GameTile> targets = new List<GameTile>();
 		HashSet<GameTile> visited = new HashSet<GameTile>();
 		GetFilteredNeighbors(0, position, targets, visited, tracker);
@@ -31,15 +25,17 @@ public class ClockworkTargetNetworked : ClockworkTarget {
 
 	// this function has 5 arguments because scriptable objects have to be stateless
 	void GetFilteredNeighbors(int depth, Vector3Int position, List<GameTile> targets, HashSet<GameTile> visited, TileTracker tracker) {
-		if (depth > maxDepth) return;
 		depth++;
+		if (depth > maxDepth) return;
 
 		List<GameTile> networkedTargets = tracker.GetNeighbors(position)
 			.Where(tile => !visited.Contains(tile))
 			.Where(tile => (tile.IsTileType(tileFilter) || TileIsInNetwork(tile)))
 			.ToList();
-		
+
 		visited.UnionWith(networkedTargets);
+		targets.AddRange(networkedTargets);
+
 		foreach (GameTile tile in networkedTargets) {
 			GetFilteredNeighbors(depth, tile.position, targets, visited, tracker);
 		}

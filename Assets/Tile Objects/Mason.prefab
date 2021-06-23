@@ -1,0 +1,109 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &7905479836425482661
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 7905479836425482687}
+  - component: {fileID: 7905479836425482686}
+  - component: {fileID: 7905479836425482681}
+  - component: {fileID: 7905479836425482680}
+  - component: {fileID: 7905479836425482683}
+  - component: {fileID: 7905479836425482682}
+  m_Layer: 0
+  m_Name: Mason
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &7905479836425482687
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7905479836425482661}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 2.5021665, y: -0.25505736, z: -1.8432617}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &7905479836425482686
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7905479836425482661}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1f257f2dba2daf043844440ba0759d2d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  tileType: {fileID: 11400000, guid: 64c537d4d2d88b746b7a61ab54f13fa2, type: 2}
+  description: Repairs the oldest networked stone tile. Claims a networked house.
+--- !u!114 &7905479836425482681
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7905479836425482661}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8cf6ec2134cc25e4aa160e030e55ad6c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &7905479836425482680
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7905479836425482661}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5ac7d643dc63d004cb9803be5bdaa77a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  decayThreshold: 7
+  decayTo: {fileID: 11400000, guid: 575a523c0ccac4a4395f0534ec1eebe6, type: 2}
+  gracePeriod: 0
+--- !u!114 &7905479836425482683
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7905479836425482661}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f93068a956a7cd14ba0bc0f748bb1109, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  decayThreshold: 7
+  decayTo: {fileID: 11400000, guid: 575a523c0ccac4a4395f0534ec1eebe6, type: 2}
+  gracePeriod: 0
+  neighbor: {fileID: 11400000, guid: ccc45f6c9dde4434eaa5e16819f82c60, type: 2}
+  decayMode: 1
+--- !u!114 &7905479836425482682
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7905479836425482661}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e0e9600d83336c9409151feb770995ab, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  target: {fileID: 11400000, guid: dd307e5f8fd55974ea43b63c350c3910, type: 2}
+  action: {fileID: 11400000, guid: 328cfd9bf98bc1546bddccbe3ba2b1c7, type: 2}
