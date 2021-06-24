@@ -13,6 +13,6 @@ MonoBehaviour:
   m_Name: NetworkStone
   m_EditorClassIdentifier: 
   tileFilter: {fileID: 11400000, guid: 746dc2fc1d4caef40a0d54946c7b8323, type: 2}
-  maxDepth: 4
+  maxDepth: 10
   networkFilters:
   - {fileID: 11400000, guid: 64c537d4d2d88b746b7a61ab54f13fa2, type: 2}

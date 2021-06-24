@@ -16,4 +16,5 @@ MonoBehaviour:
   m_DefaultGameObject: {fileID: 0}
   m_DefaultColliderType: 1
   m_TilingRules: []
-  tileObject: {fileID: 0}
+  tileObject: {fileID: 7905479836425482661, guid: 293d23c89c56164488d2d067f8f36a29,
+    type: 3}

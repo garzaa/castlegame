@@ -10,10 +10,12 @@ GameObject:
   m_Component:
   - component: {fileID: 7905479836425482687}
   - component: {fileID: 7905479836425482686}
+  - component: {fileID: -146523043900833598}
   - component: {fileID: 7905479836425482681}
   - component: {fileID: 7905479836425482680}
   - component: {fileID: 7905479836425482683}
   - component: {fileID: 7905479836425482682}
+  - component: {fileID: 4308997424987660464}
   m_Layer: 0
   m_Name: Mason
   m_TagString: Untagged
@@ -48,7 +50,23 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   tileType: {fileID: 11400000, guid: 64c537d4d2d88b746b7a61ab54f13fa2, type: 2}
-  description: Repairs the oldest networked stone tile. Claims a networked house.
+  description: "Repairs the oldest networked stone tile, max networked depth 10.
+    \nClaims 1 house."
+--- !u!114 &-146523043900833598
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7905479836425482661}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f8d0a376d2d2a4a40ac40e94ea69332a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  resources:
+  - amount: 1
+    resource: {fileID: 11400000, guid: 4535e9995cbc6b0459e235cc06effc67, type: 2}
 --- !u!114 &7905479836425482681
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -107,3 +125,17 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   target: {fileID: 11400000, guid: dd307e5f8fd55974ea43b63c350c3910, type: 2}
   action: {fileID: 11400000, guid: 328cfd9bf98bc1546bddccbe3ba2b1c7, type: 2}
+--- !u!114 &4308997424987660464
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7905479836425482661}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cb50b1914c177f545926b07744ddfecb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  claimable: {fileID: 3567469549212463416, guid: eac009e8d132f824b8938dd03d4a5352,
+    type: 3}

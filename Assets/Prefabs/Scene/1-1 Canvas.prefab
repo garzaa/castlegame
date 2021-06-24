@@ -1028,7 +1028,7 @@ MonoBehaviour:
   - sceneAsset: {fileID: 102900000, guid: e5324c34f46450e49bc5e8fe764a9ad7, type: 3}
     scenePath: Assets/Scenes/Stamp.unity
   - sceneAsset: {fileID: 102900000, guid: 6e0cd63cef6417145943be3105241795, type: 3}
-    scenePath: Assets/Scenes/Transit.unity
+    scenePath: Assets/Scenes/Cross.unity
   buildCommands:
   - name: garden
     tile: {fileID: 11400000, guid: 88f19096a45f3344591736101331d0e9, type: 2}
@@ -1036,6 +1036,8 @@ MonoBehaviour:
     tile: {fileID: 11400000, guid: 3fd74c4aa6bf0b443b15f6f171617b95, type: 2}
   - name: house
     tile: {fileID: 11400000, guid: 0db2b7e7ee07f2446913de4d3fa920ea, type: 2}
+  - name: mason
+    tile: {fileID: 11400000, guid: 66ae0888bdb33474f8620ea2b8bb8143, type: 2}
 --- !u!114 &3948093380236890147
 MonoBehaviour:
   m_ObjectHideFlags: 0
