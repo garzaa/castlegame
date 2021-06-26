@@ -10,12 +10,22 @@ public class CameraControls : MonoBehaviour {
 		tilemap = GetComponentInChildren<Tilemap>();
 	}
 
-	void OnMouseDown() {
+	void OnMouseOver() {
+		if (Input.GetMouseButtonDown(1)) {
+			StartPan();
+		}
+
+		if (Input.GetMouseButton(1)) {
+			Pan();
+		}
+	}
+
+	void StartPan() {
 		mouseDragStart = Input.mousePosition;
 		positionOnDragStart = Camera.main.transform.position;
 	}
 
-    void OnMouseDrag() {
+    void Pan() {
 		Vector3 worldDelta = Camera.main.ScreenToWorldPoint(Input.mousePosition) - Camera.main.ScreenToWorldPoint(mouseDragStart);
 		Vector3 targetPos = positionOnDragStart - worldDelta;
 

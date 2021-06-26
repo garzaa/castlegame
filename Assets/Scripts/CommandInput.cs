@@ -32,6 +32,8 @@ public class CommandInput : MonoBehaviour {
 	bool sleeping = false;
 	int daysSlept = 0;
 
+	const int maxScrollback = 1000;
+
 	void Awake() {
 		ClearConsole();
 		c = this;
@@ -108,6 +110,9 @@ public class CommandInput : MonoBehaviour {
 	public static void Log(string s) {
 		GameObject g = Instantiate(c.textOutput, c.textOutputParent);
 		g.GetComponent<Text>().text = s;
+		if (c.textOutputParent.transform.childCount > maxScrollback) {
+			GameObject.Destroy(c.textOutputParent.transform.GetChild(0));
+		}
 	}
 
 	void ParseCommand(string originalCommand) {
