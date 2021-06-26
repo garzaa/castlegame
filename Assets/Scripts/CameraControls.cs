@@ -4,10 +4,12 @@ using UnityEngine.Tilemaps;
 public class CameraControls : MonoBehaviour {
 	Vector3 mouseDragStart;
 	Vector3 positionOnDragStart;
+	float startingZ;
 	Tilemap tilemap;
 
 	void Start() {
 		tilemap = GetComponentInChildren<Tilemap>();
+		startingZ = Camera.main.transform.position.z;
 	}
 
 	void OnMouseOver() {
@@ -37,6 +39,7 @@ public class CameraControls : MonoBehaviour {
 			targetPos.x = closest.x;
 			targetPos.y = closest.y;
 		} 
+		targetPos.z = startingZ;
 		Camera.main.transform.position = targetPos;
     }
 }

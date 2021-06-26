@@ -198,6 +198,10 @@ public class TileTracker : MonoBehaviour {
 		return letters[pos.x].ToString().ToUpper() + (pos.y + 1);
 	}
 
+	public Vector3 BoardToWorld(Vector3Int tileBoardPos) {
+		return tilemap.CellToWorld(origin+tileBoardPos);
+	}
+
 	public void QueueReplacement(Vector3Int position, ScriptableTile newTile) {
 		placements.Enqueue(new TilePlacement(position, newTile));
 	}

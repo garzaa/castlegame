@@ -787,6 +787,8 @@ MonoBehaviour:
   homeTile: {fileID: 11400000, guid: df84ccef930e6394a9ad0c9eec8c60c0, type: 2}
   doubleScaleCanvas: {fileID: 4563187656243171575, guid: 36d3e987c9b4ff341a475aa28bfc0301,
     type: 3}
+  infoBubbleTemplate: {fileID: 6432528725121529101, guid: 3d27191401876dd489573569584777dc,
+    type: 3}
 --- !u!50 &3904237846106684286
 Rigidbody2D:
   serializedVersion: 4

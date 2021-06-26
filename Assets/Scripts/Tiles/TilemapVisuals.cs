@@ -9,7 +9,9 @@ public class TilemapVisuals : MonoBehaviour {
 	[SerializeField] Tile highlightTile;
 	[SerializeField] Tilemap highlightTilemapTemplate;
 	[SerializeField] Tile homeTile;
+	// TODO: this gets overridden with the initialized version of itself...is that ok??
 	[SerializeField] Canvas doubleScaleCanvas;
+	[SerializeField] TileInfo infoBubbleTemplate;
 	#pragma warning restore 0649
 
 	CommandInput console;
@@ -21,6 +23,7 @@ public class TilemapVisuals : MonoBehaviour {
 	Vector3Int gridMousePos;
 	TileTracker tracker;
 
+	GameObject currentInfoBubble;
 	bool showingTileVisuals;
 	Vector3Int targetedTile;
 
@@ -32,7 +35,7 @@ public class TilemapVisuals : MonoBehaviour {
 	void Start() {
 		CreateHighlightTilemap();
 		CreateIconTilemap();
-		doubleScaleCanvas = Instantiate(doubleScaleCanvas, this.transform);
+		CreateDoubleScaleCanvas();
 		console = GameObject.FindObjectOfType<CommandInput>();
 		tracker = GameObject.FindObjectOfType<TileTracker>();
 		origin = tilemap.cellBounds.min;
@@ -56,6 +59,10 @@ public class TilemapVisuals : MonoBehaviour {
 		GameObject g = Instantiate(legendTemplate, Vector3.zero, Quaternion.identity, doubleScaleCanvas.transform);
 		g.GetComponent<WorldPointCanvas>().position = tilemap.CellToWorld(origin + Vector3Int.up*(idx+1)) + Vector3.down*tilemap.cellSize.y/2f;
 		g.GetComponent<Text>().text = (idx+1).ToString();
+	}
+
+	void CreateDoubleScaleCanvas() {
+		doubleScaleCanvas = Instantiate(doubleScaleCanvas, this.transform);
 	}
 	
 	void CreateHighlightTilemap() {
@@ -98,6 +105,17 @@ public class TilemapVisuals : MonoBehaviour {
 			CommandInput.Log(s.Stat());
 		}
 		DisplayTileVisuals(gameTile);
+		ShowInfoBubble(gameTile);
+	}
+
+	void ShowInfoBubble(GameTile tile) {
+		if (currentInfoBubble) {
+			GameObject.Destroy(currentInfoBubble);
+		}
+
+		TileInfo tileInfo = Instantiate(infoBubbleTemplate, doubleScaleCanvas.transform);
+		currentInfoBubble = tileInfo.gameObject;
+		tileInfo.Initialize(tile);
 	}
 
 	void ShowTileIcon(TileHighlight highlight) {

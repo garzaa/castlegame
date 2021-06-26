@@ -9,6 +9,9 @@ public class GameTile : MonoBehaviour, IStat {
 	public Vector3Int gridPosition { 
 		get { return tileTracker.BoardToCell(position); }
 	}
+	public Vector3 worldPosition {
+		get { return tileTracker.BoardToWorld(position); }
+	}
 	ScriptableTile tile;
 
 	#pragma warning disable 0649
