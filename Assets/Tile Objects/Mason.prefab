@@ -50,8 +50,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   tileType: {fileID: 11400000, guid: 64c537d4d2d88b746b7a61ab54f13fa2, type: 2}
-  description: "Repairs the oldest networked stone tile, max networked depth 10.
-    \nClaims 1 house."
+  description: 'Repairs the oldest networked stone tile.
+
+    <color=#657392>Max
+    depth: 10</color>'
 --- !u!114 &-146523043900833598
 MonoBehaviour:
   m_ObjectHideFlags: 0

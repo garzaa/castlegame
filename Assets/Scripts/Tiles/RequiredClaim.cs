@@ -3,7 +3,7 @@ using UnityEngine.Tilemaps;
 using System.Collections.Generic;
 using System.Linq;
 
-public class RequiredClaim : TileBehaviour, ITileValidator, ITileHighlighter {
+public class RequiredClaim : TileBehaviour, ITileValidator, ITileHighlighter, IStat {
 	[Tooltip("Link this to a GameTile asset")]
 	public Claimable claimable;
 	public Tile claimedTileIcon;
@@ -36,5 +36,9 @@ public class RequiredClaim : TileBehaviour, ITileValidator, ITileHighlighter {
 			claimedTileIcon,
 			new List<Vector3Int>(new Vector3Int[] {claimable.gameTile.gridPosition})
 		);
+	}
+
+	public string Stat() {
+		return $"Claims 1 {claimable.gameObject.name}.";
 	}
 }
