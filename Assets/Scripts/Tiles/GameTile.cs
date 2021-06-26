@@ -6,6 +6,9 @@ using System.Collections.Generic;
 public class GameTile : MonoBehaviour, IStat {
 	TileTracker tileTracker;
 	public Vector3Int position {get; private set; }
+	public Vector3Int gridPosition { 
+		get { return tileTracker.BoardToCell(position); }
+	}
 	ScriptableTile tile;
 
 	#pragma warning disable 0649

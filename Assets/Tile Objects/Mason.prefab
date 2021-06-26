@@ -139,3 +139,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   claimable: {fileID: 3567469549212463416, guid: eac009e8d132f824b8938dd03d4a5352,
     type: 3}
+  claimedTileIcon: {fileID: 11400000, guid: df84ccef930e6394a9ad0c9eec8c60c0, type: 2}

@@ -1,9 +1,16 @@
 using UnityEngine;
+using UnityEngine.Tilemaps;
+using System.Collections.Generic;
 using System.Linq;
 
-public class RequiredClaim : TileBehaviour, ITileValidator {
+public class RequiredClaim : TileBehaviour, ITileValidator, ITileHighlighter {
 	[Tooltip("Link this to a GameTile asset")]
 	public Claimable claimable;
+	public Tile claimedTileIcon;
+
+	override protected void Start() {
+		base.Start();
+	}
 
 	public bool Valid(TileTracker tracker, Vector3Int pos) {
 		foreach (Claimable boardClaimable in tracker.GetTiles<Claimable>()) {
@@ -22,5 +29,12 @@ public class RequiredClaim : TileBehaviour, ITileValidator {
 
 	void OnRemove() {
 		claimable.UnClaim(this.gameTile);
+	}
+
+	public TileHighlight GetHighlight() {
+		return new TileHighlight (
+			claimedTileIcon,
+			new List<Vector3Int>(new Vector3Int[] {claimable.gameTile.gridPosition})
+		);
 	}
 }
