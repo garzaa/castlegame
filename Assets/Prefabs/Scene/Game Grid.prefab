@@ -785,6 +785,8 @@ MonoBehaviour:
   highlightTilemapTemplate: {fileID: 1900224011251001686, guid: 26b6c852062beaf4097e62922ed33145,
     type: 3}
   homeTile: {fileID: 11400000, guid: df84ccef930e6394a9ad0c9eec8c60c0, type: 2}
+  doubleScaleCanvas: {fileID: 4563187656243171575, guid: 36d3e987c9b4ff341a475aa28bfc0301,
+    type: 3}
 --- !u!50 &3904237846106684286
 Rigidbody2D:
   serializedVersion: 4

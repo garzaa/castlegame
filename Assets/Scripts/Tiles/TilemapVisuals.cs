@@ -9,9 +9,9 @@ public class TilemapVisuals : MonoBehaviour {
 	[SerializeField] Tile highlightTile;
 	[SerializeField] Tilemap highlightTilemapTemplate;
 	[SerializeField] Tile homeTile;
+	[SerializeField] Canvas doubleScaleCanvas;
 	#pragma warning restore 0649
 
-	Canvas doubleScaleCanvas;
 	CommandInput console;
 	Tilemap tilemap;
 	Vector3Int origin;
@@ -32,8 +32,8 @@ public class TilemapVisuals : MonoBehaviour {
 	void Start() {
 		CreateHighlightTilemap();
 		CreateIconTilemap();
+		doubleScaleCanvas = Instantiate(doubleScaleCanvas, this.transform);
 		console = GameObject.FindObjectOfType<CommandInput>();
-		doubleScaleCanvas = GameObject.FindObjectOfType<Canvas>();
 		tracker = GameObject.FindObjectOfType<TileTracker>();
 		origin = tilemap.cellBounds.min;
 
