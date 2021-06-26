@@ -131,6 +131,7 @@ GameObject:
   m_Component:
   - component: {fileID: 276255530}
   - component: {fileID: 276255531}
+  - component: {fileID: 276255532}
   m_Layer: 5
   m_Name: TileInfo
   m_TagString: Untagged
@@ -171,6 +172,19 @@ CanvasGroup:
   m_Interactable: 1
   m_BlocksRaycasts: 1
   m_IgnoreParentGroups: 0
+--- !u!114 &276255532
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 276255529}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 380eae1464338184288b23c7d3e6f071, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  position: {x: 0, y: 0}
 --- !u!1 &473172484
 GameObject:
   m_ObjectHideFlags: 0
