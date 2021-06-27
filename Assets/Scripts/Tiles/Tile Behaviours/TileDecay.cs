@@ -41,7 +41,7 @@ public class TileDecay : TileBehaviour, IStat {
 	}
 
 	virtual public string Stat() {
-		return $"Decay {GetDecay()}/{decayThreshold} to {decayTo.tileObject.name}";
+		return $"Decay in <color='#94fdff'>{decayThreshold-GetDecay()}</color> to <color='#94fdff'>{decayTo.tileObject.name}</color>";
 	}
 
 	public int GetDecayThreshold() {

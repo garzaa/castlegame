@@ -9,8 +9,8 @@ public class TilemapVisuals : MonoBehaviour {
 	[SerializeField] Tile highlightTile;
 	[SerializeField] Tilemap highlightTilemapTemplate;
 	[SerializeField] Tile homeTile;
-	// TODO: this gets overridden with the initialized version of itself...is that ok??
-	[SerializeField] Canvas doubleScaleCanvas;
+	[SerializeField] Tile clickedTile;
+	[SerializeField] Canvas doubleScaleCanvas; // this gets overridden with the initialized version of itself...is that ok??
 	[SerializeField] TileInfo infoBubbleTemplate;
 	#pragma warning restore 0649
 
@@ -19,6 +19,7 @@ public class TilemapVisuals : MonoBehaviour {
 	Vector3Int origin;
 	Tilemap highlightTilemap;
 	Tilemap iconTilemap;
+	Tilemap clickedTilemap;
 	Vector3 mouseWorldPos;
 	Vector3Int gridMousePos;
 	TileTracker tracker;
@@ -35,6 +36,7 @@ public class TilemapVisuals : MonoBehaviour {
 	void Start() {
 		CreateHighlightTilemap();
 		CreateIconTilemap();
+		CreateSelectedTilemap();
 		CreateDoubleScaleCanvas();
 		console = GameObject.FindObjectOfType<CommandInput>();
 		tracker = GameObject.FindObjectOfType<TileTracker>();
@@ -75,6 +77,11 @@ public class TilemapVisuals : MonoBehaviour {
 		iconTilemap.GetComponent<TilemapRenderer>().sortingOrder = highlightTilemap.GetComponent<TilemapRenderer>().sortingOrder + 1;
 	}
 
+	void CreateSelectedTilemap() {
+		clickedTilemap = Instantiate(highlightTilemapTemplate, transform.parent);
+		clickedTilemap.GetComponent<TilemapRenderer>().sortingOrder = iconTilemap.GetComponent<TilemapRenderer>().sortingOrder + 1;
+	}
+
 	public void HighlightTile(Vector3Int gridPos) {
 		if (!tilemap.cellBounds.Contains(gridPos)) {
 			return;
@@ -101,9 +108,6 @@ public class TilemapVisuals : MonoBehaviour {
 	void OnMouseDown() {
 		GameTile gameTile = tracker.GetTileFromWorld(mouseWorldPos);
 		if (gameTile == null) return;
-		foreach (IStat s in gameTile.GetComponents<IStat>()) {
-			CommandInput.Log(s.Stat());
-		}
 		DisplayTileVisuals(gameTile);
 		ShowInfoBubble(gameTile);
 	}
@@ -125,8 +129,10 @@ public class TilemapVisuals : MonoBehaviour {
 	}
 
 	public void DisplayTileVisuals(GameTile tile) {
+		clickedTilemap.ClearAllTiles();
 		iconTilemap.ClearAllTiles();
 		HighlightTile(tile.gridPosition);
+		clickedTilemap.SetTile(tile.gridPosition, clickedTile);
 		foreach (ITileHighlighter h in tile.GetComponents<ITileHighlighter>()) {
 			ShowTileIcon(h.GetHighlight());
 		}

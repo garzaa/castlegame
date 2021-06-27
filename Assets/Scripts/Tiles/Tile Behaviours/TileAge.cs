@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class TileAge : TileBehaviour, IStat {
+public class TileAge : TileBehaviour, IConsoleStat {
 	int age = 0;
 
 	public void Clockwork() {

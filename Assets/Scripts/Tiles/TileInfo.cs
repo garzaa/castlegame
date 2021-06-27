@@ -28,6 +28,8 @@ public class TileInfo : MonoBehaviour {
 		}
 
 		foreach (IStat i in tile.GetComponents<IStat>()) {
+			string s = i.Stat();
+			if (string.IsNullOrEmpty(s)) continue;
 			GameObject g = Instantiate(infoLine, tileInfoContainer);
 			g.GetComponent<Text>().text = i.Stat();
 		}

@@ -38,6 +38,7 @@ public class NeighborDecay : TileDecay, IStat {
 	}
 
 	override public string Stat() {
+		if (GetNumNeighbors() == 0) return null;
 		return $"{decayMode.ToString()} {neighbor.tileObject.name} neighbors: {GetNumNeighbors()} -> {base.Stat()}";
 	}
 }
