@@ -28,4 +28,12 @@ public class TileRequiredBase : TileBehaviour, ITileValidator {
 	public override string ToString() {
 		return "Build on: "+ PrettyList(validBases.Select(x => x.tileObject.name).ToList());
 	}
+
+	public string Stat() {
+		if (validBases.Count > 1) {
+			return this.ToString();
+		} else {
+			return $"Build on {validBases[0].tileObject.name}";
+		}
+	}
 }
