@@ -3,7 +3,7 @@ using UnityEngine.Tilemaps;
 using System.Collections;
 using System.Collections.Generic;
 
-public class GameTile : MonoBehaviour, IStat {
+public class GameTile : MonoBehaviour, IStat, ICardStat {
 	TileTracker tileTracker;
 	public Vector3Int position {get; private set; }
 	public Vector3Int gridPosition { 

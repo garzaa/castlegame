@@ -3,7 +3,7 @@ using System.Linq;
 using System.Collections.Generic;
 
 [DisallowMultipleComponent]
-public class TileRequiredBase : TileBehaviour, ITileValidator {
+public class TileRequiredBase : TileBehaviour, ITileValidator, ICardStat {
 	public List<ScriptableTile> validBases;
 
 	public bool Valid(TileTracker tracker, Vector3Int pos) {
@@ -33,7 +33,7 @@ public class TileRequiredBase : TileBehaviour, ITileValidator {
 		if (validBases.Count > 1) {
 			return this.ToString();
 		} else {
-			return $"Build on {validBases[0].tileObject.name}";
+			return $"Build on <color='#94fdff'>{validBases[0].tileObject.name}</color>.";
 		}
 	}
 }

@@ -13,3 +13,4 @@ MonoBehaviour:
   m_Name: Wood
   m_EditorClassIdentifier: 
   description: Basic building material.
+  icon: {fileID: 1580957064863068855, guid: b0a99310742b50d458a7eae59cd16898, type: 3}

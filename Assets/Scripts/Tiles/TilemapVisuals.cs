@@ -110,6 +110,8 @@ public class TilemapVisuals : MonoBehaviour {
 		if (gameTile == null) return;
 		DisplayTileVisuals(gameTile);
 		ShowInfoBubble(gameTile);
+
+		GameObject.FindObjectOfType<Card>().Initialize(gameTile);
 	}
 
 	void ShowInfoBubble(GameTile tile) {
