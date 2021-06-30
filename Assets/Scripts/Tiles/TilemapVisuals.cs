@@ -111,7 +111,7 @@ public class TilemapVisuals : MonoBehaviour {
 		DisplayTileVisuals(gameTile);
 		ShowInfoBubble(gameTile);
 
-		GameObject.FindObjectOfType<Card>().Initialize(gameTile);
+		// GameObject.FindObjectOfType<Card>().Initialize(gameTile);
 	}
 
 	void ShowInfoBubble(GameTile tile) {

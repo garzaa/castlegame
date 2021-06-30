@@ -20,6 +20,7 @@ public class CommandInput : MonoBehaviour {
 	bool wonLevel = false;
 
 	int actions = 0;
+	int totalActions = 0;
 	const int actionsPerTick = 3;
 
 	int daysWithoutActions;
@@ -248,18 +249,21 @@ public class CommandInput : MonoBehaviour {
 				Log($"{tile.name} at {args[1].ToUpper()} can't be cut");
 			} else {
 				actions++;
+				totalActions++;
 				tileTracker.ReplaceTile(tileTracker.StrToPos(args[1]), cut.cutTo);
 			}
 		}
 
 		else if (args[0] == "fix") {
 			actions++;
+			totalActions++;
 			tileTracker.RepairTile(tileTracker.StrToPos(args[1]));
 		}
 
 		else if (args[0] == "build") {
 			if (Build(args[1], tileTracker.StrToPos(args[2]))) {
 				actions++;
+				totalActions++;
 			}
 		}
 
@@ -345,7 +349,7 @@ public class CommandInput : MonoBehaviour {
 		}
 		if (won) {
 			wonLevel = true;
-			Log($"<color='#00cdf9'>{SceneManager.GetActiveScene().name} won after {totalDays} days!</color>");
+			Log($"<color='#00cdf9'>{SceneManager.GetActiveScene().name} won after {totalDays} days and {totalActions} actions</color>");
 			Log($"<color='#00cdf9'>Board condition satisfied:</color>");
 			Log($"<color='#00cdf9'>{won.GetDescription()}</color>");
 			Log("You can keep playing or load the next level.");
