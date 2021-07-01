@@ -1,7 +1,7 @@
 using UnityEngine;
 using System.Collections.Generic;
 
-public class NeighborDecay : TileDecay, IStat {
+public class NeighborDecay : TileDecay, IStat, ICardStat {
 	public ScriptableTile neighbor;
 
 	[SerializeField]

@@ -5,9 +5,11 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 
+[RequireComponent(typeof(AudioSource))]
 public class TileTracker : MonoBehaviour {
 
 	#pragma warning disable 0649
+	[SerializeField] GameEvent boardChangeEvent;
 	#pragma warning restore 0649
 
 	CommandInput console;
@@ -53,7 +55,7 @@ public class TileTracker : MonoBehaviour {
 		return GetTileNoRedirect(CellToBoard(tilemap.WorldToCell(worldPos)));
 	}
 
-	Vector3Int CellToBoard(Vector3Int pos) {
+	public Vector3Int CellToBoard(Vector3Int pos) {
 		return pos - origin;
 	}
 
@@ -65,7 +67,7 @@ public class TileTracker : MonoBehaviour {
 		for (int x=0; x<tiles.Count; x++) {
 			for (int y=0; y<tiles[x].Count; y++) {
 				Vector3Int currentPos = new Vector3Int(x, y, 0);
-				tiles[x][y].Initialize(this, currentPos, tilemap.GetTile<ScriptableTile>(origin+currentPos));
+				tiles[x][y].Initialize(this, currentPos, tilemap.GetTile<ScriptableTile>(origin+currentPos), silent:true);
 			}
 		}
 	}
@@ -123,17 +125,39 @@ public class TileTracker : MonoBehaviour {
 	}
 
 	public bool ReplaceTile(Vector3Int position, ScriptableTile newTile) {
+		GameTile oldTileBackend = GetTileNoRedirect(position);
+
 		if (!ValidPlacement(tilemap.GetTile(origin + position) as ScriptableTile, newTile, position)) {
 			return false;
+		}
+
+		GameTile newTileBackend = SpawnGameTile(newTile, position);
+		newTileBackend.SendMessage("OnBuild", SendMessageOptions.DontRequireReceiver);
+
+		if (redirects.ContainsKey(oldTileBackend)) {
+			// give the new tile the old tile's target
+			GameTile target = redirects[oldTileBackend];
+			redirects[newTileBackend] = target;
+			redirects.Remove(oldTileBackend);
+		}
+
+		if (redirects.ContainsValue(oldTileBackend)) {
+			// then update anything that points to the old tile to point to the new tile
+			GameTile[] pointers = redirects
+				.Where(x => x.Value == oldTileBackend)
+				.Select(x => x.Key)
+				.ToArray();
+			foreach (GameTile pointer in pointers) {
+				redirects[pointer] = newTileBackend; 
+			}
 		}
 
 		RemoveTile(position);
 
 		tilemap.SetTile(position+origin, newTile);
-		GameTile tileBackend = SpawnGameTile(newTile, position);
-		tileBackend.SendMessage("OnBuild", SendMessageOptions.DontRequireReceiver);
-		tiles[position.x][position.y] = tileBackend;
+		tiles[position.x][position.y] = newTileBackend;
 
+		boardChangeEvent.Raise();
 		return true;
 	}
 
@@ -229,6 +253,8 @@ public class TileTracker : MonoBehaviour {
 			ApplyPlacement(placements.Dequeue());
 		}
 		placements.Clear();
+		// pick up age changes etc
+		boardChangeEvent.Raise();
 	}
 
 	public List<GameTile> GetNeighbors(Vector3Int position) {

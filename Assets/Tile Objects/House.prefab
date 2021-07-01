@@ -52,6 +52,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   tileType: {fileID: 11400000, guid: 64c537d4d2d88b746b7a61ab54f13fa2, type: 2}
+  onPlace: {fileID: 11400000, guid: 6e65e6df3c0adaf4fab25251c4de8f21, type: 2}
+  onQuery: {fileID: 11400000, guid: 19814e19eb2d61c47a03cfae1b31f7f9, type: 2}
+  onDestroy: {fileID: 0}
   description: "Live here. Work elsewhere. \nRepairs the oldest neighbor structure."
 --- !u!114 &6726653392267514890
 MonoBehaviour:

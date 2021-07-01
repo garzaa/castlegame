@@ -48,6 +48,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   tileType: {fileID: 11400000, guid: 746dc2fc1d4caef40a0d54946c7b8323, type: 2}
+  onPlace: {fileID: 0}
+  onQuery: {fileID: 11400000, guid: 19814e19eb2d61c47a03cfae1b31f7f9, type: 2}
+  onDestroy: {fileID: 0}
   description: Don't let the forest swallow it.
 --- !u!114 &4244420699313337950
 MonoBehaviour:

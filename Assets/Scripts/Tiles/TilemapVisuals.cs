@@ -26,6 +26,7 @@ public class TilemapVisuals : MonoBehaviour {
 
 	GameObject currentInfoBubble;
 	bool showingTileVisuals;
+	Vector3Int currentSelectedGridPosition;
 	Vector3Int targetedTile;
 
 	void Awake() {
@@ -48,6 +49,12 @@ public class TilemapVisuals : MonoBehaviour {
 
 		for (int i=0; i<tilemap.cellBounds.size.y; i++) {
 			AddNumberLegend(i);
+		}
+	}
+
+	void Update() {
+		if (Input.GetKeyDown(KeyCode.Escape)) {
+			HideInfoBubble();
 		}
 	}
 
@@ -106,12 +113,18 @@ public class TilemapVisuals : MonoBehaviour {
 	}
 
 	void OnMouseDown() {
-		GameTile gameTile = tracker.GetTileFromWorld(mouseWorldPos);
+		OnTileClick(gridMousePos);
+		// GameObject.FindObjectOfType<Card>().Initialize(gameTile);
+	}
+
+	// TODO: don't play a sound on info refresh
+	void OnTileClick(Vector3Int gridPos, bool silent=false) {
+		GameTile gameTile = tracker.GetTileNoRedirect(tracker.CellToBoard(gridPos));
 		if (gameTile == null) return;
+		currentSelectedGridPosition = gridPos;
+		if (!silent) gameTile.PlayQuerySound();
 		DisplayTileVisuals(gameTile);
 		ShowInfoBubble(gameTile);
-
-		// GameObject.FindObjectOfType<Card>().Initialize(gameTile);
 	}
 
 	void ShowInfoBubble(GameTile tile) {
@@ -122,6 +135,11 @@ public class TilemapVisuals : MonoBehaviour {
 		TileInfo tileInfo = Instantiate(infoBubbleTemplate, doubleScaleCanvas.transform);
 		currentInfoBubble = tileInfo.gameObject;
 		tileInfo.Initialize(tile);
+	}
+
+	void HideInfoBubble() {
+		GameObject.Destroy(currentInfoBubble);
+		clickedTilemap.ClearAllTiles();
 	}
 
 	void ShowTileIcon(TileHighlight highlight) {
@@ -137,6 +155,13 @@ public class TilemapVisuals : MonoBehaviour {
 		clickedTilemap.SetTile(tile.gridPosition, clickedTile);
 		foreach (ITileHighlighter h in tile.GetComponents<ITileHighlighter>()) {
 			ShowTileIcon(h.GetHighlight());
+		}
+	}
+
+	public void OnGameBoardChanged() {
+		// update the tile bubble in-place
+		if (currentInfoBubble != null) {
+			OnTileClick(currentSelectedGridPosition, silent:true);
 		}
 	}
 }

@@ -51,6 +51,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   tileType: {fileID: 11400000, guid: 64c537d4d2d88b746b7a61ab54f13fa2, type: 2}
+  onPlace: {fileID: 11400000, guid: 1034ba3b50af13b4cbec98d78d554414, type: 2}
+  onQuery: {fileID: 11400000, guid: 19814e19eb2d61c47a03cfae1b31f7f9, type: 2}
+  onDestroy: {fileID: 0}
   description: 'Repairs the oldest networked stone tile.
 
     <color=#657392>Max

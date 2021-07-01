@@ -11,6 +11,8 @@ public class CommandInput : MonoBehaviour {
 	[SerializeField] GameObject textOutput;
 	[SerializeField] List<SceneReference> levels;
 	[SerializeField] List<BuildCommand> buildCommands;
+	[SerializeField] AudioClip winSound;
+	[SerializeField] AudioClip loseSound;
 	#pragma warning restore 0649
 
 	Dictionary<string, ScriptableTile> buildTiles;
@@ -117,173 +119,177 @@ public class CommandInput : MonoBehaviour {
 	}
 
 	void ParseCommand(string originalCommand) {
-		string command = originalCommand.ToLower();
+		try {
+			string command = originalCommand.ToLower();
 
-		string[] args = command.Split(' ');
-		if (args[0] == "reload") {
-			SceneManager.LoadScene(SceneManager.GetActiveScene().name);
-			return;
-		}
-
-		else if (args[0] == "levels") {
-			foreach (SceneReference level in levels) {
-				// levels/level.unity
-				string[] path = level.ScenePath.Split('/');
-				Log(path[path.Length-1].Split('.')[0]);
-			}
-			return;
-		}
-
-		else if (args[0] == "load") {
-			bool valid = false;
-			string scenePath = "";
-			foreach (SceneReference level in levels) {
-				scenePath = level.ScenePath;
-				if (scenePath.ToLower().Contains(args[1])) {
-					valid = true;
-					break;
-				}
-			}
-			if (!valid) {
-				Log(args[1]+" not a valid level, use >levels for a full list");
+			string[] args = command.Split(' ');
+			if (args[0] == "reload") {
+				SceneManager.LoadScene(SceneManager.GetActiveScene().name);
 				return;
 			}
-			SceneManager.LoadScene(scenePath);
-			return;
-		}
 
-		else if (args[0] == "stat") {
-			string coords = args[1];
-
-			GameTile t = tileTracker.GetTileNoRedirect(tileTracker.StrToPos(coords));
-			IStat[] s = t.GetComponents<IStat>();
-			for (int i=0; i<s.Length; i++) {
-				Log(s[i].Stat());
-			}
-			return;
-		}
-
-		else if (args[0] == "help") {
-			Log("");
-			Log("All structures decay.");
-			Log("Some repair others.");
-			Log("");
-			Log("COMMANDS:");
-			Log("<color='#c7cfdd'>reload</color>: reload the current level");
-			Log("<color='#c7cfdd'>win</color>: show win conditions for current level");
-			Log("<color='#c7cfdd'>levels</color>: show a list of playable levels");
-			Log("<color='#c7cfdd'>load [level]</color>: load the specified level");
-			Log("<color='#c7cfdd'>stat [tile]</color>: display status of a tile");
-			Log("<color='#c7cfdd'>clear</color>: clear console");
-			Log("<color='#c7cfdd'>sleep </color>: end turn and advance time");
-			Log("<color='#c7cfdd'>sleep [days]</color>: sleep for [days]");
-			Log("<color='#c7cfdd'>cut [tile]</color>: cut a tile");
-			Log("<color='#c7cfdd'>resources</color>: show player resources");
-			Log("<color='#c7cfdd'>fix</color>: repair a structure");
-			Log("<color='#c7cfdd'>blueprints</color>: show available blueprints");
-			Log("<color='#c7cfdd'>build [blueprint] [tile]</color>: build blueprint on tile");
-			return;
-		}
-
-		else if (args[0] == "clear") {
-			ClearConsole();
-			return;
-		}
-
-		else if (args[0] == "wake") {
-			if (sleeping) WakeUp();
-			else Log("Not currently sleeping");
-			return;
-		}
-
-		else if (args[0] == "resources") {
-			Log(PlayerResources.Stat());
-			return;
-		}
-
-		else if (args[0] == "blueprints") {
-			foreach (string blueprint in buildTiles.Keys) {
-				Log(ToSentence(blueprint));
-				GameTile tileObject = buildTiles[blueprint].tileObject.GetComponent<GameTile>();
-				Log(tileObject.description);
-				foreach (TileRequiredResource r in tileObject.GetComponents<TileRequiredResource>()) {
-					Log(r);
+			else if (args[0] == "levels") {
+				foreach (SceneReference level in levels) {
+					// levels/level.unity
+					string[] path = level.ScenePath.Split('/');
+					Log(path[path.Length-1].Split('.')[0]);
 				}
+				return;
+			}
+
+			else if (args[0] == "load") {
+				bool valid = false;
+				string scenePath = "";
+				foreach (SceneReference level in levels) {
+					scenePath = level.ScenePath;
+					if (scenePath.ToLower().Contains(args[1])) {
+						valid = true;
+						break;
+					}
+				}
+				if (!valid) {
+					Log(args[1]+" not a valid level, use >levels for a full list");
+					return;
+				}
+				SceneManager.LoadScene(scenePath);
+				return;
+			}
+
+			else if (args[0] == "stat") {
+				string coords = args[1];
+
+				GameTile t = tileTracker.GetTileNoRedirect(tileTracker.StrToPos(coords));
+				IStat[] s = t.GetComponents<IStat>();
+				for (int i=0; i<s.Length; i++) {
+					Log(s[i].Stat());
+				}
+				return;
+			}
+
+			else if (args[0] == "help") {
 				Log("");
+				Log("All structures decay.");
+				Log("Some repair others.");
+				Log("");
+				Log("COMMANDS:");
+				Log("<color='#c7cfdd'>reload</color>: reload the current level");
+				Log("<color='#c7cfdd'>win</color>: show win conditions for current level");
+				Log("<color='#c7cfdd'>levels</color>: show a list of playable levels");
+				Log("<color='#c7cfdd'>load [level]</color>: load the specified level");
+				Log("<color='#c7cfdd'>stat [tile]</color>: display status of a tile");
+				Log("<color='#c7cfdd'>clear</color>: clear console");
+				Log("<color='#c7cfdd'>sleep </color>: end turn and advance time");
+				Log("<color='#c7cfdd'>sleep [days]</color>: sleep for [days]");
+				Log("<color='#c7cfdd'>cut [tile]</color>: cut a tile");
+				Log("<color='#c7cfdd'>resources</color>: show player resources");
+				Log("<color='#c7cfdd'>fix</color>: repair a structure");
+				Log("<color='#c7cfdd'>blueprints</color>: show available blueprints");
+				Log("<color='#c7cfdd'>build [blueprint] [tile]</color>: build blueprint on tile");
+				return;
 			}
-			return;
-		}
 
-		else if (args[0] == "win") {
-			LogWinConditions();
-			return;
-		}
-
-
-		// non-action commands have ended, everything below this takes an action
-
-		if (sleeping) {
-			Log("Can't act while sleeping, abort with wake");
-		}
-
-		if (gameOver) {
-			Log("Your Keep has been reclaimed by the Forest.");
-			Log("Reload or choose a new level.");
-			return;
-		}
-
-		else if (args[0] == "sleep") {
-			int time = 1;
-			if (args.Length > 1 && !string.IsNullOrEmpty(args[1])) {
-				time = int.Parse(args[1]);
+			else if (args[0] == "clear") {
+				ClearConsole();
+				return;
 			}
-			sleeping = true;
-			StartCoroutine(SlowTick(time));
-			return;
-		}
 
-		else if (args[0] == "cut") {
-			GameTile tile = tileTracker.GetTile(tileTracker.StrToPos(args[1]), null);
-			TileCuttable cut = tile.GetComponent<TileCuttable>();
-			if (!cut) {
-				Log($"{tile.name} at {args[1].ToUpper()} can't be cut");
-			} else {
+			else if (args[0] == "wake") {
+				if (sleeping) WakeUp();
+				else Log("Not currently sleeping");
+				return;
+			}
+
+			else if (args[0] == "resources") {
+				Log(PlayerResources.Stat());
+				return;
+			}
+
+			else if (args[0] == "blueprints") {
+				foreach (string blueprint in buildTiles.Keys) {
+					Log(ToSentence(blueprint));
+					GameTile tileObject = buildTiles[blueprint].tileObject.GetComponent<GameTile>();
+					Log(tileObject.description);
+					foreach (TileRequiredResource r in tileObject.GetComponents<TileRequiredResource>()) {
+						Log(r);
+					}
+					Log("");
+				}
+				return;
+			}
+
+			else if (args[0] == "win") {
+				LogWinConditions();
+				return;
+			}
+
+
+			// non-action commands have ended, everything below this takes an action
+
+			if (sleeping) {
+				Log("Can't act while sleeping, abort with wake");
+			}
+
+			if (gameOver) {
+				Log("Your Keep has been reclaimed by the Forest.");
+				Log("Reload or choose a new level.");
+				return;
+			}
+
+			else if (args[0] == "sleep") {
+				int time = 1;
+				if (args.Length > 1 && !string.IsNullOrEmpty(args[1])) {
+					time = int.Parse(args[1]);
+				}
+				sleeping = true;
+				StartCoroutine(SlowTick(time));
+				return;
+			}
+
+			else if (args[0] == "cut") {
+				GameTile tile = tileTracker.GetTileNoRedirect(tileTracker.StrToPos(args[1]));
+				TileCuttable cut = tile.GetComponent<TileCuttable>();
+				if (!cut) {
+					Log($"{tile.name} at {args[1].ToUpper()} can't be cut");
+				} else {
+					actions++;
+					totalActions++;
+					tileTracker.ReplaceTile(tileTracker.StrToPos(args[1]), cut.cutTo);
+				}
+			}
+
+			else if (args[0] == "fix") {
 				actions++;
 				totalActions++;
-				tileTracker.ReplaceTile(tileTracker.StrToPos(args[1]), cut.cutTo);
+				tileTracker.RepairTile(tileTracker.StrToPos(args[1]));
 			}
-		}
 
-		else if (args[0] == "fix") {
-			actions++;
-			totalActions++;
-			tileTracker.RepairTile(tileTracker.StrToPos(args[1]));
-		}
-
-		else if (args[0] == "build") {
-			if (Build(args[1], tileTracker.StrToPos(args[2]))) {
-				actions++;
-				totalActions++;
+			else if (args[0] == "build") {
+				if (Build(args[1], tileTracker.StrToPos(args[2]))) {
+					actions++;
+					totalActions++;
+				}
 			}
-		}
 
-		else {
-			Log("'"+originalCommand+"' bad command");
-		}
+			else {
+				Log("'"+originalCommand+"' bad command");
+			}
 
-		if (gameOver) return;
+			if (gameOver) return;
 
-		if (actions >= actionsPerTick) {
-			Log("Sunset");
-			Tick();
-			Log("Sunrise\n"+ actionsPerTick + " actions remaining");
-		} else {
-			int remaining = actionsPerTick - actions;
-			if (remaining > 1) {
-				Log(remaining + " actions remaining");
+			if (actions >= actionsPerTick) {
+				Log("Sunset");
+				Tick();
+				Log("Sunrise\n"+ actionsPerTick + " actions remaining");
 			} else {
-				Log(remaining + " action remaining");
+				int remaining = actionsPerTick - actions;
+				if (remaining > 1) {
+					Log(remaining + " actions remaining");
+				} else {
+					Log(remaining + " action remaining");
+				}
 			}
+		} catch (System.Exception e) {
+			Log(e.Message);
 		}
 	}
 
@@ -333,6 +339,7 @@ public class CommandInput : MonoBehaviour {
 	}
 
 	public void OnKeepDestroyed() {
+		GetComponent<AudioSource>().PlayOneShot(loseSound);
 		gameOver = true;
 		Log("Your Keep has been taken by the Forest.");
 		Log("<color='#c42430'>GAME OVER</color>");
@@ -348,6 +355,7 @@ public class CommandInput : MonoBehaviour {
 			}
 		}
 		if (won) {
+			GetComponent<AudioSource>().PlayOneShot(winSound);
 			wonLevel = true;
 			Log($"<color='#00cdf9'>{SceneManager.GetActiveScene().name} won after {totalDays} days and {totalActions} actions</color>");
 			Log($"<color='#00cdf9'>Board condition satisfied:</color>");

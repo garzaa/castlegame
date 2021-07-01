@@ -3,7 +3,7 @@ using UnityEngine.Tilemaps;
 using System.Collections;
 using System.Collections.Generic;
 
-public class GameTile : MonoBehaviour, IStat, ICardStat {
+public class GameTile : MonoBehaviour, IStat, ICardStat, IConsoleStat {
 	TileTracker tileTracker;
 	public Vector3Int position {get; private set; }
 	public Vector3Int gridPosition { 
@@ -18,19 +18,28 @@ public class GameTile : MonoBehaviour, IStat, ICardStat {
 	string OnPlace;
 	string OnRemove;
 	[SerializeField] TileType tileType;
+	[SerializeField] AudioResource onPlace;
+	[SerializeField] AudioResource onQuery;
+	[SerializeField] AudioResource onDestroy;
 	#pragma warning restore 0649
 
 	[TextArea] public string description;
 	static readonly string[] nullAges = new string[] {"eternal", "immeasurable", "unfathomable"};
 
-	public virtual void Initialize(TileTracker tileTracker, Vector3Int position, ScriptableTile tile) {
+	public virtual void Initialize(TileTracker tileTracker, Vector3Int position, ScriptableTile tile, bool silent=false) {
 		this.tileTracker = tileTracker;
 		this.position = position;
 		this.tile = tile;
 		SendMessage(nameof(OnPlace), SendMessageOptions.DontRequireReceiver);
+		if (!silent && onPlace) {
+			onPlace.PlayFrom(tileTracker.gameObject);
+		}
 	}
 
-	public void Remove() {
+	public void Remove(bool silent=false) {
+		if (!silent && onDestroy) {
+			onDestroy.PlayFrom(tileTracker.gameObject);
+		}
 		SendMessage(nameof(OnRemove), SendMessageOptions.DontRequireReceiver);
 	}
 
@@ -50,6 +59,12 @@ public class GameTile : MonoBehaviour, IStat, ICardStat {
 			stat += "\nRedirects to "+target;
 		}
 		return stat;
+	}
+
+	public void PlayQuerySound() {
+		if (onQuery) {
+			onQuery.PlayFrom(tileTracker.gameObject);
+		}
 	}
 
 	public List<GameTile> GetNeighbors() {

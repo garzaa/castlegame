@@ -48,6 +48,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   tileType: {fileID: 11400000, guid: 4492d5fc2578b224084316369b0f88a4, type: 2}
+  onPlace: {fileID: 0}
+  onQuery: {fileID: 11400000, guid: 95e9b005ce5094b49aec850a5e63c135, type: 2}
+  onDestroy: {fileID: 0}
   description: The reflected opposite bank shimmers in the fluid.
 --- !u!114 &-1245326314903679230
 MonoBehaviour:

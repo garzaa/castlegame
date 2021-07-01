@@ -7,7 +7,7 @@ public class TileRequiredBase : TileBehaviour, ITileValidator, ICardStat {
 	public List<ScriptableTile> validBases;
 
 	public bool Valid(TileTracker tracker, Vector3Int pos) {
-		ScriptableTile currentBase = tracker.GetTile(pos, null).GetTile();
+		ScriptableTile currentBase = tracker.GetTileNoRedirect(pos).GetTile();
 		if (!validBases.Contains(currentBase)) {
 			List<string> validBases = this.validBases.Select(x => x.tileObject.name).ToList();
 			CommandInput.Log("Invalid base for "+gameObject.name+". "+this);
