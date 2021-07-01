@@ -5,6 +5,7 @@ using System.Collections.Generic;
 public class TileInfo : MonoBehaviour {
 	#pragma warning disable 0649
 	[SerializeField] Text tileName;
+	[SerializeField] Text tileLocation;
 	[SerializeField] GameObject tileAgeContainer;
 	[SerializeField] Text tileAge;
 	[SerializeField] Transform tileInfoContainer;
@@ -26,6 +27,8 @@ public class TileInfo : MonoBehaviour {
 		} else {
 			tileAgeContainer.SetActive(false);
 		}
+
+		tileLocation.text = tile.GetTracker().PosToStr(tile.position);
 
 		foreach (IStat i in tile.GetComponents<IStat>()) {
 			string s = i.Stat();
