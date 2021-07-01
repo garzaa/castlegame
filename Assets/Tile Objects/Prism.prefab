@@ -1,0 +1,81 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &5436100358628534678
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1458869026879769376}
+  - component: {fileID: 7028963776875147791}
+  - component: {fileID: 529613466379766085}
+  - component: {fileID: 7514524457754115629}
+  m_Layer: 0
+  m_Name: Prism
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1458869026879769376
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5436100358628534678}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &7028963776875147791
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5436100358628534678}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1f257f2dba2daf043844440ba0759d2d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  tileType: {fileID: 11400000, guid: 4492d5fc2578b224084316369b0f88a4, type: 2}
+  onPlace: {fileID: 0}
+  onQuery: {fileID: 11400000, guid: 95e9b005ce5094b49aec850a5e63c135, type: 2}
+  onDestroy: {fileID: 0}
+  tile: {fileID: 11400000, guid: 81f212dc8c5dcef40810dc4c698555bd, type: 2}
+  description: The reflected opposite bank shimmers in the fluid.
+--- !u!114 &529613466379766085
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5436100358628534678}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 99bcde3c78f983d42ab974245a2d366a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  fromRelative: {x: -1, y: 0, z: 0}
+  toRelative: {x: 0, y: -1, z: 0}
+--- !u!114 &7514524457754115629
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5436100358628534678}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 99bcde3c78f983d42ab974245a2d366a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  fromRelative: {x: 0, y: 1, z: 0}
+  toRelative: {x: 1, y: 0, z: 0}
