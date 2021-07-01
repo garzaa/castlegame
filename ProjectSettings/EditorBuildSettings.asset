@@ -17,4 +17,10 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Cross.unity
     guid: 6e0cd63cef6417145943be3105241795
+  - enabled: 1
+    path: Assets/Scenes/Walls.unity
+    guid: 926c808a33ad4ec489cbf05f3fb0a35d
+  - enabled: 1
+    path: Assets/Scenes/Rocks.unity
+    guid: 6bd3e0eb11676044fa49b9906d0967bc
   m_configObjects: {}

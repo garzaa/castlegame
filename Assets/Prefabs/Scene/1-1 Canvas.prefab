@@ -1030,6 +1030,10 @@ MonoBehaviour:
     scenePath: Assets/Scenes/Stamp.unity
   - sceneAsset: {fileID: 102900000, guid: 6e0cd63cef6417145943be3105241795, type: 3}
     scenePath: Assets/Scenes/Cross.unity
+  - sceneAsset: {fileID: 102900000, guid: 6bd3e0eb11676044fa49b9906d0967bc, type: 3}
+    scenePath: Assets/Scenes/Rocks.unity
+  - sceneAsset: {fileID: 102900000, guid: 926c808a33ad4ec489cbf05f3fb0a35d, type: 3}
+    scenePath: Assets/Scenes/Walls.unity
   buildCommands:
   - name: garden
     tile: {fileID: 11400000, guid: 88f19096a45f3344591736101331d0e9, type: 2}
@@ -1358,7 +1362,7 @@ PrefabInstance:
     - target: {fileID: 5616161420329661507, guid: 85aba606e53fc6c448588f777c87945e,
         type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: -3
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5616161420329661507, guid: 85aba606e53fc6c448588f777c87945e,
         type: 3}
@@ -1378,7 +1382,7 @@ PrefabInstance:
     - target: {fileID: 5616161420329661507, guid: 85aba606e53fc6c448588f777c87945e,
         type: 3}
       propertyPath: m_AnchorMin.y
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5616161420329661507, guid: 85aba606e53fc6c448588f777c87945e,
         type: 3}
@@ -1388,7 +1392,7 @@ PrefabInstance:
     - target: {fileID: 5616161420329661507, guid: 85aba606e53fc6c448588f777c87945e,
         type: 3}
       propertyPath: m_AnchorMax.y
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5616161420329661507, guid: 85aba606e53fc6c448588f777c87945e,
         type: 3}
