@@ -31,6 +31,7 @@ public class CommandInput : MonoBehaviour {
 	public static CommandInput c;
 	TileTracker tileTracker;
 	TilemapVisuals tilemapVisuals;
+	Blueprints blueprints;
 
 	bool sleeping = false;
 	int daysSlept = 0;
@@ -46,6 +47,7 @@ public class CommandInput : MonoBehaviour {
 		tileTracker = GameObject.FindObjectOfType<TileTracker>();
 		tilemapVisuals = GameObject.FindObjectOfType<TilemapVisuals>();
 
+		blueprints = GameObject.FindObjectOfType<Blueprints>();
 		buildTiles = new Dictionary<string, ScriptableTile>();
 		foreach (BuildCommand bc in buildCommands) {
 			buildTiles[bc.name] = bc.tile;
@@ -206,7 +208,7 @@ public class CommandInput : MonoBehaviour {
 
 			else if (args[0] == "blueprints") {
 				foreach (string blueprint in buildTiles.Keys) {
-					Log(ToSentence(blueprint));
+					Log("<color='#00cdf9'>"+ToSentence(blueprint)+"</color>");
 					GameTile tileObject = buildTiles[blueprint].tileObject.GetComponent<GameTile>();
 					Log(tileObject.description);
 					foreach (TileRequiredResource r in tileObject.GetComponents<TileRequiredResource>()) {
@@ -370,6 +372,17 @@ public class CommandInput : MonoBehaviour {
 
 	string ToSentence(string s) {
 		return s.ToString().Substring(0, 1).ToUpper() + s.ToString().Substring(1);
+	}
+
+	public void OnGameBoardChanged() {
+		if (blueprints) {
+			foreach (GameTile tile in blueprints.GetTiles()) {
+				if (tile.GetComponent<BlueprintUnlock>().JustUnlocked(tileTracker)) {
+					Log($"Blueprint unlocked: <color='#00cdf9'>{tile.name}</color>");
+					buildTiles[tile.name.ToLower()] = tile.GetDefaultTile();
+				}
+			}
+		}
 	}
 }
 

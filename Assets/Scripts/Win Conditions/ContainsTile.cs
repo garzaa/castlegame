@@ -2,7 +2,7 @@ using UnityEngine;
 using UnityEngine.Tilemaps;
 using System.Collections.Generic;
 
-public class ContainsTile : WinConditionCriterion {
+public class ContainsTile : GameStateRequirement {
 	public enum ComparisonType {
 		EQ_OR_GT = 0,
 		EXACTLY = 1

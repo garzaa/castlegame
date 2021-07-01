@@ -17,6 +17,8 @@ GameObject:
   - component: {fileID: 7905479836425482683}
   - component: {fileID: 7905479836425482682}
   - component: {fileID: 4308997424987660464}
+  - component: {fileID: 5153814644005997200}
+  - component: {fileID: 2337723387074878895}
   m_Layer: 0
   m_Name: Mason
   m_TagString: Untagged
@@ -54,7 +56,8 @@ MonoBehaviour:
   onPlace: {fileID: 11400000, guid: 1034ba3b50af13b4cbec98d78d554414, type: 2}
   onQuery: {fileID: 11400000, guid: 19814e19eb2d61c47a03cfae1b31f7f9, type: 2}
   onDestroy: {fileID: 0}
-  description: 'Repairs the 2 oldest networked stone tiles.
+  tile: {fileID: 11400000, guid: 66ae0888bdb33474f8620ea2b8bb8143, type: 2}
+  description: 'Repairs the 2 oldest networked stone structures.
 
     <color=#657392>Max
     depth: 10</color>'
@@ -160,3 +163,32 @@ MonoBehaviour:
   claimable: {fileID: 3567469549212463416, guid: eac009e8d132f824b8938dd03d4a5352,
     type: 3}
   claimedTileIcon: {fileID: 11400000, guid: df84ccef930e6394a9ad0c9eec8c60c0, type: 2}
+--- !u!114 &5153814644005997200
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7905479836425482661}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 94724aa65045b234797aa8f9b8991f6b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  requirements:
+  - {fileID: 2337723387074878895}
+--- !u!114 &2337723387074878895
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7905479836425482661}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 553b0f7f3c180154f89db359cb46e08f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  tile: {fileID: 11400000, guid: 0db2b7e7ee07f2446913de4d3fa920ea, type: 2}
+  number: 1
+  comparisonType: 0

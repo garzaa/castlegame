@@ -22,7 +22,7 @@ public class Card : MonoBehaviour {
 		ClearChildren(tileInfoContainer.transform);
 		ClearChildren(resourceContainer.transform);
 
-		tileIcon.sprite = tile.GetTile().m_DefaultSprite;
+		tileIcon.sprite = tile.GetDefaultTile().m_DefaultSprite;
 		tileIcon.SetNativeSize();
 
 		tileName.text = tile.name;

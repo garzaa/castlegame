@@ -52,6 +52,7 @@ MonoBehaviour:
   onPlace: {fileID: 11400000, guid: 1034ba3b50af13b4cbec98d78d554414, type: 2}
   onQuery: {fileID: 11400000, guid: 19814e19eb2d61c47a03cfae1b31f7f9, type: 2}
   onDestroy: {fileID: 0}
+  tile: {fileID: 11400000, guid: 3fd74c4aa6bf0b443b15f6f171617b95, type: 2}
   description: Build something on it.
 --- !u!114 &3824500389922799737
 MonoBehaviour:

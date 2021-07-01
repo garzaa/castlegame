@@ -12,7 +12,6 @@ public class GameTile : MonoBehaviour, IStat, ICardStat, IConsoleStat {
 	public Vector3 worldPosition {
 		get { return tileTracker.BoardToWorld(position); }
 	}
-	ScriptableTile tile;
 
 	#pragma warning disable 0649
 	string OnPlace;
@@ -21,15 +20,15 @@ public class GameTile : MonoBehaviour, IStat, ICardStat, IConsoleStat {
 	[SerializeField] AudioResource onPlace;
 	[SerializeField] AudioResource onQuery;
 	[SerializeField] AudioResource onDestroy;
+	[SerializeField] ScriptableTile tile;
 	#pragma warning restore 0649
 
 	[TextArea] public string description;
 	static readonly string[] nullAges = new string[] {"eternal", "immeasurable", "unfathomable"};
 
-	public virtual void Initialize(TileTracker tileTracker, Vector3Int position, ScriptableTile tile, bool silent=false) {
+	public virtual void Initialize(TileTracker tileTracker, Vector3Int position, bool silent=false) {
 		this.tileTracker = tileTracker;
 		this.position = position;
-		this.tile = tile;
 		SendMessage(nameof(OnPlace), SendMessageOptions.DontRequireReceiver);
 		if (!silent && onPlace) {
 			onPlace.PlayFrom(tileTracker.gameObject);
@@ -48,7 +47,7 @@ public class GameTile : MonoBehaviour, IStat, ICardStat, IConsoleStat {
 		tileTracker.QueueReplacement(this.position, newTile);
 	}
 
-	public ScriptableTile GetTile() {
+	public ScriptableTile GetDefaultTile() {
 		return tile;
 	}
 

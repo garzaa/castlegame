@@ -30,7 +30,7 @@ public class NeighborDecay : TileDecay, IStat, ICardStat {
 		int m = 0;
 		List<GameTile> neighbors = gameTile.GetNeighbors();
 		for (int i=0; i<neighbors.Count; i++) {
-			if (neighbors[i].GetTile().name == neighbor.name) {
+			if (neighbors[i].GetDefaultTile().name == neighbor.name) {
 				m += 1;
 			}
 		}

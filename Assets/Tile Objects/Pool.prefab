@@ -51,6 +51,7 @@ MonoBehaviour:
   onPlace: {fileID: 0}
   onQuery: {fileID: 11400000, guid: 95e9b005ce5094b49aec850a5e63c135, type: 2}
   onDestroy: {fileID: 0}
+  tile: {fileID: 11400000, guid: 7091f6f44e232d34fbb65ed25ba7e285, type: 2}
   description: The reflected opposite bank shimmers in the fluid.
 --- !u!114 &-1245326314903679230
 MonoBehaviour:

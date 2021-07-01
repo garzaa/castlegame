@@ -8,8 +8,8 @@ public class WinCondition : MonoBehaviour {
 	#pragma warning restore 0649
 
 	public bool Satisfied(TileTracker tracker) {
-		foreach (WinConditionCriterion c in GetComponents<WinConditionCriterion>()) {
-			if (!c.Satisfied(tracker)) {
+		foreach (GameStateRequirement g in GetComponents<GameStateRequirement>()) {
+			if (!g.Satisfied(tracker)) {
 				return false;
 			}
 		}

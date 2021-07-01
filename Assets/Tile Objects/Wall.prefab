@@ -14,6 +14,8 @@ GameObject:
   - component: {fileID: 5545420899568352776}
   - component: {fileID: -1798148850707940892}
   - component: {fileID: 7343783716581171089}
+  - component: {fileID: 7765551139924646825}
+  - component: {fileID: -4859926265722019215}
   m_Layer: 0
   m_Name: Wall
   m_TagString: Untagged
@@ -51,6 +53,7 @@ MonoBehaviour:
   onPlace: {fileID: 11400000, guid: 1034ba3b50af13b4cbec98d78d554414, type: 2}
   onQuery: {fileID: 11400000, guid: 19814e19eb2d61c47a03cfae1b31f7f9, type: 2}
   onDestroy: {fileID: 0}
+  tile: {fileID: 11400000, guid: ac9a0cd961c7cc843a81267d5a3dea6a, type: 2}
   description: Keeps the forest out.
 --- !u!114 &3882926811825503189
 MonoBehaviour:
@@ -108,3 +111,32 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   validBases:
   - {fileID: 11400000, guid: c27bc74127fe34d44a9038e4118c2450, type: 2}
+--- !u!114 &7765551139924646825
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5229865381664988931}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 94724aa65045b234797aa8f9b8991f6b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  requirements:
+  - {fileID: -4859926265722019215}
+--- !u!114 &-4859926265722019215
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5229865381664988931}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 553b0f7f3c180154f89db359cb46e08f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  tile: {fileID: 11400000, guid: 66ae0888bdb33474f8620ea2b8bb8143, type: 2}
+  number: 1
+  comparisonType: 0

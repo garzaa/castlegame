@@ -50,6 +50,7 @@ MonoBehaviour:
   onPlace: {fileID: 0}
   onQuery: {fileID: 11400000, guid: 19814e19eb2d61c47a03cfae1b31f7f9, type: 2}
   onDestroy: {fileID: 11400000, guid: 33d44cf28860dcc4baa447b045e2ced8, type: 2}
+  tile: {fileID: 11400000, guid: ea089a2b162bee14a83b010a12f19909, type: 2}
   description: Pine seeds lurk just under the surface.
 --- !u!114 &554221811539725594
 MonoBehaviour:

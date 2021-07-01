@@ -51,6 +51,7 @@ MonoBehaviour:
   onPlace: {fileID: 11400000, guid: 6e65e6df3c0adaf4fab25251c4de8f21, type: 2}
   onQuery: {fileID: 11400000, guid: 19814e19eb2d61c47a03cfae1b31f7f9, type: 2}
   onDestroy: {fileID: 0}
+  tile: {fileID: 11400000, guid: 88f19096a45f3344591736101331d0e9, type: 2}
   description: Provides food. Fragile...
 --- !u!114 &548085062186487813
 MonoBehaviour:

@@ -50,6 +50,7 @@ MonoBehaviour:
   onPlace: {fileID: 0}
   onQuery: {fileID: 11400000, guid: 19814e19eb2d61c47a03cfae1b31f7f9, type: 2}
   onDestroy: {fileID: 0}
+  tile: {fileID: 11400000, guid: c27bc74127fe34d44a9038e4118c2450, type: 2}
   description: Fraught with possiblity. Grass is already beginning to grow in it.
 --- !u!114 &2108050923225129482
 MonoBehaviour:

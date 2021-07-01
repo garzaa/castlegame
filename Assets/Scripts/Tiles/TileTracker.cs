@@ -67,7 +67,7 @@ public class TileTracker : MonoBehaviour {
 		for (int x=0; x<tiles.Count; x++) {
 			for (int y=0; y<tiles[x].Count; y++) {
 				Vector3Int currentPos = new Vector3Int(x, y, 0);
-				tiles[x][y].Initialize(this, currentPos, tilemap.GetTile<ScriptableTile>(origin+currentPos), silent:true);
+				tiles[x][y].Initialize(this, currentPos, silent:true);
 			}
 		}
 	}
