@@ -54,7 +54,7 @@ MonoBehaviour:
   onPlace: {fileID: 11400000, guid: 1034ba3b50af13b4cbec98d78d554414, type: 2}
   onQuery: {fileID: 11400000, guid: 19814e19eb2d61c47a03cfae1b31f7f9, type: 2}
   onDestroy: {fileID: 0}
-  description: 'Repairs the oldest networked stone tile.
+  description: 'Repairs the 2 oldest networked stone tiles.
 
     <color=#657392>Max
     depth: 10</color>'
@@ -144,7 +144,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   target: {fileID: 11400000, guid: dd307e5f8fd55974ea43b63c350c3910, type: 2}
-  action: {fileID: 11400000, guid: 328cfd9bf98bc1546bddccbe3ba2b1c7, type: 2}
+  action: {fileID: 11400000, guid: 135b33d756041424da4aa33abebb8fb4, type: 2}
 --- !u!114 &4308997424987660464
 MonoBehaviour:
   m_ObjectHideFlags: 0

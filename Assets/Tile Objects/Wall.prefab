@@ -10,6 +10,10 @@ GameObject:
   m_Component:
   - component: {fileID: 6406985471026797896}
   - component: {fileID: -4147425269137343259}
+  - component: {fileID: 3882926811825503189}
+  - component: {fileID: 5545420899568352776}
+  - component: {fileID: -1798148850707940892}
+  - component: {fileID: 7343783716581171089}
   m_Layer: 0
   m_Name: Wall
   m_TagString: Untagged
@@ -48,3 +52,59 @@ MonoBehaviour:
   onQuery: {fileID: 11400000, guid: 19814e19eb2d61c47a03cfae1b31f7f9, type: 2}
   onDestroy: {fileID: 0}
   description: Keeps the forest out.
+--- !u!114 &3882926811825503189
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5229865381664988931}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8cf6ec2134cc25e4aa160e030e55ad6c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &5545420899568352776
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5229865381664988931}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5ac7d643dc63d004cb9803be5bdaa77a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  decayThreshold: 2
+  decayTo: {fileID: 11400000, guid: ea089a2b162bee14a83b010a12f19909, type: 2}
+  gracePeriod: 0
+--- !u!114 &-1798148850707940892
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5229865381664988931}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f8d0a376d2d2a4a40ac40e94ea69332a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  resources:
+  - amount: 1
+    resource: {fileID: 11400000, guid: 4535e9995cbc6b0459e235cc06effc67, type: 2}
+--- !u!114 &7343783716581171089
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5229865381664988931}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 966dc023b85eb154cb9a9905d12fe875, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  validBases:
+  - {fileID: 11400000, guid: c27bc74127fe34d44a9038e4118c2450, type: 2}

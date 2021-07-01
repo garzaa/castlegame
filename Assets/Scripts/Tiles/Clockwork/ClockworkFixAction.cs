@@ -13,7 +13,7 @@ public class ClockworkFixAction : ExclusiveClockworkAction {
 			.ToList();
 		
 		if (limit > 0) {
-			for (int i=0; i<limit; i++) {
+			for (int i=0; i<limit && i<toFix.Count; i++) {
 				RepairTile(toFix[i], action.sourceTile);
 			}
 		} else {
