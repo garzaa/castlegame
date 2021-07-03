@@ -11,4 +11,12 @@ public class TileBehaviour : MonoBehaviour {
 	virtual protected void Start() {
 		
 	}
+
+	virtual public void OnRemove() {
+
+	}
+
+	virtual public void OnPlace() {
+		
+	}
 }

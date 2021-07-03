@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1982023794639276053}
   - component: {fileID: 250510000358812384}
-  - component: {fileID: 2282854688981197085}
+  - component: {fileID: 8844428329896736310}
   m_Layer: 0
   m_Name: Mirror
   m_TagString: Untagged
@@ -50,7 +50,7 @@ MonoBehaviour:
   onDestroy: {fileID: 0}
   tile: {fileID: 11400000, guid: d4063427c158ed346bdb7a466d486667, type: 2}
   description: Each side of the mirror sees its own reflection.
---- !u!114 &2282854688981197085
+--- !u!114 &8844428329896736310
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -59,6 +59,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 6964423682973066455}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f84d2623d2b7d3a4da162d55128545aa, type: 3}
+  m_Script: {fileID: 11500000, guid: e078986a045a07c41b370b34e902786b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  fromRelative: {x: 0, y: 0, z: 0}
+  toRelative: {x: 0, y: 0, z: 0}
+  warpType: 2

@@ -1,6 +1,7 @@
 using UnityEngine;
 using UnityEngine.Tilemaps;
 using System.Collections;
+using System;
 using System.Collections.Generic;
 
 public class GameTile : MonoBehaviour, IStat, ICardStat, IConsoleStat {
@@ -14,8 +15,6 @@ public class GameTile : MonoBehaviour, IStat, ICardStat, IConsoleStat {
 	}
 
 	#pragma warning disable 0649
-	string OnPlace;
-	string OnRemove;
 	[SerializeField] TileType tileType;
 	[SerializeField] AudioResource onPlace;
 	[SerializeField] AudioResource onQuery;
@@ -29,7 +28,9 @@ public class GameTile : MonoBehaviour, IStat, ICardStat, IConsoleStat {
 	public virtual void Initialize(TileTracker tileTracker, Vector3Int position, bool silent=false) {
 		this.tileTracker = tileTracker;
 		this.position = position;
-		SendMessage(nameof(OnPlace), SendMessageOptions.DontRequireReceiver);
+		foreach (TileBehaviour t in GetComponents<TileBehaviour>()) {
+			t.OnPlace();
+		}
 		if (!silent && onPlace) {
 			onPlace.PlayFrom(tileTracker.gameObject);
 		}
@@ -39,7 +40,9 @@ public class GameTile : MonoBehaviour, IStat, ICardStat, IConsoleStat {
 		if (!silent && onDestroy) {
 			onDestroy.PlayFrom(tileTracker.gameObject);
 		}
-		SendMessage(nameof(OnRemove), SendMessageOptions.DontRequireReceiver);
+		foreach (TileBehaviour t in GetComponents<TileBehaviour>()) {
+			t.OnRemove();
+		}
 	}
 
 	public void QueueForReplace(ScriptableTile newTile) {
@@ -53,9 +56,14 @@ public class GameTile : MonoBehaviour, IStat, ICardStat, IConsoleStat {
 
 	public string Stat() {
 		string stat = description;
-		if (tileTracker.HasRedirect(this)) {
-			string target = tileTracker.GetRedirect(this) == null ? "watcher." : tileTracker.GetRedirect(this).ToString()+".";
-			stat += "\nRedirects to "+target;
+		List<Tuple<GameTile, TileWarpType>> warps = tileTracker.GetWarps(this.position);
+		foreach (var warp in warps) {
+			if (!warp.Item2.Equals(TileWarpType.REFLECT)) {
+				stat += $"\n<color='#ca52c9'>{TileWarp.WarpToString(warp.Item2)} to "+warp.Item1.ToString()+".</color>";
+			}
+			else {
+				stat += "\n<color='#ca52c9'>Redirects to watcher.</color>";
+			}
 		}
 		return stat;
 	}

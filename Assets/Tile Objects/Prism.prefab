@@ -10,8 +10,8 @@ GameObject:
   m_Component:
   - component: {fileID: 1458869026879769376}
   - component: {fileID: 7028963776875147791}
-  - component: {fileID: 529613466379766085}
-  - component: {fileID: 7514524457754115629}
+  - component: {fileID: 1755971447828309234}
+  - component: {fileID: -9166867636378439936}
   m_Layer: 0
   m_Name: Prism
   m_TagString: Untagged
@@ -50,8 +50,9 @@ MonoBehaviour:
   onQuery: {fileID: 11400000, guid: 95e9b005ce5094b49aec850a5e63c135, type: 2}
   onDestroy: {fileID: 0}
   tile: {fileID: 11400000, guid: 81f212dc8c5dcef40810dc4c698555bd, type: 2}
-  description: The reflected opposite bank shimmers in the fluid.
---- !u!114 &529613466379766085
+  description: When looking through it from the north, you see the eastern tile.
+    From the west, you see the southern tile.
+--- !u!114 &1755971447828309234
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -60,12 +61,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 5436100358628534678}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 99bcde3c78f983d42ab974245a2d366a, type: 3}
+  m_Script: {fileID: 11500000, guid: e078986a045a07c41b370b34e902786b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   fromRelative: {x: -1, y: 0, z: 0}
   toRelative: {x: 0, y: -1, z: 0}
---- !u!114 &7514524457754115629
+  warpType: 1
+--- !u!114 &-9166867636378439936
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -74,8 +76,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 5436100358628534678}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 99bcde3c78f983d42ab974245a2d366a, type: 3}
+  m_Script: {fileID: 11500000, guid: e078986a045a07c41b370b34e902786b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   fromRelative: {x: 0, y: 1, z: 0}
   toRelative: {x: 1, y: 0, z: 0}
+  warpType: 1

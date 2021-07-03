@@ -20,14 +20,14 @@ public class RequiredClaim : TileBehaviour, ITileValidator, ITileHighlighter, IS
 		return false;
 	}
 
-	void OnPlace() {
+	override public void OnPlace() {
 		claimable = gameTile.GetTracker().GetTiles<Claimable>()
 			.Where(x => !x.claimed && x.name.Equals(claimable.name))
 			.First();
 		claimable.Claim(this.gameTile);
 	}
 
-	void OnRemove() {
+	override public void OnRemove() {
 		claimable.UnClaim(this.gameTile);
 	}
 

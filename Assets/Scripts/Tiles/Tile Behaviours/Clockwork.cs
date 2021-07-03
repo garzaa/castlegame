@@ -9,6 +9,8 @@ public class Clockwork : TileBehaviour, ITileHighlighter, IConsoleStat {
 
 	public void Tick() {
 		if (!gameObject.activeSelf) return;
+		// add the copies here??
+		// foreach target, if tile tracker has a copy, then add the copy as well
 		action.Apply(target.GetTargets(gameTile.position, gameTile.GetTracker()), gameTile);
 	}
 

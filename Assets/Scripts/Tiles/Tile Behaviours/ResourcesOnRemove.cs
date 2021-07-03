@@ -6,7 +6,7 @@ public class ResourcesOnRemove : TileBehaviour, IStat {
 	[SerializeField] List<ResourceAmount> resources;
 	#pragma warning restore 0649
 
-	void OnRemove() {
+	override public void OnRemove() {
 		PlayerResources.Add(resources);
 	}
 

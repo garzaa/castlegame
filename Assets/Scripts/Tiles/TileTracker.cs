@@ -18,11 +18,20 @@ public class TileTracker : MonoBehaviour {
 	List<List<GameTile>> tiles = new List<List<GameTile>>();
 	Queue<TilePlacement> placements = new Queue<TilePlacement>();
 	Dictionary<ExclusiveClockworkAction, List<ClockworkApply>> exclusiveActions = new Dictionary<ExclusiveClockworkAction, List<ClockworkApply>>();
-	Dictionary<GameTile, GameTile> redirects = new Dictionary<GameTile, GameTile>();
+	Dictionary<TileWarpType, Dictionary<Vector3Int, Vector3Int>> tileWarps = new Dictionary<TileWarpType, Dictionary<Vector3Int, Vector3Int>>();
+	Dictionary<Vector3Int, Vector3Int> redirects = new Dictionary<Vector3Int, Vector3Int>();
+	Dictionary<Vector3Int, Vector3Int> copies = new Dictionary<Vector3Int, Vector3Int>();
+	Dictionary<Vector3Int, Vector3Int> reflects = new Dictionary<Vector3Int, Vector3Int>();
 	GameObject tileContainer;
 	Vector3Int gridMousePos;
 
 	public static readonly string letters = "abcdefghijklmnopqrstuvwxyz";
+
+	void Awake() {
+		tileWarps[TileWarpType.REDIRECT] = redirects;
+		tileWarps[TileWarpType.COPY] = copies;
+		tileWarps[TileWarpType.REFLECT] = reflects;
+	}
 
 	void Start() {
 		console = GameObject.FindObjectOfType<CommandInput>();
@@ -84,29 +93,43 @@ public class TileTracker : MonoBehaviour {
 		}
 	}
 
-	public GameTile GetTile(int x, int y, GameTile from) {
-		try {
-			GameTile tile = tiles[x][y].GetComponent<GameTile>();
-			return FollowRedirects(tile, from, new List<GameTile>());
-		} catch (ArgumentOutOfRangeException) {
-			return null;
+	public List<GameTile> GetTile(Vector3Int pos, GameTile from) {
+		HashSet<GameTile> results = new HashSet<GameTile>();
+		FollowRedirects(pos, from, ref results, new HashSet<Vector3Int>());
+		return new List<GameTile>(results);
+	}
+
+	void FollowRedirects(Vector3Int currentPos, GameTile from, ref HashSet<GameTile> results, HashSet<Vector3Int> visited) {
+		if (GetWarps(currentPos).Count == 0) {
+			results.Add(GetTileNoRedirect(currentPos));
+			return;
 		}
-	}
 
-	public GameTile GetTile(Vector3Int pos, GameTile from) {
-		return GetTile(pos.x, pos.y, from);
-	}
+		foreach (KeyValuePair<TileWarpType, Dictionary<Vector3Int, Vector3Int>> kv in tileWarps) {
+			if (kv.Value.ContainsKey(currentPos)) {
+				Vector3Int warpTarget = kv.Value[currentPos];
+				TileWarpType warpType = kv.Key;
+				if (!visited.Contains(warpTarget)) {
+					switch (warpType) {
+						case TileWarpType.REFLECT:
+							results.Add(from);
+							warpTarget = from.position;
+							goto case TileWarpType.REDIRECT;
 
-	public GameTile FollowRedirects(GameTile currentTile, GameTile from, List<GameTile> visited) {
-		if (redirects.ContainsKey(currentTile) && !visited.Contains(redirects[currentTile])) {
-			// redirection to null == outside bounds or reflector
-			if (redirects[currentTile]==null) {
-				return from;
+						case TileWarpType.COPY:
+							results.Add(GetTileNoRedirect(currentPos));
+							goto case TileWarpType.REDIRECT;
+
+						case TileWarpType.REDIRECT:
+							visited.Add(warpTarget);
+							FollowRedirects(warpTarget, from, ref results, visited);
+							break;
+					}
+				} else {
+					results.Add(GetTileNoRedirect(currentPos));
+				}
 			}
-			visited.Add(currentTile);
-			return FollowRedirects(redirects[currentTile], from, visited);
 		}
-		return currentTile;
 	}
 
 	public TileBase GetTilemapTile(int x, int y) {
@@ -133,25 +156,6 @@ public class TileTracker : MonoBehaviour {
 
 		GameTile newTileBackend = SpawnGameTile(newTile, position);
 		newTileBackend.SendMessage("OnBuild", SendMessageOptions.DontRequireReceiver);
-
-		if (redirects.ContainsKey(oldTileBackend)) {
-			// give the new tile the old tile's target
-			GameTile target = redirects[oldTileBackend];
-			redirects[newTileBackend] = target;
-			redirects.Remove(oldTileBackend);
-		}
-
-		if (redirects.ContainsValue(oldTileBackend)) {
-			// then update anything that points to the old tile to point to the new tile
-			GameTile[] pointers = redirects
-				.Where(x => x.Value == oldTileBackend)
-				.Select(x => x.Key)
-				.ToArray();
-			foreach (GameTile pointer in pointers) {
-				redirects[pointer] = newTileBackend; 
-			}
-		}
-
 		RemoveTile(position);
 
 		tilemap.SetTile(position+origin, newTile);
@@ -259,10 +263,10 @@ public class TileTracker : MonoBehaviour {
 
 	public List<GameTile> GetNeighbors(Vector3Int position) {
 		List<GameTile> neighbors = new List<GameTile>();
-		neighbors.Add(GetTile(position + Vector3Int.up, GetTileNoRedirect(position.x, position.y)));
-		neighbors.Add(GetTile(position + Vector3Int.down, GetTileNoRedirect(position.x, position.y)));
-		neighbors.Add(GetTile(position + Vector3Int.right, GetTileNoRedirect(position.x, position.y)));
-		neighbors.Add(GetTile(position + Vector3Int.left, GetTileNoRedirect(position.x, position.y)));
+		neighbors.AddRange(GetTile(position + Vector3Int.up, GetTileNoRedirect(position.x, position.y)));
+		neighbors.AddRange(GetTile(position + Vector3Int.down, GetTileNoRedirect(position.x, position.y)));
+		neighbors.AddRange(GetTile(position + Vector3Int.right, GetTileNoRedirect(position.x, position.y)));
+		neighbors.AddRange(GetTile(position + Vector3Int.left, GetTileNoRedirect(position.x, position.y)));
 		neighbors.RemoveAll(x => x==null);
 		return neighbors;
 	}
@@ -318,29 +322,28 @@ public class TileTracker : MonoBehaviour {
 		return actions.Where(x => x.targets.Count == 1).ToList();
 	}
 
-	public void AddRedirect(TileRedirect redirect) {
-		// target null means reflect, origin null means out of bounds
-		if (redirect.origin == null) return;
-		redirects[redirect.origin] = redirect.target;
+	public List<Tuple<GameTile, TileWarpType>> GetWarps(Vector3Int pos) {
+
+		List<Tuple<GameTile, TileWarpType>> results = new List<Tuple<GameTile, TileWarpType>>();
+		if (GetTileNoRedirect(pos) == null) return results;
+
+		foreach (var warpTypePair in tileWarps) {
+			TileWarpType currentWarpType = warpTypePair.Key;
+			Dictionary<Vector3Int, Vector3Int> currentWarps = warpTypePair.Value;
+			if (currentWarps.ContainsKey(pos)) {
+				results.Add(new Tuple<GameTile, TileWarpType>(GetTileNoRedirect(currentWarps[pos]), currentWarpType));
+			}
+		}
+
+		return results;
 	}
 
-	public void RemoveRedirect(TileRedirect redirect) {
-		redirects.Remove(redirect.origin);
+	public void AddWarp(Vector3Int from, Vector3Int to, TileWarpType warpType) {
+		tileWarps[warpType][from] = to;
 	}
 
-	public bool HasRedirect(int x, int y) {
-		GameTile tile = GetTileNoRedirect(x, y);
-		if (!tile) return false;
-		return redirects.ContainsKey(tile);
-	}
-
-	public bool HasRedirect(GameTile tile) {
-		if (!tile) return false;
-		return redirects.ContainsKey(tile);
-	}
-
-	public GameTile GetRedirect(GameTile tile) {
-		return redirects[tile];
+	public void RemoveWarp(Vector3Int from, TileWarpType warpType) {
+		tileWarps[warpType].Remove(from);
 	}
 
 	public int ContainsTile(ScriptableTile targetTile) {
