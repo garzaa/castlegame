@@ -1035,6 +1035,8 @@ MonoBehaviour:
     scenePath: Assets/Scenes/Rocks.unity
   - sceneAsset: {fileID: 102900000, guid: 926c808a33ad4ec489cbf05f3fb0a35d, type: 3}
     scenePath: Assets/Scenes/Walls.unity
+  - sceneAsset: {fileID: 102900000, guid: 8c30dc18fa39ef34baf90619da8f1888, type: 3}
+    scenePath: Assets/Scenes/Prism.unity
   buildCommands:
   - name: garden
     tile: {fileID: 11400000, guid: 88f19096a45f3344591736101331d0e9, type: 2}

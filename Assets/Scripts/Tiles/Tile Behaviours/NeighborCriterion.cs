@@ -5,7 +5,6 @@ public class NeighborCriterion : TileBehaviour, ITileValidator {
 
 	public bool Valid(TileTracker tracker, Vector3Int pos) {
 		foreach (GameTile tile in tracker.GetNeighbors(pos)) {
-			Debug.Log(tile);
 			if (tile.GetDefaultTile().name == neighborTile.name) {
 				return true;
 			}

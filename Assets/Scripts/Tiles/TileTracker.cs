@@ -121,6 +121,7 @@ public class TileTracker : MonoBehaviour {
 							goto case TileWarpType.REDIRECT;
 
 						case TileWarpType.REDIRECT:
+							visited.Add(currentPos);
 							visited.Add(warpTarget);
 							FollowRedirects(warpTarget, from, ref results, visited);
 							break;

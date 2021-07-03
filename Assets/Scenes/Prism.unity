@@ -121,6 +121,51 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
+--- !u!1 &555920906
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 555920908}
+  - component: {fileID: 555920907}
+  m_Layer: 0
+  m_Name: FlavorText
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &555920907
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 555920906}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9d81419cdccdbab4d9446cf7e12196e6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  text: Whoever built this keep must have really liked the eldritch structures. Any
+    idea what that triangular one does?
+--- !u!4 &555920908
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 555920906}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 1.6445924, y: -1.5794401, z: -139.6281}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 6
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &725349955
 GameObject:
   m_ObjectHideFlags: 0
@@ -308,7 +353,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d3fcd01105206b347bf0cbf22f15be7b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  days: 20
+  days: 10
 --- !u!114 &965712839
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -321,25 +366,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5d3b1605f5fdc7a4bb05c67c0a738a12, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  description: Survive a 20-day streak without taking any actions.
---- !u!1 &1069187515 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 3976063603317258935, guid: 5074811913b83d74d905698ef56f3eb2,
-    type: 3}
-  m_PrefabInstance: {fileID: 3976063603028525771}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &1069187520
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1069187515}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d68c9c92c0bed2c4c891ed9e1d19697b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
+  description: Survive a 10-day streak without taking any actions.
 --- !u!1001 &1075769683
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -32894,17 +32921,17 @@ PrefabInstance:
     - target: {fileID: 8879672452531621117, guid: becfc499e503fa74592404d4e952d7a1,
         type: 3}
       propertyPath: m_AnchorMin.y
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8879672452531621117, guid: becfc499e503fa74592404d4e952d7a1,
         type: 3}
       propertyPath: m_AnchorMax.y
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8879672452531621117, guid: becfc499e503fa74592404d4e952d7a1,
         type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: -3
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8879672452531621117, guid: becfc499e503fa74592404d4e952d7a1,
         type: 3}
