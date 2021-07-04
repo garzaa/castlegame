@@ -103,20 +103,35 @@ public class TilemapVisuals : MonoBehaviour {
 	}
 
 	void OnMouseOver() {
-		if (Card.dragged) {
-			return;
-		}
-
 		mouseWorldPos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
 		gridMousePos = highlightTilemap.WorldToCell(mouseWorldPos);
 		gridMousePos.z = 0;
+
 		if (gridMousePos == targetedTile) return;
 		targetedTile = gridMousePos;
+		if (Card.dragged) {
+			Card.TargetTile(tilemap.CellToWorld(targetedTile), tracker);
+		} else if (Card.hovered) {
+			// don't track mouse position if the player is just looking
+			highlightTilemap.ClearAllTiles();
+			return;
+		}
+	
 		highlightTilemap.ClearAllTiles();
 		HighlightTile(gridMousePos);
 	}
 
+	void OnMouseExit() {
+		if (Card.dragged) {
+			Card.StopTargetingTile();
+		}
+	}
+
 	void OnMouseDown() {
+		// this will fire if a card is being held or peeked over the board
+		if (Card.hovered) {
+			return;
+		}
 		OnTileClick(gridMousePos);
 	}
 

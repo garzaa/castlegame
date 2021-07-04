@@ -4,12 +4,13 @@ using System.Collections.Generic;
 public class TileRequiredResource : TileBehaviour, ITileValidator {
 	public List<ResourceAmount> resources;
 
-	public bool Valid(TileTracker tracker, Vector3Int pos) {
+	public bool Valid(TileTracker tracker, Vector3Int pos, ref List<string> message) {
 		if (PlayerResources.Has(resources)) {
 			return true;
 		}
-
-		CommandInput.Log($"Inadequate resources for tile {name}");
+		string m = $"Inadequate resources for tile {name}\n{this}";
+		CommandInput.Log(m);
+		message.Add(m);
 		CommandInput.Log(this);
 		return false;
 	}
@@ -19,9 +20,9 @@ public class TileRequiredResource : TileBehaviour, ITileValidator {
 	}
 
 	public override string ToString() {
-		string ret = "Requires: ";
+		string ret = "Requires:";
 		foreach (var s in resources) {
-			ret +="\n"+s;
+			ret +=" "+s;
 		}
 		return ret;
 	}

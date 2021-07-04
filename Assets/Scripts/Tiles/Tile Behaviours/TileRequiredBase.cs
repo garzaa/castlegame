@@ -6,11 +6,13 @@ using System.Collections.Generic;
 public class TileRequiredBase : TileBehaviour, ITileValidator, ICardStat {
 	public List<ScriptableTile> validBases;
 
-	public bool Valid(TileTracker tracker, Vector3Int pos) {
+	public bool Valid(TileTracker tracker, Vector3Int pos, ref List<string> message) {
 		ScriptableTile currentBase = tracker.GetTileNoRedirect(pos).GetDefaultTile();
 		if (!validBases.Contains(currentBase)) {
 			List<string> validBases = this.validBases.Select(x => x.tileObject.name).ToList();
-			CommandInput.Log("Invalid base for "+gameObject.name+". "+this);
+			string m = "Invalid base for "+gameObject.name+". "+this;
+			message.Add(m);
+			CommandInput.Log(m);
 			return false;
 		}
 		return true;

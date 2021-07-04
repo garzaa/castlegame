@@ -2,6 +2,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.EventSystems;
 using UnityEngine.Tilemaps;
+using System;
 using System.Collections.Generic;
 using System.Collections;
 
@@ -9,6 +10,7 @@ using System.Collections;
 public class Card : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, IPointerDownHandler, IPointerUpHandler {
 
 	#pragma warning disable 0649
+	[SerializeField] GameTile gameTile;
 	[SerializeField] Text tileName;
 	[SerializeField] Image tileIcon;
 	[SerializeField] Transform tileInfoContainer;
@@ -24,18 +26,20 @@ public class Card : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, IP
 	GameObject handTarget;
 	GameObject handPeek;
 	bool inHand;
+	GameObject boardTarget;
+	bool targetingBoard;
 
 	public static Card dragged { get; private set; }
+	public static Card hovered { get; private set; }
 
 	void Start() {
 		cardHand = GameObject.FindObjectOfType<CardHand>();
 		lerp = GetComponent<TargetLerp>();
 		ReturnToHand();
+		if (gameTile) Initialize(gameTile);
 	}
 
 	void ReturnToHand() {
-		if (inHand) return;
-
 		inHand = true;
 		if (!handTarget) {
 			handTarget = cardHand.AddHandTarget();
@@ -52,12 +56,12 @@ public class Card : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, IP
 		}
 		lerp.target = handPeek;
 
-		// re-insert into hand order
 		transform.SetAsLastSibling();
 	}
 
 	void UnPeek() {
 		lerp.target = handTarget;
+		// re-insert into hand order
 		transform.SetSiblingIndex(handTarget.transform.GetSiblingIndex());
 	}
 
@@ -65,12 +69,14 @@ public class Card : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, IP
 		if (inHand) {
 			Peek();
 		}
+		Card.hovered = this;
 	}
 
 	public void OnPointerExit(PointerEventData d) {
 		if (inHand) {
 			UnPeek();
 		}
+		Card.hovered = null;
 	}
 
 	public void OnPointerDown(PointerEventData d) {
@@ -84,9 +90,29 @@ public class Card : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, IP
 	}
 
 	void LateUpdate() {
-		if (!inHand) {
+		if (!inHand && !targetingBoard) {
 			transform.position = Input.mousePosition;
 		}
+	}
+
+	public static void TargetTile(Vector3 tileWorldPosition, TileTracker tileTracker) {
+		if (!dragged.boardTarget) {
+			dragged.boardTarget = Instantiate(new GameObject(), dragged.transform.parent);
+		}
+		dragged.boardTarget.transform.position = Camera.main.WorldToScreenPoint(tileWorldPosition + (Vector3.up * 3f/(float)CameraZoom.GetZoomLevel()));
+		dragged.lerp.target = dragged.boardTarget;
+		dragged.targetingBoard = true;
+
+		// then run the validator if it's a blueprint card
+		// if (dragged is BlueprintTile)
+		// then run validator, if result 1 is false, add the message with result 2 above the card, sure
+		// tiletracker.ValidPlacement(dragged.tile.getTile, )
+	}
+
+	public static void StopTargetingTile() {
+		Destroy(dragged.boardTarget);
+		dragged.lerp.target = null;
+		dragged.targetingBoard = false;
 	}
 
 	public void Initialize(GameTile tile) {

@@ -12,11 +12,13 @@ public class RequiredClaim : TileBehaviour, ITileValidator, ITileHighlighter, IS
 		base.Start();
 	}
 
-	public bool Valid(TileTracker tracker, Vector3Int pos) {
+	public bool Valid(TileTracker tracker, Vector3Int pos, ref List<string> message) {
 		foreach (Claimable boardClaimable in tracker.GetTiles<Claimable>()) {
 			if (!boardClaimable.claimed && boardClaimable.name.Equals(claimable.name)) return true;
 		}
-		CommandInput.Log($"No open {claimable.name} for {name} to claim.");
+		string m = $"No open {claimable.name} for {name} to claim.";
+		message.Add(m);
+		CommandInput.Log(m);
 		return false;
 	}
 

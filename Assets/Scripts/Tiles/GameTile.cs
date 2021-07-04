@@ -56,13 +56,16 @@ public class GameTile : MonoBehaviour, IStat, ICardStat, IConsoleStat {
 
 	public string Stat() {
 		string stat = description;
-		List<Tuple<GameTile, TileWarpType>> warps = tileTracker.GetWarps(this.position);
-		foreach (var warp in warps) {
-			if (!warp.Item2.Equals(TileWarpType.REFLECT)) {
-				stat += $"\n<color='#ca52c9'>{TileWarp.WarpToString(warp.Item2)} to "+warp.Item1.ToString()+".</color>";
-			}
-			else {
-				stat += "\n<color='#ca52c9'>Redirects to watcher.</color>";
+		// tiletracker won't be called if the prefab is referenced
+		if (tileTracker) {
+			List<Tuple<GameTile, TileWarpType>> warps = tileTracker.GetWarps(this.position);
+			foreach (var warp in warps) {
+				if (!warp.Item2.Equals(TileWarpType.REFLECT)) {
+					stat += $"\n<color='#ca52c9'>{TileWarp.WarpToString(warp.Item2)} to "+warp.Item1.ToString()+".</color>";
+				}
+				else {
+					stat += "\n<color='#ca52c9'>Redirects to watcher.</color>";
+				}
 			}
 		}
 		return stat;

@@ -7,10 +7,13 @@ public class CameraZoom : MonoBehaviour {
 
 	PixelPerfectCamera cam;
 	int originalPPU;
+	static CameraZoom cameraZoom;
 	
 	void Start() {
 		cam = GetComponent<PixelPerfectCamera>();
 		originalPPU = cam.assetsPPU;
+		cameraZoom = this;
+
 	}
 
 	void Update() {
@@ -18,5 +21,9 @@ public class CameraZoom : MonoBehaviour {
 		if (currentMultiplier > maxMultiplier) currentMultiplier = maxMultiplier;
 		if (currentMultiplier < 1) currentMultiplier = 1;
 		cam.assetsPPU = originalPPU * currentMultiplier;
+	}
+
+	public static int GetZoomLevel() {
+		return cameraZoom.currentMultiplier;
 	}
 }

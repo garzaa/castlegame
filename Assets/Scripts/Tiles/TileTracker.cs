@@ -72,6 +72,10 @@ public class TileTracker : MonoBehaviour {
 		return origin + pos;
 	}
 
+	public Vector3Int WorldToBoard(Vector3 pos) {
+		return CellToBoard(tilemap.WorldToCell(pos));
+	}
+
 	void InitializeAllTiles() {
 		for (int x=0; x<tiles.Count; x++) {
 			for (int y=0; y<tiles[x].Count; y++) {
@@ -151,7 +155,7 @@ public class TileTracker : MonoBehaviour {
 	public bool ReplaceTile(Vector3Int position, ScriptableTile newTile) {
 		GameTile oldTileBackend = GetTileNoRedirect(position);
 
-		if (!ValidPlacement(tilemap.GetTile(origin + position) as ScriptableTile, newTile, position)) {
+		if (!ValidPlacement(newTile, position).Item1) {
 			return false;
 		}
 
@@ -181,14 +185,20 @@ public class TileTracker : MonoBehaviour {
 		return tileBackend;
 	}
 
-	bool ValidPlacement(ScriptableTile oldTile, ScriptableTile newTile, Vector3Int pos) {
-		ITileValidator[] criteria = newTile.tileObject.GetComponents<ITileValidator>();
+	Tuple<bool, string> ValidPlacement(ScriptableTile newTile, Vector3Int pos) {
+		return ValidPlacement(newTile.tileObject.GetComponent<GameTile>(), pos);
+	}
+
+	Tuple<bool, string> ValidPlacement(GameTile newTile, Vector3Int pos) {
+		ITileValidator[] criteria = newTile.GetComponents<ITileValidator>();
+		bool valid = true;
+		List<string> message = new List<string>();
 		for (int i=0; i<criteria.Length; i++) {
-			if (!criteria[i].Valid(this, pos)) {
-				return false;
+			if (!criteria[i].Valid(this, pos, ref message)) {
+				valid = false;
 			}
 		}
-		return true;
+		return new Tuple<bool, string>(valid, String.Join("\n", message));
 	}
 
 	public void RepairTile(Vector3Int pos) {
