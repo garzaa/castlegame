@@ -144,6 +144,8 @@ public class TilemapVisuals : MonoBehaviour {
 		if (Card.hovered) {
 			return;
 		}
+		// don't return inside the function because the tilemap calls that to refresh on a day end
+		if (gridMousePos == currentSelectedGridPosition) return;
 		OnTileClick(gridMousePos);
 	}
 

@@ -31,7 +31,7 @@ public class GameTile : MonoBehaviour, IStat, ICardStat, IConsoleStat {
 		foreach (TileBehaviour t in GetComponents<TileBehaviour>()) {
 			t.OnPlace();
 		}
-		if (!silent && onPlace) {
+		if (!silent && onPlace != null) {
 			onPlace.PlayFrom(tileTracker.gameObject);
 		}
 	}

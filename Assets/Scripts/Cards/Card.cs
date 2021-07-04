@@ -15,6 +15,8 @@ public class Card : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, IP
 	[SerializeField] Image tileIcon;
 	[SerializeField] Transform tileInfoContainer;
 	[SerializeField] Transform resourceContainer;
+	[SerializeField] AudioResource peekSound;
+	[SerializeField] AudioResource clickSound;
 
 	[Header("Templates")]
 	[SerializeField] GameObject infoLine;
@@ -81,7 +83,7 @@ public class Card : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, IP
 			handPeek.transform.localPosition = new Vector3(0, 129, 0);
 		}
 		lerp.target = handPeek;
-
+		peekSound.PlayFrom(this.gameObject);
 		transform.SetAsLastSibling();
 	}
 
@@ -108,6 +110,7 @@ public class Card : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, IP
 
 	public void OnPointerDown(PointerEventData d) {
 		inHand = false;
+		clickSound.PlayFrom(this.gameObject);
 		Card.dragged = this;
 	}
 
