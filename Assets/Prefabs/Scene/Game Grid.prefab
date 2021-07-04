@@ -815,7 +815,7 @@ MonoBehaviour:
     type: 3}
   homeTile: {fileID: 11400000, guid: df84ccef930e6394a9ad0c9eec8c60c0, type: 2}
   clickedTile: {fileID: 11400000, guid: 07c3e5e81e0c6d04cb3a25c67ca7ec4d, type: 2}
-  doubleScaleCanvas: {fileID: 4563187656243171575, guid: 36d3e987c9b4ff341a475aa28bfc0301,
+  doubleScaleCanvas: {fileID: 4563187656243171575, guid: 63b08184dde66884fa7f737e13847f4c,
     type: 3}
   infoBubbleTemplate: {fileID: 6432528725121529101, guid: 3d27191401876dd489573569584777dc,
     type: 3}

@@ -25,6 +25,8 @@ public class Card : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, IP
 	GameObject handPeek;
 	bool inHand;
 
+	public static Card dragged { get; private set; }
+
 	void Start() {
 		cardHand = GameObject.FindObjectOfType<CardHand>();
 		lerp = GetComponent<TargetLerp>();
@@ -35,36 +37,53 @@ public class Card : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, IP
 		if (inHand) return;
 
 		inHand = true;
-		handTarget = cardHand.AddHandTarget();
+		if (!handTarget) {
+			handTarget = cardHand.AddHandTarget();
+		}
+		// so they're stacked nicely, cards need to be in their own object for this unfortunately
+		transform.SetSiblingIndex(handTarget.transform.GetSiblingIndex());
 		lerp.target = handTarget;
 	}
 
-	public void OnPointerEnter(PointerEventData d) {
-		if (inHand && handPeek==null) {
+	void Peek() {
+		if (!handPeek) {
 			handPeek = Instantiate(new GameObject(), handTarget.transform);
 			handPeek.transform.localPosition = new Vector3(0, 129, 0);
-			lerp.target = handPeek;
+		}
+		lerp.target = handPeek;
+
+		// re-insert into hand order
+		transform.SetAsLastSibling();
+	}
+
+	void UnPeek() {
+		lerp.target = handTarget;
+		transform.SetSiblingIndex(handTarget.transform.GetSiblingIndex());
+	}
+
+	public void OnPointerEnter(PointerEventData d) {
+		if (inHand) {
+			Peek();
 		}
 	}
 
 	public void OnPointerExit(PointerEventData d) {
 		if (inHand) {
-			GameObject.Destroy(handPeek);
-			lerp.target = handTarget;
+			UnPeek();
 		}
 	}
 
 	public void OnPointerDown(PointerEventData d) {
 		inHand = false;
-		lerp.target = null;
-		GameObject.Destroy(handTarget);
+		Card.dragged = this;
 	}
 
 	public void OnPointerUp(PointerEventData d) {
+		Card.dragged = null;
 		ReturnToHand();
 	}
 
-	void Update() {
+	void LateUpdate() {
 		if (!inHand) {
 			transform.position = Input.mousePosition;
 		}

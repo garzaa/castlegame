@@ -103,6 +103,10 @@ public class TilemapVisuals : MonoBehaviour {
 	}
 
 	void OnMouseOver() {
+		if (Card.dragged) {
+			return;
+		}
+
 		mouseWorldPos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
 		gridMousePos = highlightTilemap.WorldToCell(mouseWorldPos);
 		gridMousePos.z = 0;
@@ -114,10 +118,8 @@ public class TilemapVisuals : MonoBehaviour {
 
 	void OnMouseDown() {
 		OnTileClick(gridMousePos);
-		// GameObject.FindObjectOfType<Card>().Initialize(gameTile);
 	}
 
-	// TODO: don't play a sound on info refresh
 	void OnTileClick(Vector3Int gridPos, bool silent=false) {
 		GameTile gameTile = tracker.GetTileNoRedirect(tracker.CellToBoard(gridPos));
 		if (gameTile == null) return;
@@ -140,6 +142,8 @@ public class TilemapVisuals : MonoBehaviour {
 	void HideInfoBubble() {
 		GameObject.Destroy(currentInfoBubble);
 		clickedTilemap.ClearAllTiles();
+		highlightTilemap.ClearAllTiles();
+		iconTilemap.ClearAllTiles();
 	}
 
 	void ShowTileIcon(TileHighlight highlight) {

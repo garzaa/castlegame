@@ -1,9 +1,7 @@
 using UnityEngine;
 
 public class TargetLerp : MonoBehaviour {
-	#pragma warning disable 0649
-	[SerializeField] float lerpSpeed = 0.5f;
-	#pragma warning restore 0649
+	const float lerpSpeed = 0.2f;
 
 	public GameObject target;
 
