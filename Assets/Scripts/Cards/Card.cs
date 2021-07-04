@@ -32,6 +32,8 @@ public class Card : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, IP
 	bool targetingBoard;
 	Animator animator;
 	TilemapVisuals tilemapVisuals;
+	Tuple<bool, string> placementTest;
+	TileTracker tileTracker;
 
 	public static Card dragged { get; private set; }
 	public static Card hovered { get; private set; }
@@ -41,6 +43,7 @@ public class Card : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, IP
 		cardHand = GameObject.FindObjectOfType<CardHand>();
 		animator = GetComponent<Animator>();
 		lerp = GetComponent<TargetLerp>();
+		tileTracker = GameObject.FindObjectOfType<TileTracker>();
 		ReturnToHand();
 		if (gameTile) Initialize(gameTile);
 	}
@@ -109,8 +112,15 @@ public class Card : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, IP
 	}
 
 	public void OnPointerUp(PointerEventData d) {
-		Card.dragged = null;
-		ReturnToHand();
+		if (targetingBoard && placementTest.Item1) {
+			Vector3 mouseWorldPos = Camera.main.ScreenToWorldPoint(d.position);
+			mouseWorldPos.z = 0;
+			tileTracker.ReplaceTile(tileTracker.WorldToBoard(mouseWorldPos), this.gameTile.GetDefaultTile());
+			Destroy(this.gameObject);
+		} else {
+			Card.dragged = null;
+			ReturnToHand();
+		}
 	}
 
 	void LateUpdate() {
@@ -123,7 +133,7 @@ public class Card : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, IP
 		Destroy(this);
 	}
 
-	void _TargetTile(Vector3 tileWorldPosition, TileTracker tileTracker) {
+	void _TargetTile(Vector3 tileWorldPosition) {
 		if (!boardTarget) {
 			boardTarget = new GameObject();
 			boardTarget.transform.parent = dragged.transform.parent;
@@ -139,7 +149,7 @@ public class Card : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, IP
 		// then run the validator if it's a blueprint card
 		// if (dragged is BlueprintTile)
 		// then run validator, if result 1 is false, add the message with result 2 above the card, sure
-		Tuple<bool, string> placementTest = tileTracker.ValidPlacement(gameTile, tileTracker.WorldToBoard(tileWorldPosition));
+		placementTest = tileTracker.ValidPlacement(gameTile, tileTracker.WorldToBoard(tileWorldPosition));
 
 		tilemapVisuals.ShowTilePreview(this.gameTile, placementTest.Item1, tileWorldPosition);
 
@@ -162,8 +172,8 @@ public class Card : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, IP
 		}
 	}
 
-	public static void TargetTile(Vector3 tileWorldPosition, TileTracker tileTracker) {
-		dragged._TargetTile(tileWorldPosition, tileTracker);
+	public static void TargetTile(Vector3 tileWorldPosition) {
+		dragged._TargetTile(tileWorldPosition);
 	}
 
 	public static void StopTargetingTile() {
