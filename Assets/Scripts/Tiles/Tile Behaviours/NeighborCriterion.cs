@@ -10,7 +10,7 @@ public class NeighborCriterion : TileBehaviour, ITileValidator {
 				return true;
 			}
 		}
-		string m = $"{name} needs a neighboring {neighborTile.tileObject.name}";
+		string m = $"{name} needs a neighboring <color='#94fdff'>{neighborTile.tileObject.name}</color>.";
 		message.Add(m);
 		CommandInput.Log(m);
 		return false;

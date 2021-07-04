@@ -185,11 +185,11 @@ public class TileTracker : MonoBehaviour {
 		return tileBackend;
 	}
 
-	Tuple<bool, string> ValidPlacement(ScriptableTile newTile, Vector3Int pos) {
+	public Tuple<bool, string> ValidPlacement(ScriptableTile newTile, Vector3Int pos) {
 		return ValidPlacement(newTile.tileObject.GetComponent<GameTile>(), pos);
 	}
 
-	Tuple<bool, string> ValidPlacement(GameTile newTile, Vector3Int pos) {
+	public Tuple<bool, string> ValidPlacement(GameTile newTile, Vector3Int pos) {
 		ITileValidator[] criteria = newTile.GetComponents<ITileValidator>();
 		bool valid = true;
 		List<string> message = new List<string>();

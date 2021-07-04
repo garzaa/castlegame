@@ -19,8 +19,10 @@ public class Card : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, IP
 	[Header("Templates")]
 	[SerializeField] GameObject infoLine;
 	[SerializeField] GameObject resourceRequirement;
+	[SerializeField] InvalidPlacementWarning invalidPlacementWarningTemplate;
 	#pragma warning restore 0649
 
+	InvalidPlacementWarning placementWarning;
 	CardHand cardHand;
 	TargetLerp lerp;
 	GameObject handTarget;
@@ -47,6 +49,9 @@ public class Card : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, IP
 		// so they're stacked nicely, cards need to be in their own object for this unfortunately
 		transform.SetSiblingIndex(handTarget.transform.GetSiblingIndex());
 		lerp.target = handTarget;
+		if (placementWarning) {
+			placementWarning.gameObject.SetActive(false);
+		}
 	}
 
 	void Peek() {
@@ -66,6 +71,7 @@ public class Card : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, IP
 	}
 
 	public void OnPointerEnter(PointerEventData d) {
+		if (Card.dragged && Card.dragged != this) return;
 		if (inHand) {
 			Peek();
 		}
@@ -95,24 +101,48 @@ public class Card : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, IP
 		}
 	}
 
-	public static void TargetTile(Vector3 tileWorldPosition, TileTracker tileTracker) {
-		if (!dragged.boardTarget) {
-			dragged.boardTarget = Instantiate(new GameObject(), dragged.transform.parent);
+	void _TargetTile(Vector3 tileWorldPosition, TileTracker tileTracker) {
+		if (!boardTarget) {
+			boardTarget = Instantiate(new GameObject(), dragged.transform.parent);
 		}
-		dragged.boardTarget.transform.position = Camera.main.WorldToScreenPoint(tileWorldPosition + (Vector3.up * 3f/(float)CameraZoom.GetZoomLevel()));
-		dragged.lerp.target = dragged.boardTarget;
-		dragged.targetingBoard = true;
+		float margin = 3f/(float)CameraZoom.GetZoomLevel();
+		boardTarget.transform.position = Camera.main.WorldToScreenPoint(tileWorldPosition + (Vector3.up * margin));
+		lerp.target = dragged.boardTarget;
+		targetingBoard = true;
 
 		// then run the validator if it's a blueprint card
 		// if (dragged is BlueprintTile)
 		// then run validator, if result 1 is false, add the message with result 2 above the card, sure
-		// tiletracker.ValidPlacement(dragged.tile.getTile, )
+		Tuple<bool, string> placementTest = tileTracker.ValidPlacement(gameTile, tileTracker.WorldToBoard(tileWorldPosition));
+		if (!placementTest.Item1) {
+			// then instantiate invalidwarning, or enable it if it's not enabled
+			// but where...below?
+			// yeah sure
+			// just update the lerp target if it's already there
+			if (!placementWarning) {
+				placementWarning = Instantiate(invalidPlacementWarningTemplate, transform.parent);
+			}
+			if (!placementWarning.gameObject.activeSelf) {
+				placementWarning.transform.position = this.transform.position;
+				placementWarning.gameObject.SetActive(true);
+			}
+			placementWarning.SetInfo(placementTest.Item2, Camera.main.WorldToScreenPoint(tileWorldPosition));
+		} else {
+			if (placementWarning) {
+				placementWarning.gameObject.SetActive(false);
+			}
+		}
+	}
+
+	public static void TargetTile(Vector3 tileWorldPosition, TileTracker tileTracker) {
+		dragged._TargetTile(tileWorldPosition, tileTracker);
 	}
 
 	public static void StopTargetingTile() {
 		Destroy(dragged.boardTarget);
 		dragged.lerp.target = null;
 		dragged.targetingBoard = false;
+		dragged.placementWarning.gameObject.SetActive(false);
 	}
 
 	public void Initialize(GameTile tile) {

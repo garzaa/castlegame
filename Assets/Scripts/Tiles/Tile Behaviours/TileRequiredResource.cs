@@ -8,7 +8,7 @@ public class TileRequiredResource : TileBehaviour, ITileValidator {
 		if (PlayerResources.Has(resources)) {
 			return true;
 		}
-		string m = $"Inadequate resources for tile {name}\n{this}";
+		string m = $"{this}";
 		CommandInput.Log(m);
 		message.Add(m);
 		CommandInput.Log(this);
@@ -20,10 +20,11 @@ public class TileRequiredResource : TileBehaviour, ITileValidator {
 	}
 
 	public override string ToString() {
-		string ret = "Requires:";
+		string ret = "Requires";
 		foreach (var s in resources) {
-			ret +=" "+s;
+			ret +=" <color='#94fdff'>"+s+"</color>";
 		}
+		ret += ".";
 		return ret;
 	}
 }

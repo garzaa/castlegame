@@ -261,6 +261,8 @@ MonoBehaviour:
   infoLine: {fileID: 126503992326062975, guid: 058ea057bb3b89c4cb72dcd13121a980, type: 3}
   resourceRequirement: {fileID: 6822259459422871975, guid: 28ad1ecb53892ae49a80b45632118970,
     type: 3}
+  invalidPlacementWarningTemplate: {fileID: 4242138383085047749, guid: 7b6ac38663f15f54ca459d09ef84d9e7,
+    type: 3}
 --- !u!114 &5177119141180542985
 MonoBehaviour:
   m_ObjectHideFlags: 0
