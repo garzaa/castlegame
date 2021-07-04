@@ -30,18 +30,35 @@ public class Card : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, IP
 	bool inHand;
 	GameObject boardTarget;
 	bool targetingBoard;
+	Animator animator;
+	TilemapVisuals tilemapVisuals;
 
 	public static Card dragged { get; private set; }
 	public static Card hovered { get; private set; }
 
 	void Start() {
+		tilemapVisuals = GameObject.FindObjectOfType<TilemapVisuals>();
 		cardHand = GameObject.FindObjectOfType<CardHand>();
+		animator = GetComponent<Animator>();
 		lerp = GetComponent<TargetLerp>();
 		ReturnToHand();
 		if (gameTile) Initialize(gameTile);
 	}
 
+	void OnDestroy() {
+		DestroyIfExists(handTarget);
+		DestroyIfExists(handPeek);
+		if (placementWarning) DestroyIfExists(placementWarning.gameObject);
+	}
+
+	void DestroyIfExists(GameObject g) {
+		if (g) Destroy(g);
+	}
+
 	void ReturnToHand() {
+		tilemapVisuals.ClearTilePreview();
+		animator.SetTrigger("RestoreImmediate");
+		animator.SetBool("PlacePreview", false);
 		inHand = true;
 		if (!handTarget) {
 			handTarget = cardHand.AddHandTarget();
@@ -56,7 +73,8 @@ public class Card : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, IP
 
 	void Peek() {
 		if (!handPeek) {
-			handPeek = Instantiate(new GameObject(), handTarget.transform);
+			handPeek = new GameObject();
+			handPeek.transform.parent = handTarget.transform;
 			handPeek.transform.localPosition = new Vector3(0, 129, 0);
 		}
 		lerp.target = handPeek;
@@ -101,32 +119,42 @@ public class Card : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, IP
 		}
 	}
 
+	void PlaceTile() {
+		Destroy(this);
+	}
+
 	void _TargetTile(Vector3 tileWorldPosition, TileTracker tileTracker) {
 		if (!boardTarget) {
-			boardTarget = Instantiate(new GameObject(), dragged.transform.parent);
+			boardTarget = new GameObject();
+			boardTarget.transform.parent = dragged.transform.parent;
 		}
 		float margin = 3f/(float)CameraZoom.GetZoomLevel();
 		boardTarget.transform.position = Camera.main.WorldToScreenPoint(tileWorldPosition + (Vector3.up * margin));
 		lerp.target = dragged.boardTarget;
 		targetingBoard = true;
 
+		// then hide the card for the tile preview
+		animator.SetBool("PlacePreview", true);
+
 		// then run the validator if it's a blueprint card
 		// if (dragged is BlueprintTile)
 		// then run validator, if result 1 is false, add the message with result 2 above the card, sure
 		Tuple<bool, string> placementTest = tileTracker.ValidPlacement(gameTile, tileTracker.WorldToBoard(tileWorldPosition));
+
+		tilemapVisuals.ShowTilePreview(this.gameTile, placementTest.Item1, tileWorldPosition);
+
+		// show/hide invalid warning
 		if (!placementTest.Item1) {
-			// then instantiate invalidwarning, or enable it if it's not enabled
-			// but where...below?
-			// yeah sure
-			// just update the lerp target if it's already there
 			if (!placementWarning) {
 				placementWarning = Instantiate(invalidPlacementWarningTemplate, transform.parent);
 			}
+
+			// make it fade out from the center if it wasn't active before
 			if (!placementWarning.gameObject.activeSelf) {
 				placementWarning.transform.position = this.transform.position;
 				placementWarning.gameObject.SetActive(true);
 			}
-			placementWarning.SetInfo(placementTest.Item2, Camera.main.WorldToScreenPoint(tileWorldPosition));
+			placementWarning.SetInfo(placementTest.Item2, Camera.main.WorldToScreenPoint(tileWorldPosition + (Vector3.up * margin)));
 		} else {
 			if (placementWarning) {
 				placementWarning.gameObject.SetActive(false);
@@ -142,7 +170,8 @@ public class Card : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, IP
 		Destroy(dragged.boardTarget);
 		dragged.lerp.target = null;
 		dragged.targetingBoard = false;
-		dragged.placementWarning.gameObject.SetActive(false);
+		dragged.animator.SetBool("PlacePreview", false);
+		if (dragged.placementWarning) dragged.placementWarning.gameObject.SetActive(false);
 	}
 
 	public void Initialize(GameTile tile) {

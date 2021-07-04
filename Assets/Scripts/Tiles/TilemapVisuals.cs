@@ -20,6 +20,7 @@ public class TilemapVisuals : MonoBehaviour {
 	Tilemap highlightTilemap;
 	Tilemap iconTilemap;
 	Tilemap clickedTilemap;
+	Tilemap previewTilemap;
 	Vector3 mouseWorldPos;
 	Vector3Int gridMousePos;
 	TileTracker tracker;
@@ -38,6 +39,7 @@ public class TilemapVisuals : MonoBehaviour {
 		CreateHighlightTilemap();
 		CreateIconTilemap();
 		CreateSelectedTilemap();
+		CreatePreviewTilemap();
 		CreateDoubleScaleCanvas();
 		console = GameObject.FindObjectOfType<CommandInput>();
 		tracker = GameObject.FindObjectOfType<TileTracker>();
@@ -89,6 +91,11 @@ public class TilemapVisuals : MonoBehaviour {
 		clickedTilemap.GetComponent<TilemapRenderer>().sortingOrder = iconTilemap.GetComponent<TilemapRenderer>().sortingOrder + 1;
 	}
 
+	void CreatePreviewTilemap() {
+		previewTilemap = Instantiate(highlightTilemapTemplate, transform.parent);
+		previewTilemap.GetComponent<TilemapRenderer>().sortingOrder = clickedTilemap.GetComponent<TilemapRenderer>().sortingOrder + 1;
+	}
+
 	public void HighlightTile(Vector3Int gridPos) {
 		if (!tilemap.cellBounds.Contains(gridPos)) {
 			return;
@@ -107,6 +114,10 @@ public class TilemapVisuals : MonoBehaviour {
 		gridMousePos = highlightTilemap.WorldToCell(mouseWorldPos);
 		gridMousePos.z = 0;
 
+		if (!tilemap.cellBounds.Contains(gridMousePos)) {
+			OnMouseExit();
+		}
+
 		if (gridMousePos == targetedTile) return;
 		targetedTile = gridMousePos;
 		if (Card.dragged) {
@@ -124,6 +135,7 @@ public class TilemapVisuals : MonoBehaviour {
 	void OnMouseExit() {
 		if (Card.dragged) {
 			Card.StopTargetingTile();
+			ClearTilePreview();
 		}
 	}
 
@@ -142,6 +154,20 @@ public class TilemapVisuals : MonoBehaviour {
 		if (!silent) gameTile.PlayQuerySound();
 		DisplayTileVisuals(gameTile);
 		ShowInfoBubble(gameTile);
+	}
+
+	public void ShowTilePreview(GameTile gameTile, bool valid, Vector3 tileWorldPosition) {
+		ClearTilePreview();
+		previewTilemap.SetTile(previewTilemap.WorldToCell(tileWorldPosition), gameTile.GetDefaultTile());
+		// if valid, render it and the associated effects on the preview tilemap
+		// if not, just render it and the card info will take care of the rest
+	}
+
+	public void ClearTilePreview() {
+		// alleviate race condition on start
+		if (previewTilemap != null) {
+			previewTilemap.ClearAllTiles();
+		}
 	}
 
 	void ShowInfoBubble(GameTile tile) {
