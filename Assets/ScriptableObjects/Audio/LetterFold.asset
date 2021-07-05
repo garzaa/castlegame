@@ -1,0 +1,19 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bd522832b8418e94ebe7e3a7658f17ff, type: 3}
+  m_Name: LetterFold
+  m_EditorClassIdentifier: 
+  sounds:
+  - {fileID: 8300000, guid: 3c12bfa1524614d49ae2cbef2a174561, type: 3}
+  - {fileID: 8300000, guid: 936e66e5dfa4033499633fd5157dc2d3, type: 3}
+  - {fileID: 8300000, guid: 1250ea46f8bf3724ab8cefd429a7929d, type: 3}
+  - {fileID: 8300000, guid: 5dc555af72633604aaaf207e51c92fad, type: 3}

@@ -39,7 +39,6 @@ public class CardHand : MonoBehaviour {
 		// handWidth *= parentCanvas.scaleFactor;
 		bool squished = childWidth > handWidth;
 		if (squished && !squishedLastFrame) {
-			Debug.Log("unsquishing");
 			layoutGroup.childControlWidth = true;
 			layoutGroup.childForceExpandWidth = true;
 			layoutGroup.childScaleWidth = false;

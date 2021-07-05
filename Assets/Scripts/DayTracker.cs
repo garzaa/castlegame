@@ -1,4 +1,5 @@
 using UnityEngine;
+using System.Collections;
 using UnityEngine.UI;
 
 public class DayTracker : MonoBehaviour {
@@ -9,11 +10,13 @@ public class DayTracker : MonoBehaviour {
 
 	[SerializeField] GameObject dayUI;
 	[SerializeField] Text dayText;
+	[SerializeField] GameObject dayAnnouncement;
 	#pragma warning disable 0649
 
 	const int actionsPerDay = 3;
-	int actionsToday = 0;
+	const float sleepTime = 1f;
 
+	int actionsToday = 0;
 	int totalDays = 1;
 	int totalActions = 0;
 	int daysWithoutActions = 0;
@@ -47,9 +50,27 @@ public class DayTracker : MonoBehaviour {
 		totalDays++;
 		dayEndEvent.Raise();
 		dayEndSound.PlayFrom(this.gameObject);
+		AnnounceDay(totalDays);
 	}
 
 	public void SleepFor(int days) {
-		// wait, end day, repeat
+		StartCoroutine(Sleep(days));
+	}
+
+	IEnumerator Sleep(int days) {
+		EndDay();
+		if (days > 1) yield return new WaitForSeconds(sleepTime);
+		days--;
+		if (days > 0) {
+			StartCoroutine(Sleep(days));
+		}
+	}
+
+	void AnnounceDay(int day) {
+		GameObject d = Instantiate(dayAnnouncement, dayUI.transform);
+		d.gameObject.SetActive(true);
+		foreach (Text t in d.GetComponentsInChildren<Text>()) {
+			t.text = "DAY "+day;
+		}
 	}
 }

@@ -14,7 +14,6 @@ public class CardDealer : MonoBehaviour {
 	}
 
 	public void ScrapHand() {
-		Debug.Log("scrapping hand");
 		if (!keepDiscardPile) {
 			keepDiscardPile = new GameObject();
 			keepDiscardPile.name = "Keep Discard Pile";
@@ -24,7 +23,6 @@ public class CardDealer : MonoBehaviour {
 		CardBase[] oldCards = GameObject.FindObjectsOfType<CardBase>();
 
 		foreach (CardBase card in oldCards) {
-			Debug.Log("discarding a card");
 			//keepDiscardPile.transform.position = KeepToScreen();
 			//card.DiscardTo(keepDiscardPile);
 			Destroy(card.gameObject);
