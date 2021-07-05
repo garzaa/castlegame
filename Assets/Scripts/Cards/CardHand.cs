@@ -45,7 +45,6 @@ public class CardHand : MonoBehaviour {
 
 			LayoutRebuilder.ForceRebuildLayoutImmediate(this.GetComponent<RectTransform>());
 		} else if (!squished && squishedLastFrame) {
-			Debug.Log("squishing");
 			layoutGroup.childControlWidth = false;
 			layoutGroup.childForceExpandWidth = false;
 			layoutGroup.childScaleWidth = true;

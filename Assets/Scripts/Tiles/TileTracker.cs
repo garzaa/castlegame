@@ -250,7 +250,6 @@ public class TileTracker : MonoBehaviour {
 	}
 
 	public void Tick() {
-		Debug.Log("tick");
 		foreach (TileAge tileAge in GetTiles<TileAge>()) {
 			tileAge.Clockwork();
 		}
