@@ -13,6 +13,8 @@ public class TilemapVisuals : MonoBehaviour {
 	[SerializeField] Tile clickedTile;
 	[SerializeField] Canvas doubleScaleCanvas; // this gets overridden with the initialized version of itself...is that ok??
 	[SerializeField] TileInfo infoBubbleTemplate;
+	[SerializeField] GameObject repairEffect;
+	[SerializeField] GameObject decayEffect;
 	#pragma warning restore 0649
 
 	CommandInput console;
@@ -182,6 +184,19 @@ public class TilemapVisuals : MonoBehaviour {
 		if (singleIconTilemap) {
 			singleIconTilemap.ClearAllTiles();
 		}
+	}
+
+	public void ShowTileEffect(GameObject effectUI, Vector3 tileWorldPosition) {
+		WorldPointCanvas w = Instantiate(effectUI, doubleScaleCanvas.transform).GetComponent<WorldPointCanvas>();
+		w.position = tileWorldPosition;
+	}
+
+	public void ShowRepairEffect(GameTile tile) {
+		ShowTileEffect(repairEffect, tile.worldPosition);
+	}
+
+	public void ShowDecayEffect(GameTile tile) {
+		ShowTileEffect(decayEffect, tile.worldPosition);
 	}
 
 	void ShowInfoBubble(GameTile tile) {

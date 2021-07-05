@@ -25,6 +25,8 @@ public class GameTile : MonoBehaviour, IStat, ICardStat, IConsoleStat {
 	[TextArea] public string description;
 	static readonly string[] nullAges = new string[] {"eternal", "immeasurable", "unfathomable"};
 
+	public TilemapVisuals visuals {get; private set;}
+
 	public virtual void Initialize(TileTracker tileTracker, Vector3Int position, bool silent=false) {
 		this.tileTracker = tileTracker;
 		this.position = position;
@@ -34,6 +36,7 @@ public class GameTile : MonoBehaviour, IStat, ICardStat, IConsoleStat {
 		if (!silent && onPlace != null) {
 			onPlace.PlayFrom(tileTracker.gameObject);
 		}
+		visuals = GameObject.FindObjectOfType<TilemapVisuals>();
 	}
 
 	public void Remove(bool silent=false) {

@@ -57,8 +57,9 @@ public class DayTracker : MonoBehaviour {
 		if (actionsToday == 0) {
 			daysWithoutActions++;
 		}
-		actionsToday = 0;
+		StopAllCoroutines();	
 		StartCoroutine(SlowActionReset());
+		actionsToday = 0;
 		totalDays++;
 		dayEndEvent.Raise();
 		if (silent) dayEndSound.PlayFrom(this.gameObject);
@@ -66,7 +67,7 @@ public class DayTracker : MonoBehaviour {
 	}
 
 	IEnumerator SlowActionReset() {
-		for (int i=actionsPerDay; i>=0; i--) {
+		for (int i=actionsToday; i>=0; i--) {
 			yield return new WaitForSeconds(0.2f);
 			UpdateActionUI(i);
 		}
@@ -77,7 +78,7 @@ public class DayTracker : MonoBehaviour {
 	}
 
 	IEnumerator Sleep(int days) {
-		EndDay();
+		EndDay(silent:true);
 		if (days > 1) yield return new WaitForSeconds(sleepTime);
 		days--;
 		if (days > 0) {

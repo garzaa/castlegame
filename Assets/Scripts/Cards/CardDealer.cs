@@ -14,6 +14,7 @@ public class CardDealer : MonoBehaviour {
 	}
 
 	public void ScrapHand() {
+		StopAllCoroutines();
 		if (!keepDiscardPile) {
 			keepDiscardPile = new GameObject();
 			keepDiscardPile.name = "Keep Discard Pile";
@@ -30,6 +31,8 @@ public class CardDealer : MonoBehaviour {
 	}
 
 	public void DealHand() {
+		// if player is mashing the sleep button
+		ScrapHand();
 		if (!keep) {
 			GameObject g = GameObject.Find("Keep");
 			// a second try, if it's been destroyed

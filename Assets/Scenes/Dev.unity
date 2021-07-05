@@ -636,6 +636,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Flavor Text
       objectReference: {fileID: 0}
+    - target: {fileID: 3824776358076315849, guid: 1e409b8e0369fe74eb70661417ad1886,
+        type: 3}
+      propertyPath: text
+      value: The king would like to know what's for DINNER.
+      objectReference: {fileID: 0}
     - target: {fileID: 3824776358076315855, guid: 1e409b8e0369fe74eb70661417ad1886,
         type: 3}
       propertyPath: m_LocalPosition.x
