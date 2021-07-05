@@ -34,7 +34,7 @@ public class BlueprintCard : CardBase {
 		}
 		float margin = 3f/(float)CameraZoom.GetZoomLevel();
 		boardTarget.transform.position = Camera.main.WorldToScreenPoint(tileWorldPosition + (Vector3.up * margin));
-		lerp.target = boardTarget;
+		lerp.SetTarget(boardTarget);
 		targetingBoard = true;
 
 		animator.SetBool("PlacePreview", true);
@@ -52,7 +52,7 @@ public class BlueprintCard : CardBase {
 
 	protected override void OnDrop(Vector3Int boardPosition) {
 		tileTracker.ReplaceTile(boardPosition, this.gameTile.GetDefaultTile());
-		Destroy(this);
+		Destroy(this.gameObject);
 	}
 
 	public void Initialize(GameTile tile) {
@@ -61,6 +61,7 @@ public class BlueprintCard : CardBase {
 
 		tileIcon.sprite = tile.GetDefaultTile().m_DefaultSprite;
 		tileIcon.SetNativeSize();
+		gameTile = tile;
 
 		tileName.text = tile.name;
 

@@ -127,10 +127,10 @@ public class TilemapVisuals : MonoBehaviour {
 
 		if (gridMousePos == targetedTile) return;
 		targetedTile = gridMousePos;
-		if (Card.dragged) {
-			Card.TargetTile(tilemap.CellToWorld(targetedTile));
-			ShowSingleIcon(Card.dragged.GetActionIcon(), gridMousePos);
-		} else if (Card.hovered) {
+		if (CardBase.dragged) {
+			CardBase.TargetTile(tilemap.CellToWorld(targetedTile));
+			ShowSingleIcon(CardBase.dragged.GetActionIcon(), gridMousePos);
+		} else if (CardBase.hovered) {
 			// don't track mouse position if the player is just looking
 			highlightTilemap.ClearAllTiles();
 			return;
@@ -141,15 +141,15 @@ public class TilemapVisuals : MonoBehaviour {
 	}
 
 	void OnMouseExit() {
-		if (Card.dragged) {
-			Card.StopTargetingTile();
+		if (CardBase.dragged) {
+			CardBase.StopTargetingTile();
 			ClearTilePreview();
 		}
 	}
 
 	void OnMouseDown() {
 		// this will fire if a card is being held or peeked over the board
-		if (Card.hovered) {
+		if (CardBase.hovered) {
 			return;
 		}
 		// don't return inside the function because the tilemap calls that to refresh on a day end

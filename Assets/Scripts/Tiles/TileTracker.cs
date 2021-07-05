@@ -358,6 +358,7 @@ public class TileTracker : MonoBehaviour {
 	}
 
 	public int ContainsTile(ScriptableTile targetTile) {
+		if (!tilemap) tilemap = GameObject.FindObjectOfType<MainTilemap>().GetComponentInChildren<Tilemap>();
 		int count = tilemap.GetTilesBlock(tilemap.cellBounds)
 			.Where(x=> x.name == targetTile.name)
 			.Count();

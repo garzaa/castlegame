@@ -31,6 +31,7 @@ public class CardBase : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
 	protected TilemapVisuals tilemapVisuals;
 	protected Tuple<bool, string> placementTest;
 	protected TileTracker tileTracker;
+	bool trashed = false;
 	DayTracker dayTracker;
 
 	public static CardBase dragged { get; private set; }
@@ -43,7 +44,11 @@ public class CardBase : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
 		dayTracker = GameObject.FindObjectOfType<DayTracker>();
 		lerp = GetComponent<TargetLerp>();
 		tileTracker = GameObject.FindObjectOfType<TileTracker>();
-		GetComponent<RectTransform>().SetParent(GameObject.FindObjectOfType<CardContainer>().transform);
+		GetComponent<RectTransform>().SetParent(GameObject.FindObjectOfType<CardContainer>().transform, worldPositionStays:false);
+		foreach (Image i in GetComponentsInChildren<Image>()) {
+			// to deal with the above line
+			i.SetNativeSize();
+		}
 		ReturnToHand();
 	}
 
@@ -57,6 +62,16 @@ public class CardBase : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
 		if (g) Destroy(g);
 	}
 
+	public void DiscardTo(GameObject keep) {
+		trashed = true;
+		if (!lerp) lerp = GetComponent<TargetLerp>();
+		lerp.SetTarget(keep, Trash);
+	}
+
+	void Trash() {
+		Destroy(this.gameObject);
+	}
+
 	void ReturnToHand() {
 		tilemapVisuals.ClearTilePreview();
 		animator.SetTrigger("RestoreImmediate");
@@ -67,10 +82,11 @@ public class CardBase : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
 		}
 		// so they're stacked nicely, cards need to be in their own object for this unfortunately
 		transform.SetSiblingIndex(handTarget.transform.GetSiblingIndex());
-		lerp.target = handTarget;
+		lerp.SetTarget(handTarget);
 		if (placementWarning) {
 			placementWarning.gameObject.SetActive(false);
 		}
+		peekSound.PlayFrom(this.gameObject);
 	}
 
 	void Peek() {
@@ -79,36 +95,37 @@ public class CardBase : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
 			handPeek.transform.parent = handTarget.transform;
 			handPeek.transform.localPosition = new Vector3(0, 129, 0);
 		}
-		lerp.target = handPeek;
+		lerp.SetTarget(handPeek);
 		peekSound.PlayFrom(this.gameObject);
 		transform.SetAsLastSibling();
 	}
 
 	void UnPeek() {
-		lerp.target = handTarget;
+		lerp.SetTarget(handTarget);
 		// re-insert into hand order
 		transform.SetSiblingIndex(handTarget.transform.GetSiblingIndex());
 	}
 
 	public void OnPointerEnter(PointerEventData d) {
-		if (Card.dragged && Card.dragged != this) return;
+		if (CardBase.dragged && CardBase.dragged != this) return;
+		if (trashed) return;
 		if (inHand) {
 			Peek();
 		}
-		Card.hovered = this;
+		CardBase.hovered = this;
 	}
 
 	public void OnPointerExit(PointerEventData d) {
 		if (inHand) {
 			UnPeek();
 		}
-		Card.hovered = null;
+		CardBase.hovered = null;
 	}
 
 	public void OnPointerDown(PointerEventData d) {
 		inHand = false;
 		clickSound.PlayFrom(this.gameObject);
-		Card.dragged = this;
+		CardBase.dragged = this;
 	}
 
 	public void OnPointerUp(PointerEventData d) {
@@ -119,7 +136,7 @@ public class CardBase : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
 			OnDrop(tileTracker.WorldToBoard(mouseWorldPos));
 			tilemapVisuals.ClearTilePreview();
 		} else {
-			Card.dragged = null;
+			CardBase.dragged = null;
 			ReturnToHand();
 		}
 	}
@@ -163,7 +180,7 @@ public class CardBase : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
 
 	public static void StopTargetingTile() {
 		Destroy(dragged.boardTarget);
-		dragged.lerp.target = null;
+		dragged.lerp.SetTarget(null);
 		dragged.targetingBoard = false;
 		dragged.animator.SetBool("PlacePreview", false);
 		if (dragged.placementWarning) dragged.placementWarning.gameObject.SetActive(false);

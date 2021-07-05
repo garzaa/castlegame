@@ -20,6 +20,6 @@ public class InvalidPlacementWarning : MonoBehaviour {
 		}
 		messageContainer.text = message;
 		target.transform.position = position;
-		lerp.target = target;
+		lerp.SetTarget(target);
 	}
 }

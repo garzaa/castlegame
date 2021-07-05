@@ -19,4 +19,11 @@ public class BlueprintUnlock : MonoBehaviour {
 		unlocked = true;
 		return true;
 	}
+
+	public bool Unlocked(TileTracker tracker) {
+		foreach (GameStateRequirement r in requirements) {
+			if (!r.Satisfied(tracker)) return false;
+		}
+		return true;
+	}
 }

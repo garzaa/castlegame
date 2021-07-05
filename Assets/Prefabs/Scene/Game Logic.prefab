@@ -154,6 +154,57 @@ MonoBehaviour:
     m_VerticalOverflow: 0
     m_LineSpacing: 1
   m_Text: Day 30
+--- !u!1 &7114820808466513128
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 3977080199659828086}
+  - component: {fileID: 4184139922484147649}
+  m_Layer: 0
+  m_Name: Blueprints
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &3977080199659828086
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7114820808466513128}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 7446156342293967064}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &4184139922484147649
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7114820808466513128}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a07ad876df277d148bd4112390d23772, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  cardTemplate: {fileID: 1215693986421253864, guid: 142ee37533cdcd14e859202dc635d37c,
+    type: 3}
+  tiles:
+  - {fileID: 5784955452831973745, guid: 807206931c4cabc4b9209e2fe6b64061, type: 3}
+  - {fileID: -6655283645545986800, guid: f273e3e4725c60646a5c38bced7b8eec, type: 3}
+  - {fileID: 6188893002852522429, guid: eac009e8d132f824b8938dd03d4a5352, type: 3}
+  - {fileID: 7905479836425482686, guid: 293d23c89c56164488d2d067f8f36a29, type: 3}
+  - {fileID: -4147425269137343259, guid: c1c188dc9a4790f4a9beb64b79b5aa12, type: 3}
 --- !u!1 &7446156342293967061
 GameObject:
   m_ObjectHideFlags: 0
@@ -168,6 +219,9 @@ GameObject:
   - component: {fileID: 8275086067848993557}
   - component: {fileID: 3851189265226078732}
   - component: {fileID: 248273654908005689}
+  - component: {fileID: 2492592390099960217}
+  - component: {fileID: 3601700172047322206}
+  - component: {fileID: 6007230121111461889}
   m_Layer: 0
   m_Name: Game Logic
   m_TagString: Untagged
@@ -187,6 +241,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 6361775183193861916}
+  - {fileID: 3977080199659828086}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -324,8 +379,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c227417098af45f47b1d0bbfc00b907a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  dayEndEvent: {fileID: 11400000, guid: 14782ed59eec81e439ee3eef7be57673, type: 2}
+  dayEndEvent: {fileID: 11400000, guid: b472990619c30894e8161fa4c3cf155d, type: 2}
   dayStartEvent: {fileID: 11400000, guid: 72a9880ff50aecc4cb704f90f1a93721, type: 2}
+  dayEndSound: {fileID: 11400000, guid: 184a320cc5aa3dd498bc6ed6c48b0396, type: 2}
   dayUI: {fileID: 7521108471282931938}
   dayText: {fileID: 7015705560322673730}
 --- !u!114 &248273654908005689
@@ -356,6 +412,70 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 2492592390099960217}
+        m_MethodName: ScrapHand
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+--- !u!114 &2492592390099960217
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7446156342293967061}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 895d357f1aceedb40b6ef3616bfb4351, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &3601700172047322206
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7446156342293967061}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1a5b31752242db0438c68ac6d7ff8afc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  gameEvent: {fileID: 11400000, guid: 72a9880ff50aecc4cb704f90f1a93721, type: 2}
+  priority: 0
+  response:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 2492592390099960217}
+        m_MethodName: DealHand
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+--- !u!114 &6007230121111461889
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7446156342293967061}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bbc8d0e22be9a7b4b96cdf597b45e7e1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  cutCard: {fileID: 3063625274570893236, guid: c51dd4535cca1fa45a4dbb0e303a60e2, type: 3}
 --- !u!1 &7521108471282931938
 GameObject:
   m_ObjectHideFlags: 0

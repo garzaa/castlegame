@@ -5,6 +5,7 @@ public class DayTracker : MonoBehaviour {
 	#pragma warning disable 0649
 	[SerializeField] GameEvent dayEndEvent;
 	[SerializeField] GameEvent dayStartEvent;
+	[SerializeField] AudioResource dayEndSound;
 
 	[SerializeField] GameObject dayUI;
 	[SerializeField] Text dayText;
@@ -29,12 +30,12 @@ public class DayTracker : MonoBehaviour {
 
 		if (actionsToday >= actionsPerDay) {
 			EndDay();
+			StartDay();
 		}
 	}
 
 	public void StartDay() {
 		dayText.text = "Day "+totalDays;
-		actionsToday = 0;
 		dayStartEvent.Raise();
 	}
 
@@ -42,8 +43,13 @@ public class DayTracker : MonoBehaviour {
 		if (actionsToday == 0) {
 			daysWithoutActions++;
 		}
+		actionsToday = 0;
 		totalDays++;
 		dayEndEvent.Raise();
-		StartDay();
+		dayEndSound.PlayFrom(this.gameObject);
+	}
+
+	public void SleepFor(int days) {
+		// wait, end day, repeat
 	}
 }

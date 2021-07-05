@@ -128,6 +128,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 6361775183193861916, guid: 2cd0a8c2313018743b330d76addd7ff7,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 7446156342293967061, guid: 2cd0a8c2313018743b330d76addd7ff7,
         type: 3}
       propertyPath: m_Name
@@ -66496,6 +66501,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a07ad876df277d148bd4112390d23772, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  cardTemplate: {fileID: 0}
   tiles:
   - {fileID: 7905479836425482686, guid: 293d23c89c56164488d2d067f8f36a29, type: 3}
   - {fileID: -4147425269137343259, guid: c1c188dc9a4790f4a9beb64b79b5aa12, type: 3}
@@ -66742,17 +66748,17 @@ PrefabInstance:
     - target: {fileID: 8879672452531621117, guid: becfc499e503fa74592404d4e952d7a1,
         type: 3}
       propertyPath: m_AnchorMin.y
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8879672452531621117, guid: becfc499e503fa74592404d4e952d7a1,
         type: 3}
       propertyPath: m_AnchorMax.y
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8879672452531621117, guid: becfc499e503fa74592404d4e952d7a1,
         type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 0
+      value: -3
       objectReference: {fileID: 0}
     - target: {fileID: 8879672452531621117, guid: becfc499e503fa74592404d4e952d7a1,
         type: 3}

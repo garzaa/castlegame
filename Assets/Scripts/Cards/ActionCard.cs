@@ -14,7 +14,7 @@ public class ActionCard : CardBase {
 		}
 		float margin = 3f/(float)CameraZoom.GetZoomLevel();
 		boardTarget.transform.position = Camera.main.WorldToScreenPoint(tileWorldPosition + (Vector3.up * margin));
-		lerp.target = boardTarget;
+		lerp.SetTarget(boardTarget);
 		targetingBoard = true;
 
 		Vector3Int boardPosition = tileTracker.WorldToBoard(tileWorldPosition);
