@@ -211,13 +211,13 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5337405326902327439}
-  - component: {fileID: 5337405326902327426}
+  - component: {fileID: 1215693986421253864}
   - component: {fileID: 5177119141180542985}
   - component: {fileID: 5278759834402622799}
   - component: {fileID: 5459818982259558341}
   - component: {fileID: 8866110590688427111}
   m_Layer: 5
-  m_Name: CardContainer
+  m_Name: BlueprintCard
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -243,7 +243,7 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 150, y: 250}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &5337405326902327426
+--- !u!114 &1215693986421253864
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -252,20 +252,22 @@ MonoBehaviour:
   m_GameObject: {fileID: 5337405326902327438}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6ec4568d78efb544f90088d92838695b, type: 3}
+  m_Script: {fileID: 11500000, guid: c8cf0d80e12a1854b8c939bec95d573b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  actionIcon: {fileID: 11400000, guid: 421dc6f1fb118d543865802b4461e590, type: 2}
+  useAction: 1
+  peekSound: {fileID: 11400000, guid: e9ad6282061a2e143ba64d38bd18df48, type: 2}
+  clickSound: {fileID: 11400000, guid: 8dfdca57184fba842a6273c8b0740548, type: 2}
+  invalidPlacementWarningTemplate: {fileID: 4242138383085047749, guid: 7b6ac38663f15f54ca459d09ef84d9e7,
+    type: 3}
   gameTile: {fileID: 0}
   tileName: {fileID: 5337405326315055917}
   tileIcon: {fileID: 5337405327990272866}
   tileInfoContainer: {fileID: 5337405328134365147}
   resourceContainer: {fileID: 5337405327709314910}
-  peekSound: {fileID: 11400000, guid: e9ad6282061a2e143ba64d38bd18df48, type: 2}
-  clickSound: {fileID: 11400000, guid: 8dfdca57184fba842a6273c8b0740548, type: 2}
   infoLine: {fileID: 126503992326062975, guid: 058ea057bb3b89c4cb72dcd13121a980, type: 3}
   resourceRequirement: {fileID: 6822259459422871975, guid: 28ad1ecb53892ae49a80b45632118970,
-    type: 3}
-  invalidPlacementWarningTemplate: {fileID: 4242138383085047749, guid: 7b6ac38663f15f54ca459d09ef84d9e7,
     type: 3}
 --- !u!114 &5177119141180542985
 MonoBehaviour:

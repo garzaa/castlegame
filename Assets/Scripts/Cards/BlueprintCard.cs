@@ -7,7 +7,7 @@ using System.Collections.Generic;
 using System.Collections;
 
 [RequireComponent(typeof(TargetLerp))]
-public class Card : CardBase {
+public class BlueprintCard : CardBase {
 
 	#pragma warning disable 0649
 	[Header("Linked Data")]

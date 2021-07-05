@@ -16,7 +16,7 @@ public class CutCard : ActionCard {
 	protected override ScriptableTile GetPreviewTile(Vector3Int boardPosition, GameTile targetedTile) {
 		if (!targetedTile) return null;
 		TileCuttable cut = targetedTile.GetComponent<TileCuttable>();
-		if (!cut) return targetedTile.GetDefaultTile();
+		if (!cut) return null;
 		else return cut.cutTo;
 	}
 

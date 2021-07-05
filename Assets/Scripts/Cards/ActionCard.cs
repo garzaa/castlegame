@@ -5,7 +5,6 @@ using System;
 
 public class ActionCard : CardBase {
 	#pragma warning disable 0649
-	[SerializeField] Tile actionIcon;
 	#pragma warning restore 0649
 
 	protected override void _TargetTile(Vector3 tileWorldPosition) {
@@ -26,7 +25,6 @@ public class ActionCard : CardBase {
 		placementTest = ValidTarget(boardPosition);
 		GameTile targetedTile = tileTracker.GetTileNoRedirect(boardPosition);
 		tilemapVisuals.ShowTilePreview(GetPreviewTile(boardPosition, targetedTile), placementTest.Item1, tileWorldPosition);
-		tilemapVisuals.ShowSingleIcon(actionIcon, boardPosition);
 
 		// show/hide invalid warning
 		if (!placementTest.Item1) {

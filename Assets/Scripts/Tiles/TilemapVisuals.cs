@@ -129,6 +129,7 @@ public class TilemapVisuals : MonoBehaviour {
 		targetedTile = gridMousePos;
 		if (Card.dragged) {
 			Card.TargetTile(tilemap.CellToWorld(targetedTile));
+			ShowSingleIcon(Card.dragged.GetActionIcon(), gridMousePos);
 		} else if (Card.hovered) {
 			// don't track mouse position if the player is just looking
 			highlightTilemap.ClearAllTiles();

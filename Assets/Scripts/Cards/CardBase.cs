@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.Tilemaps;
 using UnityEngine.UI;
 using UnityEngine.EventSystems;
 using System;
@@ -6,7 +7,8 @@ using System;
 public class CardBase : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, IPointerDownHandler, IPointerUpHandler {
 	#pragma warning disable 0649
 	[Header("Settings")]
-	public bool useAction = true;
+	[SerializeField] protected Tile actionIcon;
+	[SerializeField] bool useAction = true;
 
 	[Header("Linked Data")]
 	[SerializeField] AudioResource peekSound;
@@ -41,6 +43,7 @@ public class CardBase : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
 		dayTracker = GameObject.FindObjectOfType<DayTracker>();
 		lerp = GetComponent<TargetLerp>();
 		tileTracker = GameObject.FindObjectOfType<TileTracker>();
+		GetComponent<RectTransform>().SetParent(GameObject.FindObjectOfType<CardContainer>().transform);
 		ReturnToHand();
 	}
 
@@ -149,7 +152,7 @@ public class CardBase : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
 			placementWarning.transform.position = Camera.main.WorldToScreenPoint(tileWorldPosition);
 			placementWarning.gameObject.SetActive(true);
 		}
-		placementWarning.SetInfo(placementTest.Item2, Camera.main.WorldToScreenPoint(tileWorldPosition + (Vector3.up * margin)));
+		placementWarning.SetInfo(placementTest.Item2, Camera.main.WorldToScreenPoint(tileWorldPosition + (Vector3.down / 2f)));
 	}
 
 	protected void HidePlacementWarning() {
@@ -176,5 +179,9 @@ public class CardBase : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
 		foreach (Transform child in t) {
 			GameObject.Destroy(child.gameObject);
 		}
+	}
+
+	public Tile GetActionIcon() {
+		return actionIcon;
 	}
 }
