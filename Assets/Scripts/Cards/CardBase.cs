@@ -13,6 +13,7 @@ public class CardBase : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
 	[Header("Linked Data")]
 	[SerializeField] AudioResource peekSound;
 	[SerializeField] AudioResource clickSound;
+	[SerializeField] AudioResource placeSound;
 
 	[Header("Templates")]
 	[SerializeField] InvalidPlacementWarning invalidPlacementWarningTemplate;
@@ -72,7 +73,10 @@ public class CardBase : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
 		Destroy(this.gameObject);
 	}
 
-	void ReturnToHand() {
+	protected void ReturnToHand() {
+		if (CardBase.dragged == this) {
+			CardBase.dragged = null;
+		}
 		tilemapVisuals.ClearTilePreview();
 		animator.SetTrigger("RestoreImmediate");
 		animator.SetBool("PlacePreview", false);
@@ -132,11 +136,11 @@ public class CardBase : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
 		if (targetingBoard && placementTest.Item1) {
 			Vector3 mouseWorldPos = Camera.main.ScreenToWorldPoint(d.position);
 			mouseWorldPos.z = 0;
+			if (placeSound) placeSound.PlayFrom(this.gameObject);
 			OnDrop(tileTracker.WorldToBoard(mouseWorldPos));
 			tilemapVisuals.ClearTilePreview();
 			if (useAction) dayTracker.UseAction();
 		} else {
-			CardBase.dragged = null;
 			ReturnToHand();
 		}
 	}

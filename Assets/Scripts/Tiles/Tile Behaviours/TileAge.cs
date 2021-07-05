@@ -12,6 +12,7 @@ public class TileAge : TileBehaviour, IConsoleStat {
 	}
 
 	public void Repair() {
+		gameTile.GetTracker().SendBoardChanged();
 		gameTile.visuals.ShowRepairEffect(gameTile);
 		age = 0;
 	}

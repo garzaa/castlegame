@@ -4,12 +4,13 @@ using System.Collections.Generic;
 public class Keep : CardSource {
 	#pragma warning disable 0649
 	[SerializeField] ActionCard cutCard;
+	[SerializeField] ActionCard fixCard;
 	#pragma warning restore 0649
 
 	override public List<CardBase> GetCards() {
 		List<CardBase> cards = new List<CardBase>();
 		cards.Add(MakeCard(cutCard));
-		cards.Add(MakeCard(cutCard));
+		cards.Add(MakeCard(fixCard));
 		return cards;
 	}
 

@@ -9,6 +9,7 @@ public class SceneFlavorText : MonoBehaviour {
 
 	[SerializeField] Text letterText;
 	[SerializeField] GameObject letter;
+	DayTracker dayTracker;
 	#pragma warning disable 0649
 
 	void Start() {
@@ -19,6 +20,18 @@ public class SceneFlavorText : MonoBehaviour {
 		WinCondition win = GameObject.FindObjectOfType<WinCondition>();
 		letterText.text += "\n\n" + win.GetDescription();
 
+		letter.SetActive(true);
+	}
+
+	public void OnWin() {
+		DayTracker dayTracker = GameObject.FindObjectOfType<DayTracker>();
+		letterText.text += "\n\nComplete!";
+		letterText.text += $"\nTook <color='#7a09fa'>{dayTracker.GetTotalDays()}</color> days & <color='#7a09fa'>{dayTracker.GetTotalActions()}</color> actions.";
+		letter.SetActive(true);
+	}
+
+	public void OnLose() {
+		letterText.text += "\n\n<color='#ea323c'>FAILED.</color>\nYour Keep was reclaimed by nature.";
 		letter.SetActive(true);
 	}
 }

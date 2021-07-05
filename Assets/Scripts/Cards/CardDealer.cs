@@ -9,6 +9,8 @@ public class CardDealer : MonoBehaviour {
 	TileTracker tileTracker;
 	const float cardInterval = 0.1f;
 
+	bool firstDay = true;
+
 	void Start() {
 		tileTracker = GameObject.FindObjectOfType<TileTracker>();
 	}
@@ -36,10 +38,11 @@ public class CardDealer : MonoBehaviour {
 		if (!keep) {
 			GameObject g = GameObject.Find("Keep");
 			// a second try, if it's been destroyed
-			if (!g) {
+			if (!g && !firstDay) {
 				return;
 			}
 		}
+		firstDay = false;
 		List<CardBase> cards = new List<CardBase>();
 		foreach (CardSource cardSource in GameObject.FindObjectsOfType<CardSource>()) {
 			cards.AddRange(cardSource.GetCards());

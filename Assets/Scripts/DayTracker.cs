@@ -7,8 +7,11 @@ public class DayTracker : MonoBehaviour {
 	[SerializeField] GameEvent dayEndEvent;
 	[SerializeField] GameEvent dayStartEvent;
 	[SerializeField] AudioResource dayEndSound;
+	[SerializeField] AudioResource winSound;
+	[SerializeField] AudioResource loseSound;
 
 	[SerializeField] GameObject dayUI;
+	[SerializeField] GameEvent winEvent;
 	[SerializeField] GameObject actionContainer;
 	[SerializeField] Text dayText;
 	[SerializeField] GameObject dayAnnouncement;
@@ -17,15 +20,23 @@ public class DayTracker : MonoBehaviour {
 	const int actionsPerDay = 3;
 	const float sleepTime = 1f;
 
+	bool gameOver = false;
+	bool wonLevel = false;
+
 	int actionsToday = 0;
 	int totalDays = 1;
 	int totalActions = 0;
 	int daysWithoutActions = 0;
 
+	TileTracker tileTracker;
+	WinCondition[] winConditions;
+
 	void Start() {
 		dayUI.SetActive(true);
 		StartDay();
 		UpdateActionUI(0);
+		tileTracker = GameObject.FindObjectOfType<TileTracker>();
+		winConditions = GameObject.FindObjectsOfType<WinCondition>();
 	}
 
 	void UpdateActionUI(int actionCount) {
@@ -57,7 +68,8 @@ public class DayTracker : MonoBehaviour {
 		if (actionsToday == 0) {
 			daysWithoutActions++;
 		}
-		StopAllCoroutines();	
+		CheckWinConditions();
+		StopCoroutine("SlowActionReset");	
 		StartCoroutine(SlowActionReset());
 		actionsToday = 0;
 		totalDays++;
@@ -81,7 +93,7 @@ public class DayTracker : MonoBehaviour {
 		EndDay(silent:true);
 		if (days > 1) yield return new WaitForSeconds(sleepTime);
 		days--;
-		if (days > 0) {
+		if (days > 0 && !wonLevel) {
 			StartCoroutine(Sleep(days));
 		} else {
 			StartDay();
@@ -94,5 +106,38 @@ public class DayTracker : MonoBehaviour {
 		foreach (Text t in d.GetComponentsInChildren<Text>()) {
 			t.text = "DAY "+day;
 		}
+	}
+
+	void CheckWinConditions() {
+		if (wonLevel || gameOver) return;
+		WinCondition won = null;
+		foreach (WinCondition c in winConditions) {
+			if (c.Satisfied(tileTracker)) {
+				won = c;
+				break;
+			}
+		}
+		if (won) {
+			winSound.PlayFrom(this.gameObject);
+			winEvent.Raise();
+			wonLevel = true;
+		}
+	}
+
+	public void OnLose() {
+		loseSound.PlayFrom(this.gameObject);	
+		gameOver = true;
+	}
+
+	public int GetTotalActions() {
+		return totalActions;
+	}
+
+	public int GetTotalDays() {
+		return totalDays;
+	}
+
+	public int GetDaysWithoutActions() {
+		return daysWithoutActions;
 	}
 }

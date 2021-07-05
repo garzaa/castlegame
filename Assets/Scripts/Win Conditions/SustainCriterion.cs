@@ -4,8 +4,10 @@ using UnityEngine.Tilemaps;
 
 public class SustainCriterion : GameStateRequirement {
 	public int days;
+	DayTracker dayTracker;
 
 	public override bool Satisfied(TileTracker tracker) {
-		return CommandInput.GetDaysWithoutActions() >= days;
+		if (!dayTracker) dayTracker = GameObject.FindObjectOfType<DayTracker>();
+		return dayTracker.GetDaysWithoutActions() >= days;
 	}
 }

@@ -23,6 +23,7 @@ public class CutCard : ActionCard {
 	protected override void OnDrop(Vector3Int boardPosition) {
 		TileCuttable cut = tileTracker.GetTileNoRedirect(boardPosition).GetComponent<TileCuttable>();
 		tileTracker.ReplaceTile(boardPosition, cut.cutTo);
-		Destroy(this.gameObject);
+		ReturnToHand();
+		// Destroy(this.gameObject);
 	}
 }

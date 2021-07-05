@@ -170,6 +170,10 @@ public class TileTracker : MonoBehaviour {
 		return true;
 	}
 
+	public void SendBoardChanged() {
+		boardChangeEvent.Raise();
+	}
+
 	void RemoveTile(Vector3Int position) {
 		tilemap.SetTile(origin+position, null);
 		GameTile old = tiles[position.x][position.y];

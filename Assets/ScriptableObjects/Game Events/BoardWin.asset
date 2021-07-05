@@ -10,5 +10,5 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 8c10ab5e68269504f93d0d447996fdc5, type: 3}
-  m_Name: KeepRemoved
+  m_Name: BoardWin
   m_EditorClassIdentifier: 
