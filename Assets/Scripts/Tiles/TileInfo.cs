@@ -14,6 +14,12 @@ public class TileInfo : MonoBehaviour {
 	[SerializeField] GameObject infoLine;
 	#pragma warning restore 0649
 
+	TilemapVisuals tilemapVisuals;
+
+	void Start() {
+		tilemapVisuals = GetComponentInParent<TilemapVisuals>();
+	}
+
 	public void Initialize(GameTile tile) {
 		foreach (Transform child in tileInfoContainer.transform) {
 			GameObject.Destroy(child.gameObject);
@@ -40,5 +46,10 @@ public class TileInfo : MonoBehaviour {
 		foreach (LayoutGroup g in GetComponentsInChildren<LayoutGroup>()) {
 			LayoutRebuilder.ForceRebuildLayoutImmediate(g.GetComponent<RectTransform>());
 		}
+	}
+
+	// called from button
+	public void Close() {
+		tilemapVisuals.HideInfoBubble();
 	}
 }

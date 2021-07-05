@@ -140,7 +140,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 2100000, guid: 361d1c03686efae4a9348f6549b2263c, type: 2}
-  m_Color: {r: 0.5803922, g: 0.9921569, b: 1, a: 1}
+  m_Color: {r: 0.5764706, g: 0.21960784, b: 0.56078434, a: 1}
   m_RaycastTarget: 1
   m_Maskable: 1
   m_OnCullStateChanged:
@@ -1111,7 +1111,7 @@ PrefabInstance:
     - target: {fileID: 126503992326062968, guid: 058ea057bb3b89c4cb72dcd13121a980,
         type: 3}
       propertyPath: m_Text
-      value: Fix a structure to prevent decay.
+      value: Fix a structure to reset decay.
       objectReference: {fileID: 0}
     - target: {fileID: 126503992326062974, guid: 058ea057bb3b89c4cb72dcd13121a980,
         type: 3}

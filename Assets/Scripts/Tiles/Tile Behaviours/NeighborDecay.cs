@@ -16,9 +16,11 @@ public class NeighborDecay : TileDecay, IStat {
 		if (n == 0) return 0;
 		if (decayMode == DecayMode.ADD) {
 			base.decayThreshold = base.originalDecayThreshold - n;
+			base.decayThreshold = Mathf.Max(base.decayThreshold, 0);
 			return base.GetDecay();
 		} else if (decayMode == DecayMode.MUL) {
 			base.decayThreshold = Mathf.CeilToInt((float) base.originalDecayThreshold / (float) n);
+			base.decayThreshold = Mathf.Max(base.decayThreshold, 0);
 			return base.GetDecay();
 		} else {
 			// this should NEVER be called

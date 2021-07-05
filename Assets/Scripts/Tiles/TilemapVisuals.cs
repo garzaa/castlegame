@@ -209,7 +209,7 @@ public class TilemapVisuals : MonoBehaviour {
 		tileInfo.Initialize(tile);
 	}
 
-	void HideInfoBubble() {
+	public void HideInfoBubble() {
 		GameObject.Destroy(currentInfoBubble);
 		clickedTilemap.ClearAllTiles();
 		highlightTilemap.ClearAllTiles();

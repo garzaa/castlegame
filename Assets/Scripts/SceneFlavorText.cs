@@ -31,7 +31,7 @@ public class SceneFlavorText : MonoBehaviour {
 	}
 
 	public void OnLose() {
-		letterText.text += "\n\n<color='#ea323c'>FAILED.</color>\nYour Keep was reclaimed by nature.";
+		letterText.text += "\n\n<color='#ea323c'>FAILED.</color>\nYour Keep has fallen into ruin.";
 		letter.SetActive(true);
 	}
 }
