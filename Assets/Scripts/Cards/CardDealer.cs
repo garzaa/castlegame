@@ -30,6 +30,13 @@ public class CardDealer : MonoBehaviour {
 	}
 
 	public void DealHand() {
+		if (!keep) {
+			GameObject g = GameObject.Find("Keep");
+			// a second try, if it's been destroyed
+			if (!g) {
+				return;
+			}
+		}
 		List<CardBase> cards = new List<CardBase>();
 		foreach (CardSource cardSource in GameObject.FindObjectsOfType<CardSource>()) {
 			cards.AddRange(cardSource.GetCards());
@@ -39,7 +46,12 @@ public class CardDealer : MonoBehaviour {
 
 	Vector3 KeepToScreen() {
 		if (!keep) {
-			keep = GameObject.Find("Keep").GetComponent<GameTile>();
+			GameObject g = GameObject.Find("Keep");
+			// a second try, if it's been destroyed
+			if (!g) {
+				return Vector3.zero;
+			}
+			keep = g.GetComponent<GameTile>();
 		}
 		return Camera.main.WorldToScreenPoint(keep.worldPosition);
 	}

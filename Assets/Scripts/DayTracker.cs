@@ -9,6 +9,7 @@ public class DayTracker : MonoBehaviour {
 	[SerializeField] AudioResource dayEndSound;
 
 	[SerializeField] GameObject dayUI;
+	[SerializeField] GameObject actionContainer;
 	[SerializeField] Text dayText;
 	[SerializeField] GameObject dayAnnouncement;
 	#pragma warning disable 0649
@@ -24,11 +25,21 @@ public class DayTracker : MonoBehaviour {
 	void Start() {
 		dayUI.SetActive(true);
 		StartDay();
+		UpdateActionUI(0);
+	}
+
+	void UpdateActionUI(int actionCount) {
+		Image[] actions = actionContainer.GetComponentsInChildren<Image>();
+		for (int i=0; i<actions.Length; i++) {
+			actions[i].enabled = (i < actionCount);
+		}
 	}
 
 	public void UseAction() {
 		actionsToday++;
 		totalActions++;
+		StopAllCoroutines();
+		UpdateActionUI(actionsToday);
 		daysWithoutActions = 0;
 
 		if (actionsToday >= actionsPerDay) {
@@ -42,15 +53,23 @@ public class DayTracker : MonoBehaviour {
 		dayStartEvent.Raise();
 	}
 
-	public void EndDay() {
+	public void EndDay(bool silent=false) {
 		if (actionsToday == 0) {
 			daysWithoutActions++;
 		}
 		actionsToday = 0;
+		StartCoroutine(SlowActionReset());
 		totalDays++;
 		dayEndEvent.Raise();
-		dayEndSound.PlayFrom(this.gameObject);
+		if (silent) dayEndSound.PlayFrom(this.gameObject);
 		AnnounceDay(totalDays);
+	}
+
+	IEnumerator SlowActionReset() {
+		for (int i=actionsPerDay; i>=0; i--) {
+			yield return new WaitForSeconds(0.2f);
+			UpdateActionUI(i);
+		}
 	}
 
 	public void SleepFor(int days) {
@@ -63,6 +82,8 @@ public class DayTracker : MonoBehaviour {
 		days--;
 		if (days > 0) {
 			StartCoroutine(Sleep(days));
+		} else {
+			StartDay();
 		}
 	}
 
