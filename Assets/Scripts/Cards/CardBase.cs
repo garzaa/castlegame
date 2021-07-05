@@ -132,9 +132,9 @@ public class CardBase : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
 		if (targetingBoard && placementTest.Item1) {
 			Vector3 mouseWorldPos = Camera.main.ScreenToWorldPoint(d.position);
 			mouseWorldPos.z = 0;
-			if (useAction) dayTracker.UseAction();
 			OnDrop(tileTracker.WorldToBoard(mouseWorldPos));
 			tilemapVisuals.ClearTilePreview();
+			if (useAction) dayTracker.UseAction();
 		} else {
 			CardBase.dragged = null;
 			ReturnToHand();

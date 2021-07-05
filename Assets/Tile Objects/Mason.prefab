@@ -177,6 +177,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   requirements:
   - {fileID: 2337723387074878895}
+  description: Unlocked by building a <color="#94fdff">House</color>.
 --- !u!114 &2337723387074878895
 MonoBehaviour:
   m_ObjectHideFlags: 0

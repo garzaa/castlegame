@@ -8,9 +8,14 @@ public class Keep : CardSource {
 
 	override public List<CardBase> GetCards() {
 		List<CardBase> cards = new List<CardBase>();
-		CardBase cut = Instantiate(cutCard);
-		cut.gameObject.SetActive(false);
-		cards.Add(cut);
+		cards.Add(MakeCard(cutCard));
+		cards.Add(MakeCard(cutCard));
 		return cards;
+	}
+
+	CardBase MakeCard(ActionCard template) {
+		CardBase c = Instantiate(template);
+		c.gameObject.SetActive(false);
+		return c;
 	}
 }

@@ -2,12 +2,16 @@ using UnityEngine;
 using UnityEngine.Tilemaps;
 using System.Collections.Generic;
 
-public class BlueprintUnlock : MonoBehaviour {
+public class BlueprintUnlock : MonoBehaviour, ICardStat {
 	bool unlocked = false;
 
 	#pragma warning disable 0649
 	[Tooltip("These should be children somewhere.")] 
-	public List<GameStateRequirement> requirements;
+	[SerializeField] List<GameStateRequirement> requirements;
+
+	[TextArea]
+	[SerializeField] string description;
+
 	#pragma warning restore 0649
 
 	public bool JustUnlocked(TileTracker tracker) {
@@ -25,5 +29,9 @@ public class BlueprintUnlock : MonoBehaviour {
 			if (!r.Satisfied(tracker)) return false;
 		}
 		return true;
+	}
+
+	public string Stat() {
+		return description;
 	}
 }

@@ -1,6 +1,7 @@
 using UnityEngine;
 using UnityEngine.Tilemaps;
 using UnityEngine.UI;
+using UnityEngine.EventSystems;
 using System.Collections.Generic;
 
 public class TilemapVisuals : MonoBehaviour {
@@ -149,7 +150,7 @@ public class TilemapVisuals : MonoBehaviour {
 
 	void OnMouseDown() {
 		// this will fire if a card is being held or peeked over the board
-		if (CardBase.hovered) {
+		if (EventSystem.current.IsPointerOverGameObject()) {
 			return;
 		}
 		// don't return inside the function because the tilemap calls that to refresh on a day end

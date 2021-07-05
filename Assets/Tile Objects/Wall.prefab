@@ -125,6 +125,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   requirements:
   - {fileID: -4859926265722019215}
+  description: Unlocked by building a <color="#94fdff">Mason</color>.
 --- !u!114 &-4859926265722019215
 MonoBehaviour:
   m_ObjectHideFlags: 0
