@@ -214,6 +214,7 @@ public class TilemapVisuals : MonoBehaviour {
 		clickedTilemap.ClearAllTiles();
 		highlightTilemap.ClearAllTiles();
 		iconTilemap.ClearAllTiles();
+		currentSelectedGridPosition = new Vector3Int(999, 999, 999);
 	}
 
 	void ShowTileIcon(TileHighlight highlight) {

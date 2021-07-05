@@ -5,6 +5,7 @@ using System.Collections.Generic;
 
 public class Levels : MonoBehaviour {
 	#pragma warning disable 0649
+	[SerializeField] SceneReference mainMenu;
 	[SerializeField] List<SceneReference> levels;
 	#pragma warning restore 0649
 
@@ -17,5 +18,21 @@ public class Levels : MonoBehaviour {
 			}
 		}
 		return levelNumber;
+	}
+
+	public void ReloadLevel() {
+		SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+	}
+
+	public bool HasNextLeve() {
+		return GetLevelNumber() < levels.Count-1;
+	}
+
+	public void LoadNextLevel() {
+		SceneManager.LoadScene(levels[GetLevelNumber()+1]);
+	}
+
+	public void LoadMainMenu() {
+		SceneManager.LoadScene(mainMenu);
 	}
 }

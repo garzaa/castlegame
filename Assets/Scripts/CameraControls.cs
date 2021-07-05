@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.EventSystems;
 using UnityEngine.Tilemaps;
 
 public class CameraControls : MonoBehaviour {
@@ -13,6 +14,10 @@ public class CameraControls : MonoBehaviour {
 	}
 
 	void OnMouseOver() {
+		if (EventSystem.current.IsPointerOverGameObject()) {
+			return;
+		}
+
 		if (Input.GetMouseButtonDown(1)) {
 			StartPan();
 		}

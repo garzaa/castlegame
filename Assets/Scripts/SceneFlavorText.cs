@@ -34,4 +34,8 @@ public class SceneFlavorText : MonoBehaviour {
 		letterText.text += "\n\n<color='#ea323c'>FAILED.</color>\nYour Keep has fallen into ruin.";
 		letter.SetActive(true);
 	}
+	
+	public void ToggleLetter() {
+		letter.SetActive(!letter.activeSelf);
+	}
 }
