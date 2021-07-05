@@ -181,7 +181,7 @@ public class TileTracker : MonoBehaviour {
 	GameTile SpawnGameTile(ScriptableTile tile, Vector3Int position, bool initialize = true) {
 		GameTile tileBackend = Instantiate(tile.tileObject, tileContainer.transform).GetComponent<GameTile>();
 		tileBackend.gameObject.name = tile.tileObject.name;
-		if (initialize) tileBackend.Initialize(this, position, tile);
+		if (initialize) tileBackend.Initialize(this, position);
 		return tileBackend;
 	}
 

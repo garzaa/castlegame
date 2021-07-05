@@ -21,6 +21,7 @@ public class TilemapVisuals : MonoBehaviour {
 	Tilemap iconTilemap;
 	Tilemap clickedTilemap;
 	Tilemap previewTilemap;
+	Tilemap singleIconTilemap;
 	Vector3 mouseWorldPos;
 	Vector3Int gridMousePos;
 	TileTracker tracker;
@@ -40,6 +41,7 @@ public class TilemapVisuals : MonoBehaviour {
 		CreateIconTilemap();
 		CreateSelectedTilemap();
 		CreatePreviewTilemap();
+		CreateSingleIconTilemap();
 		CreateDoubleScaleCanvas();
 		console = GameObject.FindObjectOfType<CommandInput>();
 		tracker = GameObject.FindObjectOfType<TileTracker>();
@@ -94,6 +96,11 @@ public class TilemapVisuals : MonoBehaviour {
 	void CreatePreviewTilemap() {
 		previewTilemap = Instantiate(highlightTilemapTemplate, transform.parent);
 		previewTilemap.GetComponent<TilemapRenderer>().sortingOrder = clickedTilemap.GetComponent<TilemapRenderer>().sortingOrder + 1;
+	}
+
+	void CreateSingleIconTilemap() {
+		singleIconTilemap = Instantiate(highlightTilemapTemplate, transform.parent);
+		singleIconTilemap.GetComponent<TilemapRenderer>().sortingOrder = previewTilemap.GetComponent<TilemapRenderer>().sortingOrder + 1;
 	}
 
 	public void HighlightTile(Vector3Int gridPos) {
@@ -158,17 +165,20 @@ public class TilemapVisuals : MonoBehaviour {
 		ShowInfoBubble(gameTile);
 	}
 
-	public void ShowTilePreview(GameTile gameTile, bool valid, Vector3 tileWorldPosition) {
+	public void ShowTilePreview(ScriptableTile tile, bool valid, Vector3 tileWorldPosition) {
 		ClearTilePreview();
-		previewTilemap.SetTile(previewTilemap.WorldToCell(tileWorldPosition), gameTile.GetDefaultTile());
-		// if valid, render it and the associated effects on the preview tilemap
+		previewTilemap.SetTile(previewTilemap.WorldToCell(tileWorldPosition), tile);
+		// TODO: if valid, render it and the associated effects on the preview tilemap
 		// if not, just render it and the card info will take care of the rest
 	}
 
 	public void ClearTilePreview() {
 		// alleviate race condition on start
-		if (previewTilemap != null) {
+		if (previewTilemap) {
 			previewTilemap.ClearAllTiles();
+		}
+		if (singleIconTilemap) {
+			singleIconTilemap.ClearAllTiles();
 		}
 	}
 
@@ -193,6 +203,11 @@ public class TilemapVisuals : MonoBehaviour {
 		foreach (Vector3Int gridPos in highlight.targets) {
 			iconTilemap.SetTile(gridPos, highlight.tile);
 		}
+	}
+
+	public void ShowSingleIcon(Tile iconTile, Vector3Int gridPos) {
+		singleIconTilemap.ClearAllTiles();
+		singleIconTilemap.SetTile(gridMousePos, iconTile);
 	}
 
 	public void DisplayTileVisuals(GameTile tile) {

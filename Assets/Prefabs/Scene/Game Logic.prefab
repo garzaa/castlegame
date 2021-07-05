@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 7446156342293967067}
   - component: {fileID: 7446156342293967066}
   - component: {fileID: 8275086067848993557}
+  - component: {fileID: 3851189265226078732}
   m_Layer: 0
   m_Name: Game Logic
   m_TagString: Untagged
@@ -155,3 +156,17 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &3851189265226078732
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7446156342293967061}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c227417098af45f47b1d0bbfc00b907a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  dayEndEvent: {fileID: 11400000, guid: 14782ed59eec81e439ee3eef7be57673, type: 2}
+  dayStartEvent: {fileID: 11400000, guid: 72a9880ff50aecc4cb704f90f1a93721, type: 2}
