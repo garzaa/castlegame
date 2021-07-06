@@ -36,7 +36,10 @@ public class MainMenu : MonoBehaviour {
 	}
 
 	public void PopulateLevels() {
-
+		List<SceneReference> scenes = levels.GetLevels();
+		for (int i=0; i<scenes.Count; i++) {
+			string levelName = $"{i+1} - {levels.PathToLevelName(scenes[i].ScenePath)}";
+		}
 	}
 
 	public void Exit() {

@@ -39,4 +39,13 @@ public class Levels : MonoBehaviour {
 	public void LoadLevel(int levelNumber) {
 		SceneManager.LoadScene(levels[levelNumber]);
 	}
+
+	public List<SceneReference> GetLevels() {
+		return levels;
+	}
+
+	public string PathToLevelName(string path) {
+		string[] p = path.Split('/');
+		return p[p.Length-1].Split('.')[0];
+	}
 }
