@@ -21,6 +21,14 @@ public class PauseMenu : MonoBehaviour {
 		levels.ReloadLevel();
 	}
 
+	public void Exit() {
+		Application.Quit();
+	}
+
+	public void MainMenu() {
+		levels.LoadMainMenu();
+	}
+
 	void Update() {
 		if (Input.GetKeyDown(KeyCode.Escape)) {
 			pauseUI.SetActive(!pauseUI.activeSelf);

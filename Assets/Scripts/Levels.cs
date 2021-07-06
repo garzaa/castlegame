@@ -24,7 +24,7 @@ public class Levels : MonoBehaviour {
 		SceneManager.LoadScene(SceneManager.GetActiveScene().name);
 	}
 
-	public bool HasNextLeve() {
+	public bool HasNextLevel() {
 		return GetLevelNumber() < levels.Count-1;
 	}
 
@@ -34,5 +34,9 @@ public class Levels : MonoBehaviour {
 
 	public void LoadMainMenu() {
 		SceneManager.LoadScene(mainMenu);
+	}
+
+	public void LoadLevel(int levelNumber) {
+		SceneManager.LoadScene(levels[levelNumber]);
 	}
 }

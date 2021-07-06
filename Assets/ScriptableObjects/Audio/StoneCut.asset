@@ -13,5 +13,7 @@ MonoBehaviour:
   m_Name: StoneCut
   m_EditorClassIdentifier: 
   sounds:
+  - {fileID: 8300000, guid: cc6c8f06ebc1a9d418af4b19ea3a6744, type: 3}
   - {fileID: 8300000, guid: 5d85cd042995bb0489dfc0717acf819a, type: 3}
+  - {fileID: 8300000, guid: 5e36871d4fb590d459d9974aa9c74c7e, type: 3}
   - {fileID: 8300000, guid: 30d4b42e522c3fb4387aa26e05b73f23, type: 3}

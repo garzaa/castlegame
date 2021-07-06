@@ -120,6 +120,10 @@ public class TilemapVisuals : MonoBehaviour {
 	}
 
 	void OnMouseOver() {
+		if (!CardBase.dragged && EventSystem.current.IsPointerOverGameObject()) {
+			return;
+		}
+
 		mouseWorldPos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
 		gridMousePos = highlightTilemap.WorldToCell(mouseWorldPos);
 		gridMousePos.z = 0;
