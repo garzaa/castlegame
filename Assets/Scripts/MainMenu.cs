@@ -43,7 +43,7 @@ public class MainMenu : MonoBehaviour {
 			GameObject g = Instantiate(levelButtonTemplate, levelContainer.transform);
 			g.GetComponentInChildren<Text>().text = levelName;
 			// cant be i due to some weird closure bullshit
-			g.GetComponent<Button>().onClick.AddListener(() => LoadLevel(g.transform.GetSiblingIndex()));
+			g.GetComponent<Button>().onClick.AddListener(() => LoadLevel(g.transform.GetSiblingIndex()-1));
 			g.SetActive(true);
 		}
 	}
