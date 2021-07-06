@@ -2520,6 +2520,7 @@ GameObject:
   - component: {fileID: 2492592390099960217}
   - component: {fileID: 6673882393782581022}
   - component: {fileID: 3601700172047322206}
+  - component: {fileID: 2169897681753733669}
   - component: {fileID: 6007230121111461889}
   - component: {fileID: 3806404021140580151}
   m_Layer: 0
@@ -2776,6 +2777,34 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 2492592390099960217}
         m_MethodName: DealHand
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+--- !u!114 &2169897681753733669
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7446156342293967061}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1a5b31752242db0438c68ac6d7ff8afc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  gameEvent: {fileID: 11400000, guid: 14782ed59eec81e439ee3eef7be57673, type: 2}
+  priority: 0
+  response:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 3851189265226078732}
+        m_MethodName: CheckWinConditions
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

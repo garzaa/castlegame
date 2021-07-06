@@ -12,6 +12,8 @@ public class SceneFlavorText : MonoBehaviour {
 	[SerializeField] GameObject nextLevelButton;
 	[SerializeField] GameObject reloadButton;
 	DayTracker dayTracker;
+	bool won;
+	bool lost;
 	#pragma warning disable 0649
 
 	Levels levels;
@@ -32,6 +34,9 @@ public class SceneFlavorText : MonoBehaviour {
 	}
 
 	public void OnWin() {
+		if (lost) return;
+		won = true;
+
 		DayTracker dayTracker = GameObject.FindObjectOfType<DayTracker>();
 		letterText.text += "\n\nComplete!";
 		letterText.text += $"\nTook <color='#7a09fa'>{dayTracker.GetTotalDays()}</color> days & <color='#7a09fa'>{dayTracker.GetTotalActions()}</color> actions.";
@@ -40,6 +45,9 @@ public class SceneFlavorText : MonoBehaviour {
 	}
 
 	public void OnLose() {
+		if (won) return;
+		lost = true;
+
 		letterText.text += "\n\n<color='#ea323c'>FAILED.</color>\nYour Keep has fallen into ruin.";
 		letter.SetActive(true);
 		reloadButton.SetActive(true);

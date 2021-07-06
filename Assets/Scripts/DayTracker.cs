@@ -108,7 +108,7 @@ public class DayTracker : MonoBehaviour {
 		}
 	}
 
-	void CheckWinConditions() {
+	public void CheckWinConditions() {
 		if (wonLevel || gameOver) return;
 		WinCondition won = null;
 		foreach (WinCondition c in winConditions) {
