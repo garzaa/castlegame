@@ -11,6 +11,9 @@ public class CameraControls : MonoBehaviour {
 	void Start() {
 		tilemap = GetComponentInChildren<Tilemap>();
 		startingZ = Camera.main.transform.position.z;
+		Vector3 center = tilemap.localBounds.center;
+		center.z = startingZ;
+		Camera.main.transform.position = center;
 	}
 
 	void OnMouseOver() {

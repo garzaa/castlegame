@@ -2321,6 +2321,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a07ad876df277d148bd4112390d23772, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  priority: 0
   cardTemplate: {fileID: 1215693986421253864, guid: 142ee37533cdcd14e859202dc635d37c,
     type: 3}
   tiles:
@@ -2796,6 +2797,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bbc8d0e22be9a7b4b96cdf597b45e7e1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  priority: 10
   cutCard: {fileID: 3063625274570893236, guid: c51dd4535cca1fa45a4dbb0e303a60e2, type: 3}
   fixCard: {fileID: 4676610706114859099, guid: ec0ab04b4613100459202ebac07fee88, type: 3}
 --- !u!114 &3806404021140580151

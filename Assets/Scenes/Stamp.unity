@@ -196,7 +196,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d3fcd01105206b347bf0cbf22f15be7b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  days: 20
+  days: 10
 --- !u!114 &965712839
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -209,7 +209,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5d3b1605f5fdc7a4bb05c67c0a738a12, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  description: Survive a 20-day streak without taking any actions.
+  description: Survive a 10-day streak without taking any actions.
 --- !u!1001 &1075769683
 PrefabInstance:
   m_ObjectHideFlags: 0

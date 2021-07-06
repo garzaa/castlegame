@@ -3,7 +3,7 @@ using UnityEngine.Tilemaps;
 using System.Collections.Generic;
 using System.Linq;
 
-public class RequiredClaim : TileBehaviour, ITileValidator, ITileHighlighter, IStat {
+public class RequiredClaim : TileBehaviour, ITileValidator, ITileHighlighter, IStat, ICardStat {
 	[Tooltip("Link this to a GameTile asset")]
 	public Claimable claimable;
 	public Tile claimedTileIcon;

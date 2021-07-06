@@ -1,7 +1,7 @@
 using UnityEngine;
 using System.Collections.Generic;
 
-public class NeighborCriterion : TileBehaviour, ITileValidator {
+public class NeighborCriterion : TileBehaviour, ITileValidator, ICardStat {
 	public ScriptableTile neighborTile;
 
 	public bool Valid(TileTracker tracker, Vector3Int pos, ref List<string> message) {
@@ -14,5 +14,9 @@ public class NeighborCriterion : TileBehaviour, ITileValidator {
 		message.Add(m);
 		CommandInput.Log(m);
 		return false;
+	}
+
+	public string Stat() {
+		return $"Needs a neighboring <color='#94fdff'>{neighborTile.tileObject.name}</color>.";
 	}
 }

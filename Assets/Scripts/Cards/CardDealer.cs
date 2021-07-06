@@ -1,5 +1,6 @@
 using UnityEngine;
 using System;
+using System.Linq;
 using System.Collections;
 using System.Collections.Generic;
 
@@ -44,7 +45,10 @@ public class CardDealer : MonoBehaviour {
 		}
 		firstDay = false;
 		List<CardBase> cards = new List<CardBase>();
-		foreach (CardSource cardSource in GameObject.FindObjectsOfType<CardSource>()) {
+		CardSource[] sources = GameObject.FindObjectsOfType<CardSource>()
+			.OrderByDescending(x => x.priority)
+			.ToArray();
+		foreach (CardSource cardSource in sources) {
 			cards.AddRange(cardSource.GetCards());
 		}
 		StartCoroutine(DealCards(cards));

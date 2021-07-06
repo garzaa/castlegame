@@ -167,11 +167,11 @@ PrefabInstance:
     - target: {fileID: 3824776358076315849, guid: 1e409b8e0369fe74eb70661417ad1886,
         type: 3}
       propertyPath: text
-      value: 'The rest of the caravan''s snowed out at the pass. We need to survive
-        for the next few weeks until they get here.
+      value: 'Caravan''s snowed out at the pass. We need to survive until they get
+        here.
 
-        Better build on this
-        bank. I don''t like the looks of that forest.'
+        Better build on this bank. I don''t like the looks of that
+        forest.'
       objectReference: {fileID: 0}
     - target: {fileID: 3824776358076315855, guid: 1e409b8e0369fe74eb70661417ad1886,
         type: 3}
