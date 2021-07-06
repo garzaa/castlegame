@@ -152,10 +152,11 @@ public class TileTracker : MonoBehaviour {
 		return tileContainer.GetComponentsInChildren<T>(includeInactive: false);
 	}
 
-	public bool ReplaceTile(Vector3Int position, ScriptableTile newTile) {
+	public bool ReplaceTile(Vector3Int position, ScriptableTile newTile, bool validate=false) {
 		GameTile oldTileBackend = GetTileNoRedirect(position);
 
-		if (!ValidPlacement(newTile, position).Item1) {
+		if (validate && !ValidPlacement(newTile, position).Item1) {
+			Debug.Log("invalid placement for tile replace, returning false");
 			return false;
 		}
 
