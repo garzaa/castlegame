@@ -17,7 +17,7 @@ public class SceneFlavorText : MonoBehaviour {
 	Levels levels;
 
 	void Start() {
-		letterText.text = $"Level {GameObject.FindObjectOfType<Levels>().GetLevelNumber()}: {SceneManager.GetActiveScene().name}";
+		letterText.text = $"Level {GameObject.FindObjectOfType<Levels>().GetLevelNumber()+1}: {SceneManager.GetActiveScene().name}";
 
 		letterText.text += "\n\n"+this.text;
 
