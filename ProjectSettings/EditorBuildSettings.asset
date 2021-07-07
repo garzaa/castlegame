@@ -29,4 +29,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Prism.unity
     guid: 8c30dc18fa39ef34baf90619da8f1888
+  - enabled: 1
+    path: Assets/Scenes/Mason.unity
+    guid: 706ddaae977961e438b13d9e9040b4d0
   m_configObjects: {}

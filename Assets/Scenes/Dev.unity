@@ -151,7 +151,7 @@ PrefabInstance:
     - target: {fileID: 1495139037890189929, guid: 142ee37533cdcd14e859202dc635d37c,
         type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 64.5
+      value: 51
       objectReference: {fileID: 0}
     - target: {fileID: 1495139037890189929, guid: 142ee37533cdcd14e859202dc635d37c,
         type: 3}
@@ -196,7 +196,7 @@ PrefabInstance:
     - target: {fileID: 5337405326243021509, guid: 142ee37533cdcd14e859202dc635d37c,
         type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 26.5
+      value: 22
       objectReference: {fileID: 0}
     - target: {fileID: 5337405326243021509, guid: 142ee37533cdcd14e859202dc635d37c,
         type: 3}
@@ -10764,7 +10764,7 @@ PrefabInstance:
         type: 3}
       propertyPath: m_TileSpriteArray.Array.data[6].m_Data
       value: 
-      objectReference: {fileID: 1989914244804095440, guid: 8aca2103d1cf2be44b8c1a0359e681c8,
+      objectReference: {fileID: -3298002869832431796, guid: 0dbc15b63f7daab4ba2650a30007ea8b,
         type: 3}
     - target: {fileID: 3904237846106684282, guid: 8564094a89093584ba015e82b97dab79,
         type: 3}

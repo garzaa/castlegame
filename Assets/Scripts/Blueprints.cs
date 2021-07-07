@@ -1,11 +1,14 @@
 using UnityEngine;
 using System.Collections.Generic;
+using System.Linq;
 
 public class Blueprints : CardSource {
 	#pragma warning disable 0649
 	[SerializeField] BlueprintCard cardTemplate;
 	[SerializeField] List<GameTile> tiles;
 	#pragma warning restore 0649
+
+	HashSet<GameTile> lastSourced = new HashSet<GameTile>();
 
 	TileTracker tileTracker;
 
@@ -18,6 +21,7 @@ public class Blueprints : CardSource {
 	}
 
 	override public List<CardBase> GetCards() {
+		lastSourced.Clear();
 		if (tileTracker == null) tileTracker = GameObject.FindObjectOfType<TileTracker>();
 		List<CardBase> cards = new List<CardBase>();
 		// for each blueprint
@@ -25,17 +29,32 @@ public class Blueprints : CardSource {
 		foreach (GameTile tile in tiles) {
 			BlueprintUnlock unlock = tile.GetComponent<BlueprintUnlock>();
 			if (unlock && unlock.Unlocked(tileTracker)) {
-				BlueprintCard card = Instantiate(cardTemplate);
-				card.gameObject.SetActive(false);
-				card.Initialize(tile);
-				cards.Add(card);
+				cards.Add(SpawnCard(tile));
+				lastSourced.Add(tile);
 			} else if (!unlock) {
-				BlueprintCard card = Instantiate(cardTemplate);
-				card.gameObject.SetActive(false);
-				card.Initialize(tile);
-				cards.Add(card);
+				cards.Add(SpawnCard(tile));
+				lastSourced.Add(tile);
 			}
 		}
 		return cards;
+	}
+
+	override public List<CardBase> GetMidRoundCards() {
+		List<CardBase> newCards = new List<CardBase>();
+		foreach (GameTile tile in tiles) {
+			BlueprintUnlock unlock = tile.GetComponent<BlueprintUnlock>();
+			if (unlock && !lastSourced.Contains(tile) && unlock.Unlocked(tileTracker)) {
+				newCards.Add(SpawnCard(tile));
+				lastSourced.Add(tile);
+			}
+		}
+		return newCards;
+	}
+
+	BlueprintCard SpawnCard(GameTile tile) {
+		BlueprintCard card = Instantiate(cardTemplate);
+		card.gameObject.SetActive(false);
+		card.Initialize(tile);
+		return card;
 	}
 }

@@ -1477,7 +1477,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.96470594, g: 0.5058824, b: 0.5294118, a: 1}
+  m_Color: {r: 0.99215686, g: 0.8235294, b: 0.92941177, a: 1}
   m_RaycastTarget: 1
   m_Maskable: 1
   m_OnCullStateChanged:
@@ -2947,6 +2947,17 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 2492592390099960217}
+        m_MethodName: OnGameBoardChanged
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &6007230121111461889
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2988,10 +2999,12 @@ MonoBehaviour:
     scenePath: Assets/Scenes/Cross.unity
   - sceneAsset: {fileID: 102900000, guid: 6bd3e0eb11676044fa49b9906d0967bc, type: 3}
     scenePath: Assets/Scenes/Rocks.unity
-  - sceneAsset: {fileID: 102900000, guid: 926c808a33ad4ec489cbf05f3fb0a35d, type: 3}
-    scenePath: Assets/Scenes/Walls.unity
   - sceneAsset: {fileID: 102900000, guid: 8c30dc18fa39ef34baf90619da8f1888, type: 3}
     scenePath: Assets/Scenes/Prism.unity
+  - sceneAsset: {fileID: 102900000, guid: 706ddaae977961e438b13d9e9040b4d0, type: 3}
+    scenePath: Assets/Scenes/Mason.unity
+  - sceneAsset: {fileID: 102900000, guid: 926c808a33ad4ec489cbf05f3fb0a35d, type: 3}
+    scenePath: Assets/Scenes/Walls.unity
 --- !u!1 &7521108471282931938
 GameObject:
   m_ObjectHideFlags: 0

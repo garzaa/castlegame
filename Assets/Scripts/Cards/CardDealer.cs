@@ -45,13 +45,18 @@ public class CardDealer : MonoBehaviour {
 		}
 		firstDay = false;
 		List<CardBase> cards = new List<CardBase>();
-		CardSource[] sources = GameObject.FindObjectsOfType<CardSource>()
-			.OrderByDescending(x => x.priority)
-			.ToArray();
-		foreach (CardSource cardSource in sources) {
+		
+		foreach (CardSource cardSource in GetCardSources()) {
 			cards.AddRange(cardSource.GetCards());
 		}
+
 		StartCoroutine(DealCards(cards));
+	}
+
+	CardSource[] GetCardSources() {
+		return GameObject.FindObjectsOfType<CardSource>()
+			.OrderByDescending(x => x.priority)
+			.ToArray();
 	}
 
 	Vector3 KeepToScreen() {
@@ -73,5 +78,13 @@ public class CardDealer : MonoBehaviour {
 			card.gameObject.SetActive(true);
 			yield return new WaitForSeconds(cardInterval);
 		}
+	}
+
+	public void OnGameBoardChanged() {
+		List<CardBase> cards = new List<CardBase>();
+		foreach (CardSource source in GetCardSources()) {
+			cards.AddRange(source.GetMidRoundCards());
+		}
+		StartCoroutine(DealCards(cards));
 	}
 }
