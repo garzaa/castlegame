@@ -155,7 +155,7 @@ public class CardBase : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
 		throw new System.NotImplementedException();
 	}
 
-	virtual protected void _TargetTile(Vector3 tileWorldPosition) {
+	protected virtual void _TargetTile(Vector3 tileWorldPosition) {
 		throw new System.NotImplementedException();
 	}
 

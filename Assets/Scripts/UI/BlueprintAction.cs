@@ -1,13 +1,7 @@
 using UnityEngine;
 using UnityEngine.UI;
-using UnityEngine.EventSystems;
-using UnityEngine.Tilemaps;
-using System;
-using System.Collections.Generic;
-using System.Collections;
 
-[RequireComponent(typeof(TargetLerp))]
-public class BlueprintCard : CardBase {
+public class BlueprintAction : ActionButton {
 
 	#pragma warning disable 0649
 	[Header("Linked Data")]
@@ -25,36 +19,6 @@ public class BlueprintCard : CardBase {
 	override protected void Start() {
 		base.Start();
 		if (gameTile) Initialize(gameTile);
-	}
-
-	override protected void _TargetTile(Vector3 tileWorldPosition) {
-		if (!boardTarget) {
-			boardTarget = new GameObject();
-			boardTarget.transform.parent = dragged.transform.parent;
-		}
-		float margin = 3f/(float)CameraZoom.GetZoomLevel();
-		boardTarget.transform.position = Camera.main.WorldToScreenPoint(tileWorldPosition + (Vector3.up * margin));
-		lerp.SetTarget(boardTarget);
-		targetingBoard = true;
-
-		// hide bool whatever
-		animator.SetBool("PlacePreview", true);
-
-		PlacementTestResult r = tileTracker.ValidPlacement(gameTile, tileTracker.WorldToBoard(tileWorldPosition));
-		ScriptableTile defaultTile = this.gameTile.GetDefaultTile();
-		tilemapVisuals.ShowTilePreview(this.gameTile.GetDefaultTile(), placementTest.Item1, tileWorldPosition);
-
-		// show/hide invalid warning
-		if (!r.valid) {
-			base.ShowPlaceWarning(r.message, tileWorldPosition, 0);
-		} else {
-			HidePlacementWarning();
-		}
-	}
-
-	protected override void OnDrop(Vector3Int boardPosition) {
-		tileTracker.ReplaceTile(boardPosition, this.gameTile.GetDefaultTile());
-		Destroy(this.gameObject);
 	}
 
 	public void Initialize(GameTile tile) {
@@ -83,5 +47,25 @@ public class BlueprintCard : CardBase {
 		}
 
 		RebuildUI();
+	}
+
+	protected override void TargetTile(Vector3 tileWorldPosition) {
+		PlacementTestResult r = TestPlacement(tileTracker.WorldToBoard(tileWorldPosition));
+		ScriptableTile defaultTile = this.gameTile.GetDefaultTile();
+		tilemapVisuals.ShowTilePreview(this.gameTile.GetDefaultTile(), r.valid, tileWorldPosition);
+
+		if (!r.valid) {
+			ShowActionWarning(r.message, tileWorldPosition, 0);
+		} else {
+			HideActionWarning();
+		}
+	}
+
+	protected override PlacementTestResult TestPlacement(Vector3Int boardPosition) {
+		return tileTracker.ValidPlacement(gameTile, boardPosition);
+	}
+
+	protected override void ApplyAction(Vector3Int boardPosition) {
+		tileTracker.ReplaceTile(boardPosition, this.gameTile.GetDefaultTile());
 	}
 }

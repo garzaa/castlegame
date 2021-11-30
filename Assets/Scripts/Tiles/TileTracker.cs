@@ -155,7 +155,7 @@ public class TileTracker : MonoBehaviour {
 	public bool ReplaceTile(Vector3Int position, ScriptableTile newTile, bool validate=false) {
 		GameTile oldTileBackend = GetTileNoRedirect(position);
 
-		if (validate && !ValidPlacement(newTile, position).Item1) {
+		if (validate && !ValidPlacement(newTile, position).valid) {
 			Debug.Log("invalid placement for tile replace, returning false");
 			return false;
 		}
@@ -190,11 +190,11 @@ public class TileTracker : MonoBehaviour {
 		return tileBackend;
 	}
 
-	public Tuple<bool, string> ValidPlacement(ScriptableTile newTile, Vector3Int pos) {
+	public PlacementTestResult ValidPlacement(ScriptableTile newTile, Vector3Int pos) {
 		return ValidPlacement(newTile.tileObject.GetComponent<GameTile>(), pos);
 	}
 
-	public Tuple<bool, string> ValidPlacement(GameTile newTile, Vector3Int pos) {
+	public PlacementTestResult ValidPlacement(GameTile newTile, Vector3Int pos) {
 		ITileValidator[] criteria = newTile.GetComponents<ITileValidator>();
 		bool valid = true;
 		List<string> message = new List<string>();
@@ -203,7 +203,7 @@ public class TileTracker : MonoBehaviour {
 				valid = false;
 			}
 		}
-		return new Tuple<bool, string>(valid, String.Join("\n", message));
+		return new PlacementTestResult(valid, String.Join("\n", message));
 	}
 
 	public void RepairTile(Vector3Int pos) {

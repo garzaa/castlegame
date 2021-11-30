@@ -12,14 +12,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 088e44299747c984b87165029a9c2838, type: 3}
   m_Name: KeepTile
   m_EditorClassIdentifier: 
-  m_DefaultSprite: {fileID: -475093430938194681, guid: 8aca2103d1cf2be44b8c1a0359e681c8,
-    type: 3}
+  m_DefaultSprite: {fileID: 21300000, guid: 19828eed3e3fd214782f8c595b2ad77b, type: 3}
   m_DefaultGameObject: {fileID: 0}
   m_DefaultColliderType: 1
   m_TilingRules:
   - m_Id: 0
     m_Sprites:
-    - {fileID: -475093430938194681, guid: 8aca2103d1cf2be44b8c1a0359e681c8, type: 3}
+    - {fileID: 21300000, guid: 19828eed3e3fd214782f8c595b2ad77b, type: 3}
     m_GameObject: {fileID: 0}
     m_AnimationSpeed: 1
     m_PerlinScale: 0.5

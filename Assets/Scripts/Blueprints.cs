@@ -6,6 +6,7 @@ public class Blueprints : CardSource {
 	#pragma warning disable 0649
 	[SerializeField] BlueprintCard cardTemplate;
 	[SerializeField] List<GameTile> tiles;
+	// TODO: add a buttonTemplate thing
 	#pragma warning restore 0649
 
 	HashSet<GameTile> lastSourced = new HashSet<GameTile>();

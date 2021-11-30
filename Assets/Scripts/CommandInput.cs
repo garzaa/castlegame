@@ -113,12 +113,11 @@ public class CommandInput : MonoBehaviour {
 	}
 
 	public static void Log(string s) {
-		return;
-		GameObject g = Instantiate(c.textOutput, c.textOutputParent);
-		g.GetComponent<Text>().text = s;
-		if (c.textOutputParent.transform.childCount > maxScrollback) {
-			GameObject.Destroy(c.textOutputParent.transform.GetChild(0));
-		}
+		// GameObject g = Instantiate(c.textOutput, c.textOutputParent);
+		// g.GetComponent<Text>().text = s;
+		// if (c.textOutputParent.transform.childCount > maxScrollback) {
+		// 	GameObject.Destroy(c.textOutputParent.transform.GetChild(0));
+		// }
 	}
 
 	void ParseCommand(string originalCommand) {

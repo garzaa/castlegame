@@ -28,6 +28,7 @@ public class TilemapVisuals : MonoBehaviour {
 	Vector3 mouseWorldPos;
 	Vector3Int gridMousePos;
 	TileTracker tracker;
+	ActionTargeter actionTargeter;
 
 	GameObject currentInfoBubble;
 	bool showingTileVisuals;
@@ -48,6 +49,7 @@ public class TilemapVisuals : MonoBehaviour {
 		CreateDoubleScaleCanvas();
 		console = GameObject.FindObjectOfType<CommandInput>();
 		tracker = GameObject.FindObjectOfType<TileTracker>();
+		actionTargeter = GameObject.FindObjectOfType<ActionTargeter>();
 		origin = tilemap.cellBounds.min;
 
 		for (int i=0; i<tilemap.cellBounds.size.x; i++) {
@@ -120,7 +122,11 @@ public class TilemapVisuals : MonoBehaviour {
 	}
 
 	void OnMouseOver() {
-		if (!CardBase.dragged && EventSystem.current.IsPointerOverGameObject()) {
+		// if (!CardBase.dragged && EventSystem.current.IsPointerOverGameObject()) {
+		// 	return;
+		// }
+		if (EventSystem.current.IsPointerOverGameObject()) {
+			// don't highlight if paused
 			return;
 		}
 
@@ -134,14 +140,22 @@ public class TilemapVisuals : MonoBehaviour {
 
 		if (gridMousePos == targetedTile) return;
 		targetedTile = gridMousePos;
-		if (CardBase.dragged) {
-			CardBase.TargetTile(tilemap.CellToWorld(targetedTile));
-			ShowSingleIcon(CardBase.dragged.GetActionIcon(), gridMousePos);
-		} else if (CardBase.hovered) {
-			// don't track mouse position if the player is just looking
-			highlightTilemap.ClearAllTiles();
-			return;
+
+		// if an action is armed, run its targeting
+		if (actionTargeter.IsArmed()) {
+			ActionButton action = actionTargeter.GetArmedAction();
+			action.OnTileHover(tilemap.CellToWorld(targetedTile));
+			ShowSingleIcon(action.GetActionIcon(), gridMousePos);
 		}
+
+		// if (CardBase.dragged) {
+		// 	CardBase.TargetTile(tilemap.CellToWorld(targetedTile));
+		// 	ShowSingleIcon(CardBase.dragged.GetActionIcon(), gridMousePos);
+		// } else if (CardBase.hovered) {
+		// 	// don't track mouse position if the player is just looking
+		// 	highlightTilemap.ClearAllTiles();
+		// 	return;
+		// }
 	
 		highlightTilemap.ClearAllTiles();
 		HighlightTile(gridMousePos);
@@ -151,6 +165,11 @@ public class TilemapVisuals : MonoBehaviour {
 		if (CardBase.dragged) {
 			CardBase.StopTargetingTile();
 			ClearTilePreview();
+		}
+
+		if (actionTargeter.IsArmed()) {
+			ClearTilePreview();
+			highlightTilemap.ClearAllTiles();
 		}
 	}
 
@@ -164,7 +183,16 @@ public class TilemapVisuals : MonoBehaviour {
 		OnTileClick(gridMousePos);
 	}
 
+	public void OnActionDisarm() {
+		ClearTilePreview();
+		highlightTilemap.ClearAllTiles();
+	}
+
 	void OnTileClick(Vector3Int gridPos, bool silent=false) {
+		if (actionTargeter.IsArmed()) {
+			return;
+		}
+
 		GameTile gameTile = tracker.GetTileNoRedirect(tracker.CellToBoard(gridPos));
 		if (gameTile == null) return;
 		currentSelectedGridPosition = gridPos;
@@ -176,8 +204,6 @@ public class TilemapVisuals : MonoBehaviour {
 	public void ShowTilePreview(ScriptableTile tile, bool valid, Vector3 tileWorldPosition) {
 		ClearTilePreview();
 		previewTilemap.SetTile(previewTilemap.WorldToCell(tileWorldPosition), tile);
-		// TODO: if valid, render it and the associated effects on the preview tilemap
-		// if not, just render it and the card info will take care of the rest
 	}
 
 	public void ClearTilePreview() {
