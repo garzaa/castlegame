@@ -36,7 +36,9 @@ public class ActionTargeter : MonoBehaviour {
 	}
 
 	public void ClearArmedAction() {
-		armedAction.Disarm();
+		if (armedAction != null) {
+			armedAction.Disarm();
+		}
 		armedAction = null;
 		tilemapVisuals.OnActionDisarm();
 	}
