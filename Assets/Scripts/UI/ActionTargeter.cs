@@ -6,6 +6,7 @@ public class ActionTargeter : MonoBehaviour {
 	TilemapVisuals tilemapVisuals;
 	TileTracker tileTracker;
 	Transform errorContainer;
+	Vector3 rightClickStart = Vector3.zero;
 
 	void Start() {
 		tilemapVisuals = GameObject.FindObjectOfType<TilemapVisuals>();
@@ -24,6 +25,9 @@ public class ActionTargeter : MonoBehaviour {
 	}
 
 	public void SetArmedAction(ActionButton actionButton) {
+		if (GetArmedAction() != actionButton) {
+			ClearArmedAction();
+		}
 		armedAction = actionButton;
 	}
 
@@ -44,25 +48,32 @@ public class ActionTargeter : MonoBehaviour {
 	}
 
 	void Update() {
-		if (Input.GetMouseButtonDown(1)) {
-			// right click to clear the current armed action
-			ClearArmedAction();
-		} else if (Input.GetMouseButtonDown(0)) {
+		if (Input.GetMouseButtonDown(0)) {
 			if (!IsArmed()) return;
 			if (EventSystem.current.IsPointerOverGameObject()) return;
 			
 			ApplyArmedAction();
+		} else {
+			// right click to clear the current armed action
+			if (Input.GetMouseButtonDown(1)) {
+				rightClickStart = Input.mousePosition;
+			}
+			
+			if (Input.GetMouseButtonUp(1)) {
+				if (Vector3.Distance(rightClickStart, Input.mousePosition) < 10f) {
+					ClearArmedAction();
+				}
+			}
 		}
 	}
 
 	void ApplyArmedAction() {
-		tilemapVisuals.ClearTilePreview();
 		Vector3 mouseWorldPos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
 		mouseWorldPos.z = 0;
-		tilemapVisuals.ClearTilePreview();
 		Vector3Int boardPosition = tileTracker.WorldToBoard(mouseWorldPos);
 		if (armedAction.TryToApplyAction(boardPosition)) {
-			ClearArmedAction();
+			tilemapVisuals.ClearTilePreview();
+			// ClearArmedAction();
 		}
 	}
 

@@ -65,6 +65,18 @@ public class TilemapVisuals : MonoBehaviour {
 		if (Input.GetKeyDown(KeyCode.Escape)) {
 			HideInfoBubble();
 		}
+
+		// have to call this here since onmousedown doesn't fire if you click outside the board
+		if (Input.GetMouseButtonDown(0)) {
+			mouseWorldPos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+			gridMousePos = highlightTilemap.WorldToCell(mouseWorldPos);
+			gridMousePos.z = 0;
+			GameTile gameTile = tracker.GetTileNoRedirect(tracker.CellToBoard(gridMousePos));
+			if (gameTile == null) {
+				HideInfoBubble();
+				return;
+			}
+		}
 	}
 
 	void AddLetterLegend(int idx) {
@@ -148,15 +160,6 @@ public class TilemapVisuals : MonoBehaviour {
 			ShowSingleIcon(action.GetActionIcon(), gridMousePos);
 		}
 
-		// if (CardBase.dragged) {
-		// 	CardBase.TargetTile(tilemap.CellToWorld(targetedTile));
-		// 	ShowSingleIcon(CardBase.dragged.GetActionIcon(), gridMousePos);
-		// } else if (CardBase.hovered) {
-		// 	// don't track mouse position if the player is just looking
-		// 	highlightTilemap.ClearAllTiles();
-		// 	return;
-		// }
-	
 		highlightTilemap.ClearAllTiles();
 		HighlightTile(gridMousePos);
 	}
@@ -170,16 +173,16 @@ public class TilemapVisuals : MonoBehaviour {
 		if (actionTargeter.IsArmed()) {
 			ClearTilePreview();
 			highlightTilemap.ClearAllTiles();
+			actionTargeter.GetArmedAction().HideActionWarning();
 		}
 	}
 
 	void OnMouseDown() {
 		// this will fire if a card is being held or peeked over the board
-		if (EventSystem.current.IsPointerOverGameObject()) {
+		// or if the board is anything but left-clicked
+		if (EventSystem.current.IsPointerOverGameObject() || !Input.GetMouseButton(0)) {
 			return;
 		}
-		// don't return inside the function because the tilemap calls that to refresh on a day end
-		if (gridMousePos == currentSelectedGridPosition) return;
 		OnTileClick(gridMousePos);
 	}
 
@@ -194,7 +197,18 @@ public class TilemapVisuals : MonoBehaviour {
 		}
 
 		GameTile gameTile = tracker.GetTileNoRedirect(tracker.CellToBoard(gridPos));
-		if (gameTile == null) return;
+		if (gameTile == null) {
+			Debug.Log("out of bounds");
+			HideInfoBubble();
+			return;
+		}
+
+		// silent if the info bubble is being refreshed on a gameboard change
+		if (currentSelectedGridPosition == gridPos && !silent) {
+			HideInfoBubble();
+			return;
+		}
+
 		currentSelectedGridPosition = gridPos;
 		if (!silent) gameTile.PlayQuerySound();
 		DisplayTileVisuals(gameTile);
@@ -204,6 +218,10 @@ public class TilemapVisuals : MonoBehaviour {
 	public void ShowTilePreview(ScriptableTile tile, bool valid, Vector3 tileWorldPosition) {
 		ClearTilePreview();
 		previewTilemap.SetTile(previewTilemap.WorldToCell(tileWorldPosition), tile);
+	}
+
+	public void HideTilePreview() {
+		ClearTilePreview();
 	}
 
 	public void ClearTilePreview() {

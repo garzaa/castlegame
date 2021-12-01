@@ -35,7 +35,9 @@ public class PlayerResources : MonoBehaviour {
 		foreach (ResourceAmount r in requirements) {
 			pr.resources[r.resource] -= r.amount;
 			pr.resources[r.resource] = Mathf.Max(pr.resources[r.resource], 0);
-			pr.resourceContainers[r.resource].GetComponentInChildren<Text>().text = pr.resources[r.resource].ToString();
+			GameObject g = pr.resourceContainers[r.resource];
+			g.GetComponent<Animator>().SetTrigger("Twitch");
+			g.GetComponentInChildren<Text>().text = pr.resources[r.resource].ToString();
 			if (log) CommandInput.Log($"{r.amount} {r.resource.name} removed");
 		}
 	}
@@ -44,7 +46,9 @@ public class PlayerResources : MonoBehaviour {
 		foreach (ResourceAmount r in requirements) {
 			if (pr.resources.ContainsKey(r.resource)) {
 				pr.resources[r.resource] += r.amount;
-				pr.resourceContainers[r.resource].GetComponentInChildren<Text>().text = pr.resources[r.resource].ToString();
+				GameObject g = pr.resourceContainers[r.resource];
+				g.GetComponent<Animator>().SetTrigger("Twitch");
+				g.GetComponentInChildren<Text>().text = pr.resources[r.resource].ToString();
 			} else {
 				pr.resources[r.resource] = r.amount;
 				pr.AddResourceVisual(r);

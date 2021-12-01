@@ -18,8 +18,10 @@ public class FixAction : EditAction {
 		}
 		TileAge age = tile.GetComponent<TileAge>();
 		bool repairable = age && tile.IsTileType(repairableType);
-		if (!repairable) message = $"{tile.name} can't be repaired.";
-		if (age && age.GetAge() <= 0) {
+		if (!repairable) {
+			message = $"{tile.name} can't be repaired.";
+		}
+		else if (age && age.GetAge() <= 0) {
 			repairable = false;
 			message = $"{tile.name} is too new to be repaired.";
 		}

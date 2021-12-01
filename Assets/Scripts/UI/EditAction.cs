@@ -5,11 +5,12 @@ public class EditAction : ActionButton {
 		Vector3Int boardPosition = tileTracker.WorldToBoard(tileWorldPosition);
 		PlacementTestResult r = TestPlacement(boardPosition);
 		GameTile targetedTile = tileTracker.GetTileNoRedirect(boardPosition);
-		tilemapVisuals.ShowTilePreview(GetPreviewTile(boardPosition, targetedTile), r.valid, tileWorldPosition);
 
 		if (!r.valid) {
 			ShowActionWarning(r.message, tileWorldPosition, 0);
+			tilemapVisuals.HideTilePreview();
 		} else {
+			tilemapVisuals.ShowTilePreview(GetPreviewTile(boardPosition, targetedTile), r.valid, tileWorldPosition);
 			HideActionWarning();
 		}
 	}

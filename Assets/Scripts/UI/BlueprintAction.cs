@@ -8,6 +8,7 @@ public class BlueprintAction : ActionButton {
 	[SerializeField] GameTile gameTile;
 	[SerializeField] Text tileName;
 	[SerializeField] Image tileIcon;
+	[SerializeField] Image buttonIcon;
 	[SerializeField] Transform tileInfoContainer;
 	[SerializeField] Transform resourceContainer;
 
@@ -28,6 +29,9 @@ public class BlueprintAction : ActionButton {
 		tileIcon.sprite = tile.GetDefaultTile().m_DefaultSprite;
 		tileIcon.SetNativeSize();
 		gameTile = tile;
+
+		buttonIcon.sprite = tile.GetDefaultTile().m_DefaultSprite;
+		buttonIcon.SetNativeSize();
 
 		tileName.text = tile.name;
 
@@ -52,12 +56,13 @@ public class BlueprintAction : ActionButton {
 	protected override void TargetTile(Vector3 tileWorldPosition) {
 		PlacementTestResult r = TestPlacement(tileTracker.WorldToBoard(tileWorldPosition));
 		ScriptableTile defaultTile = this.gameTile.GetDefaultTile();
-		tilemapVisuals.ShowTilePreview(this.gameTile.GetDefaultTile(), r.valid, tileWorldPosition);
 
 		if (!r.valid) {
 			ShowActionWarning(r.message, tileWorldPosition, 0);
+			tilemapVisuals.HideTilePreview();
 		} else {
 			HideActionWarning();
+			tilemapVisuals.ShowTilePreview(this.gameTile.GetDefaultTile(), r.valid, tileWorldPosition);
 		}
 	}
 

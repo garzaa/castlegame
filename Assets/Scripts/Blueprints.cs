@@ -2,11 +2,10 @@ using UnityEngine;
 using System.Collections.Generic;
 using System.Linq;
 
-public class Blueprints : CardSource {
+public class Blueprints : ButtonSource {
 	#pragma warning disable 0649
-	[SerializeField] BlueprintCard cardTemplate;
+	[SerializeField] BlueprintAction buttonTemplate;
 	[SerializeField] List<GameTile> tiles;
-	// TODO: add a buttonTemplate thing
 	#pragma warning restore 0649
 
 	HashSet<GameTile> lastSourced = new HashSet<GameTile>();
@@ -21,41 +20,40 @@ public class Blueprints : CardSource {
 		return tiles;
 	}
 
-	override public List<CardBase> GetCards() {
+	override public List<ActionButton> GetButtons() {
 		lastSourced.Clear();
 		if (tileTracker == null) tileTracker = GameObject.FindObjectOfType<TileTracker>();
-		List<CardBase> cards = new List<CardBase>();
+		List<ActionButton> buttons = new List<ActionButton>();
 		// for each blueprint
 		// if it's got a blueprint unlock, and it's satisfied, then make a new card, initialize it, and add it to the hand
 		foreach (GameTile tile in tiles) {
 			BlueprintUnlock unlock = tile.GetComponent<BlueprintUnlock>();
 			if (unlock && unlock.Unlocked(tileTracker)) {
-				cards.Add(SpawnCard(tile));
+				buttons.Add(SpawnButton(tile));
 				lastSourced.Add(tile);
 			} else if (!unlock) {
-				cards.Add(SpawnCard(tile));
+				buttons.Add(SpawnButton(tile));
 				lastSourced.Add(tile);
 			}
 		}
-		return cards;
+		return buttons;	
 	}
 
-	override public List<CardBase> GetMidRoundCards() {
-		List<CardBase> newCards = new List<CardBase>();
+	override public List<ActionButton> GetMidRoundButtons() {
+		List<ActionButton> newButtons = new List<ActionButton>();
 		foreach (GameTile tile in tiles) {
 			BlueprintUnlock unlock = tile.GetComponent<BlueprintUnlock>();
 			if (unlock && !lastSourced.Contains(tile) && unlock.Unlocked(tileTracker)) {
-				newCards.Add(SpawnCard(tile));
+				newButtons.Add(SpawnButton(tile));
 				lastSourced.Add(tile);
 			}
 		}
-		return newCards;
+		return newButtons;
 	}
 
-	BlueprintCard SpawnCard(GameTile tile) {
-		BlueprintCard card = Instantiate(cardTemplate);
-		card.gameObject.SetActive(false);
-		card.Initialize(tile);
-		return card;
+	BlueprintAction SpawnButton(GameTile tile) {
+		BlueprintAction b = Instantiate(buttonTemplate);
+		b.Initialize(tile);
+		return b;
 	}
 }

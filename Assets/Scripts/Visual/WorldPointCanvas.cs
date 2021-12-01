@@ -6,6 +6,7 @@ public class WorldPointCanvas : MonoBehaviour {
 
     new Camera camera;
     public Vector2 position;
+    public GameObject optionalAnchor;
     RectTransform r;
 
     void Start() {
@@ -14,6 +15,7 @@ public class WorldPointCanvas : MonoBehaviour {
     }
 
     void LateUpdate() {
+        if (optionalAnchor) position = optionalAnchor.transform.position;
         r.position = camera.WorldToScreenPoint(position);
     }
 }

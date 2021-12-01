@@ -11,9 +11,11 @@ public class SceneFlavorText : MonoBehaviour {
 	[SerializeField] GameObject letter;
 	[SerializeField] GameObject nextLevelButton;
 	[SerializeField] GameObject reloadButton;
+	[SerializeField] GameEvent dismissedFirstTime;
 	DayTracker dayTracker;
 	bool won;
 	bool lost;
+	bool firedDismissed = false;
 	#pragma warning disable 0649
 
 	Levels levels;
@@ -55,6 +57,11 @@ public class SceneFlavorText : MonoBehaviour {
 	
 	public void ToggleLetter() {
 		letter.SetActive(!letter.activeSelf);
+
+		if (!letter.activeSelf && !firedDismissed) {
+			dismissedFirstTime.Raise();
+			firedDismissed = true;
+		}
 	}
 
 	public void ReloadLevel() {

@@ -19,6 +19,7 @@ public class ActionButton : MonoBehaviour, IPointerEnterHandler, IPointerExitHan
 	[SerializeField] AudioResource placeSound;
 	[SerializeField] Image border;
 	[SerializeField] GameObject infoCard;
+	[SerializeField] Text letter;
 
 	[Header("Templates")]
 	[SerializeField] InvalidPlacementWarning invalidPlacementWarningTemplate;
@@ -27,10 +28,15 @@ public class ActionButton : MonoBehaviour, IPointerEnterHandler, IPointerExitHan
 	Animator animator;
 	DayTracker dayTracker;
 	ActionTargeter actionTargeter;
+	Animator infoCardAnimator;
 
 	protected TileTracker tileTracker;
 	protected InvalidPlacementWarning actionWarning;
 	protected TilemapVisuals tilemapVisuals;
+
+	const string letters = "qwertyuiopasdfghjkl";
+	string keyName;
+	bool keyPressed;
 
 	protected virtual void Start() {
 		animator = GetComponent<Animator>();
@@ -44,14 +50,38 @@ public class ActionButton : MonoBehaviour, IPointerEnterHandler, IPointerExitHan
 			i.SetNativeSize();
 		}
 
-		// TODO: spawn and populate an info card with everything
+		infoCardAnimator = infoCard.GetComponent<Animator>();
+		HideInfoCard();
 
-		infoCard.SetActive(false);
+		keyName = letters[transform.GetSiblingIndex()].ToString();
+		letter.text = keyName.ToUpper();
 	}
 
-	public void OnGridClick(Vector3Int boardPosition) {
-		actionTargeter.ClearArmedAction();
-		ApplyAction(boardPosition);
+	void Update() {
+		keyPressed = Input.GetKey(keyName);
+		if (Input.GetKeyDown(keyName)) {
+			if (IsArmed()) {
+				ToggleInfoCard();
+				// otherwise it'll swap to the hovered sprite border
+				return;
+			}
+			MouseEnter();
+		}
+		if (Input.GetKeyUp(keyName)) {
+			MouseClick();
+		}
+	}
+
+	void HideInfoCard() {
+		infoCardAnimator.SetBool("PlacePreview", true);
+	}
+
+	void ShowInfoCard() {
+		infoCardAnimator.SetBool("PlacePreview", false);
+	}
+
+	void ToggleInfoCard() {
+		infoCardAnimator.SetBool("PlacePreview", !infoCardAnimator.GetBool("PlacePreview"));
 	}
 
 	public bool TryToApplyAction(Vector3Int boardPosition) {
@@ -86,23 +116,34 @@ public class ActionButton : MonoBehaviour, IPointerEnterHandler, IPointerExitHan
 	}
 
 	public void OnPointerEnter(PointerEventData data) {
-		if (IsArmed()) return;
-		hoverSound.PlayFrom(this.gameObject);
-		border.sprite = hoveredSprite;
-		border.enabled = true;
-		infoCard.SetActive(true);
-
-		// TODO: show the info card
+		if (keyPressed) return;
+		MouseEnter();
 	}
 
 	public void OnPointerExit(PointerEventData data) {
-		infoCard.SetActive(false);
+		if (keyPressed) return;
+		MouseExit();
+	}
+
+	public void OnPointerClick(PointerEventData data) {
+		MouseClick();
+	}
+
+	public void MouseEnter() {
+		hoverSound.PlayFrom(this.gameObject);
+		border.sprite = hoveredSprite;
+		border.enabled = true;
+		ShowInfoCard();
+	}
+
+	public void MouseExit() {
+		HideInfoCard();
 		if (IsArmed()) return;
 		border.enabled = false;
 		border.sprite = null;
 	}
 
-	public void OnPointerClick(PointerEventData data) {
+	public void MouseClick() {
 		if (IsArmed()) return;
 		Arm();
 		border.sprite = activeSprite;
@@ -118,7 +159,7 @@ public class ActionButton : MonoBehaviour, IPointerEnterHandler, IPointerExitHan
 	public void Disarm() {
 		border.sprite = null;
 		border.enabled = false;
-		infoCard.SetActive(false);
+		HideInfoCard();
 		HideActionWarning();
 	}
 
@@ -141,7 +182,6 @@ public class ActionButton : MonoBehaviour, IPointerEnterHandler, IPointerExitHan
 			return;
 		}
 
-		// make it fade out from the center if it wasn't active before
 		if (!actionWarning.gameObject.activeSelf) {
 			actionWarning.transform.position = Camera.main.WorldToScreenPoint(tileWorldPosition);
 			actionWarning.gameObject.SetActive(true);
@@ -149,7 +189,7 @@ public class ActionButton : MonoBehaviour, IPointerEnterHandler, IPointerExitHan
 		actionWarning.SetInfo(message, Camera.main.WorldToScreenPoint(tileWorldPosition + (Vector3.down / 2f)));
 	}
 
-	protected void HideActionWarning() {
+	public void HideActionWarning() {
 		if (actionWarning) {
 			actionWarning.gameObject.SetActive(false);
 		}
@@ -164,6 +204,14 @@ public class ActionButton : MonoBehaviour, IPointerEnterHandler, IPointerExitHan
 	protected void RebuildUI() {
 		foreach (LayoutGroup g in GetComponentsInChildren<LayoutGroup>()) {
 			LayoutRebuilder.ForceRebuildLayoutImmediate(g.GetComponent<RectTransform>());
+		}
+	}
+
+	public void SetTransformParent(Transform p) {
+		GetComponent<RectTransform>().SetParent(p, worldPositionStays:false);
+		foreach (Image i in GetComponentsInChildren<Image>()) {
+			// to deal with the above line
+			i.SetNativeSize();
 		}
 	}
 }

@@ -1,5 +1,6 @@
 using UnityEngine;
 using System.Collections;
+using System.Collections.Generic;
 using UnityEngine.UI;
 
 public class DayTracker : MonoBehaviour {
@@ -30,19 +31,23 @@ public class DayTracker : MonoBehaviour {
 
 	TileTracker tileTracker;
 	WinCondition[] winConditions;
+	List<GameObject> actions = new List<GameObject>();
 
 	void Start() {
 		dayUI.SetActive(true);
 		StartDay();
-		UpdateActionUI(0);
 		tileTracker = GameObject.FindObjectOfType<TileTracker>();
 		winConditions = GameObject.FindObjectsOfType<WinCondition>();
+		
+		foreach (Transform child in actionContainer.transform) {
+			actions.Add(child.GetChild(0).gameObject);
+		}
+		UpdateActionUI(0);
 	}
 
 	void UpdateActionUI(int actionCount) {
-		Image[] actions = actionContainer.GetComponentsInChildren<Image>();
-		for (int i=0; i<actions.Length; i++) {
-			actions[i].enabled = (i < actionCount);
+		for (int i=0; i<actions.Count; i++) {
+			actions[i].SetActive(i < actionCount);
 		}
 	}
 

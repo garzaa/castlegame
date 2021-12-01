@@ -452,6 +452,7 @@ MonoBehaviour:
   letter: {fileID: 3824776358868648150}
   nextLevelButton: {fileID: 4294709497913061520}
   reloadButton: {fileID: 743715435104594925}
+  dismissedFirstTime: {fileID: 11400000, guid: 0028c27b991ec3b4bba082e6e5d28a53, type: 2}
 --- !u!114 &3824776358076316466
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -779,9 +780,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 3824776358868648150}
-        m_MethodName: SetActive
-        m_Mode: 6
+      - m_Target: {fileID: 3824776358076315849}
+        m_MethodName: ToggleLetter
+        m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
