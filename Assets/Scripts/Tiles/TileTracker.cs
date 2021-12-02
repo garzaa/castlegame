@@ -80,7 +80,8 @@ public class TileTracker : MonoBehaviour {
 		for (int x=0; x<tiles.Count; x++) {
 			for (int y=0; y<tiles[x].Count; y++) {
 				Vector3Int currentPos = new Vector3Int(x, y, 0);
-				tiles[x][y].Initialize(this, currentPos, silent:true);
+				ScriptableTile tile = GetTilemapTile(x, y) as ScriptableTile;
+				tiles[x][y].Initialize(this, tile, currentPos, silent:true);
 			}
 		}
 	}
@@ -186,7 +187,7 @@ public class TileTracker : MonoBehaviour {
 	GameTile SpawnGameTile(ScriptableTile tile, Vector3Int position, bool initialize = true) {
 		GameTile tileBackend = Instantiate(tile.tileObject, tileContainer.transform).GetComponent<GameTile>();
 		tileBackend.gameObject.name = tile.tileObject.name;
-		if (initialize) tileBackend.Initialize(this, position);
+		if (initialize) tileBackend.Initialize(this, tile, position);
 		return tileBackend;
 	}
 

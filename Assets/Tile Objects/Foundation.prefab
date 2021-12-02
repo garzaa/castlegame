@@ -52,8 +52,8 @@ MonoBehaviour:
   tileType: {fileID: 11400000, guid: 746dc2fc1d4caef40a0d54946c7b8323, type: 2}
   onPlace: {fileID: 11400000, guid: 1034ba3b50af13b4cbec98d78d554414, type: 2}
   onQuery: {fileID: 11400000, guid: 19814e19eb2d61c47a03cfae1b31f7f9, type: 2}
-  onDestroy: {fileID: 0}
-  tile: {fileID: 11400000, guid: 3fd74c4aa6bf0b443b15f6f171617b95, type: 2}
+  onDestroy: {fileID: 11400000, guid: 3a1e3a9ed2724e34299c4892eb6039e0, type: 2}
+  defaultTile: {fileID: 11400000, guid: 3fd74c4aa6bf0b443b15f6f171617b95, type: 2}
   description: Build a <color="#94fdff">Stone</color> structure on it.
 --- !u!114 &3824500389922799737
 MonoBehaviour:

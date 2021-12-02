@@ -51,8 +51,7 @@ MonoBehaviour:
   onPlace: {fileID: 0}
   onQuery: {fileID: 11400000, guid: 19814e19eb2d61c47a03cfae1b31f7f9, type: 2}
   onDestroy: {fileID: 0}
-  tile: {fileID: 11400000, guid: 7016bed981cd03a47b4f78e36e9a97e4, type: 2}
-  eventOnDestroy: {fileID: 11400000, guid: 903e77eb8d3615a40909f193527c835a, type: 2}
+  defaultTile: {fileID: 11400000, guid: 7016bed981cd03a47b4f78e36e9a97e4, type: 2}
   description: The first and last bastion of settlements. Don't let it turn into
     ruins.
 --- !u!114 &4244420699313337950

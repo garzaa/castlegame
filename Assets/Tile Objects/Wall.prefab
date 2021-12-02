@@ -53,7 +53,7 @@ MonoBehaviour:
   onPlace: {fileID: 11400000, guid: 1034ba3b50af13b4cbec98d78d554414, type: 2}
   onQuery: {fileID: 11400000, guid: 19814e19eb2d61c47a03cfae1b31f7f9, type: 2}
   onDestroy: {fileID: 0}
-  tile: {fileID: 11400000, guid: ac9a0cd961c7cc843a81267d5a3dea6a, type: 2}
+  defaultTile: {fileID: 11400000, guid: ac9a0cd961c7cc843a81267d5a3dea6a, type: 2}
   description: Keeps the forest out.
 --- !u!114 &3882926811825503189
 MonoBehaviour:

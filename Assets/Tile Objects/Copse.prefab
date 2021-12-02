@@ -51,7 +51,7 @@ MonoBehaviour:
   onPlace: {fileID: 0}
   onQuery: {fileID: 11400000, guid: 19814e19eb2d61c47a03cfae1b31f7f9, type: 2}
   onDestroy: {fileID: 11400000, guid: 33d44cf28860dcc4baa447b045e2ced8, type: 2}
-  tile: {fileID: 11400000, guid: 5e31de150f5082a43927f09977312b79, type: 2}
+  defaultTile: {fileID: 11400000, guid: 5e31de150f5082a43927f09977312b79, type: 2}
   description: A grove of young trees. Supplies building material.
 --- !u!114 &4517889794913015654
 MonoBehaviour:

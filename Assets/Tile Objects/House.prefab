@@ -55,7 +55,7 @@ MonoBehaviour:
   onPlace: {fileID: 11400000, guid: 6e65e6df3c0adaf4fab25251c4de8f21, type: 2}
   onQuery: {fileID: 11400000, guid: 19814e19eb2d61c47a03cfae1b31f7f9, type: 2}
   onDestroy: {fileID: 0}
-  tile: {fileID: 11400000, guid: 0db2b7e7ee07f2446913de4d3fa920ea, type: 2}
+  defaultTile: {fileID: 11400000, guid: 0db2b7e7ee07f2446913de4d3fa920ea, type: 2}
   description: "Live here. Work elsewhere. \nRepairs the oldest neighbor structure."
 --- !u!114 &6726653392267514890
 MonoBehaviour:

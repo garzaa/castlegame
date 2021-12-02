@@ -5,6 +5,7 @@ using System;
 using System.Collections.Generic;
 
 public class GameTile : MonoBehaviour, IStat, ICardStat, IConsoleStat {
+	ScriptableTile tile;
 	TileTracker tileTracker;
 	public Vector3Int position {get; private set; }
 	public Vector3Int gridPosition { 
@@ -19,7 +20,7 @@ public class GameTile : MonoBehaviour, IStat, ICardStat, IConsoleStat {
 	[SerializeField] AudioResource onPlace;
 	[SerializeField] AudioResource onQuery;
 	[SerializeField] AudioResource onDestroy;
-	[SerializeField] ScriptableTile tile;
+	[SerializeField] ScriptableTile defaultTile;
 	#pragma warning restore 0649
 
 	[TextArea] public string description;
@@ -27,8 +28,8 @@ public class GameTile : MonoBehaviour, IStat, ICardStat, IConsoleStat {
 
 	public TilemapVisuals visuals {get; private set;}
 
-	// TODO: initialize with the parent GameTile cast down from TileBase
-	public virtual void Initialize(TileTracker tileTracker, Vector3Int position, bool silent=false) {
+	public virtual void Initialize(TileTracker tileTracker, ScriptableTile tile, Vector3Int position, bool silent=false) {
+		this.tile = tile;
 		this.tileTracker = tileTracker;
 		this.position = position;
 		foreach (TileBehaviour t in GetComponents<TileBehaviour>()) {
@@ -55,6 +56,7 @@ public class GameTile : MonoBehaviour, IStat, ICardStat, IConsoleStat {
 	}
 
 	public ScriptableTile GetDefaultTile() {
+		if (!tile) return defaultTile;
 		return tile;
 	}
 
