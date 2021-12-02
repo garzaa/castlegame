@@ -13,3 +13,6 @@ MonoBehaviour:
   m_Name: Nature
   m_EditorClassIdentifier: 
   ancestor: {fileID: 11400000, guid: 98718ff1143773b45972735c48d75e1a, type: 2}
+  infoFrame:
+    frame: {fileID: 7988077541234147599, guid: 14f4b9d715b7b164d99f697bcbf3f412, type: 3}
+    tail: {fileID: 1096279476776504754, guid: 14f4b9d715b7b164d99f697bcbf3f412, type: 3}

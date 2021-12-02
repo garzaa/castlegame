@@ -51,7 +51,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1f257f2dba2daf043844440ba0759d2d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  tileType: {fileID: 11400000, guid: 64c537d4d2d88b746b7a61ab54f13fa2, type: 2}
+  tileType: {fileID: 11400000, guid: f470e1fc680b38647bdf55895973e33f, type: 2}
   onPlace: {fileID: 11400000, guid: 6e65e6df3c0adaf4fab25251c4de8f21, type: 2}
   onQuery: {fileID: 11400000, guid: 19814e19eb2d61c47a03cfae1b31f7f9, type: 2}
   onDestroy: {fileID: 0}
@@ -82,7 +82,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   validBases:
-  - {fileID: 11400000, guid: 3fd74c4aa6bf0b443b15f6f171617b95, type: 2}
+  - {fileID: 11400000, guid: debf57dcee986614e96d656477033907, type: 2}
 --- !u!114 &7425281676867835060
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -129,7 +129,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   resources:
   - amount: 1
-    resource: {fileID: 11400000, guid: 4535e9995cbc6b0459e235cc06effc67, type: 2}
+    resource: {fileID: 11400000, guid: de04e4bcd8917d940ac875a6c1b81b1c, type: 2}
 --- !u!114 &-7024471056413354032
 MonoBehaviour:
   m_ObjectHideFlags: 0

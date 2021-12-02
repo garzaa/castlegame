@@ -12,3 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 83a7be98f2048b7418d6e247ee2a156f, type: 3}
   m_Name: Any
   m_EditorClassIdentifier: 
+  ancestor: {fileID: 0}
+  infoFrame:
+    frame: {fileID: 7458829918074897532, guid: b0a99310742b50d458a7eae59cd16898, type: 3}
+    tail: {fileID: -3142117733122199340, guid: b0a99310742b50d458a7eae59cd16898, type: 3}

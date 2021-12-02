@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &7406095483696277000
+--- !u!1 &2820625089737308646
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -8,26 +8,26 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 6723966241171830883}
-  - component: {fileID: 5784955452831973745}
-  - component: {fileID: 548085062186487813}
-  - component: {fileID: 6297691773090121052}
-  - component: {fileID: 2221221603057038484}
-  - component: {fileID: -4982842824184917296}
+  - component: {fileID: 2820625089737308640}
+  - component: {fileID: 2820625089737308641}
+  - component: {fileID: 4517889794913015654}
+  - component: {fileID: 2820625089737308642}
+  - component: {fileID: 2820625089737308643}
+  - component: {fileID: -6250515470905034740}
   m_Layer: 0
-  m_Name: Garden
+  m_Name: Copse
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &6723966241171830883
+--- !u!4 &2820625089737308640
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7406095483696277000}
+  m_GameObject: {fileID: 2820625089737308646}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
@@ -35,79 +35,78 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &5784955452831973745
+--- !u!114 &2820625089737308641
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7406095483696277000}
+  m_GameObject: {fileID: 2820625089737308646}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 1f257f2dba2daf043844440ba0759d2d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  tileType: {fileID: 11400000, guid: f470e1fc680b38647bdf55895973e33f, type: 2}
-  onPlace: {fileID: 11400000, guid: 6e65e6df3c0adaf4fab25251c4de8f21, type: 2}
+  tileType: {fileID: 11400000, guid: be2fc18f7d3b20940ad9b5cac2acdb0c, type: 2}
+  onPlace: {fileID: 0}
   onQuery: {fileID: 11400000, guid: 19814e19eb2d61c47a03cfae1b31f7f9, type: 2}
-  onDestroy: {fileID: 0}
-  tile: {fileID: 11400000, guid: 88f19096a45f3344591736101331d0e9, type: 2}
-  description: Provides food. Fragile...
---- !u!114 &548085062186487813
+  onDestroy: {fileID: 11400000, guid: 33d44cf28860dcc4baa447b045e2ced8, type: 2}
+  tile: {fileID: 11400000, guid: 5e31de150f5082a43927f09977312b79, type: 2}
+  description: A grove of young trees. Supplies building material.
+--- !u!114 &4517889794913015654
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7406095483696277000}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8cf6ec2134cc25e4aa160e030e55ad6c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!114 &6297691773090121052
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7406095483696277000}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5ac7d643dc63d004cb9803be5bdaa77a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  decayThreshold: 2
-  decayTo: {fileID: 11400000, guid: ea089a2b162bee14a83b010a12f19909, type: 2}
-  gracePeriod: 0
---- !u!114 &2221221603057038484
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7406095483696277000}
+  m_GameObject: {fileID: 2820625089737308646}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: f93068a956a7cd14ba0bc0f748bb1109, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  decayThreshold: 3
+  decayThreshold: 7
   decayTo: {fileID: 11400000, guid: ccc45f6c9dde4434eaa5e16819f82c60, type: 2}
-  gracePeriod: 1
+  gracePeriod: 3
   neighbor: {fileID: 11400000, guid: ccc45f6c9dde4434eaa5e16819f82c60, type: 2}
-  decayMode: 1
---- !u!114 &-4982842824184917296
+  decayMode: 0
+--- !u!114 &2820625089737308642
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7406095483696277000}
+  m_GameObject: {fileID: 2820625089737308646}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 966dc023b85eb154cb9a9905d12fe875, type: 3}
+  m_Script: {fileID: 11500000, guid: f3278cbc2f6c8f34aaa94ebcde6aa858, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  validBases:
-  - {fileID: 11400000, guid: c27bc74127fe34d44a9038e4118c2450, type: 2}
+  cutTo: {fileID: 11400000, guid: ea089a2b162bee14a83b010a12f19909, type: 2}
+--- !u!114 &2820625089737308643
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2820625089737308646}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5ec7ff127d91a5145aae8bca3e6e3197, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  resources:
+  - amount: 2
+    resource: {fileID: 11400000, guid: de04e4bcd8917d940ac875a6c1b81b1c, type: 2}
+--- !u!114 &-6250515470905034740
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2820625089737308646}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8cf6ec2134cc25e4aa160e030e55ad6c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

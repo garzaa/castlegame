@@ -9,6 +9,8 @@ public class TileInfo : MonoBehaviour {
 	[SerializeField] GameObject tileAgeContainer;
 	[SerializeField] Text tileAge;
 	[SerializeField] Transform tileInfoContainer;
+	[SerializeField] Image tileFrame;
+	[SerializeField] Image tileFrameTail;
 
 	[Header("Templates")]
 	[SerializeField] GameObject infoLine;
@@ -46,6 +48,10 @@ public class TileInfo : MonoBehaviour {
 		foreach (LayoutGroup g in GetComponentsInChildren<LayoutGroup>()) {
 			LayoutRebuilder.ForceRebuildLayoutImmediate(g.GetComponent<RectTransform>());
 		}
+
+		TileFrameInfo f = tile.GetTileType().GetFrame();
+		tileFrame.sprite = f.frame;
+		tileFrameTail.sprite = f.tail;
 	}
 
 	// called from button

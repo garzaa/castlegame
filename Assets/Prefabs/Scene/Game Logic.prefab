@@ -593,6 +593,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   startingResources:
   - amount: 0
+    resource: {fileID: 11400000, guid: de04e4bcd8917d940ac875a6c1b81b1c, type: 2}
+  - amount: 0
     resource: {fileID: 11400000, guid: 4535e9995cbc6b0459e235cc06effc67, type: 2}
   resourceContainer: {fileID: 8785327375482418408}
   resourceTemplate: {fileID: 3281958759871868663}
@@ -2704,8 +2706,9 @@ MonoBehaviour:
     type: 3}
   tiles:
   - {fileID: 5784955452831973745, guid: 807206931c4cabc4b9209e2fe6b64061, type: 3}
-  - {fileID: -6655283645545986800, guid: f273e3e4725c60646a5c38bced7b8eec, type: 3}
+  - {fileID: 3446166340617295567, guid: 25d6060775a0f9546ba076f4b2145a77, type: 3}
   - {fileID: 6188893002852522429, guid: eac009e8d132f824b8938dd03d4a5352, type: 3}
+  - {fileID: -6655283645545986800, guid: f273e3e4725c60646a5c38bced7b8eec, type: 3}
   - {fileID: 7905479836425482686, guid: 293d23c89c56164488d2d067f8f36a29, type: 3}
   - {fileID: -4147425269137343259, guid: c1c188dc9a4790f4a9beb64b79b5aa12, type: 3}
 --- !u!1 &7321729028684568546

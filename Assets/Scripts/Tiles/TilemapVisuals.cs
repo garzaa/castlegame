@@ -198,7 +198,6 @@ public class TilemapVisuals : MonoBehaviour {
 
 		GameTile gameTile = tracker.GetTileNoRedirect(tracker.CellToBoard(gridPos));
 		if (gameTile == null) {
-			Debug.Log("out of bounds");
 			HideInfoBubble();
 			return;
 		}

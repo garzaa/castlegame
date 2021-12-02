@@ -10,10 +10,9 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 83a7be98f2048b7418d6e247ee2a156f, type: 3}
-  m_Name: Eldritch
+  m_Name: Wood
   m_EditorClassIdentifier: 
-  ancestor: {fileID: 11400000, guid: be2fc18f7d3b20940ad9b5cac2acdb0c, type: 2}
+  ancestor: {fileID: 11400000, guid: 64c537d4d2d88b746b7a61ab54f13fa2, type: 2}
   infoFrame:
-    frame: {fileID: -3279349927466070730, guid: 14f4b9d715b7b164d99f697bcbf3f412,
-      type: 3}
-    tail: {fileID: 4621729437834820524, guid: 14f4b9d715b7b164d99f697bcbf3f412, type: 3}
+    frame: {fileID: 8147562964217011977, guid: 14f4b9d715b7b164d99f697bcbf3f412, type: 3}
+    tail: {fileID: 5739718157964699693, guid: 14f4b9d715b7b164d99f697bcbf3f412, type: 3}

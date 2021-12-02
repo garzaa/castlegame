@@ -27,6 +27,7 @@ public class GameTile : MonoBehaviour, IStat, ICardStat, IConsoleStat {
 
 	public TilemapVisuals visuals {get; private set;}
 
+	// TODO: initialize with the parent GameTile cast down from TileBase
 	public virtual void Initialize(TileTracker tileTracker, Vector3Int position, bool silent=false) {
 		this.tileTracker = tileTracker;
 		this.position = position;
@@ -94,5 +95,9 @@ public class GameTile : MonoBehaviour, IStat, ICardStat, IConsoleStat {
 
 	public bool IsTileType(TileType t) {
 		return this.tileType.IsType(t);
+	}
+
+	public TileType GetTileType() {
+		return this.tileType;
 	}
 }

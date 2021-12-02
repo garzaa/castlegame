@@ -13,3 +13,7 @@ MonoBehaviour:
   m_Name: Stone
   m_EditorClassIdentifier: 
   ancestor: {fileID: 11400000, guid: 64c537d4d2d88b746b7a61ab54f13fa2, type: 2}
+  infoFrame:
+    frame: {fileID: -7058966599533761962, guid: 14f4b9d715b7b164d99f697bcbf3f412,
+      type: 3}
+    tail: {fileID: -4592675406569982661, guid: 14f4b9d715b7b164d99f697bcbf3f412, type: 3}
