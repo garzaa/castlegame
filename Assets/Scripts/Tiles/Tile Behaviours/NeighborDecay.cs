@@ -4,8 +4,9 @@ using System.Collections.Generic;
 public class NeighborDecay : TileDecay, IStat {
 	public ScriptableTile neighbor;
 
-	[SerializeField]
-	DecayMode decayMode = DecayMode.MUL;
+	[SerializeField] protected DecayMode decayMode = DecayMode.MUL;
+	[Tooltip("Positive means it decays faster")]
+	[SerializeField] protected Contribution contributionType = Contribution.POSITIVE;
 
 	override protected void Start() {
 		base.Start();
@@ -15,11 +16,19 @@ public class NeighborDecay : TileDecay, IStat {
 		int n = GetNumNeighbors();
 		if (n == 0) return 0;
 		if (decayMode == DecayMode.ADD) {
-			base.decayThreshold = base.originalDecayThreshold - n;
+			if (contributionType == Contribution.POSITIVE) {
+				base.decayThreshold = base.originalDecayThreshold - n;
+			} else {
+				base.decayThreshold = base.originalDecayThreshold + n;
+			}
 			base.decayThreshold = Mathf.Max(base.decayThreshold, 0);
 			return base.GetDecay();
 		} else if (decayMode == DecayMode.MUL) {
-			base.decayThreshold = Mathf.CeilToInt((float) base.originalDecayThreshold / (float) n);
+			if (contributionType == Contribution.POSITIVE) {
+				base.decayThreshold = Mathf.CeilToInt((float) base.originalDecayThreshold / (float) n);
+			} else {
+				base.decayThreshold = Mathf.CeilToInt((float) base.originalDecayThreshold * (float) n);
+			}
 			base.decayThreshold = Mathf.Max(base.decayThreshold, 0);
 			return base.GetDecay();
 		} else {
@@ -28,7 +37,7 @@ public class NeighborDecay : TileDecay, IStat {
 		}
 	}
 
-	int GetNumNeighbors() {
+	protected int GetNumNeighbors() {
 		int m = 0;
 		List<GameTile> neighbors = gameTile.GetNeighbors();
 		for (int i=0; i<neighbors.Count; i++) {
@@ -40,12 +49,17 @@ public class NeighborDecay : TileDecay, IStat {
 	}
 
 	override public string Stat() {
-		if (GetNumNeighbors() == 0) return null;
+		if (!inGame || GetNumNeighbors()==0) return null;
 		return $"{decayMode.ToString()} {neighbor.tileObject.name} neighbors: {GetNumNeighbors()} -> {base.Stat()}";
 	}
 }
 
 public enum DecayMode {
 	ADD = 0,
-	MUL = 1
+	MUL = 1,
+}
+
+public enum Contribution {
+	NEGATIVE = 0,
+	POSITIVE = 1,
 }

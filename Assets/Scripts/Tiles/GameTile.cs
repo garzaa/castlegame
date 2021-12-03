@@ -70,7 +70,7 @@ public class GameTile : MonoBehaviour, IStat, ICardStat, IConsoleStat {
 					stat += $"\n<color='#ca52c9'>{TileWarp.WarpToString(warp.Item2)} to "+warp.Item1.ToString()+".</color>";
 				}
 				else {
-					stat += "\n<color='#ca52c9'>Redirects to watcher.</color>";
+					stat += "\n<color='#ca52c9'>Reflects applied effects.</color>";
 				}
 			}
 		}
@@ -101,5 +101,13 @@ public class GameTile : MonoBehaviour, IStat, ICardStat, IConsoleStat {
 
 	public TileType GetTileType() {
 		return this.tileType;
+	}
+
+	public IStat[] GetStats() {
+		return StatOrder.OrderStats(GetComponents<IStat>());
+	}
+
+	public ICardStat[] GetCardStats() {
+		return StatOrder.OrderCardStats(GetComponents<ICardStat>());
 	}
 }

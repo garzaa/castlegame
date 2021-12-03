@@ -11,9 +11,10 @@ GameObject:
   - component: {fileID: 6723966241171830883}
   - component: {fileID: 5784955452831973745}
   - component: {fileID: 548085062186487813}
+  - component: {fileID: -4982842824184917296}
+  - component: {fileID: -5684300226570016222}
   - component: {fileID: 6297691773090121052}
   - component: {fileID: 2221221603057038484}
-  - component: {fileID: -4982842824184917296}
   m_Layer: 0
   m_Name: Garden
   m_TagString: Untagged
@@ -65,6 +66,36 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8cf6ec2134cc25e4aa160e030e55ad6c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &-4982842824184917296
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7406095483696277000}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 966dc023b85eb154cb9a9905d12fe875, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  validBases:
+  - {fileID: 11400000, guid: c27bc74127fe34d44a9038e4118c2450, type: 2}
+--- !u!114 &-5684300226570016222
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7406095483696277000}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cb50b1914c177f545926b07744ddfecb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  claimable: {fileID: 3567469549212463416, guid: eac009e8d132f824b8938dd03d4a5352,
+    type: 3}
+  claimedTileIcon: {fileID: 11400000, guid: df84ccef930e6394a9ad0c9eec8c60c0, type: 2}
+  requiredToPlace: 0
 --- !u!114 &6297691773090121052
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -97,17 +128,4 @@ MonoBehaviour:
   gracePeriod: 1
   neighbor: {fileID: 11400000, guid: ccc45f6c9dde4434eaa5e16819f82c60, type: 2}
   decayMode: 1
---- !u!114 &-4982842824184917296
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7406095483696277000}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 966dc023b85eb154cb9a9905d12fe875, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  validBases:
-  - {fileID: 11400000, guid: c27bc74127fe34d44a9038e4118c2450, type: 2}
+  contributionType: 1

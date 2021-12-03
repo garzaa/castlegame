@@ -11,11 +11,11 @@ GameObject:
   - component: {fileID: 6406985471026797896}
   - component: {fileID: -4147425269137343259}
   - component: {fileID: 3882926811825503189}
-  - component: {fileID: 5545420899568352776}
   - component: {fileID: -1798148850707940892}
   - component: {fileID: 7343783716581171089}
   - component: {fileID: 7765551139924646825}
   - component: {fileID: -4859926265722019215}
+  - component: {fileID: -7946973718225714471}
   m_Layer: 0
   m_Name: Wall
   m_TagString: Untagged
@@ -67,21 +67,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8cf6ec2134cc25e4aa160e030e55ad6c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &5545420899568352776
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5229865381664988931}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5ac7d643dc63d004cb9803be5bdaa77a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  decayThreshold: 2
-  decayTo: {fileID: 11400000, guid: ea089a2b162bee14a83b010a12f19909, type: 2}
-  gracePeriod: 0
 --- !u!114 &-1798148850707940892
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -141,3 +126,21 @@ MonoBehaviour:
   tile: {fileID: 11400000, guid: 66ae0888bdb33474f8620ea2b8bb8143, type: 2}
   number: 1
   comparisonType: 0
+--- !u!114 &-7946973718225714471
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5229865381664988931}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f93068a956a7cd14ba0bc0f748bb1109, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  decayThreshold: 1
+  decayTo: {fileID: 11400000, guid: ea089a2b162bee14a83b010a12f19909, type: 2}
+  gracePeriod: 0
+  neighbor: {fileID: 11400000, guid: ac9a0cd961c7cc843a81267d5a3dea6a, type: 2}
+  decayMode: 0
+  contributionType: 0

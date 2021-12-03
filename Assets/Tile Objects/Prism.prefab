@@ -12,6 +12,10 @@ GameObject:
   - component: {fileID: 7028963776875147791}
   - component: {fileID: 1755971447828309234}
   - component: {fileID: -9166867636378439936}
+  - component: {fileID: -8888964580494589592}
+  - component: {fileID: 1542985988968879969}
+  - component: {fileID: -5790319763547699861}
+  - component: {fileID: -3508140163528459155}
   m_Layer: 0
   m_Name: Prism
   m_TagString: Untagged
@@ -82,3 +86,62 @@ MonoBehaviour:
   fromRelative: {x: 0, y: 1, z: 0}
   toRelative: {x: 1, y: 0, z: 0}
   warpType: 1
+--- !u!114 &-8888964580494589592
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5436100358628534678}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 966dc023b85eb154cb9a9905d12fe875, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  validBases:
+  - {fileID: 11400000, guid: ea089a2b162bee14a83b010a12f19909, type: 2}
+--- !u!114 &1542985988968879969
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5436100358628534678}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f8d0a376d2d2a4a40ac40e94ea69332a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  resources:
+  - amount: 1
+    resource: {fileID: 11400000, guid: 78246f5ee74dac543a8f0a9cb365ef8e, type: 2}
+--- !u!114 &-5790319763547699861
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5436100358628534678}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 94724aa65045b234797aa8f9b8991f6b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  requirements:
+  - {fileID: -3508140163528459155}
+  description: Unlocked by having 1 <color="#94fdff">Haunt</color>.
+--- !u!114 &-3508140163528459155
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5436100358628534678}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 25910004a1c8e094eae0369b332af9d9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  resources:
+  - amount: 1
+    resource: {fileID: 11400000, guid: 78246f5ee74dac543a8f0a9cb365ef8e, type: 2}

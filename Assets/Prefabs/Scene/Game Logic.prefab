@@ -1059,8 +1059,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 24.5, y: -63}
-  m_SizeDelta: {x: 49, y: 26}
+  m_AnchoredPosition: {x: 24.5, y: -64.5}
+  m_SizeDelta: {x: 49, y: 29}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &1830350305520464746
 CanvasRenderer:
@@ -1091,7 +1091,7 @@ MonoBehaviour:
       m_Calls: []
   m_Sprite: {fileID: -6630653727439459729, guid: b0a99310742b50d458a7eae59cd16898,
     type: 3}
-  m_Type: 0
+  m_Type: 1
   m_PreserveAspect: 1
   m_FillCenter: 1
   m_FillMethod: 4
@@ -2645,6 +2645,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   multiplier: 1
+  minimumScale: 1
 --- !u!114 &2211699718326101280
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2701,7 +2702,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a07ad876df277d148bd4112390d23772, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  priority: 0
+  priority: 1
   buttonTemplate: {fileID: 595573503457922910, guid: d5383883a46bc9e4c9d644dccd811d77,
     type: 3}
   tiles:
@@ -2711,6 +2712,9 @@ MonoBehaviour:
   - {fileID: -6655283645545986800, guid: f273e3e4725c60646a5c38bced7b8eec, type: 3}
   - {fileID: 7905479836425482686, guid: 293d23c89c56164488d2d067f8f36a29, type: 3}
   - {fileID: -4147425269137343259, guid: c1c188dc9a4790f4a9beb64b79b5aa12, type: 3}
+  - {fileID: 250510000358812384, guid: a776b06b1d1f3204abffc6ceee32b7fc, type: 3}
+  - {fileID: 605104836959482952, guid: 97d6e0632f3d1af4898028159c573830, type: 3}
+  - {fileID: 7028963776875147791, guid: 52333d6e8420ed045896776ce6d4c498, type: 3}
 --- !u!1 &7321729028684568546
 GameObject:
   m_ObjectHideFlags: 0
@@ -3165,7 +3169,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bbc8d0e22be9a7b4b96cdf597b45e7e1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  priority: 10
+  priority: 0
   cutCard: {fileID: 3063625274570893236, guid: c51dd4535cca1fa45a4dbb0e303a60e2, type: 3}
   fixCard: {fileID: 4676610706114859099, guid: ec0ab04b4613100459202ebac07fee88, type: 3}
   cutButton: {fileID: 2075166573, guid: 625f38496f0aa9c4db0ea1d866aa9835, type: 3}
@@ -3319,6 +3323,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   multiplier: 1
+  minimumScale: 1
 --- !u!1 &7528569539415302128
 GameObject:
   m_ObjectHideFlags: 0
@@ -3589,6 +3594,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   multiplier: 1
+  minimumScale: 1
 --- !u!1 &8554338708914958797
 GameObject:
   m_ObjectHideFlags: 0
@@ -3688,7 +3694,7 @@ MonoBehaviour:
     m_Top: 0
     m_Bottom: 0
   m_ChildAlignment: 0
-  m_Spacing: 10
+  m_Spacing: 0
   m_ChildForceExpandWidth: 0
   m_ChildForceExpandHeight: 0
   m_ChildControlWidth: 0

@@ -3,16 +3,25 @@ using UnityEngine.Tilemaps;
 using System.Collections.Generic;
 using System.Linq;
 
-public class RequiredClaim : TileBehaviour, ITileValidator, ITileHighlighter, IStat, ICardStat {
+public class RequiredClaim : TileBehaviour, ITicker, ITileValidator, ITileHighlighter, IStat, ICardStat {
 	[Tooltip("Link this to a GameTile asset")]
 	public Claimable claimable;
 	public Tile claimedTileIcon;
+	public bool requiredToPlace = true;
+	Claimable claimed;
 
 	override protected void Start() {
 		base.Start();
 	}
 
+	public void Tick() {
+		if (!claimed) {
+			Claim();
+		}
+	}
+
 	public bool Valid(TileTracker tracker, Vector3Int pos, ref List<string> message) {
+		if (!requiredToPlace) return true;
 		foreach (Claimable boardClaimable in tracker.GetTiles<Claimable>()) {
 			if (!boardClaimable.claimed && boardClaimable.name.Equals(claimable.name)) return true;
 		}
@@ -23,10 +32,7 @@ public class RequiredClaim : TileBehaviour, ITileValidator, ITileHighlighter, IS
 	}
 
 	override public void OnPlace() {
-		claimable = gameTile.GetTracker().GetTiles<Claimable>()
-			.Where(x => !x.claimed && x.name.Equals(claimable.name))
-			.First();
-		claimable.Claim(this.gameTile);
+		Claim();
 	}
 
 	override public void OnRemove() {
@@ -34,13 +40,27 @@ public class RequiredClaim : TileBehaviour, ITileValidator, ITileHighlighter, IS
 	}
 
 	public TileHighlight GetHighlight() {
+		if (!claimed) return null;
 		return new TileHighlight (
 			claimedTileIcon,
-			new List<Vector3Int>(new Vector3Int[] {claimable.gameTile.gridPosition})
+			new List<Vector3Int>(new Vector3Int[] {claimed.gameTile.gridPosition})
 		);
 	}
 
 	public string Stat() {
-		return $"Claims 1 {claimable.gameObject.name}.";
+		if (requiredToPlace) return $"Claims 1 <color='#94fdff'>{claimable.gameObject.name}</color>.";
+		else return $"Claims first available <color='#94fdff'>{claimable.gameObject.name}</color>.";
+	}
+
+	void Claim() {
+		claimed = gameTile.GetTracker().GetTiles<Claimable>()
+			.FirstOrDefault(x => !x.claimed && x.name.Equals(claimable.name));
+
+		if (claimed == null && !requiredToPlace) {
+			// if not required to place (like a garden) it will just claim whenever something is immediately available on a tick
+			return;
+		}
+
+		claimed.Claim(this.gameTile);
 	}
 }

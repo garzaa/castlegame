@@ -25,13 +25,9 @@ public class ActionButtonContainer : MonoBehaviour {
 
 	public void AddButtons() {
 		ScrapButtons();
-		if (!keep) {
-			GameObject g = GameObject.Find("Keep");
-			// a second try, if it's been destroyed
-			if (!g && !firstDay) {
-				return;
-			}
-			// TODO: finish this block, assign keep here without erroring out
+
+		if (!GameObject.Find("Keep") && !firstDay) {
+			return;
 		}
 
 		firstDay = false;
@@ -48,7 +44,7 @@ public class ActionButtonContainer : MonoBehaviour {
 
 	ButtonSource[] GetButtonSources() {
 		return GameObject.FindObjectsOfType<ButtonSource>()
-			.OrderByDescending(x => x.priority)
+			.OrderBy(x => x.priority)
 			.ToArray();
 	}
 

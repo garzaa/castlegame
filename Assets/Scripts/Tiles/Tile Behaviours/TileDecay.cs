@@ -1,7 +1,7 @@
 using UnityEngine;
 
 [RequireComponent(typeof(TileAge))]
-public class TileDecay : TileBehaviour, IStat {
+public class TileDecay : TileBehaviour, IStat, ICardStat {
 	#pragma warning disable 0649
 	[SerializeField]
 	protected int decayThreshold = 7;
@@ -16,9 +16,11 @@ public class TileDecay : TileBehaviour, IStat {
 	#pragma warning restore 0649
 
 	TileAge tileAge;
+	protected bool inGame = false;
 
 	override protected void Awake() {
 		base.Awake();
+		inGame = true;
 		tileAge = GetComponent<TileAge>();
 		originalDecayThreshold = decayThreshold;
 	}
@@ -42,7 +44,10 @@ public class TileDecay : TileBehaviour, IStat {
 	}
 
 	virtual public string Stat() {
-		return $"Decay in <color='#94fdff'>{decayThreshold-GetDecay()}</color> to <color='#94fdff'>{decayTo.tileObject.name}</color>.";
+		if (!inGame) return $"Decays to <color='#94fdff'>{decayTo.tileObject.name}</color> in <color='#94fdff'>{decayThreshold}</color>.";
+
+		int daysUntilDecay = Mathf.Max(decayThreshold-GetDecay(), 0);
+		return $"Decay in <color='#94fdff'>{daysUntilDecay}</color> to <color='#94fdff'>{decayTo.tileObject.name}</color>.";
 	}
 
 	public int GetDecayThreshold() {

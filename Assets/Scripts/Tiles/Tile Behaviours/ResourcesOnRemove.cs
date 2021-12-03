@@ -13,8 +13,8 @@ public class ResourcesOnRemove : TileBehaviour, IStat {
 	public string Stat() {
 		string s = "Yields ";
 		foreach (ResourceAmount r in resources) {
-			s += $"{r.amount} {r.resource.name} / ";
+			s += $"{r.amount} <color='#94fdff'>{r.resource.name}</color> / ";
 		}
-		return s.TrimEnd('/', ' ');
+		return s.TrimEnd('/', ' ') + ".";
 	}
 }

@@ -94,6 +94,10 @@ public class TilemapVisuals : MonoBehaviour {
 	void CreateDoubleScaleCanvas() {
 		doubleScaleCanvas = Instantiate(doubleScaleCanvas, this.transform);
 	}
+
+	public GameObject GetDoubleScaleCanvas() {
+		return doubleScaleCanvas.gameObject;
+	}
 	
 	void CreateHighlightTilemap() {
 		highlightTilemap = Instantiate(highlightTilemapTemplate, transform.parent);
@@ -133,10 +137,15 @@ public class TilemapVisuals : MonoBehaviour {
 		}
 	}
 
+	public void OnActionArm() {
+		TargetCursorTile(forceRefresh:true);
+	}
+
 	void OnMouseOver() {
-		// if (!CardBase.dragged && EventSystem.current.IsPointerOverGameObject()) {
-		// 	return;
-		// }
+		TargetCursorTile();
+	}
+
+	void TargetCursorTile(bool forceRefresh=false) {
 		if (EventSystem.current.IsPointerOverGameObject()) {
 			// don't highlight if paused
 			return;
@@ -150,7 +159,7 @@ public class TilemapVisuals : MonoBehaviour {
 			OnMouseExit();
 		}
 
-		if (gridMousePos == targetedTile) return;
+		if (!forceRefresh && gridMousePos == targetedTile) return;
 		targetedTile = gridMousePos;
 
 		// if an action is armed, run its targeting
@@ -265,8 +274,9 @@ public class TilemapVisuals : MonoBehaviour {
 	}
 
 	void ShowTileIcon(TileHighlight highlight) {
-		foreach (Vector3Int gridPos in highlight.targets) {
-			iconTilemap.SetTile(gridPos, highlight.tile);
+		if (highlight == null) return;
+		foreach (Vector3Int cellPos in highlight.targets) {
+			iconTilemap.SetTile(cellPos, highlight.tile);
 		}
 	}
 

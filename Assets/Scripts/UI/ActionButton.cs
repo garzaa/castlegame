@@ -61,8 +61,7 @@ public class ActionButton : MonoBehaviour, IPointerEnterHandler, IPointerExitHan
 		keyPressed = Input.GetKey(keyName);
 		if (Input.GetKeyDown(keyName)) {
 			if (IsArmed()) {
-				ToggleInfoCard();
-				// otherwise it'll swap to the hovered sprite border
+				actionTargeter.ClearArmedAction();
 				return;
 			}
 			MouseEnter();
@@ -116,11 +115,13 @@ public class ActionButton : MonoBehaviour, IPointerEnterHandler, IPointerExitHan
 	}
 
 	public void OnPointerEnter(PointerEventData data) {
+		ShowInfoCard();
 		if (keyPressed) return;
 		MouseEnter();
 	}
 
 	public void OnPointerExit(PointerEventData data) {
+		HideInfoCard();
 		if (keyPressed) return;
 		MouseExit();
 	}
@@ -133,7 +134,6 @@ public class ActionButton : MonoBehaviour, IPointerEnterHandler, IPointerExitHan
 		hoverSound.PlayFrom(this.gameObject);
 		border.sprite = hoveredSprite;
 		border.enabled = true;
-		ShowInfoCard();
 	}
 
 	public void MouseExit() {
@@ -174,6 +174,11 @@ public class ActionButton : MonoBehaviour, IPointerEnterHandler, IPointerExitHan
 	protected void ShowActionWarning(string message, Vector3 tileWorldPosition, float margin) {
 		if (!actionWarning) {
 			actionWarning = Instantiate(invalidPlacementWarningTemplate, actionTargeter.GetErrorContainer());
+			actionWarning.transform.SetParent(tilemapVisuals.GetDoubleScaleCanvas().transform, worldPositionStays: false);
+			foreach (Image i in GetComponentsInChildren<Image>()) {
+				// to deal with the above line
+				i.SetNativeSize();
+			}
 		}
 
 		// if no message, then don't show anything (mouse out of board bounds)
@@ -213,5 +218,9 @@ public class ActionButton : MonoBehaviour, IPointerEnterHandler, IPointerExitHan
 			// to deal with the above line
 			i.SetNativeSize();
 		}
+	}
+
+	void OnDestroy() {
+		if (actionWarning) GameObject.Destroy(actionWarning);
 	}
 }

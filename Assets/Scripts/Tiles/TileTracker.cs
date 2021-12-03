@@ -76,6 +76,22 @@ public class TileTracker : MonoBehaviour {
 		return CellToBoard(tilemap.WorldToCell(pos));
 	}
 
+	public bool CellInBounds(Vector3Int cellPos) {
+		bool b = (
+			   cellPos.x <= tilemap.cellBounds.max.x 
+			&& cellPos.y <= tilemap.cellBounds.max.y
+			&& cellPos.x >= tilemap.cellBounds.min.x
+			&& cellPos.y >= tilemap.cellBounds.min.y
+		);
+		if (!b) return false;
+
+		return b;
+	}
+
+	public bool BoardInBounds(Vector3Int boardPos) {
+		return CellInBounds(BoardToCell(boardPos));
+	}
+
 	void InitializeAllTiles() {
 		for (int x=0; x<tiles.Count; x++) {
 			for (int y=0; y<tiles[x].Count; y++) {
@@ -228,9 +244,7 @@ public class TileTracker : MonoBehaviour {
 		}
 		Vector3Int pos = new Vector3Int(x, y, 0);
 		if (validate) {
-			if (pos.x > tilemap.cellBounds.size.x 
-			|| pos.y > tilemap.cellBounds.size.y
-			|| pos.x < 0 || pos.y < 0) {
+			if (!CellInBounds(pos)) {
 				CommandInput.Log("Invalid coordinates "+coords);
 				throw new IndexOutOfRangeException("Invalid tilemap coordinates "+pos);
 			}
@@ -260,8 +274,8 @@ public class TileTracker : MonoBehaviour {
 			tileAge.Clockwork();
 		}
 
-		foreach (Clockwork clockwork in GetTiles<Clockwork>()) {
-			clockwork.Tick();
+		foreach (ITicker t in GetTiles<ITicker>()) {
+			t.Tick();
 		}
 
 		ReconcileExclusiveActions();
@@ -356,6 +370,7 @@ public class TileTracker : MonoBehaviour {
 	}
 
 	public void AddWarp(Vector3Int from, Vector3Int to, TileWarpType warpType) {
+		// TODO: validate the "to" target is in bounds
 		tileWarps[warpType][from] = to;
 	}
 

@@ -2,6 +2,8 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 
 public class ActionTargeter : MonoBehaviour {
+	public AudioResource invalidActionSound;
+
 	ActionButton armedAction = null;
 	TilemapVisuals tilemapVisuals;
 	TileTracker tileTracker;
@@ -29,6 +31,7 @@ public class ActionTargeter : MonoBehaviour {
 			ClearArmedAction();
 		}
 		armedAction = actionButton;
+		tilemapVisuals.OnActionArm();
 	}
 
 	public ActionButton GetArmedAction() {
@@ -73,7 +76,8 @@ public class ActionTargeter : MonoBehaviour {
 		Vector3Int boardPosition = tileTracker.WorldToBoard(mouseWorldPos);
 		if (armedAction.TryToApplyAction(boardPosition)) {
 			tilemapVisuals.ClearTilePreview();
-			// ClearArmedAction();
+		} else {
+			invalidActionSound.PlayFrom(this.gameObject);
 		}
 	}
 

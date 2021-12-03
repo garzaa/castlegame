@@ -22,6 +22,4 @@ public class InvalidPlacementWarning : MonoBehaviour {
 		target.transform.position = position;
 		lerp.SetTarget(target);
 	}
-
-	// TODO: make it only show up after a little while
 }

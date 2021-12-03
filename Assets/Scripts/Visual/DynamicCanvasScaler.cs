@@ -5,6 +5,7 @@ public class DynamicCanvasScaler : MonoBehaviour {
     Canvas targetCanvas;
 
     public float multiplier = 1;
+    public int minimumScale = 1;
 
     void Start() {
         targetCanvas = GetComponent<Canvas>();
@@ -16,7 +17,7 @@ public class DynamicCanvasScaler : MonoBehaviour {
     }
 
     int ComputePixelScale() {
-        return Mathf.CeilToInt((float)Screen.height / 720f);
+        return Mathf.Max(minimumScale, Mathf.CeilToInt((float)Screen.height / 720f));
     }
 
     public static int GetPixelScale() {

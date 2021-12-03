@@ -81,6 +81,7 @@ MonoBehaviour:
   gracePeriod: 5
   neighbor: {fileID: 11400000, guid: ccc45f6c9dde4434eaa5e16819f82c60, type: 2}
   decayMode: 0
+  decayMultiplier: 1
 --- !u!114 &8276244485657843313
 MonoBehaviour:
   m_ObjectHideFlags: 0

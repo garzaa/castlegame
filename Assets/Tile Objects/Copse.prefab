@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 2820625089737308642}
   - component: {fileID: 2820625089737308643}
   - component: {fileID: -6250515470905034740}
+  - component: {fileID: 54512058987025883}
   m_Layer: 0
   m_Name: Copse
   m_TagString: Untagged
@@ -70,6 +71,7 @@ MonoBehaviour:
   gracePeriod: 3
   neighbor: {fileID: 11400000, guid: ccc45f6c9dde4434eaa5e16819f82c60, type: 2}
   decayMode: 0
+  decayMultiplier: 1
 --- !u!114 &2820625089737308642
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -110,3 +112,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8cf6ec2134cc25e4aa160e030e55ad6c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &54512058987025883
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2820625089737308646}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5ac7d643dc63d004cb9803be5bdaa77a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  decayThreshold: 40
+  decayTo: {fileID: 11400000, guid: ccc45f6c9dde4434eaa5e16819f82c60, type: 2}
+  gracePeriod: 0

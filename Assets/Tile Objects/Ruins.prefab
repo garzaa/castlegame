@@ -10,6 +10,8 @@ GameObject:
   m_Component:
   - component: {fileID: 1105813660587429592}
   - component: {fileID: 1707809362449561912}
+  - component: {fileID: 5949584311047025507}
+  - component: {fileID: -5410544817711094598}
   m_Layer: 0
   m_Name: Ruins
   m_TagString: Untagged
@@ -49,3 +51,30 @@ MonoBehaviour:
   onDestroy: {fileID: 0}
   defaultTile: {fileID: 11400000, guid: 575a523c0ccac4a4395f0534ec1eebe6, type: 2}
   description: Nothing of value remains.
+--- !u!114 &5949584311047025507
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4778837198186823719}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8cf6ec2134cc25e4aa160e030e55ad6c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &-5410544817711094598
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4778837198186823719}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5ac7d643dc63d004cb9803be5bdaa77a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  decayThreshold: 7
+  decayTo: {fileID: 11400000, guid: cabf8922ccfee23408f8046bff75ba12, type: 2}
+  gracePeriod: 0

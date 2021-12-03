@@ -48,4 +48,4 @@ MonoBehaviour:
   onQuery: {fileID: 11400000, guid: 19814e19eb2d61c47a03cfae1b31f7f9, type: 2}
   onDestroy: {fileID: 0}
   defaultTile: {fileID: 11400000, guid: abab1d3ffd435394195fa3de0aa58a55, type: 2}
-  description: Can't be built on or crossed.
+  description: The wide stream flows slowly.

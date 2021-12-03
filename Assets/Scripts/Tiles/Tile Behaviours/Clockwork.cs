@@ -3,7 +3,7 @@ using UnityEngine.Tilemaps;
 using System.Collections.Generic;
 using System.Linq;
 
-public class Clockwork : TileBehaviour, ITileHighlighter, IConsoleStat {
+public class Clockwork : TileBehaviour, ITicker, ITileHighlighter, IConsoleStat {
 	public ClockworkTarget target;
 	public ClockworkAction action;
 
