@@ -36,6 +36,7 @@ public class TileTracker : MonoBehaviour {
 	void Start() {
 		console = GameObject.FindObjectOfType<CommandInput>();
 		tilemap = GameObject.FindObjectOfType<MainTilemap>().GetComponentInChildren<Tilemap>();
+		tilemap.CompressBounds();
 		origin = tilemap.cellBounds.min;
 		tileContainer = Instantiate(new GameObject(), this.transform);
 
@@ -370,7 +371,7 @@ public class TileTracker : MonoBehaviour {
 	}
 
 	public void AddWarp(Vector3Int from, Vector3Int to, TileWarpType warpType) {
-		// TODO: validate the "to" target is in bounds
+		if (!BoardInBounds(to)) return;
 		tileWarps[warpType][from] = to;
 	}
 

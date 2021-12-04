@@ -56,7 +56,8 @@ MonoBehaviour:
   onQuery: {fileID: 11400000, guid: 19814e19eb2d61c47a03cfae1b31f7f9, type: 2}
   onDestroy: {fileID: 0}
   defaultTile: {fileID: 11400000, guid: 0db2b7e7ee07f2446913de4d3fa920ea, type: 2}
-  description: "Live here. Work elsewhere. \nRepairs the oldest neighbor structure."
+  description: "Live here. Work elsewhere. \nRepairs a neighboring structure every
+    day."
 --- !u!114 &6726653392267514890
 MonoBehaviour:
   m_ObjectHideFlags: 0
