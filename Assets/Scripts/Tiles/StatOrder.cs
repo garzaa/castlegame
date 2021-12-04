@@ -30,6 +30,7 @@ public class StatOrder {
 	public static ICardStat[] OrderCardStats(ICardStat[] stats) {
 		return stats.OrderBy(x => {
 			int i = Array.IndexOf(statTypes, x.GetType());
+			Debug.Log(i);
 			if (i == -1) return int.MaxValue;
 			return i;
 		}).ToArray();

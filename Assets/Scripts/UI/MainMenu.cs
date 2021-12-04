@@ -51,4 +51,10 @@ public class MainMenu : MonoBehaviour {
 	public void Exit() {
 		Application.Quit();
 	}
+
+	void Update() {
+		if (Input.GetMouseButtonDown(0)) {
+			animator.SetTrigger("SkipLowerIn");
+		}
+	}
 }

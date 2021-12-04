@@ -135,7 +135,7 @@ public class TileTracker : MonoBehaviour {
 					switch (warpType) {
 						case TileWarpType.REFLECT:
 							results.Add(from);
-							warpTarget = from.position;
+							warpTarget = from.boardPosition;
 							goto case TileWarpType.REDIRECT;
 
 						case TileWarpType.COPY:
@@ -254,8 +254,8 @@ public class TileTracker : MonoBehaviour {
 		return pos;
 	}
 
-	public string PosToStr(Vector3Int pos) {
-		return letters[pos.x].ToString().ToUpper() + (pos.y + 1);
+	public string PosToStr(Vector3Int boardPos) {
+		return letters[boardPos.x].ToString().ToUpper() + (boardPos.y + 1);
 	}
 
 	public Vector3 BoardToWorld(Vector3Int tileBoardPos) {

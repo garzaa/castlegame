@@ -7,12 +7,12 @@ using System.Collections.Generic;
 public class GameTile : MonoBehaviour, IStat, ICardStat, IConsoleStat {
 	ScriptableTile tile;
 	TileTracker tileTracker;
-	public Vector3Int position {get; private set; }
+	public Vector3Int boardPosition {get; private set; }
 	public Vector3Int gridPosition { 
-		get { return tileTracker.BoardToCell(position); }
+		get { return tileTracker.BoardToCell(boardPosition); }
 	}
 	public Vector3 worldPosition {
-		get { return tileTracker.BoardToWorld(position); }
+		get { return tileTracker.BoardToWorld(boardPosition); }
 	}
 
 	#pragma warning disable 0649
@@ -31,7 +31,7 @@ public class GameTile : MonoBehaviour, IStat, ICardStat, IConsoleStat {
 	public virtual void Initialize(TileTracker tileTracker, ScriptableTile tile, Vector3Int position, bool silent=false) {
 		this.tile = tile;
 		this.tileTracker = tileTracker;
-		this.position = position;
+		this.boardPosition = position;
 		foreach (TileBehaviour t in GetComponents<TileBehaviour>()) {
 			t.OnPlace();
 		}
@@ -51,8 +51,8 @@ public class GameTile : MonoBehaviour, IStat, ICardStat, IConsoleStat {
 	}
 
 	public void QueueForReplace(ScriptableTile newTile) {
-		CommandInput.Log($"{gameObject.name} at {tileTracker.PosToStr(this.position)} turned into {newTile.tileObject.name}");
-		tileTracker.QueueReplacement(this.position, newTile);
+		CommandInput.Log($"{gameObject.name} at {tileTracker.PosToStr(this.boardPosition)} turned into {newTile.tileObject.name}");
+		tileTracker.QueueReplacement(this.boardPosition, newTile);
 	}
 
 	public ScriptableTile GetDefaultTile() {
@@ -64,8 +64,9 @@ public class GameTile : MonoBehaviour, IStat, ICardStat, IConsoleStat {
 		string stat = description;
 		// tiletracker won't be called if the prefab is referenced
 		if (tileTracker) {
-			List<Tuple<GameTile, TileWarpType>> warps = tileTracker.GetWarps(this.position);
+			List<Tuple<GameTile, TileWarpType>> warps = tileTracker.GetWarps(this.boardPosition);
 			foreach (var warp in warps) {
+				if (warp.Item1 == null) continue; // OOB - should validate this earlier
 				if (!warp.Item2.Equals(TileWarpType.REFLECT)) {
 					stat += $"\n<color='#ca52c9'>{TileWarp.WarpToString(warp.Item2)} to "+warp.Item1.ToString()+".</color>";
 				}
@@ -84,7 +85,7 @@ public class GameTile : MonoBehaviour, IStat, ICardStat, IConsoleStat {
 	}
 
 	public List<GameTile> GetNeighbors() {
-		return tileTracker.GetNeighbors(position);
+		return tileTracker.GetNeighbors(boardPosition);
 	}
 
 	public TileTracker GetTracker() {
@@ -92,7 +93,7 @@ public class GameTile : MonoBehaviour, IStat, ICardStat, IConsoleStat {
 	}
 
 	public override string ToString() {
-		return $"{this.name} at {tileTracker.PosToStr(this.position)}";
+		return $"{this.name} at {tileTracker.PosToStr(this.boardPosition)}";
 	}
 
 	public bool IsTileType(TileType t) {

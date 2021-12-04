@@ -25,8 +25,9 @@ public class ClockworkTargetNetworked : ClockworkTarget {
 
 	// this function has 5 arguments because scriptable objects have to be stateless
 	void GetFilteredNeighbors(int depth, Vector3Int position, List<GameTile> targets, HashSet<GameTile> visited, TileTracker tracker) {
-		depth++;
-		if (depth > maxDepth) return;
+		if (++depth > maxDepth) {
+			return;
+		}
 
 		List<GameTile> networkedTargets = tracker.GetNeighbors(position)
 			.Where(tile => !visited.Contains(tile))
@@ -37,7 +38,7 @@ public class ClockworkTargetNetworked : ClockworkTarget {
 		targets.AddRange(networkedTargets);
 
 		foreach (GameTile tile in networkedTargets) {
-			GetFilteredNeighbors(depth, tile.position, targets, visited, tracker);
+			GetFilteredNeighbors(depth, tile.boardPosition, targets, visited, tracker);
 		}
 	}
 
@@ -48,5 +49,9 @@ public class ClockworkTargetNetworked : ClockworkTarget {
 			}
 		}
 		return false;
+	}
+
+	public string GetTargetType() {
+		return tileFilter.name;
 	}
 }

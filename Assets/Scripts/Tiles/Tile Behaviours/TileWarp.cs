@@ -21,8 +21,8 @@ public class TileWarp : TileBehaviour, ITileHighlighter {
 	IEnumerator AfterPlace() {
 		yield return new WaitForEndOfFrame();
 		TileTracker t = gameTile.GetTracker();
-		source = gameTile.position + fromRelative;
-		target = gameTile.position + toRelative;
+		source = gameTile.boardPosition + fromRelative;
+		target = gameTile.boardPosition + toRelative;
 		gameTile.GetTracker().AddWarp(source, target, warpType);
 	}
 

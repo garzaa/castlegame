@@ -29,6 +29,7 @@ public class ActionButton : MonoBehaviour, IPointerEnterHandler, IPointerExitHan
 	DayTracker dayTracker;
 	ActionTargeter actionTargeter;
 	Animator infoCardAnimator;
+	Animator buttonAnimator;
 
 	protected TileTracker tileTracker;
 	protected InvalidPlacementWarning actionWarning;
@@ -52,6 +53,8 @@ public class ActionButton : MonoBehaviour, IPointerEnterHandler, IPointerExitHan
 
 		infoCardAnimator = infoCard.GetComponent<Animator>();
 		HideInfoCard();
+
+		buttonAnimator = GetComponent<Animator>();
 
 		keyName = letters[transform.GetSiblingIndex()].ToString();
 		letter.text = keyName.ToUpper();
@@ -154,6 +157,7 @@ public class ActionButton : MonoBehaviour, IPointerEnterHandler, IPointerExitHan
 		clickSound.PlayFrom(this.gameObject);
 		actionTargeter.SetArmedAction(this);
 		border.sprite = activeSprite;
+		animator.SetBool("Armed", true);
 	}
 
 	public void Disarm() {
@@ -161,6 +165,7 @@ public class ActionButton : MonoBehaviour, IPointerEnterHandler, IPointerExitHan
 		border.enabled = false;
 		HideInfoCard();
 		HideActionWarning();
+		animator.SetBool("Armed", false);
 	}
 
 	bool IsArmed() {

@@ -36,7 +36,7 @@ public class TileInfo : MonoBehaviour {
 			tileAgeContainer.SetActive(false);
 		}
 
-		tileLocation.text = tile.GetTracker().PosToStr(tile.position);
+		tileLocation.text = tile.GetTracker().PosToStr(tile.boardPosition);
 
 		foreach (IStat i in tile.GetComponents<IStat>()) {
 			string s = i.Stat();
