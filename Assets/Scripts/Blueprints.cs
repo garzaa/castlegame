@@ -27,6 +27,7 @@ public class Blueprints : ButtonSource {
 		// for each blueprint
 		// if it's got a blueprint unlock, and it's satisfied, then make a new card, initialize it, and add it to the hand
 		foreach (GameTile tile in tiles) {
+			if (tile == null) continue;
 			BlueprintUnlock unlock = tile.GetComponent<BlueprintUnlock>();
 			if (unlock && unlock.Unlocked(tileTracker)) {
 				buttons.Add(SpawnButton(tile));
@@ -42,6 +43,7 @@ public class Blueprints : ButtonSource {
 	override public List<ActionButton> GetMidRoundButtons() {
 		List<ActionButton> newButtons = new List<ActionButton>();
 		foreach (GameTile tile in tiles) {
+			if (tile == null) continue;
 			BlueprintUnlock unlock = tile.GetComponent<BlueprintUnlock>();
 			if (unlock && !lastSourced.Contains(tile) && unlock.Unlocked(tileTracker)) {
 				newButtons.Add(SpawnButton(tile));

@@ -201,9 +201,6 @@ public class TilemapVisuals : MonoBehaviour {
 	}
 
 	void OnTileClick(Vector3Int gridPos, bool silent=false) {
-		if (actionTargeter.IsArmed()) {
-			return;
-		}
 
 		GameTile gameTile = tracker.GetTileNoRedirect(tracker.CellToBoard(gridPos));
 		if (gameTile == null) {
@@ -212,12 +209,19 @@ public class TilemapVisuals : MonoBehaviour {
 		}
 
 		// silent if the info bubble is being refreshed on a gameboard change
-		if (currentSelectedGridPosition == gridPos && !silent) {
+		// OnTileClick is called twice unfortunately, the code to show the info bubble
+		// maybe should be extracted to deal with RefreshInfoBubble down below
+		if (currentSelectedGridPosition == gridPos && !silent && !actionTargeter.IsArmed()) {
 			HideInfoBubble();
 			return;
 		}
 
-		currentSelectedGridPosition = gridPos;
+		if (!actionTargeter.IsArmed()) {
+			// refresh the info bubble on an action apply
+			// but don't pick the new position
+			currentSelectedGridPosition = gridPos;
+		}
+
 		if (!silent) gameTile.PlayQuerySound();
 		DisplayTileVisuals(gameTile);
 		ShowInfoBubble(gameTile);
@@ -296,7 +300,10 @@ public class TilemapVisuals : MonoBehaviour {
 	}
 
 	public void OnGameBoardChanged() {
-		// update the tile bubble in-place
+		RefreshInfoBubble();
+	}
+
+	void RefreshInfoBubble() {
 		if (currentInfoBubble != null) {
 			OnTileClick(currentSelectedGridPosition, silent:true);
 		}

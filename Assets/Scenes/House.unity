@@ -15850,6 +15850,31 @@ PrefabInstance:
       propertyPath: m_LocalPosition.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4184139922484147649, guid: 2cd0a8c2313018743b330d76addd7ff7,
+        type: 3}
+      propertyPath: tiles.Array.data[8]
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 4184139922484147649, guid: 2cd0a8c2313018743b330d76addd7ff7,
+        type: 3}
+      propertyPath: tiles.Array.data[7]
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 4184139922484147649, guid: 2cd0a8c2313018743b330d76addd7ff7,
+        type: 3}
+      propertyPath: tiles.Array.data[6]
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 4184139922484147649, guid: 2cd0a8c2313018743b330d76addd7ff7,
+        type: 3}
+      propertyPath: tiles.Array.data[5]
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 4184139922484147649, guid: 2cd0a8c2313018743b330d76addd7ff7,
+        type: 3}
+      propertyPath: tiles.Array.data[4]
+      value: 
+      objectReference: {fileID: 0}
     - target: {fileID: 4338395751856483519, guid: 2cd0a8c2313018743b330d76addd7ff7,
         type: 3}
       propertyPath: m_AnchorMin.y
