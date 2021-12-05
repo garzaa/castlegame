@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 83a7be98f2048b7418d6e247ee2a156f, type: 3}
-  m_Name: Structure
+  m_Name: Road
   m_EditorClassIdentifier: 
   ancestor: {fileID: 11400000, guid: 064a5b83e33d197438fc3780008581e3, type: 2}
   infoFrame:

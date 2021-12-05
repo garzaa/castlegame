@@ -180,11 +180,10 @@ MonoBehaviour:
     - {x: 0, y: -1, z: 0}
     - {x: 0, y: 1, z: 0}
     - {x: 1, y: 0, z: 0}
-    m_RuleTransform: 2
+    m_RuleTransform: 0
   - m_Id: 7
     m_Sprites:
-    - {fileID: -5694749362593396408, guid: d37580add8161504698d46380a03fea2, type: 3}
-    - {fileID: 0}
+    - {fileID: 3754508783171914759, guid: d37580add8161504698d46380a03fea2, type: 3}
     m_GameObject: {fileID: 1742198634726585055, guid: 3542486c53a8cf941af8f153b6a752b2,
       type: 3}
     m_AnimationSpeed: 1

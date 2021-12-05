@@ -15,4 +15,4 @@ MonoBehaviour:
   tileFilter: {fileID: 11400000, guid: 64c537d4d2d88b746b7a61ab54f13fa2, type: 2}
   maxDepth: 4
   networkFilters:
-  - {fileID: 11400000, guid: 64c537d4d2d88b746b7a61ab54f13fa2, type: 2}
+  - {fileID: 11400000, guid: 064a5b83e33d197438fc3780008581e3, type: 2}

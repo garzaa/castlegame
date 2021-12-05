@@ -10,9 +10,9 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 83a7be98f2048b7418d6e247ee2a156f, type: 3}
-  m_Name: Structure
+  m_Name: Built
   m_EditorClassIdentifier: 
-  ancestor: {fileID: 11400000, guid: 064a5b83e33d197438fc3780008581e3, type: 2}
+  ancestor: {fileID: 11400000, guid: 98718ff1143773b45972735c48d75e1a, type: 2}
   infoFrame:
-    frame: {fileID: 7988077541234147599, guid: 14f4b9d715b7b164d99f697bcbf3f412, type: 3}
-    tail: {fileID: 1096279476776504754, guid: 14f4b9d715b7b164d99f697bcbf3f412, type: 3}
+    frame: {fileID: 0}
+    tail: {fileID: 0}

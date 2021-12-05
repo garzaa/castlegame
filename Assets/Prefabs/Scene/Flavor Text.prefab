@@ -35,7 +35,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0}
   m_AnchorMax: {x: 0.5, y: 0}
-  m_AnchoredPosition: {x: -52.843037, y: 38.18}
+  m_AnchoredPosition: {x: 52.843, y: 38.18}
   m_SizeDelta: {x: 100.00012, y: 23.64038}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &3346324378004333418
@@ -72,7 +72,7 @@ MonoBehaviour:
     m_BestFit: 0
     m_MinSize: 1
     m_MaxSize: 40
-    m_Alignment: 3
+    m_Alignment: 5
     m_AlignByGeometry: 0
     m_RichText: 1
     m_HorizontalOverflow: 0
@@ -99,7 +99,7 @@ MonoBehaviour:
     m_SelectOnRight: {fileID: 0}
   m_Transition: 1
   m_Colors:
-    m_NormalColor: {r: 0.90196085, g: 0.6117647, b: 0.41176474, a: 1}
+    m_NormalColor: {r: 0.105882354, g: 0.105882354, b: 0.105882354, a: 1}
     m_HighlightedColor: {r: 0.5372549, g: 0.11764707, b: 0.16862746, a: 1}
     m_PressedColor: {r: 0.7686275, g: 0.14117648, b: 0.18823531, a: 1}
     m_SelectedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
@@ -452,6 +452,7 @@ MonoBehaviour:
   letter: {fileID: 3824776358868648150}
   nextLevelButton: {fileID: 4294709497913061520}
   reloadButton: {fileID: 743715435104594925}
+  closeButton: {fileID: 3824776358657640297}
   dismissedFirstTime: {fileID: 11400000, guid: 0028c27b991ec3b4bba082e6e5d28a53, type: 2}
 --- !u!114 &3824776358076316466
 MonoBehaviour:
@@ -505,6 +506,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   multiplier: 1
+  minimumScale: 1
 --- !u!114 &1073821662379315870
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -929,7 +931,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0}
   m_AnchorMax: {x: 0.5, y: 0}
-  m_AnchoredPosition: {x: -52.843037, y: 38.18}
+  m_AnchoredPosition: {x: 52.843, y: 38.18}
   m_SizeDelta: {x: 100.00012, y: 23.64038}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &2425247662385602419
@@ -966,7 +968,7 @@ MonoBehaviour:
     m_BestFit: 0
     m_MinSize: 1
     m_MaxSize: 40
-    m_Alignment: 3
+    m_Alignment: 5
     m_AlignByGeometry: 0
     m_RichText: 1
     m_HorizontalOverflow: 0
@@ -993,7 +995,7 @@ MonoBehaviour:
     m_SelectOnRight: {fileID: 0}
   m_Transition: 1
   m_Colors:
-    m_NormalColor: {r: 0.90196085, g: 0.6117647, b: 0.41176474, a: 1}
+    m_NormalColor: {r: 0.105882354, g: 0.105882354, b: 0.105882354, a: 1}
     m_HighlightedColor: {r: 0.5372549, g: 0.11764707, b: 0.16862746, a: 1}
     m_PressedColor: {r: 0.7686275, g: 0.14117648, b: 0.18823531, a: 1}
     m_SelectedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}

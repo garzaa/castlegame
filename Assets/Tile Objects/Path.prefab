@@ -47,7 +47,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1f257f2dba2daf043844440ba0759d2d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  tileType: {fileID: 11400000, guid: 64c537d4d2d88b746b7a61ab54f13fa2, type: 2}
+  tileType: {fileID: 11400000, guid: c4f908165acb91240abc612418da431c, type: 2}
   onPlace: {fileID: 11400000, guid: 1034ba3b50af13b4cbec98d78d554414, type: 2}
   onQuery: {fileID: 11400000, guid: 19814e19eb2d61c47a03cfae1b31f7f9, type: 2}
   onDestroy: {fileID: 11400000, guid: 3a1e3a9ed2724e34299c4892eb6039e0, type: 2}

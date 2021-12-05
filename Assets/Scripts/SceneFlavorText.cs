@@ -11,6 +11,7 @@ public class SceneFlavorText : MonoBehaviour {
 	[SerializeField] GameObject letter;
 	[SerializeField] GameObject nextLevelButton;
 	[SerializeField] GameObject reloadButton;
+	[SerializeField] GameObject closeButton;
 	[SerializeField] GameEvent dismissedFirstTime;
 	DayTracker dayTracker;
 	bool won;
@@ -43,7 +44,11 @@ public class SceneFlavorText : MonoBehaviour {
 		letterText.text += "\n\nComplete!";
 		letterText.text += $"\nTook <color='#7a09fa'>{dayTracker.GetTotalDays()}</color> days & <color='#7a09fa'>{dayTracker.GetTotalActions()}</color> actions.";
 		letter.SetActive(true);
-		if (levels.HasNextLevel()) nextLevelButton.SetActive(true);
+		if (levels.HasNextLevel()) {
+			nextLevelButton.SetActive(true);
+			closeButton.SetActive(false);
+		}
+
 	}
 
 	public void OnLose() {
@@ -53,6 +58,7 @@ public class SceneFlavorText : MonoBehaviour {
 		letterText.text += "\n\n<color='#ea323c'>FAILED.</color>\nYour Keep has fallen into ruin.";
 		letter.SetActive(true);
 		reloadButton.SetActive(true);
+		closeButton.SetActive(false);
 	}
 	
 	public void ToggleLetter() {
