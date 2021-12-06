@@ -27,7 +27,7 @@ public class TileWarp : TileBehaviour, ITileHighlighter {
 	}
 
 	override public void OnRemove() {
-		gameTile.GetTracker().RemoveWarp(source, warpType);
+		gameTile.GetTracker().RemoveWarp(source, target, warpType);
 	}
 
 	public static string WarpToString(TileWarpType warpType) {

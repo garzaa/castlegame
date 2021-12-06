@@ -18,10 +18,10 @@ public class TileTracker : MonoBehaviour {
 	List<List<GameTile>> tiles = new List<List<GameTile>>();
 	Queue<TilePlacement> placements = new Queue<TilePlacement>();
 	Dictionary<ExclusiveClockworkAction, List<ClockworkApply>> exclusiveActions = new Dictionary<ExclusiveClockworkAction, List<ClockworkApply>>();
-	Dictionary<TileWarpType, Dictionary<Vector3Int, Vector3Int>> tileWarps = new Dictionary<TileWarpType, Dictionary<Vector3Int, Vector3Int>>();
-	Dictionary<Vector3Int, Vector3Int> redirects = new Dictionary<Vector3Int, Vector3Int>();
-	Dictionary<Vector3Int, Vector3Int> copies = new Dictionary<Vector3Int, Vector3Int>();
-	Dictionary<Vector3Int, Vector3Int> reflects = new Dictionary<Vector3Int, Vector3Int>();
+	Dictionary<TileWarpType, TileTraversal> tileWarps = new Dictionary<TileWarpType, TileTraversal>();
+	TileTraversal redirects = new TileTraversal();
+	TileTraversal copies = new TileTraversal();
+	TileTraversal reflects = new TileTraversal();
 	GameObject tileContainer;
 	Vector3Int gridMousePos;
 
@@ -122,34 +122,38 @@ public class TileTracker : MonoBehaviour {
 	}
 
 	void FollowRedirects(Vector3Int currentPos, GameTile from, ref HashSet<GameTile> results, HashSet<Vector3Int> visited) {
-		if (GetWarps(currentPos).Count == 0) {
+		if (!HasWarp(currentPos)) {
 			results.Add(GetTileNoRedirect(currentPos));
 			return;
 		}
 
-		foreach (KeyValuePair<TileWarpType, Dictionary<Vector3Int, Vector3Int>> kv in tileWarps) {
-			if (kv.Value.ContainsKey(currentPos)) {
-				Vector3Int warpTarget = kv.Value[currentPos];
-				TileWarpType warpType = kv.Key;
-				if (!visited.Contains(warpTarget)) {
-					switch (warpType) {
-						case TileWarpType.REFLECT:
-							results.Add(from);
-							warpTarget = from.boardPosition;
-							goto case TileWarpType.REDIRECT;
+		foreach (KeyValuePair<TileWarpType, TileTraversal> kv in tileWarps) {
+			TileTraversal traversal = kv.Value;
+			if (traversal.HasRedirect(currentPos)) {
+				foreach (Vector3Int warpTarget in traversal.GetRedirects(currentPos)) {
+					TileWarpType warpType = kv.Key;
+					if (!visited.Contains(warpTarget)) {
+						switch (warpType) {
+							case TileWarpType.REFLECT:
+								results.Add(from);
+								visited.Add(currentPos);
+								visited.Add(warpTarget);
+								FollowRedirects(from.boardPosition, from, ref results, visited);
+								break;
 
-						case TileWarpType.COPY:
-							results.Add(GetTileNoRedirect(currentPos));
-							goto case TileWarpType.REDIRECT;
+							case TileWarpType.COPY:
+								results.Add(GetTileNoRedirect(currentPos));
+								goto case TileWarpType.REDIRECT;
 
-						case TileWarpType.REDIRECT:
-							visited.Add(currentPos);
-							visited.Add(warpTarget);
-							FollowRedirects(warpTarget, from, ref results, visited);
-							break;
+							case TileWarpType.REDIRECT:
+								visited.Add(currentPos);
+								visited.Add(warpTarget);
+								FollowRedirects(warpTarget, from, ref results, visited);
+								break;
+						}
+					} else {
+						results.Add(GetTileNoRedirect(currentPos));
 					}
-				} else {
-					results.Add(GetTileNoRedirect(currentPos));
 				}
 			}
 		}
@@ -359,11 +363,13 @@ public class TileTracker : MonoBehaviour {
 		List<Tuple<GameTile, TileWarpType>> results = new List<Tuple<GameTile, TileWarpType>>();
 		if (GetTileNoRedirect(pos) == null) return results;
 
-		foreach (var warpTypePair in tileWarps) {
-			TileWarpType currentWarpType = warpTypePair.Key;
-			Dictionary<Vector3Int, Vector3Int> currentWarps = warpTypePair.Value;
-			if (currentWarps.ContainsKey(pos)) {
-				results.Add(new Tuple<GameTile, TileWarpType>(GetTileNoRedirect(currentWarps[pos]), currentWarpType));
+		foreach (KeyValuePair<TileWarpType, TileTraversal> kv in tileWarps) {
+			TileWarpType currentWarpType = kv.Key;
+			TileTraversal currentWarps = kv.Value;
+			if (currentWarps.HasRedirect(pos)) {
+				foreach (Vector3Int targetPos in currentWarps.GetRedirects(pos)) {
+					results.Add(new Tuple<GameTile, TileWarpType>(GetTileNoRedirect(targetPos), currentWarpType));
+				}
 			}
 		}
 
@@ -372,11 +378,21 @@ public class TileTracker : MonoBehaviour {
 
 	public void AddWarp(Vector3Int from, Vector3Int to, TileWarpType warpType) {
 		if (!BoardInBounds(to)) return;
-		tileWarps[warpType][from] = to;
+		tileWarps[warpType].AddRedirect(from, to);
 	}
 
-	public void RemoveWarp(Vector3Int from, TileWarpType warpType) {
-		tileWarps[warpType].Remove(from);
+	public void RemoveWarp(Vector3Int from, Vector3Int to, TileWarpType warpType) {
+		tileWarps[warpType].RemoveRedirect(from, to);
+	}
+
+	public bool HasWarp(Vector3Int from) {
+		foreach (TileTraversal traversal in tileWarps.Values) {
+			if (traversal.HasRedirect(from)) {
+				return true;
+			}
+		}
+
+		return false;
 	}
 
 	public int ContainsTile(ScriptableTile targetTile) {
