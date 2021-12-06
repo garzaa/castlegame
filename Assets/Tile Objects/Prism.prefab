@@ -54,8 +54,10 @@ MonoBehaviour:
   onQuery: {fileID: 11400000, guid: 95e9b005ce5094b49aec850a5e63c135, type: 2}
   onDestroy: {fileID: 0}
   defaultTile: {fileID: 11400000, guid: 81f212dc8c5dcef40810dc4c698555bd, type: 2}
-  description: When looking through it from the north, you see the eastern tile.
-    From the west, you see the southern tile.
+  description: 'Looking through it, vision is bent at right angles.
+
+    <color=''#ca52c9''>Copies
+    effects arond corners.</color>'
 --- !u!114 &1755971447828309234
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -70,9 +70,6 @@ public class GameTile : MonoBehaviour, IStat, ICardStat, IConsoleStat {
 				if (!warp.Item2.Equals(TileWarpType.REFLECT)) {
 					stat += $"\n<color='#ca52c9'>{TileWarp.WarpToString(warp.Item2)} to "+warp.Item1.ToString()+".</color>";
 				}
-				else {
-					stat += "\n<color='#ca52c9'>Reflects applied effects.</color>";
-				}
 			}
 		}
 		return stat;

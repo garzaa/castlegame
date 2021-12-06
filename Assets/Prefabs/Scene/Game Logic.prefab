@@ -3196,6 +3196,8 @@ MonoBehaviour:
     scenePath: Assets/Scenes/House.unity
   - sceneAsset: {fileID: 102900000, guid: 4482025da657ab44e926cb4a84a3a569, type: 3}
     scenePath: Assets/Scenes/Sustain.unity
+  - sceneAsset: {fileID: 102900000, guid: 3b2dab7543c03b841bb5de58761102e4, type: 3}
+    scenePath: Assets/Scenes/Scratch.unity
   - sceneAsset: {fileID: 102900000, guid: e5324c34f46450e49bc5e8fe764a9ad7, type: 3}
     scenePath: Assets/Scenes/Stamp.unity
   - sceneAsset: {fileID: 102900000, guid: 6e0cd63cef6417145943be3105241795, type: 3}

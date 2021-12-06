@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: -4941259628421447755}
   - component: {fileID: 4299606383922749418}
   - component: {fileID: -1927640533380844500}
-  - component: {fileID: 2013601380779294915}
+  - component: {fileID: 2937664464840318871}
   m_Layer: 0
   m_Name: Mirror
   m_TagString: Untagged
@@ -53,7 +53,10 @@ MonoBehaviour:
   onQuery: {fileID: 11400000, guid: 95e9b005ce5094b49aec850a5e63c135, type: 2}
   onDestroy: {fileID: 0}
   defaultTile: {fileID: 11400000, guid: d4063427c158ed346bdb7a466d486667, type: 2}
-  description: Each side of the mirror sees its own reflection.
+  description: 'Each side of the mirror sees its own reflection.
+
+    <color=''#ca52c9''>Reflects
+    applied effects.</color>'
 --- !u!114 &8844428329896736310
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -82,7 +85,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   resources:
-  - amount: 1
+  - amount: 2
     resource: {fileID: 11400000, guid: 78246f5ee74dac543a8f0a9cb365ef8e, type: 2}
 --- !u!114 &4299606383922749418
 MonoBehaviour:
@@ -111,9 +114,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   requirements:
-  - {fileID: 2013601380779294915}
+  - {fileID: 2937664464840318871}
   description: Unlocked by having 1 <color="#94fdff">Haunt</color>.
---- !u!114 &2013601380779294915
+--- !u!114 &2937664464840318871
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -126,5 +129,5 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   resources:
-  - amount: 1
+  - amount: 2
     resource: {fileID: 11400000, guid: 78246f5ee74dac543a8f0a9cb365ef8e, type: 2}

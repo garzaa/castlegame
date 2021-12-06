@@ -56,7 +56,10 @@ MonoBehaviour:
   onQuery: {fileID: 11400000, guid: 95e9b005ce5094b49aec850a5e63c135, type: 2}
   onDestroy: {fileID: 0}
   defaultTile: {fileID: 11400000, guid: 7091f6f44e232d34fbb65ed25ba7e285, type: 2}
-  description: The reflected opposite bank shimmers in the fluid.
+  description: 'The reflected opposite bank shimmers in the fluid.
+
+    <color=''#ca52c9''>Copies
+    effects across itself.</color>'
 --- !u!114 &4184659663334174645
 MonoBehaviour:
   m_ObjectHideFlags: 0

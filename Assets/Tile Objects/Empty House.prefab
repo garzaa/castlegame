@@ -50,7 +50,7 @@ MonoBehaviour:
   onQuery: {fileID: 11400000, guid: 19814e19eb2d61c47a03cfae1b31f7f9, type: 2}
   onDestroy: {fileID: 11400000, guid: 33d44cf28860dcc4baa447b045e2ced8, type: 2}
   defaultTile: {fileID: 11400000, guid: 69f5ab1ee2cfc994c906ffc1c8fb4401, type: 2}
-  description: Part of them still lives here.
+  description: They're still hungry in there.
 --- !u!114 &1957730871791113789
 MonoBehaviour:
   m_ObjectHideFlags: 0
