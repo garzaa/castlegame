@@ -128,10 +128,10 @@ public class TileTracker : MonoBehaviour {
 		}
 
 		foreach (KeyValuePair<TileWarpType, TileTraversal> kv in tileWarps) {
+			TileWarpType warpType = kv.Key;
 			TileTraversal traversal = kv.Value;
-			if (traversal.HasRedirect(currentPos)) {
-				foreach (Vector3Int warpTarget in traversal.GetRedirects(currentPos)) {
-					TileWarpType warpType = kv.Key;
+			if (traversal.HasTargets(currentPos)) {
+				foreach (Vector3Int warpTarget in traversal.GetTargets(currentPos)) {
 					if (!visited.Contains(warpTarget)) {
 						switch (warpType) {
 							case TileWarpType.REFLECT:
@@ -366,8 +366,8 @@ public class TileTracker : MonoBehaviour {
 		foreach (KeyValuePair<TileWarpType, TileTraversal> kv in tileWarps) {
 			TileWarpType currentWarpType = kv.Key;
 			TileTraversal currentWarps = kv.Value;
-			if (currentWarps.HasRedirect(pos)) {
-				foreach (Vector3Int targetPos in currentWarps.GetRedirects(pos)) {
+			if (currentWarps.HasTargets(pos)) {
+				foreach (Vector3Int targetPos in currentWarps.GetTargets(pos)) {
 					results.Add(new Tuple<GameTile, TileWarpType>(GetTileNoRedirect(targetPos), currentWarpType));
 				}
 			}
@@ -378,16 +378,16 @@ public class TileTracker : MonoBehaviour {
 
 	public void AddWarp(Vector3Int from, Vector3Int to, TileWarpType warpType) {
 		if (!BoardInBounds(to)) return;
-		tileWarps[warpType].AddRedirect(from, to);
+		tileWarps[warpType].AddTarget(from, to);
 	}
 
 	public void RemoveWarp(Vector3Int from, Vector3Int to, TileWarpType warpType) {
-		tileWarps[warpType].RemoveRedirect(from, to);
+		tileWarps[warpType].RemoveTarget(from, to);
 	}
 
 	public bool HasWarp(Vector3Int from) {
 		foreach (TileTraversal traversal in tileWarps.Values) {
-			if (traversal.HasRedirect(from)) {
+			if (traversal.HasTargets(from)) {
 				return true;
 			}
 		}
