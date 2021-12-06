@@ -6,11 +6,15 @@ using System.Collections.Generic;
 public class ActionButtonContainer : MonoBehaviour {
 	GameTile keep;
 	TileTracker tileTracker;
+	ActionTargeter actionTargeter;
 
 	bool firstDay = true;
+	bool started = false;
 
 	void Start() {
 		tileTracker = GameObject.FindObjectOfType<TileTracker>();
+		actionTargeter = GetComponent<ActionTargeter>();
+		started = true;
 	}
 
 	public void ScrapButtons() {
@@ -24,6 +28,8 @@ public class ActionButtonContainer : MonoBehaviour {
 	}
 
 	public void AddButtons() {
+		if (!started) Start();
+
 		ScrapButtons();
 
 		if (!GameObject.Find("Keep") && !firstDay) {
@@ -40,6 +46,9 @@ public class ActionButtonContainer : MonoBehaviour {
 		foreach (ActionButton button in buttons) {
 			button.SetTransformParent(this.transform);
 		}
+
+		// maybe make this a game event later
+		actionTargeter.OnButtonsFinishCreating();
 	}
 
 	ButtonSource[] GetButtonSources() {

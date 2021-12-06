@@ -12,10 +12,14 @@ public class TileWarp : TileBehaviour, ITileHighlighter {
 	Vector3Int source;
 	Vector3Int target;
 
-	const string tileTemplatePath = "RuntimeLoaded/Tiles/";
+	static readonly string tileTemplatePath = "RuntimeLoaded/Tiles/";
 
 	override public void OnPlace() {
 		StartCoroutine(AfterPlace());
+	}
+
+	public static Tile LoadWarpTile(string warpTypeTile) {
+		return Resources.Load(tileTemplatePath+warpTypeTile) as Tile;
 	}
 
 	IEnumerator AfterPlace() {
@@ -24,6 +28,14 @@ public class TileWarp : TileBehaviour, ITileHighlighter {
 		source = gameTile.boardPosition + fromRelative;
 		target = gameTile.boardPosition + toRelative;
 		gameTile.GetTracker().AddWarp(source, target, warpType);
+
+		if (warpType.Equals(TileWarpType.REDIRECT)) {
+			warpIcon = LoadWarpTile("WarpRedirectTile");
+		} else if (warpType.Equals(TileWarpType.COPY)) {
+			warpIcon = LoadWarpTile("WarpCopyTile");
+		} else {
+			warpIcon = LoadWarpTile("WarpReflectTile");
+		}
 	}
 
 	override public void OnRemove() {

@@ -4,9 +4,10 @@ using System.Collections;
 using System;
 using System.Collections.Generic;
 
-public class GameTile : MonoBehaviour, IStat, ICardStat, IConsoleStat {
+public class GameTile : MonoBehaviour, IStat, ICardStat, IConsoleStat, ITileHighlighter {
 	ScriptableTile tile;
 	TileTracker tileTracker;
+	Tile warpTargetIcon;
 	public Vector3Int boardPosition {get; private set; }
 	public Vector3Int gridPosition { 
 		get { return tileTracker.BoardToCell(boardPosition); }
@@ -107,5 +108,27 @@ public class GameTile : MonoBehaviour, IStat, ICardStat, IConsoleStat {
 
 	public ICardStat[] GetCardStats() {
 		return StatOrder.OrderCardStats(GetComponents<ICardStat>());
+	}
+
+	public TileHighlight GetHighlight() {
+		if (!tileTracker.HasWarp(boardPosition)) {
+			return null;
+		}
+
+		if (warpTargetIcon == null) {
+			warpTargetIcon = TileWarp.LoadWarpTile("WarpTargetTile");
+		}
+
+
+		List<Vector3Int> targets = new List<Vector3Int>();
+		List<Tuple<GameTile, TileWarpType>> warps = tileTracker.GetWarps(boardPosition);
+		foreach (var t in warps) {
+			if (!t.Item2.Equals(TileWarpType.REFLECT)) {
+				// second time doing this, this isn't great
+				targets.Add(t.Item1.gridPosition + Vector3Int.down + Vector3Int.left);
+			}
+		}
+
+		return new TileHighlight(warpTargetIcon, targets);
 	}
 }

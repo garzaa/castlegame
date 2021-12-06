@@ -9,21 +9,15 @@ public class ActionTargeter : MonoBehaviour {
 	TileTracker tileTracker;
 	Transform errorContainer;
 	Vector3 rightClickStart = Vector3.zero;
+	string previousArmedAction = "null";
 
 	void Start() {
 		tilemapVisuals = GameObject.FindObjectOfType<TilemapVisuals>();
 		tileTracker = GameObject.FindObjectOfType<TileTracker>();
 		errorContainer = new GameObject().transform;
-		errorContainer.parent = this.transform;
+		// to avoid messing with the card order
+		errorContainer.parent = transform.parent;
 		errorContainer.name = "Error Container";
-	}
-
-	// when the day starts, instantiate action buttons
-	// get them from action sources (blueprint, keep)
-	// actionbuttonsource needs to be a class that instantiates an action button
-
-	public void OnDayStart() {
-
 	}
 
 	public void SetArmedAction(ActionButton actionButton) {
@@ -31,7 +25,17 @@ public class ActionTargeter : MonoBehaviour {
 			ClearArmedAction();
 		}
 		armedAction = actionButton;
+		previousArmedAction = actionButton.name;
 		tilemapVisuals.OnActionArm();
+	}
+
+	public void OnButtonsFinishCreating() {
+		// if possible, silently roll over the armed action from the previous day
+		Transform t = transform.Find(previousArmedAction);
+		if (t != null) {
+			ActionButton b = t.GetComponent<ActionButton>();
+			b.Arm(silent:true);
+		}
 	}
 
 	public ActionButton GetArmedAction() {
@@ -48,6 +52,7 @@ public class ActionTargeter : MonoBehaviour {
 		}
 		armedAction = null;
 		tilemapVisuals.OnActionDisarm();
+		previousArmedAction = "null";
 	}
 
 	void Update() {

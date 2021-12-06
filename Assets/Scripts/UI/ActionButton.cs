@@ -38,8 +38,11 @@ public class ActionButton : MonoBehaviour, IPointerEnterHandler, IPointerExitHan
 	const string letters = "qwertyuiopasdfghjkl";
 	string keyName;
 	bool keyPressed;
+	bool started;
 
 	protected virtual void Start() {
+		if (started) return;
+
 		animator = GetComponent<Animator>();
 		dayTracker = GameObject.FindObjectOfType<DayTracker>();
 		tileTracker = GameObject.FindObjectOfType<TileTracker>();
@@ -58,6 +61,7 @@ public class ActionButton : MonoBehaviour, IPointerEnterHandler, IPointerExitHan
 
 		keyName = letters[transform.GetSiblingIndex()].ToString();
 		letter.text = keyName.ToUpper();
+		started = true;
 	}
 
 	void Update() {
@@ -153,8 +157,12 @@ public class ActionButton : MonoBehaviour, IPointerEnterHandler, IPointerExitHan
 		border.enabled = true;
 	}
 
-	void Arm() {
-		clickSound.PlayFrom(this.gameObject);
+	public void Arm(bool silent=false) {
+		if (!silent) clickSound.PlayFrom(this.gameObject);
+
+		// called before the button starts, just set it here
+		if (!started) Start();
+
 		actionTargeter.SetArmedAction(this);
 		border.sprite = activeSprite;
 		animator.SetBool("Armed", true);

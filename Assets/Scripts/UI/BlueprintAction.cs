@@ -34,6 +34,7 @@ public class BlueprintAction : ActionButton {
 		buttonIcon.SetNativeSize();
 
 		tileName.text = tile.name;
+		gameObject.name = tile.name+" Blueprint";
 
 		foreach (TileRequiredResource resourceList in tile.GetComponents<TileRequiredResource>()) {
 			foreach (ResourceAmount resource in resourceList.resources) {

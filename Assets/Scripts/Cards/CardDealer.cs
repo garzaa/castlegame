@@ -83,7 +83,7 @@ public class CardDealer : MonoBehaviour {
 	public void OnGameBoardChanged() {
 		List<CardBase> cards = new List<CardBase>();
 		foreach (CardSource source in GetCardSources()) {
-			cards.AddRange(source.GetMidRoundCards());
+			cards.AddRange(source.GetCards());
 		}
 		StartCoroutine(DealCards(cards));
 	}
