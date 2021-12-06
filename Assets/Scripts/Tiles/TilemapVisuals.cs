@@ -67,7 +67,7 @@ public class TilemapVisuals : MonoBehaviour {
 		}
 
 		// have to call this here since onmousedown doesn't fire if you click outside the board
-		if (Input.GetMouseButtonDown(0)) {
+		if (!EventSystem.current.IsPointerOverGameObject() && Input.GetMouseButtonDown(0)) {
 			mouseWorldPos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
 			gridMousePos = highlightTilemap.WorldToCell(mouseWorldPos);
 			gridMousePos.z = 0;

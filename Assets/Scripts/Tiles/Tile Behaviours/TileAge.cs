@@ -12,9 +12,9 @@ public class TileAge : TileBehaviour, IConsoleStat {
 	}
 
 	public void Repair() {
-		gameTile.GetTracker().SendBoardChanged();
 		gameTile.visuals.ShowRepairEffect(gameTile);
 		age = 0;
+		gameTile.GetTracker().SendBoardChanged();
 	}
 
 	public string Stat() {

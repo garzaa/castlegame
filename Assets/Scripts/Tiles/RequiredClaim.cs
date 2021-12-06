@@ -61,6 +61,9 @@ public class RequiredClaim : TileBehaviour, ITicker, ITileValidator, ITileHighli
 			return;
 		}
 
+		// this might not have been initialized...what to do
+		// second pass of initializations
 		claimed.Claim(this.gameTile);
+		gameTile.GetTracker().SendBoardChanged();
 	}
 }

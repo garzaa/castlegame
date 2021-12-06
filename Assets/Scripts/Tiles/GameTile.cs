@@ -33,13 +33,13 @@ public class GameTile : MonoBehaviour, IStat, ICardStat, IConsoleStat, ITileHigh
 		this.tile = tile;
 		this.tileTracker = tileTracker;
 		this.boardPosition = position;
+		visuals = GameObject.FindObjectOfType<TilemapVisuals>();
 		foreach (TileBehaviour t in GetComponents<TileBehaviour>()) {
 			t.OnPlace();
 		}
 		if (!silent && onPlace != null) {
 			onPlace.PlayFrom(tileTracker.gameObject);
 		}
-		visuals = GameObject.FindObjectOfType<TilemapVisuals>();
 	}
 
 	public void Remove(bool silent=false) {
