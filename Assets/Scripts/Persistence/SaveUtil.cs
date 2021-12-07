@@ -10,7 +10,7 @@ public class SaveUtil : MonoBehaviour {
 	DayTracker dayTracker;
 	Save save = new Save();
 
-	void Start() {
+	void Awake() {
 		dayTracker = GameObject.FindObjectOfType<DayTracker>();
 
 		if (SaveExists()) {
@@ -18,6 +18,14 @@ public class SaveUtil : MonoBehaviour {
 		}
 
 		levelName = SceneManager.GetActiveScene().name;
+	}
+
+	public bool HasLevelSaved(string levelName) {
+		return save.HasLevelProgress(levelName);
+	}
+
+	public LevelProgress GetLevelProgress(string levelName) {
+		return save.GetLevelProgress(levelName);
 	}
 
 	bool SaveExists() {

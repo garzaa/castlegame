@@ -11,12 +11,15 @@ public class MainMenu : MonoBehaviour {
 
 	Levels levels;
 	Animator animator;
+	SaveUtil saveUtil;
 
 	const string levelsShown = "LevelsShown";
 
 	void Start() {
 		animator = GetComponent<Animator>();
 		levels = GameObject.FindObjectOfType<Levels>();
+		saveUtil = GameObject.FindObjectOfType<SaveUtil>();
+		levelButtonTemplate.gameObject.SetActive(false);
 		PopulateLevels();
 	}
 
@@ -39,9 +42,24 @@ public class MainMenu : MonoBehaviour {
 	public void PopulateLevels() {
 		List<SceneReference> scenes = levels.GetLevels();
 		for (int i=0; i<scenes.Count; i++) {
-			string levelName = $"{(i+1).ToString("D2")} - {levels.PathToLevelName(scenes[i].ScenePath)}";
+			string sceneName = levels.PathToLevelName(scenes[i].ScenePath);
+			string levelName = $"{(i+1).ToString("D2")} - {sceneName}";
 			GameObject g = Instantiate(levelButtonTemplate, levelContainer.transform);
-			g.GetComponentInChildren<Text>().text = levelName;
+
+			Text[] textObjects = g.GetComponentsInChildren<Text>();
+
+			textObjects[0].text = levelName;
+
+			if (saveUtil.HasLevelSaved(sceneName)) {
+				LevelProgress progress = saveUtil.GetLevelProgress(sceneName);
+				textObjects[1].text = progress.days.ToString();
+				textObjects[2].text = progress.actions.ToString();
+			} else {
+				textObjects[1].transform.parent.gameObject.SetActive(false);
+				textObjects[2].transform.parent.gameObject.SetActive(false);
+			}
+
+
 			// cant be i due to some weird closure bullshit
 			g.GetComponent<Button>().onClick.AddListener(() => LoadLevel(g.transform.GetSiblingIndex()-1));
 			g.SetActive(true);
