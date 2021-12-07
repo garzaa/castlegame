@@ -16,6 +16,7 @@ public class DayTracker : MonoBehaviour {
 	[SerializeField] GameObject actionContainer;
 	[SerializeField] Text dayText;
 	[SerializeField] GameObject dayAnnouncement;
+	[SerializeField] Text totalActionsText;
 	#pragma warning disable 0649
 
 	const int actionsPerDay = 3;
@@ -52,6 +53,7 @@ public class DayTracker : MonoBehaviour {
 		for (int i=0; i<actions.Count; i++) {
 			actions[i].SetActive(i < actionCount);
 		}
+		totalActionsText.text = totalActions + " total";
 	}
 
 	public void UseAction() {

@@ -14,7 +14,7 @@ public class PlayerResources : MonoBehaviour {
 
 	Dictionary<Resource, GameObject> resourceContainers = new Dictionary<Resource, GameObject>();
 
-	void Start() {
+	void Awake() {
 		pr = this;
 		Add(startingResources, log:false);
 	}

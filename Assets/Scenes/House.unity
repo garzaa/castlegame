@@ -20076,6 +20076,11 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: -51.1
       objectReference: {fileID: 0}
+    - target: {fileID: 2011133535166408230, guid: 8faff5038af9ee2478ef05d06ca68364,
+        type: 3}
+      propertyPath: m_Text
+      value: Hover over the action tracker to see how many you've taken, in total.
+      objectReference: {fileID: 0}
     - target: {fileID: 2706058721613550774, guid: 8faff5038af9ee2478ef05d06ca68364,
         type: 3}
       propertyPath: m_AnchoredPosition.y
@@ -20119,7 +20124,7 @@ PrefabInstance:
     - target: {fileID: 3535542808680647330, guid: 8faff5038af9ee2478ef05d06ca68364,
         type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5483983650141846226, guid: 8faff5038af9ee2478ef05d06ca68364,
         type: 3}
