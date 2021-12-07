@@ -385,6 +385,7 @@ GameObject:
   - component: {fileID: 3824776358076315852}
   - component: {fileID: 1073821662379315870}
   - component: {fileID: 7661828162600089884}
+  - component: {fileID: 8336693808233701155}
   - component: {fileID: 3824776358076316467}
   m_Layer: 0
   m_Name: Flavor Text
@@ -554,6 +555,34 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 3824776358076315849}
         m_MethodName: OnLose
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+--- !u!114 &8336693808233701155
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3824776358076315848}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1a5b31752242db0438c68ac6d7ff8afc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  gameEvent: {fileID: 11400000, guid: b472990619c30894e8161fa4c3cf155d, type: 2}
+  priority: 0
+  response:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 3824776358076315849}
+        m_MethodName: OnDayEnd
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
