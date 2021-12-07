@@ -35,7 +35,7 @@ public class ActionButton : MonoBehaviour, IPointerEnterHandler, IPointerExitHan
 	protected InvalidPlacementWarning actionWarning;
 	protected TilemapVisuals tilemapVisuals;
 
-	const string letters = "qwertyuiopasdfghjkl";
+	const string letters = "qwertyuiopasdfghjklzxcvbnm1234567890";
 	string keyName;
 	bool keyPressed;
 	bool started;

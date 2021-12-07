@@ -3283,6 +3283,8 @@ MonoBehaviour:
     scenePath: Assets/Scenes/Mason.unity
   - sceneAsset: {fileID: 102900000, guid: 926c808a33ad4ec489cbf05f3fb0a35d, type: 3}
     scenePath: Assets/Scenes/Relay.unity
+  - sceneAsset: {fileID: 102900000, guid: 1758988e58bcbdc4abd93023e2b46f68, type: 3}
+    scenePath: Assets/Scenes/Sandbox.unity
 --- !u!1 &7521108471282931938
 GameObject:
   m_ObjectHideFlags: 0
