@@ -33,15 +33,18 @@ public class DayTracker : MonoBehaviour {
 	WinCondition[] winConditions;
 	List<GameObject> actions = new List<GameObject>();
 
-	void Start() {
-		dayUI.SetActive(true);
-		StartDay();
+	void Awake() {
 		tileTracker = GameObject.FindObjectOfType<TileTracker>();
 		winConditions = GameObject.FindObjectsOfType<WinCondition>();
 		
 		foreach (Transform child in actionContainer.transform) {
 			actions.Add(child.GetChild(0).gameObject);
 		}
+	}
+
+	void Start() {
+		dayUI.SetActive(true);
+		StartDay();
 		UpdateActionUI(0);
 	}
 
