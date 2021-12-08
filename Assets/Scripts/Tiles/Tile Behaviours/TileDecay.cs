@@ -25,6 +25,10 @@ public class TileDecay : TileBehaviour, IStat, ICardStat {
 		originalDecayThreshold = decayThreshold;
 	}
 
+	public ScriptableTile GetDecayTo() {
+		return decayTo;
+	}
+
 	public void Clockwork() {
 		// if it was already removed
 		if (gameTile == null) return;
@@ -44,7 +48,7 @@ public class TileDecay : TileBehaviour, IStat, ICardStat {
 	}
 
 	virtual public string Stat() {
-		if (!inGame) return $"Decays to <color='#94fdff'>{decayTo.tileObject.name}</color> in <color='#94fdff'>{decayThreshold}</color>.";
+		if (!gameTile) return $"Decays to <color='#94fdff'>{decayTo.tileObject.name}</color> in <color='#94fdff'>{decayThreshold}</color>.";
 
 		int daysUntilDecay = Mathf.Max(decayThreshold-GetDecay(), 0);
 		return $"Decay in <color='#94fdff'>{daysUntilDecay}</color> to <color='#94fdff'>{decayTo.tileObject.name}</color>.";

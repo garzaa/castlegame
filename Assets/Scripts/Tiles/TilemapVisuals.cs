@@ -66,17 +66,6 @@ public class TilemapVisuals : MonoBehaviour {
 			HideInfoBubble();
 		}
 
-		// have to call this here since onmousedown doesn't fire if you click outside the board
-		if (!EventSystem.current.IsPointerOverGameObject() && Input.GetMouseButtonDown(0)) {
-			mouseWorldPos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-			gridMousePos = highlightTilemap.WorldToCell(mouseWorldPos);
-			gridMousePos.z = 0;
-			GameTile gameTile = tracker.GetTileNoRedirect(tracker.CellToBoard(gridMousePos));
-			if (gameTile == null) {
-				HideInfoBubble();
-				return;
-			}
-		}
 	}
 
 	void AddLetterLegend(int idx) {

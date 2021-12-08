@@ -19,7 +19,7 @@ public class ClockworkTargetNetworked : ClockworkTarget {
 		GetFilteredNeighbors(0, position, targets, visited, tracker);
 		// run this filter once at the end for SPEED
 		return targets
-			.Where(tile => tile.IsTileType(tileFilter))
+			.Where(tile => IsTargetable(tile))
 			.ToList();
 	}
 
@@ -31,7 +31,7 @@ public class ClockworkTargetNetworked : ClockworkTarget {
 
 		List<GameTile> networkedTargets = tracker.GetNeighbors(position)
 			.Where(tile => !visited.Contains(tile))
-			.Where(tile => (tile.IsTileType(tileFilter) || TileIsInNetwork(tile)))
+			.Where(tile => (IsTargetable(tile) || IsInNetwork(tile)))
 			.ToList();
 
 		visited.UnionWith(networkedTargets);
@@ -42,7 +42,11 @@ public class ClockworkTargetNetworked : ClockworkTarget {
 		}
 	}
 
-	bool TileIsInNetwork(GameTile g) {
+	public override string GetTargetInfo(Vector3Int position, TileTracker tracker) {
+		return base.GetTargetInfo(position, tracker) + "\n<color=#657392>Max network depth: "+maxDepth+"</color>";
+	}
+
+	bool IsInNetwork(GameTile g) {
 		foreach (TileType t in networkFilters) {
 			if (g.IsTileType(t)) {
 				return true;
@@ -53,5 +57,9 @@ public class ClockworkTargetNetworked : ClockworkTarget {
 
 	public string GetTargetType() {
 		return tileFilter.name;
+	}
+
+	virtual protected bool IsTargetable(GameTile tile) {
+		return tile.IsTileType(tileFilter);
 	}
 }

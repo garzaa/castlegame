@@ -1,0 +1,44 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 088e44299747c984b87165029a9c2838, type: 3}
+  m_Name: CemeteryTile
+  m_EditorClassIdentifier: 
+  m_DefaultSprite: {fileID: -9183215151302520169, guid: 3e070e54a73297a489ee45d7e3252e74,
+    type: 3}
+  m_DefaultGameObject: {fileID: 0}
+  m_DefaultColliderType: 1
+  m_TilingRules:
+  - m_Id: 0
+    m_Sprites:
+    - {fileID: -9183215151302520169, guid: 3e070e54a73297a489ee45d7e3252e74, type: 3}
+    - {fileID: -9183215151302520169, guid: 3e070e54a73297a489ee45d7e3252e74, type: 3}
+    - {fileID: 8863848211298307634, guid: 3e070e54a73297a489ee45d7e3252e74, type: 3}
+    - {fileID: 8505199968899577748, guid: 3e070e54a73297a489ee45d7e3252e74, type: 3}
+    m_GameObject: {fileID: 0}
+    m_AnimationSpeed: 1
+    m_PerlinScale: 0.5
+    m_Output: 1
+    m_ColliderType: 1
+    m_RandomTransform: 2
+    m_Neighbors: 
+    m_NeighborPositions:
+    - {x: -1, y: 1, z: 0}
+    - {x: 0, y: 1, z: 0}
+    - {x: 1, y: 1, z: 0}
+    - {x: -1, y: 0, z: 0}
+    - {x: 1, y: 0, z: 0}
+    - {x: -1, y: -1, z: 0}
+    - {x: 0, y: -1, z: 0}
+    - {x: 1, y: -1, z: 0}
+    m_RuleTransform: 0
+  tileObject: {fileID: 3654450883443819161, guid: d5186bd9327020140b967496193ea3ae,
+    type: 3}

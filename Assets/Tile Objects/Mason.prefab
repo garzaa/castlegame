@@ -57,10 +57,7 @@ MonoBehaviour:
   onQuery: {fileID: 11400000, guid: 19814e19eb2d61c47a03cfae1b31f7f9, type: 2}
   onDestroy: {fileID: 0}
   defaultTile: {fileID: 11400000, guid: 66ae0888bdb33474f8620ea2b8bb8143, type: 2}
-  description: 'Repairs the 2 oldest networked stone structures.
-
-    <color=#657392>Max
-    depth: 10</color>'
+  description: Repairs the 2 oldest networked stone structures.
 --- !u!114 &-5603729996665685412
 MonoBehaviour:
   m_ObjectHideFlags: 0

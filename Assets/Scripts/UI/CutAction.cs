@@ -8,13 +8,7 @@ public class CutAction : EditAction {
 
 	protected override void ApplyAction(Vector3Int boardPosition) {
 		GameTile tile = tileTracker.GetTileNoRedirect(boardPosition);
-		ScriptableTile replacementTile;
-		if (tile.IsTileType(razeType)) {
-			replacementTile = GetRazeTile(tile);
-		} else {
-			replacementTile = tile.GetComponent<TileCuttable>().cutTo;
-		}
-		tileTracker.ReplaceTile(boardPosition, replacementTile);
+		tileTracker.ReplaceTile(boardPosition, GetCutTo(tile));
 	}
 
 	protected override PlacementTestResult TestPlacement(Vector3Int boardPosition) {
@@ -24,21 +18,30 @@ public class CutAction : EditAction {
 			return new PlacementTestResult(false, message);
 		}
 
-		if (tile.IsTileType(razeType)) {
+		bool cuttable = tile.GetComponent<TileCuttable>() != null;
+
+		if (tile.IsTileType(razeType) && cuttable) {
 			return new PlacementTestResult(true, message);
 		}
 
-		bool cuttable = tile.GetComponent<TileCuttable>() != null;
 		if (!cuttable) message = $"{tile.name} can't be cut";
 		return new PlacementTestResult(cuttable, message);
 	}
 
+	ScriptableTile GetCutTo(GameTile currentTile) {
+		TileCuttable cuttable = currentTile.GetComponent<TileCuttable>();
+		if (currentTile.IsTileType(razeType) && cuttable==null) {
+			return GetRazeTile(currentTile);
+		} else if (cuttable != null) {
+			return cuttable.cutTo;
+		} else {
+			return null;
+		}
+	}
+
 	protected override ScriptableTile GetPreviewTile(Vector3Int boardPosition, GameTile targetedTile) {
 		if (!targetedTile) return null;
-		if (targetedTile.IsTileType(razeType)) return GetRazeTile(targetedTile);
-		TileCuttable cut = targetedTile.GetComponent<TileCuttable>();
-		if (!cut) return null;
-		else return cut.cutTo;
+		else return GetCutTo(targetedTile);
 	}
 
 	ScriptableTile GetRazeTile(GameTile tile) {

@@ -12,6 +12,7 @@ public class ClockworkTarget : ScriptableObject {
 	}
 
 	public virtual string GetTargetInfo(Vector3Int position, TileTracker tracker) {
-		return $"\nTargeting {GetTargets(position, tracker).Count} tiles.";
+		int t = GetTargets(position, tracker).Count;
+		return $"\nTargeting {t} tile{(t==1 ? "" : "s")}.";
 	}
 }

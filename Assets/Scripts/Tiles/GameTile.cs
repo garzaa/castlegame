@@ -8,7 +8,7 @@ public class GameTile : MonoBehaviour, IStat, ICardStat, IConsoleStat, ITileHigh
 	ScriptableTile tile;
 	TileTracker tileTracker;
 	Tile warpTargetIcon;
-	public Vector3Int boardPosition {get; private set; }
+	public Vector3Int boardPosition { get; private set; }
 	public Vector3Int gridPosition { 
 		get { return tileTracker.BoardToCell(boardPosition); }
 	}
