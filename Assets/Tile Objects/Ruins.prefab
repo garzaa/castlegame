@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 1707809362449561912}
   - component: {fileID: 5949584311047025507}
   - component: {fileID: -5410544817711094598}
+  - component: {fileID: 5132704743030134635}
   m_Layer: 0
   m_Name: Ruins
   m_TagString: Untagged
@@ -78,3 +79,16 @@ MonoBehaviour:
   decayThreshold: 7
   decayTo: {fileID: 11400000, guid: cabf8922ccfee23408f8046bff75ba12, type: 2}
   gracePeriod: 0
+--- !u!114 &5132704743030134635
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4778837198186823719}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f3278cbc2f6c8f34aaa94ebcde6aa858, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  cutTo: {fileID: 11400000, guid: 219f68afdc91401439141e0ec6a635ad, type: 2}

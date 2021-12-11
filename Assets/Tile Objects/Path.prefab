@@ -14,6 +14,8 @@ GameObject:
   - component: {fileID: 2486738290067873539}
   - component: {fileID: 3052238483360439111}
   - component: {fileID: -7507382468553651965}
+  - component: {fileID: -5296859523029348281}
+  - component: {fileID: -5042500655905532483}
   m_Layer: 0
   m_Name: Path
   m_TagString: Untagged
@@ -110,3 +112,33 @@ MonoBehaviour:
   resources:
   - amount: 1
     resource: {fileID: 11400000, guid: 4535e9995cbc6b0459e235cc06effc67, type: 2}
+--- !u!114 &-5296859523029348281
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1742198634726585055}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8cf6ec2134cc25e4aa160e030e55ad6c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &-5042500655905532483
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1742198634726585055}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f93068a956a7cd14ba0bc0f748bb1109, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  decayThreshold: 1
+  decayTo: {fileID: 11400000, guid: ea089a2b162bee14a83b010a12f19909, type: 2}
+  gracePeriod: 0
+  neighbor: {fileID: 11400000, guid: ccc45f6c9dde4434eaa5e16819f82c60, type: 2}
+  decayMode: 0
+  contributionType: 1
