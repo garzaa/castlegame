@@ -2,8 +2,9 @@ using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine.UI;
+using UnityEngine.EventSystems;
 
-public class SleepUI : MonoBehaviour {
+public class SleepUI : MonoBehaviour, IPointerUpHandler {
 
 	const float maxVal = 30;
 	const float clickDelta = 1f/maxVal;
@@ -50,13 +51,12 @@ public class SleepUI : MonoBehaviour {
 
 	public void OnDayEnd() {
 		if (sleeping) {
-			sliderClick.PlayFrom(this.gameObject);
 			clickNoise.PlayFrom(buttonGraphic.gameObject);
 		}
 	}
 
 	int GetDays() {
-		return Mathf.RoundToInt(scrollRect.normalizedPosition.x * maxVal);
+		return Mathf.Max(Mathf.RoundToInt(scrollRect.normalizedPosition.x * maxVal), 0);
 	}
 
 	void Update() {
@@ -91,7 +91,17 @@ public class SleepUI : MonoBehaviour {
 			float newXPos = (float) days / maxVal;
 			scrollRect.normalizedPosition = new Vector2(newXPos, scrollRect.normalizedPosition.y);
 			scrollRect.velocity = Vector2.zero;
+			currentDelta = 0;
 			sliderClick.PlayFrom(this.gameObject);
 		}
+	}
+
+	public void OnPointerUp(PointerEventData d) {
+		Vector2 rectPos = scrollRect.normalizedPosition;
+		int days = Mathf.RoundToInt(rectPos.x * maxVal);
+		rectPos.x = (float) days / maxVal;
+		scrollRect.normalizedPosition = rectPos;
+		currentDelta = 0;
+		sliderClick.PlayFrom(this.gameObject);
 	}
 }

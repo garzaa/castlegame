@@ -112,7 +112,7 @@ public class SceneReference : ISerializationCallbackReceiver
     private void HandleBeforeSerialize()
     {
         // Asset is invalid but have Path to try and recover from
-        if (IsValidSceneAsset == false && string.IsNullOrEmpty(scenePath) == false)
+        if (IsValidSceneAsset == false && string.IsNullOrEmpty(scenePath) == false && !Application.isPlaying)
         {
             sceneAsset = GetSceneAssetFromPath();
             if (sceneAsset == null) scenePath = string.Empty;

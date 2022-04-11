@@ -79,7 +79,7 @@ public class CardBase : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
 		}
 		tilemapVisuals.ClearTilePreview();
 		animator.SetTrigger("RestoreImmediate");
-		animator.SetBool("PlacePreview", false);
+		// animator.SetBool("PlacePreview", false);
 		inHand = true;
 		if (!handTarget) {
 			handTarget = cardHand.AddHandTarget();

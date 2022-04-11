@@ -103,6 +103,11 @@ public class DayTracker : MonoBehaviour {
 	}
 
 	public void SleepFor(int days) {
+		if (days == 1) {
+			EndDay();
+			StartDay();
+			return;
+		}
 		sleeping = true;
 		daysLeftToSleep = days;
 		StartCoroutine(Sleep(days));
@@ -113,7 +118,6 @@ public class DayTracker : MonoBehaviour {
 		if (days > 0) yield return new WaitForSeconds(sleepTime);
 		days--;
 		daysLeftToSleep = days;
-		Debug.Log(days);
 		if (days > 0 && (!wonLevel || raisedWon) && sleeping) {
 			StartCoroutine(Sleep(days));
 		} else {
