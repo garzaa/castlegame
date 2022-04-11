@@ -13,7 +13,6 @@ public class CameraZoom : MonoBehaviour {
 		cam = GetComponent<PixelPerfectCamera>();
 		originalPPU = cam.assetsPPU;
 		cameraZoom = this;
-
 	}
 
 	void Update() {

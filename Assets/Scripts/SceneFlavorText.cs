@@ -60,7 +60,7 @@ public class SceneFlavorText : MonoBehaviour {
 		letter.SetActive(true);
 		if (levels.HasNextLevel()) {
 			nextLevelButton.SetActive(true);
-			closeButton.SetActive(false);
+			// closeButton.SetActive(false);
 		}
 
 	}

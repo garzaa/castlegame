@@ -3301,6 +3301,8 @@ MonoBehaviour:
     sceneAsset: {fileID: 102900000, guid: 57700d6a97924b040a8d93be46721389, type: 3}
     scenePath: Assets/Scenes/Menu.unity
   levels:
+  - sceneAsset: {fileID: 102900000, guid: c4884372fa5a2334ea7fcc9459cce8d3, type: 3}
+    scenePath: Assets/Scenes/Garden.unity
   - sceneAsset: {fileID: 102900000, guid: 2cda990e2423bbf4892e6590ba056729, type: 3}
     scenePath: Assets/Scenes/House.unity
   - sceneAsset: {fileID: 102900000, guid: 4482025da657ab44e926cb4a84a3a569, type: 3}
