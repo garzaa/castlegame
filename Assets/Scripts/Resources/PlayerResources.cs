@@ -41,7 +41,7 @@ public class PlayerResources : MonoBehaviour {
 			pr.resources[r.resource] = Mathf.Max(pr.resources[r.resource], 0);
 			GameObject g = pr.resourceContainers[r.resource];
 			g.GetComponent<Animator>().SetTrigger("Twitch");
-			g.GetComponentInChildren<Text>().text = pr.resources[r.resource].ToString();
+			g.GetComponentInChildren<Text>().text = pr.resources[r.resource].ToString() + " " + r.resource.name.ToUpper();
 			if (log) CommandInput.Log($"{r.amount} {r.resource.name} removed");
 		}
 	}

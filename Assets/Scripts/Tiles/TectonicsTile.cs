@@ -5,21 +5,12 @@ using UnityEditor;
 #endif
 
 [CreateAssetMenu]
-public class ScriptableTile : RuleTile {
+public class TectonicsTile : RuleTile {
 	public GameObject tileObject;
 
 	public override void GetTileData(Vector3Int position, ITilemap tilemap, ref TileData tileData) {
 		base.GetTileData(position, tilemap, ref tileData);
 		// don't lock transform
-		// tileData.flags = TileFlags.None;
+		tileData.flags = TileFlags.None;
 	}
 }
-
-#if UNITY_EDITOR
-[CustomEditor(typeof(ScriptableTile))]
-public class MyClassEditor : RuleTileEditor {
-	public override void OnInspectorGUI() {
-		base.OnInspectorGUI();
-	}
-}
-#endif

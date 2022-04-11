@@ -7,7 +7,7 @@ public class TileType : ScriptableObject {
 	#pragma warning disable 0649
 	[SerializeField] TileType ancestor;
 	[SerializeField] TileFrameInfo infoFrame;
-	[SerializeField] ScriptableTile tectonicsTile;
+	[SerializeField] TectonicsTile tectonicsTile;
 	#pragma warning restore 0649
 
 	public bool IsType(TileType tileType) {
@@ -36,7 +36,7 @@ public class TileType : ScriptableObject {
 		}
 	}
 
-	public ScriptableTile GetTectonicsTile() {
+	public TectonicsTile GetTectonicsTile() {
 		if (!tectonicsTile) {
 			return ancestor.GetTectonicsTile();
 		}

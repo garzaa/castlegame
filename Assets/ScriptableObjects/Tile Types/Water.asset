@@ -16,4 +16,4 @@ MonoBehaviour:
   infoFrame:
     frame: {fileID: 0}
     tail: {fileID: 0}
-  tectonicsTile: {fileID: 11400000, guid: 4a2e8df6e3fc6a84395c9436b50e0f99, type: 2}
+  tectonicsTile: {fileID: 11400000, guid: caa507ac91afa624c8d30ef37f139165, type: 2}

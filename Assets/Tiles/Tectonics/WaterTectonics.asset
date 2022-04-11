@@ -9,7 +9,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 088e44299747c984b87165029a9c2838, type: 3}
+  m_Script: {fileID: 11500000, guid: 9f00cbbdc61dd5341a90046a75818305, type: 3}
   m_Name: WaterTectonics
   m_EditorClassIdentifier: 
   m_DefaultSprite: {fileID: -2964898411309813640, guid: b02e3521ec1be4e4aab589b58390f7ec,
