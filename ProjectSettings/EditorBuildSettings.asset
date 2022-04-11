@@ -41,4 +41,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Garden.unity
     guid: c4884372fa5a2334ea7fcc9459cce8d3
+  - enabled: 1
+    path: Assets/Scenes/Neighbors.unity
+    guid: 2fab99ca836d99c4e94d720d7afdd49d
   m_configObjects: {}

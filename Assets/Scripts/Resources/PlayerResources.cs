@@ -74,8 +74,9 @@ public class PlayerResources : MonoBehaviour {
 		g.SetActive(true);
 		Image[] i = g.GetComponentsInChildren<Image>();
 		i[i.Length-1].sprite = resourceAmount.resource.detailedIcon;
-		i[i.Length-1].SetNativeSize();
-		g.GetComponentInChildren<Text>().text = resourceAmount.amount.ToString() + " " + resourceAmount.resource.name.ToUpper();
+		// i[i.Length-1].SetNativeSize();
+		Text t = g.GetComponentInChildren<Text>();
+		t.text = resourceAmount.amount.ToString() + " " + resourceAmount.resource.name.ToUpper();
 		resourceContainers[resourceAmount.resource] = g;
 	}
 }
