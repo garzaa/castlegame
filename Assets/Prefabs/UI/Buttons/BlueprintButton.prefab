@@ -951,7 +951,7 @@ CanvasGroup:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4921308329547547260}
   m_Enabled: 1
-  m_Alpha: 1
+  m_Alpha: 0
   m_Interactable: 0
   m_BlocksRaycasts: 0
   m_IgnoreParentGroups: 0
@@ -1414,7 +1414,7 @@ PrefabInstance:
     - target: {fileID: 126503992326062974, guid: 058ea057bb3b89c4cb72dcd13121a980,
         type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 80
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 126503992326062974, guid: 058ea057bb3b89c4cb72dcd13121a980,
         type: 3}
@@ -1539,7 +1539,7 @@ PrefabInstance:
     - target: {fileID: 126503992326062974, guid: 058ea057bb3b89c4cb72dcd13121a980,
         type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 80
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 126503992326062974, guid: 058ea057bb3b89c4cb72dcd13121a980,
         type: 3}
@@ -1664,7 +1664,7 @@ PrefabInstance:
     - target: {fileID: 126503992326062974, guid: 058ea057bb3b89c4cb72dcd13121a980,
         type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 80
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 126503992326062974, guid: 058ea057bb3b89c4cb72dcd13121a980,
         type: 3}
@@ -1815,7 +1815,7 @@ PrefabInstance:
     - target: {fileID: 6822259459422871974, guid: 28ad1ecb53892ae49a80b45632118970,
         type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 51
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6822259459422871974, guid: 28ad1ecb53892ae49a80b45632118970,
         type: 3}
@@ -2006,7 +2006,7 @@ PrefabInstance:
     - target: {fileID: 6822259459422871974, guid: 28ad1ecb53892ae49a80b45632118970,
         type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 22
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6822259459422871974, guid: 28ad1ecb53892ae49a80b45632118970,
         type: 3}

@@ -34,20 +34,50 @@ public class SleepUI : MonoBehaviour {
 	}
 
 	public void OnSleepButtonClick() {
-		clickNoise.PlayFrom(this.gameObject);
 		if (!sleeping) {
-			// set image and all that
-			dayTracker.SleepFor(1);
-			Debug.Log(sleepSliderPosition.x);
-			Debug.Log(sleepSliderPosition.x * maxVal);
-			//buttonGraphic.sprite = sun;
+			// slider defaults to 0
+			int d = Mathf.Max(GetDays(), 1);
+			clickNoise.PlayFrom(buttonGraphic.gameObject);
+			dayTracker.SleepFor(d);
+			buttonGraphic.sprite = sun;
+			sleeping = true;
 		} else {
 			dayTracker.Wake();
+			sleeping = false;
 			buttonGraphic.sprite = moon;
 		}
 	}
 
+	public void OnDayEnd() {
+		if (sleeping) {
+			sliderClick.PlayFrom(this.gameObject);
+			clickNoise.PlayFrom(buttonGraphic.gameObject);
+		}
+	}
+
+	int GetDays() {
+		return Mathf.RoundToInt(scrollRect.normalizedPosition.x * maxVal);
+	}
+
+	void Update() {
+		if (sleeping) {
+			int daysLeft = dayTracker.daysLeftToSleep;
+			if (daysLeft == 0) {
+				sleeping = false;
+				buttonGraphic.sprite = moon;
+			}
+			scrollRect.horizontal = false;
+			Vector2 rectPos = scrollRect.normalizedPosition;
+			// convert from days left (int) to position (float)
+			rectPos.x = ((float) daysLeft-1) / maxVal;
+			scrollRect.normalizedPosition = rectPos;
+		} else {
+			scrollRect.horizontal = true;
+		}
+	}
+
 	public void OnScrollViewMove(Vector2 pos) {
+		if (sleeping) return;
 		sleepSliderPosition = pos;
 		currentDelta = Mathf.Abs(pos.x - lastClickPosition);
 		if (currentDelta > clickDelta) {

@@ -24,12 +24,16 @@ public class DayTracker : MonoBehaviour {
 
 	bool gameOver = false;
 	bool wonLevel = false;
+	bool raisedWon = false;
 	bool sleeping = false;
 
 	int actionsToday = 0;
 	int totalDays = 1;
 	int totalActions = 0;
 	int daysWithoutActions = 0;
+	public int daysLeftToSleep {
+		get; private set;
+	}
 
 	TileTracker tileTracker;
 	WinCondition[] winConditions;
@@ -85,7 +89,9 @@ public class DayTracker : MonoBehaviour {
 		actionsToday = 0;
 		totalDays++;
 		dayEndEvent.Raise();
-		if (silent) dayEndSound.PlayFrom(this.gameObject);
+		if (!silent) {
+			dayEndSound.PlayFrom(this.gameObject);
+		}
 		AnnounceDay(totalDays);
 	}
 
@@ -98,14 +104,17 @@ public class DayTracker : MonoBehaviour {
 
 	public void SleepFor(int days) {
 		sleeping = true;
+		daysLeftToSleep = days;
 		StartCoroutine(Sleep(days));
 	}
 
 	IEnumerator Sleep(int days) {
 		EndDay(silent:true);
-		if (days > 1) yield return new WaitForSeconds(sleepTime);
+		if (days > 0) yield return new WaitForSeconds(sleepTime);
 		days--;
-		if (days > 0 && !wonLevel && sleeping) {
+		daysLeftToSleep = days;
+		Debug.Log(days);
+		if (days > 0 && (!wonLevel || raisedWon) && sleeping) {
 			StartCoroutine(Sleep(days));
 		} else {
 			StartDay();
@@ -136,6 +145,7 @@ public class DayTracker : MonoBehaviour {
 		if (won) {
 			winSound.PlayFrom(this.gameObject);
 			winEvent.Raise();
+			raisedWon = true;
 			wonLevel = true;
 		}
 	}
