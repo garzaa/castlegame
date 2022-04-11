@@ -19,6 +19,10 @@ public class PlayerResources : MonoBehaviour {
 		Add(startingResources, log:false);
 	}
 
+	void Start() {
+		resourceTemplate.gameObject.SetActive(false);
+	}
+
 	public static bool Has(List<ResourceAmount> requirements) {
 		foreach (ResourceAmount r in requirements) {
 			if (!pr.resources.ContainsKey(r.resource)) {
@@ -48,7 +52,7 @@ public class PlayerResources : MonoBehaviour {
 				pr.resources[r.resource] += r.amount;
 				GameObject g = pr.resourceContainers[r.resource];
 				g.GetComponent<Animator>().SetTrigger("Twitch");
-				g.GetComponentInChildren<Text>().text = pr.resources[r.resource].ToString();
+				g.GetComponentInChildren<Text>().text = pr.resources[r.resource].ToString() + " " + r.resource.name.ToUpper();
 			} else {
 				pr.resources[r.resource] = r.amount;
 				pr.AddResourceVisual(r);
@@ -69,9 +73,9 @@ public class PlayerResources : MonoBehaviour {
 		GameObject g = Instantiate(resourceTemplate, resourceContainer.transform);
 		g.SetActive(true);
 		Image[] i = g.GetComponentsInChildren<Image>();
-		i[i.Length-1].sprite = resourceAmount.resource.icon;
+		i[i.Length-1].sprite = resourceAmount.resource.detailedIcon;
 		i[i.Length-1].SetNativeSize();
-		g.GetComponentInChildren<Text>().text = resourceAmount.amount.ToString();
+		g.GetComponentInChildren<Text>().text = resourceAmount.amount.ToString() + " " + resourceAmount.resource.name.ToUpper();
 		resourceContainers[resourceAmount.resource] = g;
 	}
 }

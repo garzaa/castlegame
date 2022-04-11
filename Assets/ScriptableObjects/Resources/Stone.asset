@@ -14,3 +14,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   description: Basic building material.
   icon: {fileID: -6984531044513087652, guid: b0a99310742b50d458a7eae59cd16898, type: 3}
+  detailedIcon: {fileID: 859289229648487058, guid: cad92ca6aec0b5a489335b36a9a4d551,
+    type: 3}
