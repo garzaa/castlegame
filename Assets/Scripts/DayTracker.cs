@@ -24,6 +24,7 @@ public class DayTracker : MonoBehaviour {
 
 	bool gameOver = false;
 	bool wonLevel = false;
+	bool sleeping = false;
 
 	int actionsToday = 0;
 	int totalDays = 1;
@@ -96,6 +97,7 @@ public class DayTracker : MonoBehaviour {
 	}
 
 	public void SleepFor(int days) {
+		sleeping = true;
 		StartCoroutine(Sleep(days));
 	}
 
@@ -103,11 +105,15 @@ public class DayTracker : MonoBehaviour {
 		EndDay(silent:true);
 		if (days > 1) yield return new WaitForSeconds(sleepTime);
 		days--;
-		if (days > 0 && !wonLevel) {
+		if (days > 0 && !wonLevel && sleeping) {
 			StartCoroutine(Sleep(days));
 		} else {
 			StartDay();
 		}
+	}
+
+	public void Wake() {
+		sleeping = false;
 	}
 
 	void AnnounceDay(int day) {

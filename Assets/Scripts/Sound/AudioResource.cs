@@ -9,6 +9,10 @@ public class AudioResource : ScriptableObject {
 
 	public void PlayFrom(GameObject caller) {
 		int idx = Random.Range(0, sounds.Count);
-		caller.GetComponent<AudioSource>().PlayOneShot(sounds[idx]);
+		AudioSource callerSource = caller.GetComponent<AudioSource>();
+		if (callerSource == null) {
+			callerSource = caller.AddComponent<AudioSource>();
+		}
+		callerSource.PlayOneShot(sounds[idx], callerSource.volume);
 	}
 }
