@@ -249,7 +249,7 @@ public class TilemapVisuals : MonoBehaviour {
 	void OnMouseDown() {
 		// this will fire if a card is being held or peeked over the board
 		// or if the board is anything but left-clicked
-		if (EventSystem.current.IsPointerOverGameObject() || !Input.GetMouseButton(0)) {
+		if (actionTargeter.IsArmed() || EventSystem.current.IsPointerOverGameObject() || !Input.GetMouseButton(0)) {
 			return;
 		}
 		OnTileClick(gridMousePos);
