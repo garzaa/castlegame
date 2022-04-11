@@ -35,10 +35,10 @@ public class SleepUI : MonoBehaviour, IPointerUpHandler {
 	}
 
 	public void OnSleepButtonClick() {
+		PlayClockworkSound();
 		if (!sleeping) {
 			// slider defaults to 0
 			int d = Mathf.Max(GetDays(), 1);
-			clickNoise.PlayFrom(buttonGraphic.gameObject);
 			dayTracker.SleepFor(d);
 			buttonGraphic.sprite = sun;
 			sleeping = true;
@@ -51,8 +51,12 @@ public class SleepUI : MonoBehaviour, IPointerUpHandler {
 
 	public void OnDayEnd() {
 		if (sleeping) {
-			clickNoise.PlayFrom(buttonGraphic.gameObject);
+			PlayClockworkSound();
 		}
+	}
+
+	void PlayClockworkSound() {
+		clickNoise.PlayFrom(buttonGraphic.gameObject);
 	}
 
 	int GetDays() {

@@ -30,7 +30,7 @@ public class SceneFlavorText : MonoBehaviour {
 		letterText.text += "\n\n"+this.text;
 
 		WinCondition win = GameObject.FindObjectOfType<WinCondition>();
-		letterText.text += "\n\n" + win.GetDescription();
+		letterText.text += "\n\n" + "<color=#134c4c>" + win.GetDescription() + "</color>";
 
 		originalLetterText = letterText.text;
 
