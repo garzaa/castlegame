@@ -103,8 +103,8 @@ public class TileTracker : MonoBehaviour {
 		}
 	}
 
-	public GameTile GetTileNoRedirect(Vector3Int pos) {
-		return GetTileNoRedirect(pos.x, pos.y);
+	public GameTile GetTileNoRedirect(Vector3Int boardPos) {
+		return GetTileNoRedirect(boardPos.x, boardPos.y);
 	}
 
 	public GameTile GetTileNoRedirect(int x, int y) {
@@ -202,7 +202,7 @@ public class TileTracker : MonoBehaviour {
 		GameTile old = tiles[position.x][position.y];
 		old.Remove();
 		old.gameObject.SetActive(false);
-		GameObject.Destroy(old.gameObject);
+		Destroy(old.gameObject);
 	}
 
 	GameTile SpawnGameTile(ScriptableTile tile, Vector3Int position, bool initialize = true) {

@@ -819,6 +819,9 @@ MonoBehaviour:
     type: 3}
   decayEffect: {fileID: 2782636185316320815, guid: b4151159884b0f04eb2cee5ca86d5463,
     type: 3}
+  checkerboardTiles:
+  - {fileID: 11400000, guid: 17572acca0daa8c498cd89c30a51dbe8, type: 2}
+  - {fileID: 11400000, guid: e7db2a34f1dac4e4c8240dffe5ab088d, type: 2}
 --- !u!114 &3904237846106684287
 MonoBehaviour:
   m_ObjectHideFlags: 0

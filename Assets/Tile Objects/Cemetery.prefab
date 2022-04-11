@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 3654450883443819166}
   - component: {fileID: -7934349223558936850}
   - component: {fileID: -7507052495633409139}
+  - component: {fileID: 3479518200401474509}
   m_Layer: 0
   m_Name: Cemetery
   m_TagString: Untagged
@@ -95,3 +96,18 @@ MonoBehaviour:
   decayThreshold: 4
   decayTo: {fileID: 11400000, guid: 8ed2f973940c2f9458d1a0dafd8881bb, type: 2}
   gracePeriod: 0
+--- !u!114 &3479518200401474509
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3654450883443819161}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f8d0a376d2d2a4a40ac40e94ea69332a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  resources:
+  - amount: 1
+    resource: {fileID: 11400000, guid: 4535e9995cbc6b0459e235cc06effc67, type: 2}

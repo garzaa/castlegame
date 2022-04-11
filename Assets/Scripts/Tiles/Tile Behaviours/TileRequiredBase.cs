@@ -29,14 +29,14 @@ public class TileRequiredBase : TileBehaviour, ITileValidator, ICardStat {
 	}
 
 	public override string ToString() {
-		return "Build on"+ PrettyList(validBases.Select(x => x.tileObject.name).ToList())+".";
+		return "Place on"+ PrettyList(validBases.Select(x => x.tileObject.name).ToList())+".";
 	}
 
 	public string Stat() {
 		if (validBases.Count > 1) {
 			return this.ToString();
 		} else {
-			return $"Build on <color='#94fdff'>{validBases[0].tileObject.name}</color>.";
+			return $"Place on <color='#94fdff'>{validBases[0].tileObject.name}</color>.";
 		}
 	}
 }

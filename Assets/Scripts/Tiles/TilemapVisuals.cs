@@ -15,6 +15,7 @@ public class TilemapVisuals : MonoBehaviour {
 	[SerializeField] TileInfo infoBubbleTemplate;
 	[SerializeField] GameObject repairEffect;
 	[SerializeField] GameObject decayEffect;
+	[SerializeField] Tile[] checkerboardTiles;
 	#pragma warning restore 0649
 
 	CommandInput console;
@@ -25,6 +26,7 @@ public class TilemapVisuals : MonoBehaviour {
 	Tilemap clickedTilemap;
 	Tilemap previewTilemap;
 	Tilemap singleIconTilemap;
+	Tilemap tectonicsTilemap;
 	Vector3 mouseWorldPos;
 	Vector3Int gridMousePos;
 	TileTracker tracker;
@@ -34,6 +36,7 @@ public class TilemapVisuals : MonoBehaviour {
 	bool showingTileVisuals;
 	Vector3Int currentSelectedGridPosition;
 	Vector3Int targetedTile;
+	bool started = false;
 
 	void Awake() {
 		tilemap = GetComponent<Tilemap>();
@@ -41,16 +44,18 @@ public class TilemapVisuals : MonoBehaviour {
 	}
 
 	void Start() {
+		tracker = GameObject.FindObjectOfType<TileTracker>();
+		console = GameObject.FindObjectOfType<CommandInput>();
+		actionTargeter = GameObject.FindObjectOfType<ActionTargeter>();
+		origin = tilemap.cellBounds.min;
 		CreateHighlightTilemap();
+		CreateTectonicsTilemap();
 		CreateIconTilemap();
 		CreateSelectedTilemap();
 		CreatePreviewTilemap();
 		CreateSingleIconTilemap();
+		CreateCheckerboardTilemap();
 		CreateDoubleScaleCanvas();
-		console = GameObject.FindObjectOfType<CommandInput>();
-		tracker = GameObject.FindObjectOfType<TileTracker>();
-		actionTargeter = GameObject.FindObjectOfType<ActionTargeter>();
-		origin = tilemap.cellBounds.min;
 
 		for (int i=0; i<tilemap.cellBounds.size.x; i++) {
 			AddLetterLegend(i);
@@ -59,6 +64,7 @@ public class TilemapVisuals : MonoBehaviour {
 		for (int i=0; i<tilemap.cellBounds.size.y; i++) {
 			AddNumberLegend(i);
 		}
+		started = true;
 	}
 
 	void Update() {
@@ -70,13 +76,13 @@ public class TilemapVisuals : MonoBehaviour {
 
 	void AddLetterLegend(int idx) {
 		GameObject g = Instantiate(legendTemplate, Vector3.zero, Quaternion.identity, doubleScaleCanvas.transform);
-		g.GetComponent<WorldPointCanvas>().position = tilemap.CellToWorld(origin + Vector3Int.right*(idx+1)) + Vector3.down*tilemap.cellSize.y/2f;
+		g.GetComponent<WorldPointCanvas>().position = tilemap.CellToWorld(origin + Vector3Int.right*(idx+1)) + Vector3.down*tilemap.cellSize.y * 1.5f;
 		g.GetComponent<Text>().text = TileTracker.letters[idx].ToString().ToUpper();
 	}
 
 	void AddNumberLegend(int idx) {
 		GameObject g = Instantiate(legendTemplate, Vector3.zero, Quaternion.identity, doubleScaleCanvas.transform);
-		g.GetComponent<WorldPointCanvas>().position = tilemap.CellToWorld(origin + Vector3Int.up*(idx+1)) + Vector3.down*tilemap.cellSize.y/2f;
+		g.GetComponent<WorldPointCanvas>().position = tilemap.CellToWorld(origin + Vector3Int.up*(idx+1)) + Vector3.down*tilemap.cellSize.y * 1.5f;
 		g.GetComponent<Text>().text = (idx+1).ToString();
 	}
 
@@ -90,27 +96,92 @@ public class TilemapVisuals : MonoBehaviour {
 	
 	void CreateHighlightTilemap() {
 		highlightTilemap = Instantiate(highlightTilemapTemplate, transform.parent);
+		highlightTilemap.name = "Highlight";
 		highlightTilemap.GetComponent<TilemapRenderer>().sortingOrder = tilemap.GetComponent<TilemapRenderer>().sortingOrder + 1;
 	}
 
 	void CreateIconTilemap() {
 		iconTilemap = Instantiate(highlightTilemapTemplate, transform.parent);
+		iconTilemap.name = "Icons";
 		iconTilemap.GetComponent<TilemapRenderer>().sortingOrder = highlightTilemap.GetComponent<TilemapRenderer>().sortingOrder + 1;
 	}
 
 	void CreateSelectedTilemap() {
 		clickedTilemap = Instantiate(highlightTilemapTemplate, transform.parent);
+		clickedTilemap.name = "Clicked";
 		clickedTilemap.GetComponent<TilemapRenderer>().sortingOrder = iconTilemap.GetComponent<TilemapRenderer>().sortingOrder + 1;
 	}
 
 	void CreatePreviewTilemap() {
 		previewTilemap = Instantiate(highlightTilemapTemplate, transform.parent);
+		previewTilemap.name = "Preview";
 		previewTilemap.GetComponent<TilemapRenderer>().sortingOrder = clickedTilemap.GetComponent<TilemapRenderer>().sortingOrder + 1;
 	}
 
 	void CreateSingleIconTilemap() {
 		singleIconTilemap = Instantiate(highlightTilemapTemplate, transform.parent);
+		singleIconTilemap.name = "Single Icon";
 		singleIconTilemap.GetComponent<TilemapRenderer>().sortingOrder = previewTilemap.GetComponent<TilemapRenderer>().sortingOrder + 1;
+	}
+
+	void CreateTectonicsTilemap() {
+		tectonicsTilemap = Instantiate(highlightTilemapTemplate, transform.parent);
+		tectonicsTilemap.name = "Tectonics";
+		tectonicsTilemap.GetComponent<TilemapRenderer>().sortingOrder = tilemap.GetComponent<TilemapRenderer>().sortingOrder + 1;
+		UpdateTectonicsTilemap();
+	}
+
+	void UpdateTectonicsTilemap() {
+		// iterate through each tile on the edge
+		// set the tectonics tile to whatever's on the base
+		
+		// move through x edge first
+		// target pos needs to be down 1
+		for (int x=tilemap.cellBounds.min.x; x<tilemap.cellBounds.max.x; x++) {
+			Vector3Int tileWorldPos = new Vector3Int(x, tilemap.cellBounds.min.y, 0);
+			RuleTile tectonicsTile = tracker.GetTileNoRedirect(tracker.CellToBoard(tileWorldPos)).GetTileType().GetTectonicsTile();
+			Vector3Int targetPos = tileWorldPos + Vector3Int.down;
+			tectonicsTilemap.SetTile(targetPos, tectonicsTile);
+		}
+
+		// then y edge, target pos needs to be left 1
+		// flip these tiles left
+		for (int y=tilemap.cellBounds.min.y; y<tilemap.cellBounds.max.y; y++) {
+			Vector3Int tileWorldPos = new Vector3Int(tilemap.cellBounds.min.x, y, 0);
+			RuleTile tectonicsTile = tracker.GetTileNoRedirect(tracker.CellToBoard(tileWorldPos)).GetTileType().GetTectonicsTile();
+			Vector3Int targetPos = tileWorldPos + Vector3Int.left;
+			tectonicsTilemap.SetTile(targetPos, tectonicsTile);
+			Vector3 flipX = new Vector3(-1, 1, 1);
+			tectonicsTilemap.SetTransformMatrix(targetPos, Matrix4x4.TRS(Vector3.zero, Quaternion.identity, flipX));
+		}
+
+		// and then make the bottom tip
+		// WHYY ISN"T IT WORKINGT
+		Vector3Int bottomWorldPos = tilemap.cellBounds.min;
+		RuleTile bottomTectonicsTile = tracker.GetTileNoRedirect(tracker.CellToBoard(bottomWorldPos)).GetTileType().GetTectonicsTile();
+		Vector3Int bottomTargetPos = bottomWorldPos + Vector3Int.left + Vector3Int.down;
+		tectonicsTilemap.SetTile(bottomTargetPos, bottomTectonicsTile);
+	}
+
+	void CreateCheckerboardTilemap() {
+		Vector3Int padding = new Vector3Int(20, 20, 0);
+		Tilemap checkerboard = Instantiate(highlightTilemapTemplate, transform.parent);
+		checkerboard.name = "Checkerboard";
+		checkerboard.GetComponent<TilemapRenderer>().sortingOrder = -100;
+		// then fill it while cycling through the tilemap tiles
+		Vector3Int checkerboardOrigin = origin - padding;
+		Vector3Int checkerboardEnd = tilemap.cellBounds.max + padding;
+		bool incrementAtEndOfRow = (checkerboardEnd.y - checkerboardOrigin.y) % checkerboardTiles.Length == 0;
+		int checkerIdx = 0;
+		for (int x=checkerboardOrigin.x; x<checkerboardEnd.x; x++) {
+			for (int y=checkerboardOrigin.y; y<checkerboardEnd.y; y++) {
+				Vector3Int position = new Vector3Int(x, y, 0);
+				checkerboard.SetTile(position, checkerboardTiles[checkerIdx]);
+				if (++checkerIdx >= checkerboardTiles.Length) checkerIdx = 0;
+			}
+			// offset at the end of the row to make the checker pattern if necessary
+			if ((incrementAtEndOfRow) && ++checkerIdx >= checkerboardTiles.Length) checkerIdx = 0;
+		}
 	}
 
 	public void HighlightTile(Vector3Int gridPos) {
@@ -289,7 +360,9 @@ public class TilemapVisuals : MonoBehaviour {
 	}
 
 	public void OnGameBoardChanged() {
+		if (!started) return;
 		RefreshInfoBubble();
+		UpdateTectonicsTilemap();
 	}
 
 	void RefreshInfoBubble() {
