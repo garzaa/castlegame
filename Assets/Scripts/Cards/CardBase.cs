@@ -170,10 +170,10 @@ public class CardBase : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
 
 		// make it fade out from the center if it wasn't active before
 		if (!placementWarning.gameObject.activeSelf) {
-			placementWarning.transform.position = Camera.main.WorldToScreenPoint(tileWorldPosition);
+			placementWarning.transform.position = Camera.main.WorldToScreenPoint(tileWorldPosition + Vector3.down/2f);
 			placementWarning.gameObject.SetActive(true);
 		}
-		placementWarning.SetInfo(placementTest.Item2, Camera.main.WorldToScreenPoint(tileWorldPosition + (Vector3.down / 2f)));
+		placementWarning.SetInfo(placementTest.Item2, Camera.main.WorldToScreenPoint(tileWorldPosition + Vector3.down/2f));
 	}
 
 	protected void HidePlacementWarning() {
