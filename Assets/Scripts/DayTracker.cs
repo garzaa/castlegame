@@ -52,6 +52,7 @@ public class DayTracker : MonoBehaviour {
 		dayUI.SetActive(true);
 		StartDay();
 		UpdateActionUI(0);
+		UpdateDayText();
 	}
 
 	void UpdateActionUI(int actionCount) {
@@ -59,6 +60,10 @@ public class DayTracker : MonoBehaviour {
 			actions[i].SetActive(i < actionCount);
 		}
 		totalActionsText.text = totalActions + " total";
+	}
+
+	void UpdateDayText() {
+		dayText.text = "Day "+totalDays;
 	}
 
 	public void UseAction() {
@@ -75,7 +80,6 @@ public class DayTracker : MonoBehaviour {
 	}
 
 	public void StartDay() {
-		dayText.text = "Day "+totalDays;
 		dayStartEvent.Raise();
 	}
 
@@ -88,6 +92,7 @@ public class DayTracker : MonoBehaviour {
 		StartCoroutine(SlowActionReset());
 		actionsToday = 0;
 		totalDays++;
+		UpdateDayText();
 		dayEndEvent.Raise();
 		if (!silent) {
 			dayEndSound.PlayFrom(this.gameObject);

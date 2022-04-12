@@ -4,7 +4,7 @@ public class GameEventOnRemove : TileBehaviour {
 	#pragma warning disable 0649
 	[SerializeField] GameEvent target;
 
-	override public void OnRemove() {
+	override public void OnRemove(bool fromPlayer) {
 		target.Raise();
 	}
 }

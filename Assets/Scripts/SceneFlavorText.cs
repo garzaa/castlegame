@@ -47,7 +47,7 @@ public class SceneFlavorText : MonoBehaviour {
 	}
 
 	public void OnDayEnd() {
-		if (hasSustainCriterion && !won) {
+		if (hasSustainCriterion && !won && !lost) {
 			letterText.text = originalLetterText;
 			int d = dayTracker.GetDaysWithoutActions();
 			letterText.text += "\n\nCurrent streak: " + d + (d == 1 ? " day." : " days.");

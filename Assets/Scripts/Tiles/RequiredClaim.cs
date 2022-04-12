@@ -35,7 +35,7 @@ public class RequiredClaim : TileBehaviour, ITicker, ITileValidator, ITileHighli
 		Claim();
 	}
 
-	override public void OnRemove() {
+	override public void OnRemove(bool fromPlayer) {
 		claimable.UnClaim(this.gameTile);
 	}
 

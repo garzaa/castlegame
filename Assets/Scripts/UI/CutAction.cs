@@ -8,7 +8,7 @@ public class CutAction : EditAction {
 
 	protected override void ApplyAction(Vector3Int boardPosition) {
 		GameTile tile = tileTracker.GetTileNoRedirect(boardPosition);
-		tileTracker.ReplaceTile(boardPosition, GetCutTo(tile));
+		tileTracker.ReplaceTile(boardPosition, GetCutTo(tile), fromPlayer: true);
 	}
 
 	protected override PlacementTestResult TestPlacement(Vector3Int boardPosition) {

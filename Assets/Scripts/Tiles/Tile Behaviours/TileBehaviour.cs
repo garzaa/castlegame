@@ -12,7 +12,7 @@ public class TileBehaviour : MonoBehaviour {
 		
 	}
 
-	virtual public void OnRemove() {
+	virtual public void OnRemove(bool fromPlayer) {
 
 	}
 

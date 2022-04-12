@@ -174,7 +174,7 @@ public class TileTracker : MonoBehaviour {
 		return tileContainer.GetComponentsInChildren<T>(includeInactive: false);
 	}
 
-	public bool ReplaceTile(Vector3Int position, ScriptableTile newTile, bool validate=false) {
+	public bool ReplaceTile(Vector3Int position, ScriptableTile newTile, bool validate=false, bool fromPlayer=false) {
 		GameTile oldTileBackend = GetTileNoRedirect(position);
 
 		if (validate && !ValidPlacement(newTile, position).valid) {
@@ -184,7 +184,7 @@ public class TileTracker : MonoBehaviour {
 
 		GameTile newTileBackend = SpawnGameTile(newTile, position);
 		newTileBackend.SendMessage("OnBuild", SendMessageOptions.DontRequireReceiver);
-		RemoveTile(position);
+		RemoveTile(position, fromPlayer);
 
 		tilemap.SetTile(position+origin, newTile);
 		tiles[position.x][position.y] = newTileBackend;
@@ -197,10 +197,10 @@ public class TileTracker : MonoBehaviour {
 		boardChangeEvent.Raise();
 	}
 
-	void RemoveTile(Vector3Int position) {
+	void RemoveTile(Vector3Int position, bool fromPlayer) {
 		tilemap.SetTile(origin+position, null);
 		GameTile old = tiles[position.x][position.y];
-		old.Remove();
+		old.Remove(fromPlayer);
 		old.gameObject.SetActive(false);
 		Destroy(old.gameObject);
 	}
@@ -322,6 +322,10 @@ public class TileTracker : MonoBehaviour {
 	}
 
 	void ReconcileExclusiveAction(ExclusiveClockworkAction actionType, List<ClockworkApply> actions) {
+		// resolve actions with multiple targets that could apply to the same tile
+		// pick the ones with only one possible target out first, apply them, and keep doing that
+		// until there are no actions with single targets left
+
 		List<ClockworkApply> singularActions;
 
 		// do this instead of iterating since actions will be modified each loop

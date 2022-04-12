@@ -42,12 +42,12 @@ public class GameTile : MonoBehaviour, IStat, ICardStat, IConsoleStat, ITileHigh
 		}
 	}
 
-	public void Remove(bool silent=false) {
+	public void Remove(bool fromPlayer, bool silent=false) {
 		if (!silent && onDestroy) {
 			onDestroy.PlayFrom(tileTracker.gameObject);
 		}
 		foreach (TileBehaviour t in GetComponents<TileBehaviour>()) {
-			t.OnRemove();
+			t.OnRemove(fromPlayer);
 		}
 	}
 

@@ -340,6 +340,7 @@ GameObject:
   - component: {fileID: 3824776357142810732}
   - component: {fileID: 3550706840652932103}
   - component: {fileID: 2509274136793649990}
+  - component: {fileID: 3918913654795105487}
   m_Layer: 5
   m_Name: Envelope
   m_TagString: Untagged
@@ -537,6 +538,19 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+--- !u!114 &3918913654795105487
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3824776357142810731}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a973de82d414bfd4d9c79b6dea027527, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  onHover: {fileID: 11400000, guid: 19814e19eb2d61c47a03cfae1b31f7f9, type: 2}
 --- !u!1 &3824776358076315848
 GameObject:
   m_ObjectHideFlags: 0

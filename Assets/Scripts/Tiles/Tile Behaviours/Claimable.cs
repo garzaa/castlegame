@@ -32,7 +32,7 @@ public class Claimable : TileBehaviour, IStat {
 		else return "Claimed by "+claimed+".";
 	}
 
-	public override void OnRemove() {
+	public override void OnRemove(bool fromPlayer) {
 		if (effect != null) {
 			GameObject.Destroy(effect);
 		}
