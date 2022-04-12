@@ -11,12 +11,15 @@ GameObject:
   - component: {fileID: 3654450883443819167}
   - component: {fileID: 3654450883443819160}
   - component: {fileID: 3654450883443819166}
+  - component: {fileID: 3213312470504942192}
   - component: {fileID: -7934349223558936850}
   - component: {fileID: -7507052495633409139}
   - component: {fileID: 3479518200401474509}
   - component: {fileID: -8734020405544674299}
   - component: {fileID: 4867000464524316083}
   - component: {fileID: 4803298949102880256}
+  - component: {fileID: 7391856436717460171}
+  - component: {fileID: -7491671160193673242}
   m_Layer: 0
   m_Name: Cemetery
   m_TagString: Untagged
@@ -55,9 +58,7 @@ MonoBehaviour:
   onQuery: {fileID: 11400000, guid: 19814e19eb2d61c47a03cfae1b31f7f9, type: 2}
   onDestroy: {fileID: 11400000, guid: 3a1e3a9ed2724e34299c4892eb6039e0, type: 2}
   defaultTile: {fileID: 11400000, guid: 6394d27746b47854fb9f5eb012f09e9d, type: 2}
-  description: 'A place to rest.
-
-    Stops haunt decay of networked tiles.'
+  description: Stops haunt decay of networked tiles and gives souls a place to rest.
 --- !u!114 &3654450883443819166
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -72,6 +73,20 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   target: {fileID: 11400000, guid: aefde2e1ef9ce41408c8add3edd2a003, type: 2}
   action: {fileID: 11400000, guid: 1c7c8d86d5f91aa4884bb19bd32dc653, type: 2}
+--- !u!114 &3213312470504942192
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3654450883443819161}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e0e9600d83336c9409151feb770995ab, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  target: {fileID: 11400000, guid: de88e502d26b03d4aa38765084918829, type: 2}
+  action: {fileID: 11400000, guid: de49d0202b4338342af887de05033e37, type: 2}
 --- !u!114 &-7934349223558936850
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -158,3 +173,31 @@ MonoBehaviour:
   tile: {fileID: 11400000, guid: 66ae0888bdb33474f8620ea2b8bb8143, type: 2}
   number: 1
   comparisonType: 0
+--- !u!114 &7391856436717460171
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3654450883443819161}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f3278cbc2f6c8f34aaa94ebcde6aa858, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  cutTo: {fileID: 11400000, guid: ea089a2b162bee14a83b010a12f19909, type: 2}
+--- !u!114 &-7491671160193673242
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3654450883443819161}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5ec7ff127d91a5145aae8bca3e6e3197, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  resources:
+  - amount: 1
+    resource: {fileID: 11400000, guid: 78246f5ee74dac543a8f0a9cb365ef8e, type: 2}

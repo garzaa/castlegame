@@ -1,18 +1,18 @@
 using UnityEngine;
 using System.Collections.Generic;
 
-public class ClockworkTarget : ScriptableObject {
+public abstract class ClockworkTarget : ScriptableObject {
 
 	#pragma warning disable 0649
-	[SerializeField] protected TileType tileFilter;
+	[SerializeField] 
+	[Tooltip("Only target tiles of this type")]
+	protected TileType tileFilter;
 	#pragma warning restore 0649
 
-	public virtual List<GameTile> GetTargets(Vector3Int position, TileTracker tracker) {
-		return null;
-	}
+	public abstract List<GameTile> GetTargets(Vector3Int position, TileTracker tracker);
 
 	public virtual string GetTargetInfo(Vector3Int position, TileTracker tracker) {
 		int t = GetTargets(position, tracker).Count;
-		return $"\nTargeting {t} tile{(t==1 ? "" : "s")}.";
+		return $"Targeting {t} tile{(t==1 ? "" : "s")}.";
 	}
 }

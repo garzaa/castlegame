@@ -51,7 +51,7 @@ MonoBehaviour:
   onQuery: {fileID: 11400000, guid: 19814e19eb2d61c47a03cfae1b31f7f9, type: 2}
   onDestroy: {fileID: 0}
   defaultTile: {fileID: 11400000, guid: 575a523c0ccac4a4395f0534ec1eebe6, type: 2}
-  description: Nothing of value remains.
+  description: The vines hang on the old stone. Nothing of value remains.
 --- !u!114 &5949584311047025507
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -76,7 +76,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5ac7d643dc63d004cb9803be5bdaa77a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  decayThreshold: 7
+  decayThreshold: 2
   decayTo: {fileID: 11400000, guid: cabf8922ccfee23408f8046bff75ba12, type: 2}
   gracePeriod: 0
 --- !u!114 &5132704743030134635

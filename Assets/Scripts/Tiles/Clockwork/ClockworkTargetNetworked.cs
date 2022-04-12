@@ -10,6 +10,7 @@ public class ClockworkTargetNetworked : ClockworkTarget {
 	int maxDepth = 4;
 
 	[SerializeField]
+	[Tooltip("Branch through these tile types")]
 	List<TileType> networkFilters;
 	#pragma warning restore 0649
 	

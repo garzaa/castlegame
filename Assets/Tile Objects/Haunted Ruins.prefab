@@ -50,7 +50,7 @@ MonoBehaviour:
   onQuery: {fileID: 11400000, guid: 95e9b005ce5094b49aec850a5e63c135, type: 2}
   onDestroy: {fileID: 11400000, guid: 3a1e3a9ed2724e34299c4892eb6039e0, type: 2}
   defaultTile: {fileID: 11400000, guid: 575a523c0ccac4a4395f0534ec1eebe6, type: 2}
-  description: Something of value remains.
+  description: The vines are dead and sharp. Something of value remains.
 --- !u!114 &7617060703278269681
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -63,7 +63,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f3278cbc2f6c8f34aaa94ebcde6aa858, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  cutTo: {fileID: 11400000, guid: 575a523c0ccac4a4395f0534ec1eebe6, type: 2}
+  cutTo: {fileID: 11400000, guid: ea089a2b162bee14a83b010a12f19909, type: 2}
 --- !u!114 &-4166218410154110033
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -33,7 +33,7 @@ EditorBuildSettings:
     path: Assets/Scenes/Scratch.unity
     guid: 3b2dab7543c03b841bb5de58761102e4
   - enabled: 1
-    path: Assets/Scenes/Sandbox.unity
+    path: Assets/Scenes/Act 1 End.unity
     guid: 1758988e58bcbdc4abd93023e2b46f68
   - enabled: 1
     path: Assets/Scenes/Garden.unity
@@ -41,4 +41,10 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Neighbors.unity
     guid: 2fab99ca836d99c4e94d720d7afdd49d
+  - enabled: 1
+    path: Assets/Scenes/Floodwalls.unity
+    guid: b78d2bce1e027a84499d5395820dc079
+  - enabled: 1
+    path: Assets/Scenes/Haunt.unity
+    guid: c4624fcd94bed7e4b95fe5724636b492
   m_configObjects: {}

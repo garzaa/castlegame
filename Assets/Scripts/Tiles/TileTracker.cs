@@ -174,20 +174,20 @@ public class TileTracker : MonoBehaviour {
 		return tileContainer.GetComponentsInChildren<T>(includeInactive: false);
 	}
 
-	public bool ReplaceTile(Vector3Int position, ScriptableTile newTile, bool validate=false, bool fromPlayer=false) {
-		GameTile oldTileBackend = GetTileNoRedirect(position);
+	public bool ReplaceTile(Vector3Int boardPosition, ScriptableTile newTile, bool validate=false, bool fromPlayer=false) {
+		GameTile oldTileBackend = GetTileNoRedirect(boardPosition);
 
-		if (validate && !ValidPlacement(newTile, position).valid) {
+		if (validate && !ValidPlacement(newTile, boardPosition).valid) {
 			Debug.Log("invalid placement for tile replace, returning false");
 			return false;
 		}
 
-		GameTile newTileBackend = SpawnGameTile(newTile, position);
+		GameTile newTileBackend = SpawnGameTile(newTile, boardPosition);
 		newTileBackend.SendMessage("OnBuild", SendMessageOptions.DontRequireReceiver);
-		RemoveTile(position, fromPlayer);
+		RemoveTile(boardPosition, fromPlayer);
 
-		tilemap.SetTile(position+origin, newTile);
-		tiles[position.x][position.y] = newTileBackend;
+		tilemap.SetTile(boardPosition+origin, newTile);
+		tiles[boardPosition.x][boardPosition.y] = newTileBackend;
 
 		boardChangeEvent.Raise();
 		return true;
