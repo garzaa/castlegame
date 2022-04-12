@@ -9,6 +9,12 @@ public class Levels : MonoBehaviour {
 	[SerializeField] List<SceneReference> levels;
 	#pragma warning restore 0649
 
+	TransitionManager transitionManager;
+
+	void Start() {
+		transitionManager = GameObject.FindObjectOfType<TransitionManager>();
+	}
+
 	public int GetLevelNumber() {
 		int levelNumber = 0;
 		for (int i=0; i<levels.Count; i++) {
@@ -21,7 +27,7 @@ public class Levels : MonoBehaviour {
 	}
 
 	public void ReloadLevel() {
-		SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+		transitionManager.LoadScene(SceneManager.GetActiveScene().name);
 	}
 
 	public bool HasNextLevel() {
@@ -29,15 +35,15 @@ public class Levels : MonoBehaviour {
 	}
 
 	public void LoadNextLevel() {
-		SceneManager.LoadScene(levels[GetLevelNumber()+1]);
+		transitionManager.LoadScene(levels[GetLevelNumber()+1]);
 	}
 
 	public void LoadMainMenu() {
-		SceneManager.LoadScene(mainMenu);
+		transitionManager.LoadScene(mainMenu);
 	}
 
 	public void LoadLevel(int levelNumber) {
-		SceneManager.LoadScene(levels[levelNumber]);
+		transitionManager.LoadScene(levels[levelNumber]);
 	}
 
 	public List<SceneReference> GetLevels() {

@@ -72,10 +72,11 @@ public class ActionButton : MonoBehaviour, IPointerEnterHandler, IPointerExitHan
 				return;
 			}
 			MouseEnter();
-		}
-		if (Input.GetKeyUp(keyName)) {
 			MouseClick();
 		}
+		// if (Input.GetKeyUp(keyName)) {
+		// 	MouseClick();
+		// }
 	}
 
 	void HideInfoCard() {

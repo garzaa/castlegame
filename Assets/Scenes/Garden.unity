@@ -16874,6 +16874,11 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1168686562259620333, guid: 2cd0a8c2313018743b330d76addd7ff7,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 2169897681753733669, guid: 2cd0a8c2313018743b330d76addd7ff7,
         type: 3}
       propertyPath: response.m_PersistentCalls.m_Calls.Array.size
@@ -17922,16 +17927,15 @@ PrefabInstance:
     - target: {fileID: 5483983651792900568, guid: 8faff5038af9ee2478ef05d06ca68364,
         type: 3}
       propertyPath: m_Text
-      value: '<color=#94fdff>Left click</color>: apply selected action
+      value: '<color=#94fdff>LMB</color>: apply selected action
 
-        <color=#94fdff>Right
-        click</color>: cancel selected action
+        <color=#94fdff>RMB</color>:
+        cancel selected action
 
-        <color=#94fdff>Right click
-        + drag</color>: pan camera
+        <color=#94fdff>RMB+drag / MMB+drag</color>:
+        pan camera
 
-        <color=#94fdff>Scroll</color>: change
-        zoom level'
+        <color=#94fdff>Scroll</color>: change zoom level'
       objectReference: {fileID: 0}
     - target: {fileID: 6434413353500254882, guid: 8faff5038af9ee2478ef05d06ca68364,
         type: 3}

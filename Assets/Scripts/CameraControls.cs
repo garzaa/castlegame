@@ -21,11 +21,11 @@ public class CameraControls : MonoBehaviour {
 			return;
 		}
 
-		if (Input.GetMouseButtonDown(1)) {
+		if (Input.GetMouseButtonDown(1) || Input.GetMouseButtonDown(2)) {
 			StartPan();
 		}
 
-		if (Input.GetMouseButton(1)) {
+		if (Input.GetMouseButton(1) || Input.GetMouseButton(2)) {
 			Pan();
 		}
 	}
