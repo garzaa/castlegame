@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 54bda8ebdb85dc94089781f31d0c2164, type: 3}
   m_Name: RevertHaunt
   m_EditorClassIdentifier: 
-  icon: {fileID: 11400000, guid: 6580854e551139c409c545d0ec799c03, type: 2}
+  icon: {fileID: 11400000, guid: 9f5779a08c915b443b130dd31bbf7845, type: 2}
   limit: 2
   transforms:
   - from: {fileID: 1707809362449561912, guid: 5c678e156e6bad84395cbe3fd820902b, type: 3}

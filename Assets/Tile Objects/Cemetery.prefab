@@ -71,6 +71,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e0e9600d83336c9409151feb770995ab, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  shortName: Haunt Prevention
   target: {fileID: 11400000, guid: aefde2e1ef9ce41408c8add3edd2a003, type: 2}
   action: {fileID: 11400000, guid: 1c7c8d86d5f91aa4884bb19bd32dc653, type: 2}
 --- !u!114 &3213312470504942192
@@ -85,6 +86,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e0e9600d83336c9409151feb770995ab, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  shortName: Soul Rest
   target: {fileID: 11400000, guid: de88e502d26b03d4aa38765084918829, type: 2}
   action: {fileID: 11400000, guid: de49d0202b4338342af887de05033e37, type: 2}
 --- !u!114 &-7934349223558936850

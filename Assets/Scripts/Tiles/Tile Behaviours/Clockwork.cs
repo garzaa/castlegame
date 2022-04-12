@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 
 public class Clockwork : TileBehaviour, ITicker, ITileHighlighter, IConsoleStat, IStat {
+	public string shortName;
 	public ClockworkTarget target;
 	public ClockworkAction action;
 
@@ -15,7 +16,7 @@ public class Clockwork : TileBehaviour, ITicker, ITileHighlighter, IConsoleStat,
 	}
 
 	public string Stat() {
-		return target.GetTargetInfo(gameTile.boardPosition, gameTile.GetTracker());
+		return "<color='#94fdff'>"+shortName + "</color> " + target.GetTargetInfo(gameTile.boardPosition, gameTile.GetTracker());
 	}
 
 	public TileHighlight GetHighlight() {

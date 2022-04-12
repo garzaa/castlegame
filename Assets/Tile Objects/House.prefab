@@ -126,6 +126,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e0e9600d83336c9409151feb770995ab, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  shortName: Repair
   target: {fileID: 11400000, guid: 38229fc772835004ebacf44cf1141774, type: 2}
   action: {fileID: 11400000, guid: 328cfd9bf98bc1546bddccbe3ba2b1c7, type: 2}
 --- !u!114 &3567469549212463416

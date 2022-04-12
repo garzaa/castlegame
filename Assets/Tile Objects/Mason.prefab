@@ -111,6 +111,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e0e9600d83336c9409151feb770995ab, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  shortName: Stone Repair
   target: {fileID: 11400000, guid: dd307e5f8fd55974ea43b63c350c3910, type: 2}
   action: {fileID: 11400000, guid: 135b33d756041424da4aa33abebb8fb4, type: 2}
 --- !u!114 &4308997424987660464
