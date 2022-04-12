@@ -15,6 +15,8 @@ GameObject:
   - component: {fileID: -7507052495633409139}
   - component: {fileID: 3479518200401474509}
   - component: {fileID: -8734020405544674299}
+  - component: {fileID: 4867000464524316083}
+  - component: {fileID: 4803298949102880256}
   m_Layer: 0
   m_Name: Cemetery
   m_TagString: Untagged
@@ -126,3 +128,33 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   validBases:
   - {fileID: 11400000, guid: ea089a2b162bee14a83b010a12f19909, type: 2}
+--- !u!114 &4867000464524316083
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3654450883443819161}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 94724aa65045b234797aa8f9b8991f6b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  requirements:
+  - {fileID: 4803298949102880256}
+  description: Unlocked by building a <color="#94fdff">Mason</color>.
+--- !u!114 &4803298949102880256
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3654450883443819161}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 553b0f7f3c180154f89db359cb46e08f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  tile: {fileID: 11400000, guid: 66ae0888bdb33474f8620ea2b8bb8143, type: 2}
+  number: 1
+  comparisonType: 0

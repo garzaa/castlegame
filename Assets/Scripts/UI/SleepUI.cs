@@ -74,7 +74,7 @@ public class SleepUI : MonoBehaviour, IPointerUpHandler {
 			Vector2 rectPos = scrollRect.normalizedPosition;
 			// convert from days left (int) to position (float)
 			rectPos.x = ((float) daysLeft-1) / maxVal;
-			scrollRect.normalizedPosition = rectPos;
+			scrollRect.normalizedPosition = Vector3.Lerp(scrollRect.normalizedPosition, rectPos, 0.2f);
 		} else {
 			scrollRect.horizontal = true;
 		}
