@@ -13,15 +13,18 @@ public class SceneFlavorText : MonoBehaviour {
 	[SerializeField] GameObject reloadButton;
 	[SerializeField] GameObject closeButton;
 	[SerializeField] GameEvent dismissedFirstTime;
+	#pragma warning disable 0649
+
 	DayTracker dayTracker;
 	bool won;
 	bool lost;
 	bool firedDismissed = false;
-	#pragma warning disable 0649
+	bool openedFromClick = false;
 
 	Levels levels;
 	string originalLetterText;
 	bool hasSustainCriterion;
+	GameObject maskContainer;
 
 	void Start() {
 		dayTracker = GameObject.FindObjectOfType<DayTracker>();
@@ -40,6 +43,7 @@ public class SceneFlavorText : MonoBehaviour {
 		nextLevelButton.SetActive(false);
 		reloadButton.SetActive(false);
 		hasSustainCriterion = GameObject.FindObjectOfType<SustainCriterion>() != null;
+		maskContainer = letter.transform.GetChild(0).gameObject;
 	}
 
 	public void OnDayEnd() {
@@ -50,13 +54,26 @@ public class SceneFlavorText : MonoBehaviour {
 		}
 	}
 
+	public void OnEnvelopeHover() {
+		maskContainer.SetActive(false);
+		letter.SetActive(true);
+	}
+
+	public void OnEnvelopeUnHover() {
+		if (openedFromClick) return;
+		letter.SetActive(false);
+	}
+
 	public void OnWin() {
 		if (lost) return;
 		won = true;
 
 		letterText.text = originalLetterText;
 		letterText.text += "\n\nComplete!";
-		letterText.text += $"\nTook <color='#7a09fa'>{dayTracker.GetTotalDays()}</color> days & <color='#7a09fa'>{dayTracker.GetTotalActions()}</color> actions.";
+		int d = dayTracker.GetTotalDays();
+		int a = dayTracker.GetTotalActions();
+		letterText.text += $"\nTook <color='#7a09fa'>{d}</color> day" + (d > 1 ? "s" : "") + " & ";
+		letterText.text += $"<color='#7a09fa'>{a}</color> action"+ (a > 1 ? "s" : "") +".";
 		letter.SetActive(true);
 		if (levels.HasNextLevel()) {
 			nextLevelButton.SetActive(true);
@@ -74,14 +91,21 @@ public class SceneFlavorText : MonoBehaviour {
 		reloadButton.SetActive(true);
 		// closeButton.SetActive(false);
 	}
-	
-	public void ToggleLetter() {
-		letter.SetActive(!letter.activeSelf);
 
-		if (!letter.activeSelf && !firedDismissed) {
+	public void CloseLetterFromClick() {
+		letter.SetActive(false);
+		openedFromClick = false;	
+
+		if (!firedDismissed) {
 			dismissedFirstTime.Raise();
 			firedDismissed = true;
 		}
+	}
+	
+	public void OpenLetterFromClick() {
+		letter.SetActive(true);
+		maskContainer.SetActive(true);
+		openedFromClick = true;
 	}
 
 	public void ReloadLevel() {
