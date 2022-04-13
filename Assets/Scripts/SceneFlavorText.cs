@@ -74,7 +74,7 @@ public class SceneFlavorText : MonoBehaviour {
 		int a = dayTracker.GetTotalActions();
 		letterText.text += $"\nTook <color='#7a09fa'>{d}</color> day" + (d > 1 ? "s" : "") + " & ";
 		letterText.text += $"<color='#7a09fa'>{a}</color> action"+ (a > 1 ? "s" : "") +".";
-		letter.SetActive(true);
+		OpenLetterFromClick();
 		if (levels.HasNextLevel()) {
 			nextLevelButton.SetActive(true);
 			// closeButton.SetActive(false);
@@ -87,7 +87,7 @@ public class SceneFlavorText : MonoBehaviour {
 		lost = true;
 
 		letterText.text += "\n\n<color='#ea323c'>FAILED.</color>\nYour Keep has fallen into ruin.";
-		letter.SetActive(true);
+		OpenLetterFromClick();
 		reloadButton.SetActive(true);
 		// closeButton.SetActive(false);
 	}

@@ -131,6 +131,7 @@ public class DayTracker : MonoBehaviour {
 	}
 
 	public void Wake() {
+		daysLeftToSleep = 0;
 		sleeping = false;
 	}
 
@@ -156,12 +157,14 @@ public class DayTracker : MonoBehaviour {
 			winEvent.Raise();
 			raisedWon = true;
 			wonLevel = true;
+			Wake();
 		}
 	}
 
 	public void OnLose() {
-		loseSound.PlayFrom(this.gameObject);	
+		loseSound.PlayFrom(this.gameObject);
 		gameOver = true;
+		Wake();
 	}
 
 	public int GetTotalActions() {

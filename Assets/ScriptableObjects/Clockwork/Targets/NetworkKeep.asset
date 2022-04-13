@@ -1,0 +1,18 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6f7b784501f7d2443b3f2b2815bf6197, type: 3}
+  m_Name: NetworkKeep
+  m_EditorClassIdentifier: 
+  tileFilter: {fileID: 11400000, guid: 3915e513e16e96542981e525f838f629, type: 2}
+  maxDepth: 10
+  networkFilters:
+  - {fileID: 11400000, guid: 064a5b83e33d197438fc3780008581e3, type: 2}
