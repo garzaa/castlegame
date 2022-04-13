@@ -47,4 +47,10 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Neighbors II.unity
     guid: 76328e2ef25b44240a16447528614a20
+  - enabled: 1
+    path: Assets/Scenes/Mason.unity
+    guid: c66c0089f8ffe7941b06f761a723d138
+  - enabled: 1
+    path: Assets/Scenes/Path.unity
+    guid: a9707b54883d8ad4ead06a30682844ac
   m_configObjects: {}

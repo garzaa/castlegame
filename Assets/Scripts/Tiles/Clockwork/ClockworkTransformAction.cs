@@ -12,7 +12,6 @@ public class ClockworkTransformAction : ExclusiveClockworkAction {
 
 	void OnValidate() {
 		foreach (TransformPair p in transforms) {
-			Debug.Log(p.from.name);
 			transformSet[p.from.name] = p.to;
 		}
 	}

@@ -27,18 +27,6 @@ public class MainMenu : MonoBehaviour {
 		levels.LoadLevel(levelNum);
 	}
 
-	public void ToggleLevels() {
-		animator.SetBool(levelsShown, !animator.GetBool(levelsShown));
-	}
-
-	public void ShowLevels() {
-		animator.SetBool(levelsShown, true);
-	}
-
-	public void HideLevels() {
-		animator.SetBool(levelsShown, false);
-	}
-
 	public void PopulateLevels() {
 		List<SceneReference> scenes = levels.GetLevels();
 		for (int i=0; i<scenes.Count; i++) {
