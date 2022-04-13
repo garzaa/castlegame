@@ -250,7 +250,7 @@ public class CommandInput : MonoBehaviour {
 			else if (args[0] == "cut") {
 				GameTile tile = tileTracker.GetTileNoRedirect(tileTracker.StrToPos(args[1]));
 				TileCuttable cut = tile.GetComponent<TileCuttable>();
-				if (!cut) {
+				if (!cut || !cut.Cuttable()) {
 					Log($"{tile.name} at {args[1].ToUpper()} can't be cut");
 				} else {
 					actions++;

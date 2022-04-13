@@ -19,16 +19,17 @@ public class CutCard : ActionCard {
 			return new Tuple<bool, string>(true, message);
 		}
 
-		bool cuttable = tile.GetComponent<TileCuttable>() != null;
-		if (!cuttable) message = $"{tile.name} can't be cut";
-		return new Tuple<bool, string>(cuttable, message);
+		TileCuttable tc = tile.GetComponent<TileCuttable>();
+		bool actuallyCuttable = tc && tc.Cuttable();
+		if (!actuallyCuttable) message = $"{tile.name} can't be cut";
+		return new Tuple<bool, string>(actuallyCuttable, message);
 	}
 
 	protected override ScriptableTile GetPreviewTile(Vector3Int boardPosition, GameTile targetedTile) {
 		if (!targetedTile) return null;
 		if (targetedTile.IsTileType(razeType)) return GetRazeTile(targetedTile);
 		TileCuttable cut = targetedTile.GetComponent<TileCuttable>();
-		if (!cut) return null;
+		if (!cut || !cut.Cuttable()) return null;
 		else return cut.cutTo;
 	}
 
