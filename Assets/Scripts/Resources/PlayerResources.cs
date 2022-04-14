@@ -70,13 +70,16 @@ public class PlayerResources : MonoBehaviour {
 	}
 
 	void AddResourceVisual(ResourceAmount resourceAmount) {
-		GameObject g = Instantiate(resourceTemplate, resourceContainer.transform);
-		g.SetActive(true);
-		Image[] i = g.GetComponentsInChildren<Image>();
+		GameObject resourceObject = Instantiate(resourceTemplate, resourceContainer.transform);
+		Tooltip t = resourceObject.GetComponent<Tooltip>();
+		t.SetDescription(resourceAmount.resource.description);
+		resourceObject.SetActive(true);
+
+		Image[] i = resourceObject.GetComponentsInChildren<Image>();
 		i[i.Length-1].sprite = resourceAmount.resource.detailedIcon;
-		// i[i.Length-1].SetNativeSize();
-		Text t = g.GetComponentInChildren<Text>();
-		t.text = resourceAmount.amount.ToString() + " " + resourceAmount.resource.name.ToUpper();
-		resourceContainers[resourceAmount.resource] = g;
+
+		Text resourceText = resourceObject.GetComponentInChildren<Text>();
+		resourceText.text = resourceAmount.amount.ToString() + " " + resourceAmount.resource.name.ToUpper();
+		resourceContainers[resourceAmount.resource] = resourceObject;
 	}
 }

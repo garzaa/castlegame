@@ -39,6 +39,7 @@ public class TileTracker : MonoBehaviour {
 		tilemap.CompressBounds();
 		origin = tilemap.cellBounds.min;
 		tileContainer = Instantiate(new GameObject(), this.transform);
+		tileContainer.name = "Game Tiles";
 
 		for (int x=0; x<tilemap.cellBounds.size.x; x++) {
 			List<GameTile> xRow = new List<GameTile>();

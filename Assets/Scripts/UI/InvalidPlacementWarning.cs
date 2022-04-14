@@ -17,6 +17,7 @@ public class InvalidPlacementWarning : MonoBehaviour {
 		}
 		if (!target) {
 			target = new GameObject();
+			target.name = "Invalid Placement Warning";
 		}
 		messageContainer.text = message;
 		target.transform.position = position;
