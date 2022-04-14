@@ -192,11 +192,8 @@ PrefabInstance:
     - target: {fileID: 3824776358076315849, guid: 1e409b8e0369fe74eb70661417ad1886,
         type: 3}
       propertyPath: text
-      value: 'Thankfully the forest only spreads over meadows in straight lines.
-        It''s like it starts growing when it knows we''re here.
-
-        <color=''#93388f''>Bonus:
-        Complete the level with ONE house only.</color>'
+      value: Thankfully the forest only spreads over meadows in straight lines. It's
+        like it starts growing when it knows we're here.
       objectReference: {fileID: 0}
     - target: {fileID: 3824776358076315855, guid: 1e409b8e0369fe74eb70661417ad1886,
         type: 3}
