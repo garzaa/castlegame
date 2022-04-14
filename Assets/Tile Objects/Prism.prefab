@@ -50,7 +50,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   tileType: {fileID: 11400000, guid: 4492d5fc2578b224084316369b0f88a4, type: 2}
-  onPlace: {fileID: 0}
+  onPlace: {fileID: 11400000, guid: 95e9b005ce5094b49aec850a5e63c135, type: 2}
   onQuery: {fileID: 11400000, guid: 95e9b005ce5094b49aec850a5e63c135, type: 2}
   onDestroy: {fileID: 0}
   defaultTile: {fileID: 11400000, guid: 81f212dc8c5dcef40810dc4c698555bd, type: 2}
