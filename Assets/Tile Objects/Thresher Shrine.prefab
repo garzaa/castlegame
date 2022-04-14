@@ -52,7 +52,10 @@ MonoBehaviour:
   onQuery: {fileID: 11400000, guid: 19814e19eb2d61c47a03cfae1b31f7f9, type: 2}
   onDestroy: {fileID: 11400000, guid: 3a1e3a9ed2724e34299c4892eb6039e0, type: 2}
   defaultTile: {fileID: 11400000, guid: 1662296381316554e935e603aecf21ad, type: 2}
-  description: The kingdom spreads people, resources, and dogma.
+  description: 'Allows cutting <color="#94fdff">Haunted</color> tiles.
+
+    The kingdom
+    spreads people, resources, and dogma.'
 --- !u!114 &8136474068752620746
 MonoBehaviour:
   m_ObjectHideFlags: 0

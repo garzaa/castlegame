@@ -23,9 +23,9 @@ public class ContainsTile : GameStateRequirement {
 
 	public override string ToString() {
 		if (number == 1) {
-			return $"with a <color=\"#94fdff\">{tile.name}</color> on the board";
+			return $"with a <color=\"#94fdff\">{tile.tileObject.name}</color> on the board";
 		} else {
-			return $"with {number} <color=\"#94fdff\">{tile.name}s</color> on the board";
+			return $"with {number} <color=\"#94fdff\">{tile.tileObject.name}s</color> on the board";
 		}
 	}
 }

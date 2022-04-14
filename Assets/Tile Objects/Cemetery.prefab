@@ -15,11 +15,10 @@ GameObject:
   - component: {fileID: -7934349223558936850}
   - component: {fileID: -7507052495633409139}
   - component: {fileID: 3479518200401474509}
-  - component: {fileID: -8734020405544674299}
   - component: {fileID: 4867000464524316083}
+  - component: {fileID: -8734020405544674299}
   - component: {fileID: 4803298949102880256}
   - component: {fileID: 7391856436717460171}
-  - component: {fileID: -7491671160193673242}
   m_Layer: 0
   m_Name: Cemetery
   m_TagString: Untagged
@@ -131,20 +130,6 @@ MonoBehaviour:
   resources:
   - amount: 8
     resource: {fileID: 11400000, guid: 4535e9995cbc6b0459e235cc06effc67, type: 2}
---- !u!114 &-8734020405544674299
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3654450883443819161}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 966dc023b85eb154cb9a9905d12fe875, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  validBases:
-  - {fileID: 11400000, guid: ea089a2b162bee14a83b010a12f19909, type: 2}
 --- !u!114 &4867000464524316083
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -160,6 +145,20 @@ MonoBehaviour:
   requirements:
   - {fileID: 4803298949102880256}
   description: Unlocked by building a <color="#94fdff">Mason</color>.
+--- !u!114 &-8734020405544674299
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3654450883443819161}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 966dc023b85eb154cb9a9905d12fe875, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  validBases:
+  - {fileID: 11400000, guid: ea089a2b162bee14a83b010a12f19909, type: 2}
 --- !u!114 &4803298949102880256
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -187,19 +186,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f3278cbc2f6c8f34aaa94ebcde6aa858, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  cutTo: {fileID: 11400000, guid: ea089a2b162bee14a83b010a12f19909, type: 2}
---- !u!114 &-7491671160193673242
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3654450883443819161}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5ec7ff127d91a5145aae8bca3e6e3197, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  resources:
-  - amount: 1
-    resource: {fileID: 11400000, guid: 78246f5ee74dac543a8f0a9cb365ef8e, type: 2}
+  cutTo: {fileID: 11400000, guid: 575a523c0ccac4a4395f0534ec1eebe6, type: 2}
