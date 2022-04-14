@@ -1,0 +1,114 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &7491106399069670913
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 7491106399069670912}
+  - component: {fileID: 5595751641601783315}
+  - component: {fileID: 8136474068752620746}
+  - component: {fileID: 717715756449515833}
+  - component: {fileID: 2370765144811843022}
+  - component: {fileID: -3920802098390148769}
+  m_Layer: 0
+  m_Name: Thresher Shrine
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &7491106399069670912
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7491106399069670913}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &5595751641601783315
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7491106399069670913}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1f257f2dba2daf043844440ba0759d2d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  tileType: {fileID: 11400000, guid: 746dc2fc1d4caef40a0d54946c7b8323, type: 2}
+  onPlace: {fileID: 11400000, guid: 1034ba3b50af13b4cbec98d78d554414, type: 2}
+  onQuery: {fileID: 11400000, guid: 19814e19eb2d61c47a03cfae1b31f7f9, type: 2}
+  onDestroy: {fileID: 11400000, guid: 3a1e3a9ed2724e34299c4892eb6039e0, type: 2}
+  defaultTile: {fileID: 11400000, guid: 1662296381316554e935e603aecf21ad, type: 2}
+  description: The kingdom spreads people, resources, and dogma.
+--- !u!114 &8136474068752620746
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7491106399069670913}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 966dc023b85eb154cb9a9905d12fe875, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  validBases:
+  - {fileID: 11400000, guid: 3fd74c4aa6bf0b443b15f6f171617b95, type: 2}
+--- !u!114 &717715756449515833
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7491106399069670913}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f8d0a376d2d2a4a40ac40e94ea69332a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  resources:
+  - amount: 2
+    resource: {fileID: 11400000, guid: 4535e9995cbc6b0459e235cc06effc67, type: 2}
+--- !u!114 &2370765144811843022
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7491106399069670913}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 94724aa65045b234797aa8f9b8991f6b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  requirements:
+  - {fileID: -3920802098390148769}
+  description: Unlocked by building a <color="#94fdff">Mason</color>.
+--- !u!114 &-3920802098390148769
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7491106399069670913}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 553b0f7f3c180154f89db359cb46e08f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  tile: {fileID: 11400000, guid: 66ae0888bdb33474f8620ea2b8bb8143, type: 2}
+  number: 1
+  comparisonType: 0

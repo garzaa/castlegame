@@ -10,4 +10,8 @@ public class SustainCriterion : GameStateRequirement {
 		if (!dayTracker) dayTracker = GameObject.FindObjectOfType<DayTracker>();
 		return dayTracker.GetDaysWithoutActions() >= days;
 	}
+
+	public override string ToString() {
+		return $"after <color=\"#94fdff\">{days}</color> days";
+	}
 }

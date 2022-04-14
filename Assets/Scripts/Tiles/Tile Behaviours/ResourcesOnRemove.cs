@@ -11,6 +11,11 @@ public class ResourcesOnRemove : TileBehaviour, IStat {
 	}
 
 	public string Stat() {
+		TileCuttableOnState t = GetComponent<TileCuttableOnState>();
+		if (t && !t.Cuttable()) {
+			return "";
+		}
+
 		string s = "Yields ";
 		foreach (ResourceAmount r in resources) {
 			s += $"{r.amount} <color='#94fdff'>{r.resource.name}</color> / ";

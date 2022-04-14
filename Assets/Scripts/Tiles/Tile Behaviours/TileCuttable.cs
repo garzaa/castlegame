@@ -3,7 +3,7 @@ using UnityEngine;
 public class TileCuttable : TileBehaviour, IStat {
 	public ScriptableTile cutTo;
 
-	public string Stat() {
+	public virtual string Stat() {
 		return "Cuttable to <color='#94fdff'>" + cutTo.tileObject.name+"</color>.";
 	}
 

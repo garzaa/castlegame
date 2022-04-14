@@ -156,7 +156,6 @@ public class TilemapVisuals : MonoBehaviour {
 		}
 
 		// and then make the bottom tip
-		// WHYY ISN"T IT WORKINGT
 		Vector3Int bottomWorldPos = tilemap.cellBounds.min;
 		RuleTile bottomTectonicsTile = tracker.GetTileNoRedirect(tracker.CellToBoard(bottomWorldPos)).GetTileType().GetTectonicsTile();
 		Vector3Int bottomTargetPos = bottomWorldPos + Vector3Int.left + Vector3Int.down;
@@ -234,11 +233,6 @@ public class TilemapVisuals : MonoBehaviour {
 	}
 
 	void OnMouseExit() {
-		if (CardBase.dragged) {
-			CardBase.StopTargetingTile();
-			ClearTilePreview();
-		}
-
 		if (actionTargeter.IsArmed()) {
 			ClearTilePreview();
 			highlightTilemap.ClearAllTiles();

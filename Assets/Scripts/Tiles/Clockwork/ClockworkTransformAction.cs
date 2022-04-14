@@ -22,7 +22,6 @@ public class ClockworkTransformAction : ExclusiveClockworkAction {
 		foreach (GameTile t in action.targets) {
 			if (transformSet.ContainsKey(t.name)) {
 				TileTracker tracker = t.GetTracker();
-				Debug.Log("REPLACED");
 				tracker.ReplaceTile(t.boardPosition, transformSet[t.name]);
 				if (++amountTransformed > limit && limit > 0) break;
 			}

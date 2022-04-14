@@ -1,5 +1,6 @@
 using UnityEngine;
 using UnityEngine.U2D;
+using UnityEngine.EventSystems;
 
 public class CameraZoom : MonoBehaviour {
 	const int maxMultiplier = 3;
@@ -16,6 +17,15 @@ public class CameraZoom : MonoBehaviour {
 	}
 
 	void Update() {
+		if (EventSystem.current.IsPointerOverGameObject()) {
+			return;
+		}
+
+		var view = Camera.main.ScreenToViewportPoint(Input.mousePosition);
+     	var isOutside = view.x < 0 || view.x > 1 || view.y < 0 || view.y > 1;
+
+		if (isOutside) return;
+
 		currentMultiplier += (int) Input.mouseScrollDelta.y;
 		if (currentMultiplier > maxMultiplier) currentMultiplier = maxMultiplier;
 		if (currentMultiplier < 1) currentMultiplier = 1;

@@ -145,7 +145,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0, y: 29.7}
-  m_SizeDelta: {x: 100, y: 0}
+  m_SizeDelta: {x: 150, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &5337405326315055906
 CanvasRenderer:
@@ -259,6 +259,7 @@ MonoBehaviour:
   useAction: 1
   peekSound: {fileID: 11400000, guid: e9ad6282061a2e143ba64d38bd18df48, type: 2}
   clickSound: {fileID: 11400000, guid: 8dfdca57184fba842a6273c8b0740548, type: 2}
+  placeSound: {fileID: 0}
   invalidPlacementWarningTemplate: {fileID: 4242138383085047749, guid: 7b6ac38663f15f54ca459d09ef84d9e7,
     type: 3}
   gameTile: {fileID: 0}
@@ -1011,7 +1012,7 @@ PrefabInstance:
     - target: {fileID: 6822259459422871974, guid: 28ad1ecb53892ae49a80b45632118970,
         type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 26.5
+      value: 22
       objectReference: {fileID: 0}
     - target: {fileID: 6822259459422871974, guid: 28ad1ecb53892ae49a80b45632118970,
         type: 3}
@@ -1333,7 +1334,7 @@ PrefabInstance:
     - target: {fileID: 6822259459422871974, guid: 28ad1ecb53892ae49a80b45632118970,
         type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 64.5
+      value: 51
       objectReference: {fileID: 0}
     - target: {fileID: 6822259459422871974, guid: 28ad1ecb53892ae49a80b45632118970,
         type: 3}

@@ -1,14 +1,20 @@
 using UnityEngine;
 
 public class TileCuttableOnState : TileCuttable {
-	public GameStateRequirement[] stateRequirements;
+	public GameStateRequirement stateRequirement;
 
 	public override bool Cuttable() {
-		foreach (GameStateRequirement r in stateRequirements) {
-			if (!r.Satisfied(gameTile.GetTracker())) {
-				return false;
-			}
+		return stateRequirement.Satisfied(gameTile.GetTracker());
+	}
+
+	public override string Stat() {
+		TileCuttableOnState t = GetComponent<TileCuttableOnState>();
+		if (t && !t.Cuttable()) {
+			return "";
 		}
-		return true;
+		// Cuttable to x.
+		string s = base.Stat();
+		// Cuttable to x [state].
+		return s.Substring(0, s.Length-1) + " " + stateRequirement.ToString() + ".";
 	}
 }

@@ -18,7 +18,7 @@ public class CutAction : EditAction {
 			return new PlacementTestResult(false, message);
 		}
 
-		bool cuttable = tile.GetComponent<TileCuttable>() != null;
+		bool cuttable = tile.GetComponent<TileCuttable>() != null && tile.GetComponent<TileCuttable>().Cuttable();
 
 		if (tile.IsTileType(razeType) && cuttable) {
 			return new PlacementTestResult(true, message);
@@ -30,7 +30,7 @@ public class CutAction : EditAction {
 
 	ScriptableTile GetCutTo(GameTile currentTile) {
 		TileCuttable cuttable = currentTile.GetComponent<TileCuttable>();
-		if (currentTile.IsTileType(razeType) && cuttable==null) {
+		if (currentTile.IsTileType(razeType) && cuttable==null && cuttable.Cuttable()) {
 			return GetRazeTile(currentTile);
 		} else if (cuttable != null) {
 			return cuttable.cutTo;

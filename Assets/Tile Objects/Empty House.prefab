@@ -10,7 +10,8 @@ GameObject:
   m_Component:
   - component: {fileID: 1288925283758386411}
   - component: {fileID: 2488898174442615984}
-  - component: {fileID: 1957730871791113789}
+  - component: {fileID: -8450375002785102496}
+  - component: {fileID: -7964092745054037895}
   - component: {fileID: 4794497156659861323}
   m_Layer: 0
   m_Name: Empty House
@@ -51,7 +52,7 @@ MonoBehaviour:
   onDestroy: {fileID: 11400000, guid: 33d44cf28860dcc4baa447b045e2ced8, type: 2}
   defaultTile: {fileID: 11400000, guid: 69f5ab1ee2cfc994c906ffc1c8fb4401, type: 2}
   description: They're still hungry in there.
---- !u!114 &1957730871791113789
+--- !u!114 &-8450375002785102496
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -60,10 +61,26 @@ MonoBehaviour:
   m_GameObject: {fileID: 7266581451970357436}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f3278cbc2f6c8f34aaa94ebcde6aa858, type: 3}
+  m_Script: {fileID: 11500000, guid: 72709591c4b98c5479313b301369a859, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   cutTo: {fileID: 11400000, guid: 575a523c0ccac4a4395f0534ec1eebe6, type: 2}
+  stateRequirement: {fileID: -7964092745054037895}
+--- !u!114 &-7964092745054037895
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7266581451970357436}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 553b0f7f3c180154f89db359cb46e08f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  tile: {fileID: 11400000, guid: 1662296381316554e935e603aecf21ad, type: 2}
+  number: 1
+  comparisonType: 0
 --- !u!114 &4794497156659861323
 MonoBehaviour:
   m_ObjectHideFlags: 0

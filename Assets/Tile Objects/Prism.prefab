@@ -57,7 +57,7 @@ MonoBehaviour:
   description: 'Looking through it, vision is bent at right angles.
 
     <color=''#ca52c9''>Copies
-    effects arond corners.</color>'
+    effects around corners.</color>'
 --- !u!114 &1755971447828309234
 MonoBehaviour:
   m_ObjectHideFlags: 0

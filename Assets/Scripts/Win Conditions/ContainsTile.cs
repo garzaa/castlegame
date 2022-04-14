@@ -20,4 +20,12 @@ public class ContainsTile : GameStateRequirement {
 			return count == number;
 		}
 	}
+
+	public override string ToString() {
+		if (number == 1) {
+			return $"with a <color=\"#94fdff\">{tile.name}</color> on the board";
+		} else {
+			return $"with {number} <color=\"#94fdff\">{tile.name}s</color> on the board";
+		}
+	}
 }

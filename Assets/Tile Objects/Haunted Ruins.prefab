@@ -10,8 +10,9 @@ GameObject:
   m_Component:
   - component: {fileID: 1105813660587429592}
   - component: {fileID: 1707809362449561912}
-  - component: {fileID: 7617060703278269681}
+  - component: {fileID: 2504065371707902730}
   - component: {fileID: -4166218410154110033}
+  - component: {fileID: -4075434964436903066}
   m_Layer: 0
   m_Name: Haunted Ruins
   m_TagString: Untagged
@@ -51,7 +52,7 @@ MonoBehaviour:
   onDestroy: {fileID: 11400000, guid: 3a1e3a9ed2724e34299c4892eb6039e0, type: 2}
   defaultTile: {fileID: 11400000, guid: 575a523c0ccac4a4395f0534ec1eebe6, type: 2}
   description: The vines are dead and sharp. Something of value remains.
---- !u!114 &7617060703278269681
+--- !u!114 &2504065371707902730
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -60,10 +61,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 4778837198186823719}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f3278cbc2f6c8f34aaa94ebcde6aa858, type: 3}
+  m_Script: {fileID: 11500000, guid: 72709591c4b98c5479313b301369a859, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   cutTo: {fileID: 11400000, guid: ea089a2b162bee14a83b010a12f19909, type: 2}
+  stateRequirement: {fileID: -4075434964436903066}
 --- !u!114 &-4166218410154110033
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -79,3 +81,18 @@ MonoBehaviour:
   resources:
   - amount: 1
     resource: {fileID: 11400000, guid: 78246f5ee74dac543a8f0a9cb365ef8e, type: 2}
+--- !u!114 &-4075434964436903066
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4778837198186823719}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 553b0f7f3c180154f89db359cb46e08f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  tile: {fileID: 11400000, guid: 1662296381316554e935e603aecf21ad, type: 2}
+  number: 1
+  comparisonType: 0
