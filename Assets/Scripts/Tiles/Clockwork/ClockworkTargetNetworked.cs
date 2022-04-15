@@ -43,18 +43,14 @@ public class ClockworkTargetNetworked : ClockworkTarget {
 		}
 
 		List<GameTile> networkedTargets = tracker.GetNeighbors(position)
-			// try taking this out maybe? can loop back to a neighbor at a deeper depth than intended
-			// and it will always halt at max depth anyway
-			//.Where(tile => !visited.Contains(tile))
-			// alright that makes it VERY SLOW
-			// map a tile to its max depth visited?
+			// can loop back to a neighbor at a deeper depth than intended
+			// so instead, map a tile to its max depth visited
 			// if current depth is lower, then can still look through that node
-			// otherwise don't do it
 			.Where(tile => !visitedWithDepths.ContainsKey(tile) || depth < visitedWithDepths[tile])
 			.Where(tile => (IsTargetable(tile) || IsInNetwork(tile)))
 			.ToList();
 
-		// visited.UnionWith(networkedTargets);
+		// then update current depths
 		foreach (GameTile networkedTarget in networkedTargets) {
 			visitedWithDepths[networkedTarget] = depth;
 		}
