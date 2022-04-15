@@ -341,6 +341,7 @@ GameObject:
   - component: {fileID: 2509274136793649990}
   - component: {fileID: 3918913654795105487}
   - component: {fileID: 773640668018711823}
+  - component: {fileID: 7878718147674506627}
   m_Layer: 5
   m_Name: Envelope
   m_TagString: Untagged
@@ -541,6 +542,19 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &7878718147674506627
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3824776357142810731}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 23e686bd2731a4941bf4376cdbe14805, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  description: Click for a full objective description
 --- !u!1 &3824776358076315848
 GameObject:
   m_ObjectHideFlags: 0

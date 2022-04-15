@@ -15,9 +15,9 @@ public class ClockworkTargetNetworked : ClockworkTarget {
 	#pragma warning restore 0649
 	
 	override public List<GameTile> GetTargets(Vector3Int position, TileTracker tracker) {
-		List<GameTile> targets = new List<GameTile>();
-		HashSet<GameTile> visited = new HashSet<GameTile>();
-		GetFilteredNeighbors(0, position, targets, visited, tracker);
+		HashSet<GameTile> targets = new HashSet<GameTile>();
+		Dictionary<GameTile, int> visitedWithDepths = new Dictionary<GameTile, int>();
+		GetFilteredNeighbors(0, position, targets, visitedWithDepths, tracker);
 		// run this filter once at the end for SPEED
 		return targets
 			.Where(tile => IsTargetable(tile))
@@ -25,21 +25,32 @@ public class ClockworkTargetNetworked : ClockworkTarget {
 	}
 
 	// this function has 5 arguments because scriptable objects have to be stateless
-	void GetFilteredNeighbors(int depth, Vector3Int position, List<GameTile> targets, HashSet<GameTile> visited, TileTracker tracker) {
+	void GetFilteredNeighbors(int depth, Vector3Int position, HashSet<GameTile> targets, Dictionary<GameTile, int> visitedWithDepths, TileTracker tracker) {
 		if (++depth > maxDepth) {
 			return;
 		}
 
 		List<GameTile> networkedTargets = tracker.GetNeighbors(position)
-			.Where(tile => !visited.Contains(tile))
+			// try taking this out maybe? can loop back to a neighbor at a deeper depth than intended
+			// and it will always halt at max depth anyway
+			//.Where(tile => !visited.Contains(tile))
+			// alright that makes it VERY SLOW
+			// map a tile to its max depth visited?
+			// if current depth is lower, then can still look through that node
+			// otherwise don't do it
+			.Where(tile => !visitedWithDepths.ContainsKey(tile) || depth < visitedWithDepths[tile])
 			.Where(tile => (IsTargetable(tile) || IsInNetwork(tile)))
 			.ToList();
 
-		visited.UnionWith(networkedTargets);
-		targets.AddRange(networkedTargets);
+		// visited.UnionWith(networkedTargets);
+		foreach (GameTile networkedTarget in networkedTargets) {
+			visitedWithDepths[networkedTarget] = depth;
+		}
+
+		targets.UnionWith(networkedTargets);
 
 		foreach (GameTile tile in networkedTargets) {
-			GetFilteredNeighbors(depth, tile.boardPosition, targets, visited, tracker);
+			GetFilteredNeighbors(depth, tile.boardPosition, targets, visitedWithDepths, tracker);
 		}
 	}
 

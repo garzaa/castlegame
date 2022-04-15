@@ -485,7 +485,7 @@ Tilemap:
     second:
       serializedVersion: 2
       m_TileIndex: 4
-      m_TileSpriteIndex: 4
+      m_TileSpriteIndex: 3
       m_TileMatrixIndex: 1
       m_TileColorIndex: 0
       m_TileObjectToInstantiateIndex: 65535
@@ -575,10 +575,10 @@ Tilemap:
   - m_RefCount: 1
     m_Data: {fileID: -3298002869832431796, guid: 0dbc15b63f7daab4ba2650a30007ea8b,
       type: 3}
-  - m_RefCount: 1
+  - m_RefCount: 2
     m_Data: {fileID: 8509550459451208454, guid: 4cb459272b505f644934a2f5e9b071cf,
       type: 3}
-  - m_RefCount: 2
+  - m_RefCount: 1
     m_Data: {fileID: 7149751655148466542, guid: 4cb459272b505f644934a2f5e9b071cf,
       type: 3}
   - m_RefCount: 2
@@ -822,6 +822,8 @@ MonoBehaviour:
   checkerboardTiles:
   - {fileID: 11400000, guid: 17572acca0daa8c498cd89c30a51dbe8, type: 2}
   - {fileID: 11400000, guid: e7db2a34f1dac4e4c8240dffe5ab088d, type: 2}
+  targetedIndicatorTile: {fileID: 11400000, guid: 5e3c71644fb06cf40a04fc95b044ef8d,
+    type: 2}
 --- !u!114 &3904237846106684287
 MonoBehaviour:
   m_ObjectHideFlags: 0

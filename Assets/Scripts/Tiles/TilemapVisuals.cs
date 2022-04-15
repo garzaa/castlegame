@@ -16,6 +16,7 @@ public class TilemapVisuals : MonoBehaviour {
 	[SerializeField] GameObject repairEffect;
 	[SerializeField] GameObject decayEffect;
 	[SerializeField] Tile[] checkerboardTiles;
+	[SerializeField] TileBase targetedIndicatorTile;
 	#pragma warning restore 0649
 
 	CommandInput console;
@@ -32,6 +33,7 @@ public class TilemapVisuals : MonoBehaviour {
 	Vector3Int gridMousePos;
 	TileTracker tracker;
 	ActionTargeter actionTargeter;
+	Canvas infoBubbleCanvas;
 
 	GameObject currentInfoBubble;
 	bool showingTileVisuals;
@@ -58,6 +60,7 @@ public class TilemapVisuals : MonoBehaviour {
 		CreateSingleIconTilemap();
 		CreateCheckerboardTilemap();
 		CreateDoubleScaleCanvas();
+		CreateInfoBubbleCanvas();
 
 		for (int i=0; i<tilemap.cellBounds.size.x; i++) {
 			AddLetterLegend(i);
@@ -90,6 +93,13 @@ public class TilemapVisuals : MonoBehaviour {
 
 	void CreateDoubleScaleCanvas() {
 		doubleScaleCanvas = Instantiate(doubleScaleCanvas, this.transform);
+		doubleScaleCanvas.name = "Double Scale Canvas";
+	}
+
+	void CreateInfoBubbleCanvas() {
+		infoBubbleCanvas = Instantiate(doubleScaleCanvas, this.transform);
+		infoBubbleCanvas.name = "Info Bubble Canvas";
+		infoBubbleCanvas.sortingOrder = 90;
 	}
 
 	public GameObject GetDoubleScaleCanvas() {
@@ -305,12 +315,22 @@ public class TilemapVisuals : MonoBehaviour {
 	}
 
 	public void ClearTilePreview() {
-		// alleviate race condition on start
-		if (previewTilemap) {
-			previewTilemap.ClearAllTiles();
+		// these can be null on immediate startup
+		previewTilemap?.ClearAllTiles();
+		singleIconTilemap?.ClearAllTiles();
+		targetingTilemap?.ClearAllTiles();
+	}
+
+	public void ShowTargetedTiles(Clockwork[] clockworks, Vector3 tileWorldPosition) {
+		targetingTilemap.ClearAllTiles();
+		Vector3Int boardPosition = tracker.WorldToBoard(tileWorldPosition);
+		List<GameTile> allTargets = new List<GameTile>();
+		// for all those tiles, put the targeted indicator tile on their position
+		foreach (Clockwork clockwork in clockworks) {
+			allTargets.AddRange(clockwork.GetPossibleTargets(boardPosition, tracker));
 		}
-		if (singleIconTilemap) {
-			singleIconTilemap.ClearAllTiles();
+		foreach (GameTile tile in allTargets) {
+			targetingTilemap.SetTile(tile.gridPosition, targetedIndicatorTile);
 		}
 	}
 
@@ -332,7 +352,7 @@ public class TilemapVisuals : MonoBehaviour {
 			GameObject.Destroy(currentInfoBubble);
 		}
 
-		TileInfo tileInfo = Instantiate(infoBubbleTemplate, doubleScaleCanvas.transform);
+		TileInfo tileInfo = Instantiate(infoBubbleTemplate, infoBubbleCanvas.transform);
 		currentInfoBubble = tileInfo.gameObject;
 		tileInfo.Initialize(tile);
 	}
