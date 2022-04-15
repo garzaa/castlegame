@@ -13,6 +13,6 @@ MonoBehaviour:
   m_Name: NetworkKeep
   m_EditorClassIdentifier: 
   tileFilter: {fileID: 11400000, guid: 3915e513e16e96542981e525f838f629, type: 2}
-  maxDepth: 10
+  maxDepth: 25
   networkFilters:
   - {fileID: 11400000, guid: 064a5b83e33d197438fc3780008581e3, type: 2}

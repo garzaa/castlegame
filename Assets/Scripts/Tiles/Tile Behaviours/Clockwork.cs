@@ -30,4 +30,8 @@ public class Clockwork : TileBehaviour, ITicker, ITileHighlighter, IConsoleStat,
 	public List<GameTile> GetPossibleTargets(Vector3Int boardPosition, TileTracker tracker) {
 		return target.GetTargets(boardPosition, tracker);
 	}
+
+	public List<GameTile> GetSearchArea(Vector3Int boardPosition, TileTracker tracker) {
+		return target.GetTargetsWithVisited(boardPosition, tracker);
+	}
 }

@@ -15,7 +15,7 @@ MonoBehaviour:
   tileFilter: {fileID: 11400000, guid: 98718ff1143773b45972735c48d75e1a, type: 2}
   maxDepth: 10
   networkFilters:
-  - {fileID: 11400000, guid: 064a5b83e33d197438fc3780008581e3, type: 2}
+  - {fileID: 11400000, guid: 98718ff1143773b45972735c48d75e1a, type: 2}
   decayToTiles:
   - {fileID: 1707809362449561912, guid: 5c678e156e6bad84395cbe3fd820902b, type: 3}
   - {fileID: 2488898174442615984, guid: c4a6716ef55cbc3419b772f01fd96da2, type: 3}

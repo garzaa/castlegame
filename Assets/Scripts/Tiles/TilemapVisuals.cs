@@ -327,7 +327,7 @@ public class TilemapVisuals : MonoBehaviour {
 		List<GameTile> allTargets = new List<GameTile>();
 		// for all those tiles, put the targeted indicator tile on their position
 		foreach (Clockwork clockwork in clockworks) {
-			allTargets.AddRange(clockwork.GetPossibleTargets(boardPosition, tracker));
+			allTargets.AddRange(clockwork.GetSearchArea(boardPosition, tracker));
 		}
 		foreach (GameTile tile in allTargets) {
 			targetingTilemap.SetTile(tile.gridPosition, targetedIndicatorTile);

@@ -1,6 +1,7 @@
 using UnityEngine;
 using UnityEngine.Tilemaps;
 using System.Linq;
+using System;
 using System.Collections.Generic;
 
 [CreateAssetMenu(menuName="Clockwork/Target Networked")]
@@ -21,6 +22,17 @@ public class ClockworkTargetNetworked : ClockworkTarget {
 		// run this filter once at the end for SPEED
 		return targets
 			.Where(tile => IsTargetable(tile))
+			.ToList();
+	}
+
+	override public List<GameTile> GetTargetsWithVisited(Vector3Int position, TileTracker tracker) {
+		HashSet<GameTile> targets = new HashSet<GameTile>();
+		Dictionary<GameTile, int> visitedWithDepths = new Dictionary<GameTile, int>();
+		GetFilteredNeighbors(0, position, targets, visitedWithDepths, tracker);
+		targets.UnionWith(visitedWithDepths.Keys);
+		// run this filter once at the end for SPEED
+		return targets
+			// .Where(tile => IsTargetable(tile))
 			.ToList();
 	}
 
