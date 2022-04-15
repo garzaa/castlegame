@@ -32,7 +32,7 @@ public class NeighborDecay : TileDecay, IStat {
 			base.decayThreshold = Mathf.Max(base.decayThreshold, 0);
 			return base.GetDecay();
 		} else {
-			// this should NEVER be called
+			Debug.LogError("This should never be called");
 			return base.GetDecay();
 		}
 	}

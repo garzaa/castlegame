@@ -49,7 +49,7 @@ public class LevelsContainer : MonoBehaviour {
 			g.GetComponent<Button>().onClick.AddListener(() => LoadLevel(g.transform.GetSiblingIndex()-1));
 			g.SetActive(true);
 		}
-		scrollRect.normalizedPosition = Vector2.zero;
+		scrollRect.normalizedPosition = Vector2.up;
 	}
 
 		public void LoadLevel(int levelNum) {

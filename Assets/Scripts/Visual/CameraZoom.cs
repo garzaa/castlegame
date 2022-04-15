@@ -9,11 +9,15 @@ public class CameraZoom : MonoBehaviour {
 	PixelPerfectCamera cam;
 	int originalPPU;
 	static CameraZoom cameraZoom;
+
+	public AudioResource zoomNoise;
+	int multiplierLastFrame;
 	
 	void Start() {
 		cam = GetComponent<PixelPerfectCamera>();
 		originalPPU = cam.assetsPPU;
 		cameraZoom = this;
+		multiplierLastFrame = (int) Input.mouseScrollDelta.y;
 	}
 
 	void Update() {
@@ -30,6 +34,12 @@ public class CameraZoom : MonoBehaviour {
 		if (currentMultiplier > maxMultiplier) currentMultiplier = maxMultiplier;
 		if (currentMultiplier < 1) currentMultiplier = 1;
 		cam.assetsPPU = originalPPU * currentMultiplier;
+
+		if (currentMultiplier != multiplierLastFrame) {
+			zoomNoise.PlayFrom(this.gameObject);
+		}
+
+		multiplierLastFrame = currentMultiplier;
 	}
 
 	public static int GetZoomLevel() {

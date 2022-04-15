@@ -13,6 +13,7 @@ public class SceneFlavorText : MonoBehaviour {
 	[SerializeField] GameObject reloadButton;
 	[SerializeField] GameObject closeButton;
 	[SerializeField] GameEvent dismissedFirstTime;
+	[SerializeField] Text objectiveText;
 	#pragma warning disable 0649
 
 	DayTracker dayTracker;
@@ -25,8 +26,10 @@ public class SceneFlavorText : MonoBehaviour {
 	string originalLetterText;
 	bool hasSustainCriterion;
 	GameObject maskContainer;
+	Animator animator;
 
 	void Start() {
+		animator = GetComponentInChildren<Animator>();
 		dayTracker = GameObject.FindObjectOfType<DayTracker>();
 		letterText.text = $"Level {GameObject.FindObjectOfType<Levels>().GetLevelNumber()+1}: {SceneManager.GetActiveScene().name}";
 
@@ -44,6 +47,7 @@ public class SceneFlavorText : MonoBehaviour {
 		reloadButton.SetActive(false);
 		hasSustainCriterion = GameObject.FindObjectOfType<SustainCriterion>() != null;
 		maskContainer = letter.transform.GetChild(0).gameObject;
+		objectiveText.text = win.GetDescription();
 	}
 
 	public void OnDayEnd() {
@@ -55,13 +59,13 @@ public class SceneFlavorText : MonoBehaviour {
 	}
 
 	public void OnEnvelopeHover() {
-		maskContainer.SetActive(false);
-		letter.SetActive(true);
+		//maskContainer.SetActive(false);
+		//letter.SetActive(true);
 	}
 
 	public void OnEnvelopeUnHover() {
-		if (openedFromClick) return;
-		letter.SetActive(false);
+		//if (openedFromClick) return;
+		//letter.SetActive(false);
 	}
 
 	public void OnWin() {
@@ -94,7 +98,8 @@ public class SceneFlavorText : MonoBehaviour {
 
 	public void CloseLetterFromClick() {
 		letter.SetActive(false);
-		openedFromClick = false;	
+		openedFromClick = false;
+		animator.SetBool("LetterActive", false);
 
 		if (!firedDismissed) {
 			dismissedFirstTime.Raise();
@@ -103,6 +108,7 @@ public class SceneFlavorText : MonoBehaviour {
 	}
 	
 	public void OpenLetterFromClick() {
+		animator.SetBool("LetterActive", true);
 		letter.SetActive(true);
 		maskContainer.SetActive(true);
 		openedFromClick = true;

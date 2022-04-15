@@ -21,8 +21,9 @@ public class TileRequiredResource : TileBehaviour, ITileValidator {
 
 	public override string ToString() {
 		string ret = "Requires";
-		foreach (var s in resources) {
-			ret +=" <color='#94fdff'>"+s+"</color>";
+		for (int i=0; i<resources.Count; i++) {
+			ret +=" <color='#94fdff'>"+resources[i]+"</color>";
+			if (resources.Count > 1 && i<resources.Count-1) ret += ", ";
 		}
 		ret += ".";
 		return ret;

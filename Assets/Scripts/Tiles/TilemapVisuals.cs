@@ -22,6 +22,7 @@ public class TilemapVisuals : MonoBehaviour {
 	Tilemap tilemap;
 	Vector3Int origin;
 	Tilemap highlightTilemap;
+	Tilemap targetingTilemap;
 	Tilemap iconTilemap;
 	Tilemap clickedTilemap;
 	Tilemap previewTilemap;
@@ -50,6 +51,7 @@ public class TilemapVisuals : MonoBehaviour {
 		origin = tilemap.cellBounds.min;
 		CreateHighlightTilemap();
 		CreateTectonicsTilemap();
+		CreateTargetingTilemap();
 		CreateIconTilemap();
 		CreateSelectedTilemap();
 		CreatePreviewTilemap();
@@ -99,11 +101,17 @@ public class TilemapVisuals : MonoBehaviour {
 		highlightTilemap.name = "Highlight";
 		highlightTilemap.GetComponent<TilemapRenderer>().sortingOrder = tilemap.GetComponent<TilemapRenderer>().sortingOrder + 1;
 	}
+	
+	void CreateTargetingTilemap() {
+		targetingTilemap = Instantiate(highlightTilemapTemplate, transform.parent);
+		targetingTilemap.name = "Targeting";
+		targetingTilemap.GetComponent<TilemapRenderer>().sortingOrder = highlightTilemap.GetComponent<TilemapRenderer>().sortingOrder + 1;
+	}
 
 	void CreateIconTilemap() {
 		iconTilemap = Instantiate(highlightTilemapTemplate, transform.parent);
 		iconTilemap.name = "Icons";
-		iconTilemap.GetComponent<TilemapRenderer>().sortingOrder = highlightTilemap.GetComponent<TilemapRenderer>().sortingOrder + 1;
+		iconTilemap.GetComponent<TilemapRenderer>().sortingOrder = targetingTilemap.GetComponent<TilemapRenderer>().sortingOrder + 1;
 	}
 
 	void CreateSelectedTilemap() {
@@ -207,6 +215,8 @@ public class TilemapVisuals : MonoBehaviour {
 	void TargetCursorTile(bool forceRefresh=false) {
 		if (EventSystem.current.IsPointerOverGameObject()) {
 			// don't highlight if paused
+			ClearTilePreview();
+			highlightTilemap.ClearAllTiles();
 			return;
 		}
 
@@ -218,7 +228,11 @@ public class TilemapVisuals : MonoBehaviour {
 			OnMouseExit();
 		}
 
-		if (!forceRefresh && gridMousePos == targetedTile) return;
+		if (!forceRefresh && gridMousePos == targetedTile) {
+			return;
+		}
+
+
 		targetedTile = gridMousePos;
 
 		// if an action is armed, run its targeting
@@ -351,6 +365,7 @@ public class TilemapVisuals : MonoBehaviour {
 		foreach (ITileHighlighter h in tile.GetComponents<ITileHighlighter>()) {
 			ShowTileIcon(h.GetHighlight());
 		}
+		// TODO: for each clockwork tile, add a targeting field for it
 	}
 
 	public void OnGameBoardChanged() {

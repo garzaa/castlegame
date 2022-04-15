@@ -85,6 +85,8 @@ MonoBehaviour:
   resources:
   - amount: 2
     resource: {fileID: 11400000, guid: 4535e9995cbc6b0459e235cc06effc67, type: 2}
+  - amount: 2
+    resource: {fileID: 11400000, guid: 081223c5cd437bc45a0b5d6d3f0638da, type: 2}
 --- !u!114 &2370765144811843022
 MonoBehaviour:
   m_ObjectHideFlags: 0

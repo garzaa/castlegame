@@ -351,7 +351,7 @@ TextureImporter:
       name: tileInfo_6
       rect:
         serializedVersion: 2
-        x: 158
+        x: 165
         y: 228
         width: 86
         height: 27
@@ -364,48 +364,6 @@ TextureImporter:
       bones: []
       spriteID: 6ca73b5445e9aa090800000000000000
       internalID: -8022425701423285562
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: tileInfo_7
-      rect:
-        serializedVersion: 2
-        x: 160
-        y: 176
-        width: 45
-        height: 31
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 5c2ed91ef0033c470800000000000000
-      internalID: 8413621373626081989
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: tileInfo_8
-      rect:
-        serializedVersion: 2
-        x: 208
-        y: 176
-        width: 45
-        height: 31
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 6ae6768adc7bb9660800000000000000
-      internalID: 7393705307180330662
       vertices: []
       indices: 
       edges: []
@@ -931,6 +889,111 @@ TextureImporter:
       bones: []
       spriteID: b756b26831fad14d0800000000000000
       internalID: -3162178864953989765
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: tileInfo_11
+      rect:
+        serializedVersion: 2
+        x: 144
+        y: 240
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f6ae95bc09f2bf3a0800000000000000
+      internalID: -6630653727439459729
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: tileInfo_14
+      rect:
+        serializedVersion: 2
+        x: 224
+        y: 64
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e47ccd06583f60e20800000000000000
+      internalID: 3316605929786230606
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: tileInfo_15
+      rect:
+        serializedVersion: 2
+        x: 240
+        y: 64
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8e717967e5dc128e0800000000000000
+      internalID: -1719867777078585368
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: tileInfo_16
+      rect:
+        serializedVersion: 2
+        x: 160
+        y: 163
+        width: 96
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e5997f9a13a6a81a0800000000000000
+      internalID: -6806511125279565474
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: tileInfo_25
+      rect:
+        serializedVersion: 2
+        x: 160
+        y: 102
+        width: 96
+        height: 26
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 3, y: 0, z: 3, w: 2}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 24777a66bd76c7aa0800000000000000
+      internalID: -6161935998131931326
       vertices: []
       indices: 
       edges: []

@@ -25,4 +25,9 @@ public class Clockwork : TileBehaviour, ITicker, ITileHighlighter, IConsoleStat,
 			target.GetTargets(gameTile.boardPosition, gameTile.GetTracker()).Select(x => x.gridPosition).ToList()
 		);
 	}
+
+	// this can also be called from a preview tile, so have optional args for things already in place
+	public List<GameTile> GetPossibleTargets(Vector3Int boardPosition, TileTracker tracker) {
+		return target.GetTargets(boardPosition, tracker);
+	}
 }
