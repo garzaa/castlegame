@@ -19,7 +19,7 @@ public class Clockwork : TileBehaviour, ITicker, ITileHighlighter, IConsoleStat,
 		return "<color='#94fdff'>"+shortName + "</color> " + target.GetTargetInfo(gameTile.boardPosition, gameTile.GetTracker());
 	}
 
-	public TileHighlight GetHighlight() {
+	public TileHighlight GetHighlight(TileTracker tracker=null) {
 		return new TileHighlight(
 			action.icon,
 			target.GetTargets(gameTile.boardPosition, gameTile.GetTracker()).Select(x => x.gridPosition).ToList()

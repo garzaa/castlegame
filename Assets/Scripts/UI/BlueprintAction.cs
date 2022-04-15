@@ -65,6 +65,7 @@ public class BlueprintAction : ActionButton {
 			HideActionWarning();
 			tilemapVisuals.ShowTilePreview(this.gameTile.GetDefaultTile(), r.valid, tileWorldPosition);
 			tilemapVisuals.ShowTargetedTiles(this.gameTile.GetComponents<Clockwork>(), tileWorldPosition);
+			tilemapVisuals.ShowRedirectedTiles(this.gameTile.GetComponents<TileWarp>(), tileWorldPosition);
 		}
 	}
 

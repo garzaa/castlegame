@@ -24,6 +24,7 @@ public class TilemapVisuals : MonoBehaviour {
 	Vector3Int origin;
 	Tilemap highlightTilemap;
 	Tilemap targetingTilemap;
+	Tilemap redirectionTilemap;
 	Tilemap iconTilemap;
 	Tilemap clickedTilemap;
 	Tilemap previewTilemap;
@@ -54,6 +55,7 @@ public class TilemapVisuals : MonoBehaviour {
 		CreateHighlightTilemap();
 		CreateTectonicsTilemap();
 		CreateTargetingTilemap();
+		CreateRedirectionTilemap();
 		CreateIconTilemap();
 		CreateSelectedTilemap();
 		CreatePreviewTilemap();
@@ -118,10 +120,16 @@ public class TilemapVisuals : MonoBehaviour {
 		targetingTilemap.GetComponent<TilemapRenderer>().sortingOrder = highlightTilemap.GetComponent<TilemapRenderer>().sortingOrder + 1;
 	}
 
+	void CreateRedirectionTilemap() {
+		redirectionTilemap = Instantiate(highlightTilemapTemplate, transform.parent);
+		redirectionTilemap.name = "Redirection";
+		redirectionTilemap.GetComponent<TilemapRenderer>().sortingOrder = targetingTilemap.GetComponent<TilemapRenderer>().sortingOrder + 1;
+	}
+
 	void CreateIconTilemap() {
 		iconTilemap = Instantiate(highlightTilemapTemplate, transform.parent);
 		iconTilemap.name = "Icons";
-		iconTilemap.GetComponent<TilemapRenderer>().sortingOrder = targetingTilemap.GetComponent<TilemapRenderer>().sortingOrder + 1;
+		iconTilemap.GetComponent<TilemapRenderer>().sortingOrder = redirectionTilemap.GetComponent<TilemapRenderer>().sortingOrder + 1;
 	}
 
 	void CreateSelectedTilemap() {
@@ -319,6 +327,7 @@ public class TilemapVisuals : MonoBehaviour {
 		previewTilemap?.ClearAllTiles();
 		singleIconTilemap?.ClearAllTiles();
 		targetingTilemap?.ClearAllTiles();
+		redirectionTilemap?.ClearAllTiles();
 	}
 
 	public void ShowTargetedTiles(Clockwork[] clockworks, Vector3 tileWorldPosition) {
@@ -331,6 +340,20 @@ public class TilemapVisuals : MonoBehaviour {
 		}
 		foreach (GameTile tile in allTargets) {
 			targetingTilemap.SetTile(tile.gridPosition, targetedIndicatorTile);
+		}
+	}
+
+	public void ShowRedirectedTiles(TileWarp[] tileWarps, Vector3 tileWorldPosition) {
+		// TODO: can this just be set in the icon tilemap instead? we can pass in the tracker now
+		// it can, as long as the tilehighlight gets a position passed in as well
+		// maybe force that to be passed in by default, actually...it's too verbose otherwise
+		return;
+		redirectionTilemap.ClearAllTiles();
+		foreach (TileWarp tileWarp in tileWarps) {
+			TileHighlight tileHighlight = tileWarp.GetHighlight(tracker);
+			foreach (Vector3Int gridPos in tileHighlight.targets) {
+				redirectionTilemap.SetTile(gridPos, tileHighlight.tile);
+			}
 		}
 	}
 

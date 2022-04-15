@@ -56,10 +56,10 @@ public class TileWarp : TileBehaviour, ITileHighlighter {
 		}
 	}
 
-	public TileHighlight GetHighlight() {
+	public TileHighlight GetHighlight(TileTracker tracker = null) {
 		List<Vector3Int> targets = new List<Vector3Int>();
+		if (!tracker) tracker = gameTile.GetTracker();
 
-		TileTracker tracker = gameTile.GetTracker();
 		if (!tracker.BoardInBounds(source) || !tracker.BoardInBounds(target)) return null;
 
 		// why does this need to happen HERE

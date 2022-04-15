@@ -110,7 +110,7 @@ public class GameTile : MonoBehaviour, IStat, ICardStat, IConsoleStat, ITileHigh
 		return StatOrder.OrderCardStats(GetComponents<ICardStat>());
 	}
 
-	public TileHighlight GetHighlight() {
+	public TileHighlight GetHighlight(TileTracker tracker=null) {
 		if (!tileTracker.HasWarp(boardPosition)) {
 			return null;
 		}

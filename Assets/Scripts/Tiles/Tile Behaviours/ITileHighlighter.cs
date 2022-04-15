@@ -3,5 +3,5 @@ using UnityEngine.Tilemaps;
 using System.Collections.Generic;
 
 public interface ITileHighlighter {
-	TileHighlight GetHighlight();
+	TileHighlight GetHighlight(TileTracker tracker = null);
 }

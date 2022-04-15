@@ -59,6 +59,15 @@ Tilemap:
       m_TileColorIndex: 0
       m_TileObjectToInstantiateIndex: 65535
       m_AllTileFlags: 2
+  - first: {x: -2, y: -11, z: 0}
+    second:
+      serializedVersion: 2
+      m_TileIndex: 38
+      m_TileSpriteIndex: 45
+      m_TileMatrixIndex: 0
+      m_TileColorIndex: 0
+      m_TileObjectToInstantiateIndex: 65535
+      m_AllTileFlags: 2
   - first: {x: -6, y: -10, z: 0}
     second:
       serializedVersion: 2
@@ -82,6 +91,15 @@ Tilemap:
       serializedVersion: 2
       m_TileIndex: 37
       m_TileSpriteIndex: 43
+      m_TileMatrixIndex: 0
+      m_TileColorIndex: 0
+      m_TileObjectToInstantiateIndex: 65535
+      m_AllTileFlags: 2
+  - first: {x: -2, y: -10, z: 0}
+    second:
+      serializedVersion: 2
+      m_TileIndex: 38
+      m_TileSpriteIndex: 44
       m_TileMatrixIndex: 0
       m_TileColorIndex: 0
       m_TileObjectToInstantiateIndex: 65535
@@ -578,6 +596,8 @@ Tilemap:
     m_Data: {fileID: 11400000, guid: b74affcab52db71408b6bedd62d1b856, type: 2}
   - m_RefCount: 5
     m_Data: {fileID: 11400000, guid: 5e3c71644fb06cf40a04fc95b044ef8d, type: 2}
+  - m_RefCount: 2
+    m_Data: {fileID: 11400000, guid: 1be134277a855184eac578c5b8bfd5ef, type: 2}
   m_TileSpriteArray:
   - m_RefCount: 6
     m_Data: {fileID: -1799925587257728388, guid: 8aca2103d1cf2be44b8c1a0359e681c8,
@@ -694,8 +714,14 @@ Tilemap:
   - m_RefCount: 1
     m_Data: {fileID: -2825455232913096813, guid: 0d93bb3232a05e74e8f00f573cc5fe42,
       type: 3}
+  - m_RefCount: 1
+    m_Data: {fileID: -201440411694189365, guid: cf3b76f0bac6f2b4e8f6aa0f32ce3fd4,
+      type: 3}
+  - m_RefCount: 1
+    m_Data: {fileID: -3793529492968369426, guid: cf3b76f0bac6f2b4e8f6aa0f32ce3fd4,
+      type: 3}
   m_TileMatrixArray:
-  - m_RefCount: 47
+  - m_RefCount: 49
     m_Data:
       e00: 1
       e01: 0
@@ -732,7 +758,7 @@ Tilemap:
       e32: 0
       e33: 1
   m_TileColorArray:
-  - m_RefCount: 51
+  - m_RefCount: 53
     m_Data: {r: 1, g: 1, b: 1, a: 1}
   - m_RefCount: 0
     m_Data: {r: -6.452652, g: -6.452652, b: -6.452652, a: -6.452652}
