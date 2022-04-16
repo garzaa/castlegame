@@ -56,14 +56,16 @@ public class TileWarp : TileBehaviour, ITileHighlighter {
 		}
 	}
 
-	public TileHighlight GetHighlight(TileTracker tracker = null) {
-		List<Vector3Int> targets = new List<Vector3Int>();
-		if (!tracker) tracker = gameTile.GetTracker();
+	public TileHighlight GetHighlight(TileTracker tracker, Vector3Int boardPosition) {
+		List<Vector3Int> sources = new List<Vector3Int>();
 
-		if (!tracker.BoardInBounds(source) || !tracker.BoardInBounds(target)) return null;
+		Vector3Int statelessSource = boardPosition + fromRelative;
+		Vector3Int statelessTarget = boardPosition + toRelative;
+
+		if (!tracker.BoardInBounds(statelessSource) || !tracker.BoardInBounds(statelessTarget)) return null;
 
 		// why does this need to happen HERE
-		targets.Add(tracker.BoardToCell(source) + Vector3Int.left + Vector3Int.down);
+		sources.Add(tracker.BoardToCell(statelessSource) + Vector3Int.left + Vector3Int.down);
 
 		// lazy loading of highlight icon, only happens once
 		if (warpIcon == null) {
@@ -76,6 +78,13 @@ public class TileWarp : TileBehaviour, ITileHighlighter {
 			}
 		}
 
-		return new TileHighlight(warpIcon, targets);
+		TileHighlight highlight = new TileHighlight(warpIcon, sources);
+
+		// then add icons for the targets
+		List<Vector3Int> targets = new List<Vector3Int>();
+		targets.Add(tracker.BoardToCell(statelessTarget) + Vector3Int.left + Vector3Int.down);
+		highlight.SetHighlight(Resources.Load(tileTemplatePath+"WarpTargetTile") as Tile, targets);
+
+		return highlight;
 	}
 }

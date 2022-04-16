@@ -39,7 +39,7 @@ public class RequiredClaim : TileBehaviour, ITicker, ITileValidator, ITileHighli
 		claimable.UnClaim(this.gameTile);
 	}
 
-	public TileHighlight GetHighlight(TileTracker tracker=null) {
+	public TileHighlight GetHighlight(TileTracker tracker, Vector3Int boardPosition) {
 		if (!claimed) return null;
 		return new TileHighlight (
 			claimedTileIcon,

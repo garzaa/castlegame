@@ -3,11 +3,18 @@ using UnityEngine.Tilemaps;
 using System.Collections.Generic;
 
 public class TileHighlight {
-	public Tile tile { get; private set; } 
-	public List<Vector3Int> targets { get; private set; }
+	public Dictionary<Tile, List<Vector3Int>> targetMap { get; private set; }
 
 	public TileHighlight(Tile tile, List<Vector3Int> targets) {
-		this.tile = tile;
-		this.targets = targets;
+		targetMap = new Dictionary<Tile, List<Vector3Int>>();
+		targetMap[tile] = targets;
+	}
+
+	public TileHighlight() {
+		targetMap = new Dictionary<Tile, List<Vector3Int>>();
+	}
+
+	public void SetHighlight(Tile t, List<Vector3Int> positions) {
+		targetMap[t] = positions;
 	}
 }

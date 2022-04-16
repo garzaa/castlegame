@@ -20,7 +20,6 @@ public class SceneFlavorText : MonoBehaviour {
 	bool won;
 	bool lost;
 	bool firedDismissed = false;
-	bool openedFromClick = false;
 
 	Levels levels;
 	string originalLetterText;
@@ -58,16 +57,6 @@ public class SceneFlavorText : MonoBehaviour {
 		}
 	}
 
-	public void OnEnvelopeHover() {
-		//maskContainer.SetActive(false);
-		//letter.SetActive(true);
-	}
-
-	public void OnEnvelopeUnHover() {
-		//if (openedFromClick) return;
-		//letter.SetActive(false);
-	}
-
 	public void OnWin() {
 		if (lost) return;
 		won = true;
@@ -98,7 +87,6 @@ public class SceneFlavorText : MonoBehaviour {
 
 	public void CloseLetterFromClick() {
 		letter.SetActive(false);
-		openedFromClick = false;
 		animator.SetBool("LetterActive", false);
 
 		if (!firedDismissed) {
@@ -111,7 +99,6 @@ public class SceneFlavorText : MonoBehaviour {
 		animator.SetBool("LetterActive", true);
 		letter.SetActive(true);
 		maskContainer.SetActive(true);
-		openedFromClick = true;
 	}
 
 	public void ReloadLevel() {

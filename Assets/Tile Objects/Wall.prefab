@@ -95,7 +95,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   validBases:
-  - {fileID: 11400000, guid: c27bc74127fe34d44a9038e4118c2450, type: 2}
+  - {fileID: 11400000, guid: ea089a2b162bee14a83b010a12f19909, type: 2}
 --- !u!114 &7765551139924646825
 MonoBehaviour:
   m_ObjectHideFlags: 0

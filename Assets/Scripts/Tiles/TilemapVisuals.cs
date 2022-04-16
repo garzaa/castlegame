@@ -24,7 +24,8 @@ public class TilemapVisuals : MonoBehaviour {
 	Vector3Int origin;
 	Tilemap highlightTilemap;
 	Tilemap targetingTilemap;
-	Tilemap redirectionTilemap;
+	Tilemap previewTargetingTilemap;
+	Tilemap previewIconTilemap;
 	Tilemap iconTilemap;
 	Tilemap clickedTilemap;
 	Tilemap previewTilemap;
@@ -41,6 +42,7 @@ public class TilemapVisuals : MonoBehaviour {
 	Vector3Int currentSelectedGridPosition;
 	Vector3Int targetedTile;
 	bool started = false;
+	int tilemapSortingOrder = 0;
 
 	void Awake() {
 		tilemap = GetComponent<Tilemap>();
@@ -52,14 +54,17 @@ public class TilemapVisuals : MonoBehaviour {
 		console = GameObject.FindObjectOfType<CommandInput>();
 		actionTargeter = GameObject.FindObjectOfType<ActionTargeter>();
 		origin = tilemap.cellBounds.min;
-		CreateHighlightTilemap();
-		CreateTectonicsTilemap();
-		CreateTargetingTilemap();
-		CreateRedirectionTilemap();
-		CreateIconTilemap();
-		CreateSelectedTilemap();
-		CreatePreviewTilemap();
-		CreateSingleIconTilemap();
+		
+		highlightTilemap = CreateTilemap("Highlight");
+		tectonicsTilemap = CreateTilemap("Tectonics");
+		targetingTilemap = CreateTilemap("Targeting");
+		previewTilemap = CreateTilemap("Tile Place Preview");
+		previewTargetingTilemap = CreateTilemap("Preview Targeting");
+		previewIconTilemap = CreateTilemap("Preview Icons");
+		iconTilemap = CreateTilemap("Icons");
+		clickedTilemap = CreateTilemap("Clicked Indicator");
+		singleIconTilemap = CreateTilemap("Single Icons");
+
 		CreateCheckerboardTilemap();
 		CreateDoubleScaleCanvas();
 		CreateInfoBubbleCanvas();
@@ -71,6 +76,7 @@ public class TilemapVisuals : MonoBehaviour {
 		for (int i=0; i<tilemap.cellBounds.size.y; i++) {
 			AddNumberLegend(i);
 		}
+		UpdateTectonicsTilemap();
 		started = true;
 	}
 
@@ -107,54 +113,16 @@ public class TilemapVisuals : MonoBehaviour {
 	public GameObject GetDoubleScaleCanvas() {
 		return doubleScaleCanvas.gameObject;
 	}
-	
-	void CreateHighlightTilemap() {
-		highlightTilemap = Instantiate(highlightTilemapTemplate, transform.parent);
-		highlightTilemap.name = "Highlight";
-		highlightTilemap.GetComponent<TilemapRenderer>().sortingOrder = tilemap.GetComponent<TilemapRenderer>().sortingOrder + 1;
-	}
-	
-	void CreateTargetingTilemap() {
-		targetingTilemap = Instantiate(highlightTilemapTemplate, transform.parent);
-		targetingTilemap.name = "Targeting";
-		targetingTilemap.GetComponent<TilemapRenderer>().sortingOrder = highlightTilemap.GetComponent<TilemapRenderer>().sortingOrder + 1;
-	}
 
-	void CreateRedirectionTilemap() {
-		redirectionTilemap = Instantiate(highlightTilemapTemplate, transform.parent);
-		redirectionTilemap.name = "Redirection";
-		redirectionTilemap.GetComponent<TilemapRenderer>().sortingOrder = targetingTilemap.GetComponent<TilemapRenderer>().sortingOrder + 1;
-	}
-
-	void CreateIconTilemap() {
-		iconTilemap = Instantiate(highlightTilemapTemplate, transform.parent);
-		iconTilemap.name = "Icons";
-		iconTilemap.GetComponent<TilemapRenderer>().sortingOrder = redirectionTilemap.GetComponent<TilemapRenderer>().sortingOrder + 1;
-	}
-
-	void CreateSelectedTilemap() {
-		clickedTilemap = Instantiate(highlightTilemapTemplate, transform.parent);
-		clickedTilemap.name = "Clicked";
-		clickedTilemap.GetComponent<TilemapRenderer>().sortingOrder = iconTilemap.GetComponent<TilemapRenderer>().sortingOrder + 1;
-	}
-
-	void CreatePreviewTilemap() {
-		previewTilemap = Instantiate(highlightTilemapTemplate, transform.parent);
-		previewTilemap.name = "Preview";
-		previewTilemap.GetComponent<TilemapRenderer>().sortingOrder = clickedTilemap.GetComponent<TilemapRenderer>().sortingOrder + 1;
-	}
-
-	void CreateSingleIconTilemap() {
-		singleIconTilemap = Instantiate(highlightTilemapTemplate, transform.parent);
-		singleIconTilemap.name = "Single Icon";
-		singleIconTilemap.GetComponent<TilemapRenderer>().sortingOrder = previewTilemap.GetComponent<TilemapRenderer>().sortingOrder + 1;
-	}
-
-	void CreateTectonicsTilemap() {
-		tectonicsTilemap = Instantiate(highlightTilemapTemplate, transform.parent);
-		tectonicsTilemap.name = "Tectonics";
-		tectonicsTilemap.GetComponent<TilemapRenderer>().sortingOrder = tilemap.GetComponent<TilemapRenderer>().sortingOrder + 1;
-		UpdateTectonicsTilemap();
+	Tilemap CreateTilemap(string name) {
+		Tilemap t = Instantiate(highlightTilemapTemplate, transform.parent);
+		t.name = name;
+		if (tilemapSortingOrder == 0) {
+			tilemapSortingOrder = tilemap.GetComponent<TilemapRenderer>().sortingOrder;
+		}
+		tilemapSortingOrder++;
+		t.GetComponent<TilemapRenderer>().sortingOrder = tilemapSortingOrder;
+		return t;
 	}
 
 	void UpdateTectonicsTilemap() {
@@ -326,12 +294,20 @@ public class TilemapVisuals : MonoBehaviour {
 		// these can be null on immediate startup
 		previewTilemap?.ClearAllTiles();
 		singleIconTilemap?.ClearAllTiles();
-		targetingTilemap?.ClearAllTiles();
-		redirectionTilemap?.ClearAllTiles();
+		previewTargetingTilemap?.ClearAllTiles();
+		previewIconTilemap?.ClearAllTiles();
 	}
 
-	public void ShowTargetedTiles(Clockwork[] clockworks, Vector3 tileWorldPosition) {
-		targetingTilemap.ClearAllTiles();
+	void ShowCurrentlyTargetedTiles(Clockwork[] clockworks, Vector3 tileWorldPosition) {
+		ShowTargetedTiles(targetingTilemap, clockworks, tileWorldPosition);
+	}
+
+	public void ShowPreviewTargetedTiles(Clockwork[] clockworks, Vector3 tileWorldPosition) {
+		ShowTargetedTiles(previewTargetingTilemap, clockworks, tileWorldPosition);
+	}
+
+	void ShowTargetedTiles(Tilemap t, Clockwork[] clockworks, Vector3 tileWorldPosition) {
+		t.ClearAllTiles();
 		Vector3Int boardPosition = tracker.WorldToBoard(tileWorldPosition);
 		List<GameTile> allTargets = new List<GameTile>();
 		// for all those tiles, put the targeted indicator tile on their position
@@ -339,21 +315,7 @@ public class TilemapVisuals : MonoBehaviour {
 			allTargets.AddRange(clockwork.GetSearchArea(boardPosition, tracker));
 		}
 		foreach (GameTile tile in allTargets) {
-			targetingTilemap.SetTile(tile.gridPosition, targetedIndicatorTile);
-		}
-	}
-
-	public void ShowRedirectedTiles(TileWarp[] tileWarps, Vector3 tileWorldPosition) {
-		// TODO: can this just be set in the icon tilemap instead? we can pass in the tracker now
-		// it can, as long as the tilehighlight gets a position passed in as well
-		// maybe force that to be passed in by default, actually...it's too verbose otherwise
-		return;
-		redirectionTilemap.ClearAllTiles();
-		foreach (TileWarp tileWarp in tileWarps) {
-			TileHighlight tileHighlight = tileWarp.GetHighlight(tracker);
-			foreach (Vector3Int gridPos in tileHighlight.targets) {
-				redirectionTilemap.SetTile(gridPos, tileHighlight.tile);
-			}
+			t.SetTile(tile.gridPosition, targetedIndicatorTile);
 		}
 	}
 
@@ -385,13 +347,25 @@ public class TilemapVisuals : MonoBehaviour {
 		clickedTilemap.ClearAllTiles();
 		highlightTilemap.ClearAllTiles();
 		iconTilemap.ClearAllTiles();
+		targetingTilemap.ClearAllTiles();
 		currentSelectedGridPosition = new Vector3Int(999, 999, 999);
 	}
 
 	void ShowTileIcon(TileHighlight highlight) {
 		if (highlight == null) return;
-		foreach (Vector3Int cellPos in highlight.targets) {
-			iconTilemap.SetTile(cellPos, highlight.tile);
+		foreach (Tile highlightTile in highlight.targetMap.Keys) {
+			foreach (Vector3Int cellPos in highlight.targetMap[highlightTile]) {
+				iconTilemap.SetTile(cellPos, highlightTile);
+			}
+		}
+	}
+
+	public void ShowPreviewIcons(TileHighlight highlight) {
+		if (highlight == null) return;
+		foreach (Tile highlightTile in highlight.targetMap.Keys) {
+			foreach (Vector3Int cellPos in highlight.targetMap[highlightTile]) {
+				previewIconTilemap.SetTile(cellPos, highlightTile);
+			}
 		}
 	}
 
@@ -403,12 +377,13 @@ public class TilemapVisuals : MonoBehaviour {
 	public void DisplayTileVisuals(GameTile tile) {
 		clickedTilemap.ClearAllTiles();
 		iconTilemap.ClearAllTiles();
+		targetingTilemap.ClearAllTiles();
 		HighlightTile(tile.gridPosition);
 		clickedTilemap.SetTile(tile.gridPosition, clickedTile);
 		foreach (ITileHighlighter h in tile.GetComponents<ITileHighlighter>()) {
-			ShowTileIcon(h.GetHighlight());
+			ShowTileIcon(h.GetHighlight(tracker, tile.boardPosition));
 		}
-		// TODO: for each clockwork tile, add a targeting field for it
+		ShowCurrentlyTargetedTiles(tile.GetComponents<Clockwork>(), tile.worldPosition);
 	}
 
 	public void OnGameBoardChanged() {

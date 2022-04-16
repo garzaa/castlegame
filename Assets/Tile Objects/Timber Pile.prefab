@@ -16,6 +16,7 @@ GameObject:
   - component: {fileID: 3446166340617295605}
   - component: {fileID: 8664038023915950975}
   - component: {fileID: 3446166340617295603}
+  - component: {fileID: -2037763993608140856}
   m_Layer: 0
   m_Name: Timber Pile
   m_TagString: Untagged
@@ -139,3 +140,16 @@ MonoBehaviour:
   decayThreshold: 2
   decayTo: {fileID: 11400000, guid: c27bc74127fe34d44a9038e4118c2450, type: 2}
   gracePeriod: 0
+--- !u!114 &-2037763993608140856
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3446166340617295566}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1aa85668802274d4193c948d1ea645fb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  filter: {fileID: 11400000, guid: 11ec1d282393a2e4db3652f78191a353, type: 2}

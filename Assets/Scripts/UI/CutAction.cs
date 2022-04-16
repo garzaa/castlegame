@@ -7,6 +7,7 @@ public class CutAction : EditAction {
 	#pragma warning restore 0649
 
 	protected override void ApplyAction(Vector3Int boardPosition) {
+		GameObject.FindObjectOfType<CameraShake>().TinyShake();
 		GameTile tile = tileTracker.GetTileNoRedirect(boardPosition);
 		tileTracker.ReplaceTile(boardPosition, GetCutTo(tile), fromPlayer: true);
 	}

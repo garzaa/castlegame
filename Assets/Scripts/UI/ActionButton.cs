@@ -189,7 +189,7 @@ public class ActionButton : MonoBehaviour, IPointerEnterHandler, IPointerExitHan
 		if (!actionWarning) {
 			actionWarning = Instantiate(invalidPlacementWarningTemplate, actionTargeter.GetErrorContainer());
 			actionWarning.transform.SetParent(tilemapVisuals.GetDoubleScaleCanvas().transform, worldPositionStays: false);
-			actionWarning.transform.position = Camera.main.WorldToScreenPoint(tileWorldPosition + Vector3.down/2f);
+			actionWarning.transform.position = Camera.main.WorldToScreenPoint(tileWorldPosition + Vector3.down);
 			foreach (Image i in GetComponentsInChildren<Image>()) {
 				// to deal with the above line
 				i.SetNativeSize();
@@ -203,10 +203,10 @@ public class ActionButton : MonoBehaviour, IPointerEnterHandler, IPointerExitHan
 		}
 
 		if (!actionWarning.gameObject.activeSelf) {
-			actionWarning.transform.position = Camera.main.WorldToScreenPoint(tileWorldPosition + Vector3.down/2f);
+			actionWarning.transform.position = Camera.main.WorldToScreenPoint(tileWorldPosition + Vector3.down);
 			actionWarning.gameObject.SetActive(true);
 		}
-		actionWarning.SetInfo(message, Camera.main.WorldToScreenPoint(tileWorldPosition + Vector3.down/2f));
+		actionWarning.SetInfo(message, Camera.main.WorldToScreenPoint(tileWorldPosition + Vector3.down));
 	}
 
 	public void HideActionWarning() {

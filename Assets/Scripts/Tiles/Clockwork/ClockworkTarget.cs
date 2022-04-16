@@ -10,14 +10,14 @@ public abstract class ClockworkTarget : ScriptableObject {
 	protected TileType tileFilter;
 	#pragma warning restore 0649
 
-	public abstract List<GameTile> GetTargets(Vector3Int position, TileTracker tracker);
+	public abstract List<GameTile> GetTargets(Vector3Int boardPosition, TileTracker tracker);
 
-	public virtual string GetTargetInfo(Vector3Int position, TileTracker tracker) {
-		int t = GetTargets(position, tracker).Count;
+	public virtual string GetTargetInfo(Vector3Int boardPosition, TileTracker tracker) {
+		int t = GetTargets(boardPosition, tracker).Count;
 		return $"targeting {t} tile{(t==1 ? "" : "s")}.";
 	}
 
-	public virtual List<GameTile> GetTargetsWithVisited(Vector3Int position, TileTracker tracker) {
-		return GetTargets(position, tracker);
+	public virtual List<GameTile> GetTargetsWithVisited(Vector3Int boardPosition, TileTracker tracker) {
+		return GetTargets(boardPosition, tracker);
 	}
 }

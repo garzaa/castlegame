@@ -17,6 +17,7 @@ GameObject:
   - component: {fileID: -3916108195818966489}
   - component: {fileID: -576304214861670633}
   - component: {fileID: 4132107604223507137}
+  - component: {fileID: -6683675914057954138}
   m_Layer: 0
   m_Name: Foundation
   m_TagString: Untagged
@@ -155,3 +156,16 @@ MonoBehaviour:
   requirements:
   - {fileID: 2337723387074878895, guid: 293d23c89c56164488d2d067f8f36a29, type: 3}
   description: Unlocked by building a <color="#94fdff">House</color>.
+--- !u!114 &-6683675914057954138
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3544250914789974257}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1aa85668802274d4193c948d1ea645fb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  filter: {fileID: 11400000, guid: 11ec1d282393a2e4db3652f78191a353, type: 2}

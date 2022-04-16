@@ -60,13 +60,17 @@ public class BlueprintAction : ActionButton {
 
 		if (!r.valid) {
 			ShowActionWarning(r.message, tileWorldPosition, 0);
-			tilemapVisuals.HideTilePreview();
 		} else {
 			HideActionWarning();
-			tilemapVisuals.ShowTilePreview(this.gameTile.GetDefaultTile(), r.valid, tileWorldPosition);
-			tilemapVisuals.ShowTargetedTiles(this.gameTile.GetComponents<Clockwork>(), tileWorldPosition);
-			tilemapVisuals.ShowRedirectedTiles(this.gameTile.GetComponents<TileWarp>(), tileWorldPosition);
 		}
+		
+		tilemapVisuals.ShowTilePreview(this.gameTile.GetDefaultTile(), r.valid, tileWorldPosition);
+		tilemapVisuals.ShowPreviewTargetedTiles(this.gameTile.GetComponents<Clockwork>(), tileWorldPosition);
+		// get all tile highlights, then display them
+		foreach (ITileHighlighter h in gameTile.GetComponents<ITileHighlighter>()) {
+			tilemapVisuals.ShowPreviewIcons(h.GetHighlight(tileTracker, tileTracker.WorldToBoard(tileWorldPosition)));
+		}
+
 	}
 
 	protected override PlacementTestResult TestPlacement(Vector3Int boardPosition) {
@@ -74,6 +78,7 @@ public class BlueprintAction : ActionButton {
 	}
 
 	protected override void ApplyAction(Vector3Int boardPosition) {
+		GameObject.FindObjectOfType<CameraShake>().TinyShake();
 		tileTracker.ReplaceTile(boardPosition, this.gameTile.GetDefaultTile());
 	}
 }

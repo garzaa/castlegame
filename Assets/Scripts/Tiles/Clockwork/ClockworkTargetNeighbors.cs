@@ -9,4 +9,8 @@ public class ClockworkTargetNeighbors : ClockworkTarget {
 		if (tileFilter) targets = targets.Where(x => x.GetComponent<GameTile>().IsTileType(tileFilter)).ToList();
 		return targets;
 	}
+
+	override public List<GameTile> GetTargetsWithVisited(Vector3Int boardPosition, TileTracker tracker) {
+		return tracker.GetNeighbors(boardPosition);
+	}
 }

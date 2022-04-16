@@ -7,13 +7,15 @@ public class CameraControls : MonoBehaviour {
 	Vector3 positionOnDragStart;
 	float startingZ;
 	Tilemap tilemap;
+	Transform cameraContainer;
 
 	void Start() {
 		tilemap = GetComponentInChildren<Tilemap>();
-		startingZ = Camera.main.transform.position.z;
+		cameraContainer = Camera.main.transform.parent;
+		startingZ = cameraContainer.position.z;
 		Vector3 center = tilemap.localBounds.center;
 		center.z = startingZ;
-		Camera.main.transform.position = center;
+		cameraContainer.position = center;
 	}
 
 	void OnMouseOver() {
@@ -32,7 +34,7 @@ public class CameraControls : MonoBehaviour {
 
 	void StartPan() {
 		mouseDragStart = Input.mousePosition;
-		positionOnDragStart = Camera.main.transform.position;
+		positionOnDragStart = cameraContainer.position;
 	}
 
     void Pan() {
@@ -48,6 +50,6 @@ public class CameraControls : MonoBehaviour {
 			targetPos.y = closest.y;
 		} 
 		targetPos.z = startingZ;
-		Camera.main.transform.position = targetPos;
+		cameraContainer.position = targetPos;
     }
 }

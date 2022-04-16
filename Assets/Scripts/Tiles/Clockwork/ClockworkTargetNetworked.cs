@@ -15,20 +15,20 @@ public class ClockworkTargetNetworked : ClockworkTarget {
 	List<TileType> networkFilters;
 	#pragma warning restore 0649
 	
-	override public List<GameTile> GetTargets(Vector3Int position, TileTracker tracker) {
+	override public List<GameTile> GetTargets(Vector3Int boardPosition, TileTracker tracker) {
 		HashSet<GameTile> targets = new HashSet<GameTile>();
 		Dictionary<GameTile, int> visitedWithDepths = new Dictionary<GameTile, int>();
-		GetFilteredNeighbors(0, position, targets, visitedWithDepths, tracker);
+		GetFilteredNeighbors(0, boardPosition, targets, visitedWithDepths, tracker);
 		// run this filter once at the end for SPEED
 		return targets
 			.Where(tile => IsTargetable(tile))
 			.ToList();
 	}
 
-	override public List<GameTile> GetTargetsWithVisited(Vector3Int position, TileTracker tracker) {
+	override public List<GameTile> GetTargetsWithVisited(Vector3Int boardPosition, TileTracker tracker) {
 		HashSet<GameTile> targets = new HashSet<GameTile>();
 		Dictionary<GameTile, int> visitedWithDepths = new Dictionary<GameTile, int>();
-		GetFilteredNeighbors(0, position, targets, visitedWithDepths, tracker);
+		GetFilteredNeighbors(0, boardPosition, targets, visitedWithDepths, tracker);
 		targets.UnionWith(visitedWithDepths.Keys);
 		// run this filter once at the end for SPEED
 		return targets

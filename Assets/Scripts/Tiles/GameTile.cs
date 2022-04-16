@@ -110,8 +110,8 @@ public class GameTile : MonoBehaviour, IStat, ICardStat, IConsoleStat, ITileHigh
 		return StatOrder.OrderCardStats(GetComponents<ICardStat>());
 	}
 
-	public TileHighlight GetHighlight(TileTracker tracker=null) {
-		if (!tileTracker.HasWarp(boardPosition)) {
+	public TileHighlight GetHighlight(TileTracker tracker, Vector3Int boardPosition) {
+		if (!tracker.HasWarp(boardPosition)) {
 			return null;
 		}
 
@@ -121,7 +121,7 @@ public class GameTile : MonoBehaviour, IStat, ICardStat, IConsoleStat, ITileHigh
 
 
 		List<Vector3Int> targets = new List<Vector3Int>();
-		List<Tuple<GameTile, TileWarpType>> warps = tileTracker.GetWarps(boardPosition);
+		List<Tuple<GameTile, TileWarpType>> warps = tracker.GetWarps(boardPosition);
 		foreach (var t in warps) {
 			if (!t.Item2.Equals(TileWarpType.REFLECT)) {
 				// second time doing this, this isn't great
