@@ -1,5 +1,6 @@
 using UnityEngine;
 using UnityEngine.U2D;
+using System.Collections;
 using UnityEngine.EventSystems;
 
 public class CameraZoom : MonoBehaviour {
@@ -12,12 +13,15 @@ public class CameraZoom : MonoBehaviour {
 
 	public AudioResource zoomNoise;
 	int multiplierLastFrame;
-	
+
+	bool canClick = false;
+
 	void Start() {
 		cam = GetComponent<PixelPerfectCamera>();
 		originalPPU = cam.assetsPPU;
 		cameraZoom = this;
 		multiplierLastFrame = (int) Input.mouseScrollDelta.y;
+		StartCoroutine(PreventInitialClick());
 	}
 
 	void Update() {
@@ -35,11 +39,16 @@ public class CameraZoom : MonoBehaviour {
 		if (currentMultiplier < 1) currentMultiplier = 1;
 		cam.assetsPPU = originalPPU * currentMultiplier;
 
-		if (currentMultiplier != multiplierLastFrame) {
+		if (currentMultiplier != multiplierLastFrame && canClick) {
 			zoomNoise.PlayFrom(this.gameObject);
 		}
 
 		multiplierLastFrame = currentMultiplier;
+	}
+
+	IEnumerator PreventInitialClick() {
+		yield return new WaitForSeconds(0.1f);
+		canClick = true;
 	}
 
 	public static int GetZoomLevel() {

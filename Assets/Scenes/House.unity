@@ -13653,14 +13653,13 @@ PrefabInstance:
     - target: {fileID: 3904237846106684282, guid: 8564094a89093584ba015e82b97dab79,
         type: 3}
       propertyPath: m_TileSpriteArray.Array.data[6].m_RefCount
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3904237846106684282, guid: 8564094a89093584ba015e82b97dab79,
         type: 3}
       propertyPath: m_TileSpriteArray.Array.data[6].m_Data
       value: 
-      objectReference: {fileID: 21300000, guid: fd90b678e26ca1e418120cd147af90b2,
-        type: 3}
+      objectReference: {fileID: 0}
     - target: {fileID: 3904237846106684282, guid: 8564094a89093584ba015e82b97dab79,
         type: 3}
       propertyPath: m_TileSpriteArray.Array.data[7].m_RefCount
@@ -14011,7 +14010,7 @@ PrefabInstance:
     - target: {fileID: 3904237846106684282, guid: 8564094a89093584ba015e82b97dab79,
         type: 3}
       propertyPath: m_Tiles.Array.data[12].second.m_TileSpriteIndex
-      value: 6
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 3904237846106684282, guid: 8564094a89093584ba015e82b97dab79,
         type: 3}
@@ -14396,12 +14395,12 @@ PrefabInstance:
     - target: {fileID: 3904237846106684282, guid: 8564094a89093584ba015e82b97dab79,
         type: 3}
       propertyPath: m_Tiles.Array.data[29].second.m_TileIndex
-      value: 5
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3904237846106684282, guid: 8564094a89093584ba015e82b97dab79,
         type: 3}
       propertyPath: m_Tiles.Array.data[29].second.m_TileSpriteIndex
-      value: 10
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3904237846106684282, guid: 8564094a89093584ba015e82b97dab79,
         type: 3}
@@ -15546,7 +15545,7 @@ PrefabInstance:
     - target: {fileID: 3904237846106684282, guid: 8564094a89093584ba015e82b97dab79,
         type: 3}
       propertyPath: m_TileAssetArray.Array.data[0].m_RefCount
-      value: 52
+      value: 53
       objectReference: {fileID: 0}
     - target: {fileID: 3904237846106684282, guid: 8564094a89093584ba015e82b97dab79,
         type: 3}
@@ -15601,7 +15600,7 @@ PrefabInstance:
     - target: {fileID: 3904237846106684282, guid: 8564094a89093584ba015e82b97dab79,
         type: 3}
       propertyPath: m_TileSpriteArray.Array.data[0].m_RefCount
-      value: 37
+      value: 38
       objectReference: {fileID: 0}
     - target: {fileID: 3904237846106684282, guid: 8564094a89093584ba015e82b97dab79,
         type: 3}
@@ -15651,7 +15650,7 @@ PrefabInstance:
         type: 3}
       propertyPath: m_TileSpriteArray.Array.data[10].m_Data
       value: 
-      objectReference: {fileID: -5623194428626525839, guid: 8aca2103d1cf2be44b8c1a0359e681c8,
+      objectReference: {fileID: 21300000, guid: fd90b678e26ca1e418120cd147af90b2,
         type: 3}
     - target: {fileID: 3904237846106684282, guid: 8564094a89093584ba015e82b97dab79,
         type: 3}
@@ -16296,12 +16295,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_TileAssetArray.Array.data[5].m_Data
       value: 
-      objectReference: {fileID: 11400000, guid: 88f19096a45f3344591736101331d0e9,
-        type: 2}
+      objectReference: {fileID: 0}
     - target: {fileID: 3904237846106684282, guid: 8564094a89093584ba015e82b97dab79,
         type: 3}
       propertyPath: m_TileAssetArray.Array.data[5].m_RefCount
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3904237846106684282, guid: 8564094a89093584ba015e82b97dab79,
         type: 3}
@@ -17314,8 +17312,9 @@ GameObject:
   - component: {fileID: 965712837}
   - component: {fileID: 965712839}
   - component: {fileID: 965712838}
+  - component: {fileID: 965712840}
   m_Layer: 0
-  m_Name: BuiltHouse
+  m_Name: House and Garden
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -17362,7 +17361,22 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5d3b1605f5fdc7a4bb05c67c0a738a12, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  description: Build 1 house.
+  description: Build 1 Garden and 1 House.
+--- !u!114 &965712840
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 965712836}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 553b0f7f3c180154f89db359cb46e08f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  tile: {fileID: 11400000, guid: 88f19096a45f3344591736101331d0e9, type: 2}
+  number: 1
+  comparisonType: 0
 --- !u!1001 &1025823023
 PrefabInstance:
   m_ObjectHideFlags: 0

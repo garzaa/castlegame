@@ -52,7 +52,7 @@ MonoBehaviour:
   onQuery: {fileID: 11400000, guid: 19814e19eb2d61c47a03cfae1b31f7f9, type: 2}
   onDestroy: {fileID: 11400000, guid: 33d44cf28860dcc4baa447b045e2ced8, type: 2}
   defaultTile: {fileID: 11400000, guid: 86bb1e17820d3cb43a5b21924819ccf7, type: 2}
-  description: A source of crops.
+  description: Red berries line the branches.
 --- !u!114 &-5478677212634297993
 MonoBehaviour:
   m_ObjectHideFlags: 0
