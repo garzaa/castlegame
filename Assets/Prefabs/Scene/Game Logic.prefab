@@ -786,6 +786,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   startingResources:
   - amount: 0
+    resource: {fileID: 11400000, guid: 41d9879756c01cf40a8f97a401643a10, type: 2}
+  - amount: 0
     resource: {fileID: 11400000, guid: de04e4bcd8917d940ac875a6c1b81b1c, type: 2}
   - amount: 0
     resource: {fileID: 11400000, guid: 4535e9995cbc6b0459e235cc06effc67, type: 2}

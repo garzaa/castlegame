@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6723966241171830883}
   - component: {fileID: 5784955452831973745}
+  - component: {fileID: -3698457922833817539}
   - component: {fileID: 548085062186487813}
   - component: {fileID: -4982842824184917296}
   - component: {fileID: -5684300226570016222}
@@ -55,6 +56,21 @@ MonoBehaviour:
   onDestroy: {fileID: 0}
   defaultTile: {fileID: 11400000, guid: 88f19096a45f3344591736101331d0e9, type: 2}
   description: Provides food. Fragile...
+--- !u!114 &-3698457922833817539
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7406095483696277000}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f8d0a376d2d2a4a40ac40e94ea69332a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  resources:
+  - amount: 1
+    resource: {fileID: 11400000, guid: 41d9879756c01cf40a8f97a401643a10, type: 2}
 --- !u!114 &548085062186487813
 MonoBehaviour:
   m_ObjectHideFlags: 0
