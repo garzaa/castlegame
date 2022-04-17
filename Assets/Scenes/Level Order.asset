@@ -27,8 +27,10 @@ MonoBehaviour:
     scenePath: Assets/Scenes/Stamp.unity
   - sceneAsset: {fileID: 102900000, guid: 6e0cd63cef6417145943be3105241795, type: 3}
     scenePath: Assets/Scenes/Cross.unity
-  - sceneAsset: {fileID: 102900000, guid: 8c30dc18fa39ef34baf90619da8f1888, type: 3}
+  - sceneAsset: {fileID: 102900000, guid: 536b466c8560bec47a20552c8190f6b0, type: 3}
     scenePath: Assets/Scenes/Prism.unity
+  - sceneAsset: {fileID: 102900000, guid: 8c30dc18fa39ef34baf90619da8f1888, type: 3}
+    scenePath: Assets/Scenes/Triplet.unity
   - sceneAsset: {fileID: 102900000, guid: 76328e2ef25b44240a16447528614a20, type: 3}
     scenePath: Assets/Scenes/Neighbors II.unity
   - sceneAsset: {fileID: 102900000, guid: c66c0089f8ffe7941b06f761a723d138, type: 3}
@@ -37,10 +39,12 @@ MonoBehaviour:
     scenePath: Assets/Scenes/Path.unity
   - sceneAsset: {fileID: 102900000, guid: b78d2bce1e027a84499d5395820dc079, type: 3}
     scenePath: Assets/Scenes/Floodwalls.unity
-  - sceneAsset: {fileID: 102900000, guid: a9707b54883d8ad4ead06a30682844ac, type: 3}
-    scenePath: Assets/Scenes/Rest.unity
   - sceneAsset: {fileID: 102900000, guid: 926c808a33ad4ec489cbf05f3fb0a35d, type: 3}
     scenePath: Assets/Scenes/Relay.unity
+  - sceneAsset: {fileID: 102900000, guid: 6d6979dc1fbeae140ae872c0a53b2bca, type: 3}
+    scenePath: Assets/Scenes/Island.unity
+  - sceneAsset: {fileID: 102900000, guid: a9707b54883d8ad4ead06a30682844ac, type: 3}
+    scenePath: Assets/Scenes/Rest.unity
   - sceneAsset: {fileID: 102900000, guid: c4624fcd94bed7e4b95fe5724636b492, type: 3}
     scenePath: Assets/Scenes/Haunt.unity
   - sceneAsset: {fileID: 102900000, guid: 1758988e58bcbdc4abd93023e2b46f68, type: 3}

@@ -11,8 +11,8 @@ GameObject:
   - component: {fileID: 1105813660587429592}
   - component: {fileID: 1707809362449561912}
   - component: {fileID: 2504065371707902730}
-  - component: {fileID: -4166218410154110033}
   - component: {fileID: -4075434964436903066}
+  - component: {fileID: -4166218410154110033}
   m_Layer: 0
   m_Name: Haunted Ruins
   m_TagString: Untagged
@@ -66,21 +66,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   cutTo: {fileID: 11400000, guid: b74affcab52db71408b6bedd62d1b856, type: 2}
   stateRequirement: {fileID: -4075434964436903066}
---- !u!114 &-4166218410154110033
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4778837198186823719}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5ec7ff127d91a5145aae8bca3e6e3197, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  resources:
-  - amount: 1
-    resource: {fileID: 11400000, guid: 78246f5ee74dac543a8f0a9cb365ef8e, type: 2}
 --- !u!114 &-4075434964436903066
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -96,3 +81,18 @@ MonoBehaviour:
   tile: {fileID: 11400000, guid: 1662296381316554e935e603aecf21ad, type: 2}
   number: 1
   comparisonType: 0
+--- !u!114 &-4166218410154110033
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4778837198186823719}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5ec7ff127d91a5145aae8bca3e6e3197, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  resources:
+  - amount: 1
+    resource: {fileID: 11400000, guid: 78246f5ee74dac543a8f0a9cb365ef8e, type: 2}

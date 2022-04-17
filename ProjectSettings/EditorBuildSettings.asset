@@ -24,7 +24,7 @@ EditorBuildSettings:
     path: Assets/Scenes/Relay.unity
     guid: 926c808a33ad4ec489cbf05f3fb0a35d
   - enabled: 1
-    path: Assets/Scenes/Prism.unity
+    path: Assets/Scenes/Triplet.unity
     guid: 8c30dc18fa39ef34baf90619da8f1888
   - enabled: 1
     path: Assets/Scenes/Scratch.unity
@@ -56,4 +56,10 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Path.unity
     guid: ffbcfa86588290641bb777ab551c8b04
+  - enabled: 1
+    path: Assets/Scenes/Prism.unity
+    guid: 536b466c8560bec47a20552c8190f6b0
+  - enabled: 1
+    path: Assets/Scenes/Island.unity
+    guid: 6d6979dc1fbeae140ae872c0a53b2bca
   m_configObjects: {}

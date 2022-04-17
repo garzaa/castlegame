@@ -10,7 +10,6 @@ GameObject:
   m_Component:
   - component: {fileID: 5816502777220002936}
   - component: {fileID: 3983998537543943666}
-  - component: {fileID: -339297883601907911}
   m_Layer: 0
   m_Name: Sand
   m_TagString: Untagged
@@ -50,15 +49,3 @@ MonoBehaviour:
   onDestroy: {fileID: 11400000, guid: 3a1e3a9ed2724e34299c4892eb6039e0, type: 2}
   defaultTile: {fileID: 11400000, guid: fe0682d2b5a4384429bfbe05db447eb7, type: 2}
   description: The barren terrain is unsuitable for building.
---- !u!114 &-339297883601907911
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3255732202969969503}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8cf6ec2134cc25e4aa160e030e55ad6c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 

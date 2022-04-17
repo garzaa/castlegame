@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: DecayHaunt
   m_EditorClassIdentifier: 
   tileFilter: {fileID: 11400000, guid: 98718ff1143773b45972735c48d75e1a, type: 2}
-  maxDepth: 10
+  maxDepth: 4
   networkFilters:
   - {fileID: 11400000, guid: 98718ff1143773b45972735c48d75e1a, type: 2}
   decayToTiles:

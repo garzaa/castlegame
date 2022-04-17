@@ -311,3 +311,6 @@ MonoBehaviour:
     m_RuleTransform: 0
   tileObject: {fileID: 1742198634726585055, guid: 3542486c53a8cf941af8f153b6a752b2,
     type: 3}
+  tileWith:
+  - {fileID: 11400000, guid: 64c537d4d2d88b746b7a61ab54f13fa2, type: 2}
+  - {fileID: 11400000, guid: c4f908165acb91240abc612418da431c, type: 2}

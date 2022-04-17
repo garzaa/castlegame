@@ -133,15 +133,18 @@ public class TileTracker : MonoBehaviour {
 			TileTraversal traversal = kv.Value;
 			if (traversal.HasTargets(currentPos)) {
 				foreach (Vector3Int warpTarget in traversal.GetTargets(currentPos)) {
+					// reflection is a special case, it might not have immediate neighbors
+					// and is treated as 
+					// it can have been visited by other warps, but it always needs to hit the reflection here
+					if (warpType == TileWarpType.REFLECT) {
+						results.Add(from);
+						visited.Add(currentPos);
+						visited.Add(warpTarget);
+						FollowRedirects(from.boardPosition, from, ref results, visited);
+					}
+
 					if (!visited.Contains(warpTarget)) {
 						switch (warpType) {
-							case TileWarpType.REFLECT:
-								results.Add(from);
-								visited.Add(currentPos);
-								visited.Add(warpTarget);
-								FollowRedirects(from.boardPosition, from, ref results, visited);
-								break;
-
 							case TileWarpType.COPY:
 								results.Add(GetTileNoRedirect(currentPos));
 								goto case TileWarpType.REDIRECT;
