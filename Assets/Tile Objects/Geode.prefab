@@ -64,7 +64,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   resources:
-  - amount: 2
+  - amount: 1
     resource: {fileID: 11400000, guid: f508bac9a7b31034f90181ba27b95b0f, type: 2}
 --- !u!114 &5887147778966725999
 MonoBehaviour:

@@ -8,10 +8,6 @@ public class BlueprintUnlock : MonoBehaviour, ICardStat {
 	#pragma warning disable 0649
 	[Tooltip("These should be children somewhere.")] 
 	[SerializeField] List<GameStateRequirement> requirements;
-
-	[TextArea]
-	[SerializeField] string description;
-
 	#pragma warning restore 0649
 
 	public bool JustUnlocked(TileTracker tracker) {
@@ -32,6 +28,11 @@ public class BlueprintUnlock : MonoBehaviour, ICardStat {
 	}
 
 	public string Stat() {
-		return description;
+		string s = "Unlocked";
+		foreach (GameStateRequirement requirement in requirements) {
+			s += " " + requirement.ToString();
+		}
+		s += ".";
+		return s;
 	}
 }

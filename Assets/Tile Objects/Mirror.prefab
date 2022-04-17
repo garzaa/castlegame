@@ -85,7 +85,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   resources:
-  - amount: 1
+  - amount: 2
     resource: {fileID: 11400000, guid: f508bac9a7b31034f90181ba27b95b0f, type: 2}
 --- !u!114 &4299606383922749418
 MonoBehaviour:
@@ -115,7 +115,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   requirements:
   - {fileID: 2937664464840318871}
-  description: Unlocked by having 1 <color="#94fdff">Haunt</color>.
+  description: Unlocked by having 1 <color="#94fdff">Crystal</color>.
 --- !u!114 &2937664464840318871
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -130,4 +130,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   resources:
   - amount: 2
-    resource: {fileID: 11400000, guid: 78246f5ee74dac543a8f0a9cb365ef8e, type: 2}
+    resource: {fileID: 11400000, guid: f508bac9a7b31034f90181ba27b95b0f, type: 2}

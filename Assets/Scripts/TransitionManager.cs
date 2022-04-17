@@ -34,6 +34,10 @@ public class TransitionManager : MonoBehaviour {
 		transitionEndTime = Time.time + FADE_TIME;
 	}
 
+	public void LoadSceneImmediately(string sceneName) {
+		SceneManager.LoadScene(sceneName);
+	}
+
 	public void LoadScene(string sceneName) {
 		StartCoroutine(LoadAsync(sceneName));
 	}

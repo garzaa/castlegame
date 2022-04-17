@@ -30,8 +30,6 @@ public class TileType : ScriptableObject {
 			if (ancestor) {
 				return ancestor.GetFrame();
 			}
-			
-			Debug.LogError("TileType "+name+" has no info box but also no ancestor");
 			return null;
 		}
 	}
@@ -41,6 +39,7 @@ public class TileType : ScriptableObject {
 			return ancestor.GetTectonicsTile();
 		}
 		// should probably also return an error like the above but extra wording seems unnecessary
+		// it'll just throw regardless
 		return tectonicsTile;
 	}
 }

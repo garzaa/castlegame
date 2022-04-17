@@ -6,10 +6,15 @@ using System.Collections.Generic;
 public class Levels : MonoBehaviour {
 	#pragma warning disable 0649
 	[SerializeField] SceneReference mainMenu;
-	[SerializeField] List<SceneReference> levels;
+	[SerializeField] LevelOrder levelOrder;
 	#pragma warning restore 0649
 
 	TransitionManager transitionManager;
+	List<SceneReference> levels;
+
+	void Awake() {
+		levels = levelOrder.GetLevels();
+	}
 
 	void Start() {
 		transitionManager = GameObject.FindObjectOfType<TransitionManager>();
@@ -27,7 +32,7 @@ public class Levels : MonoBehaviour {
 	}
 
 	public void ReloadLevel() {
-		transitionManager.LoadScene(SceneManager.GetActiveScene().name);
+		transitionManager.LoadSceneImmediately(SceneManager.GetActiveScene().name);
 	}
 
 	public bool HasNextLevel() {
