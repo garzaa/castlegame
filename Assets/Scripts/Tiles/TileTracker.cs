@@ -301,12 +301,12 @@ public class TileTracker : MonoBehaviour {
 		boardChangeEvent.Raise();
 	}
 
-	public List<GameTile> GetNeighbors(Vector3Int position) {
+	public List<GameTile> GetNeighbors(Vector3Int boardPosition) {
 		List<GameTile> neighbors = new List<GameTile>();
-		neighbors.AddRange(GetTile(position + Vector3Int.up, GetTileNoRedirect(position.x, position.y)));
-		neighbors.AddRange(GetTile(position + Vector3Int.down, GetTileNoRedirect(position.x, position.y)));
-		neighbors.AddRange(GetTile(position + Vector3Int.right, GetTileNoRedirect(position.x, position.y)));
-		neighbors.AddRange(GetTile(position + Vector3Int.left, GetTileNoRedirect(position.x, position.y)));
+		neighbors.AddRange(GetTile(boardPosition + Vector3Int.up, GetTileNoRedirect(boardPosition.x, boardPosition.y)));
+		neighbors.AddRange(GetTile(boardPosition + Vector3Int.down, GetTileNoRedirect(boardPosition.x, boardPosition.y)));
+		neighbors.AddRange(GetTile(boardPosition + Vector3Int.right, GetTileNoRedirect(boardPosition.x, boardPosition.y)));
+		neighbors.AddRange(GetTile(boardPosition + Vector3Int.left, GetTileNoRedirect(boardPosition.x, boardPosition.y)));
 		neighbors.RemoveAll(x => x==null);
 		return neighbors;
 	}

@@ -8,7 +8,7 @@ using System.Collections.Generic;
 public class ClockworkTargetNetworked : ClockworkTarget {
 	#pragma warning disable 0649
 	[SerializeField]
-	int maxDepth = 4;
+	protected int maxDepth = 4;
 
 	[SerializeField]
 	[Tooltip("Branch through these tile types")]
