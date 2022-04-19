@@ -19,20 +19,26 @@ MonoBehaviour:
     scenePath: Assets/Scenes/House.unity
   - sceneAsset: {fileID: 102900000, guid: 2fab99ca836d99c4e94d720d7afdd49d, type: 3}
     scenePath: Assets/Scenes/Neighbors.unity
+  - sceneAsset: {fileID: 102900000, guid: 76328e2ef25b44240a16447528614a20, type: 3}
+    scenePath: Assets/Scenes/Neighbors II.unity
   - sceneAsset: {fileID: 102900000, guid: 3b2dab7543c03b841bb5de58761102e4, type: 3}
     scenePath: Assets/Scenes/Scratch.unity
   - sceneAsset: {fileID: 102900000, guid: 6bd3e0eb11676044fa49b9906d0967bc, type: 3}
     scenePath: Assets/Scenes/Rocks.unity
   - sceneAsset: {fileID: 102900000, guid: e5324c34f46450e49bc5e8fe764a9ad7, type: 3}
-    scenePath: Assets/Scenes/Stamp.unity
+    scenePath: Assets/Scenes/Mirror.unity
+  - sceneAsset: {fileID: 102900000, guid: 76cd8971c301f8d4a887871d0db9431f, type: 3}
+    scenePath: Assets/Scenes/Mirror II.unity
   - sceneAsset: {fileID: 102900000, guid: 6e0cd63cef6417145943be3105241795, type: 3}
-    scenePath: Assets/Scenes/Cross.unity
+    scenePath: Assets/Scenes/Pool.unity
+  - sceneAsset: {fileID: 102900000, guid: 3ae49128f8194af4ba9677acec6eb111, type: 3}
+    scenePath: Assets/Scenes/Pool II.unity
+  - sceneAsset: {fileID: 102900000, guid: 1b157689e68d767428688ad9fe694258, type: 3}
+    scenePath: Assets/Scenes/Pool III.unity
   - sceneAsset: {fileID: 102900000, guid: 536b466c8560bec47a20552c8190f6b0, type: 3}
     scenePath: Assets/Scenes/Prism.unity
   - sceneAsset: {fileID: 102900000, guid: 8c30dc18fa39ef34baf90619da8f1888, type: 3}
     scenePath: Assets/Scenes/Triplet.unity
-  - sceneAsset: {fileID: 102900000, guid: 76328e2ef25b44240a16447528614a20, type: 3}
-    scenePath: Assets/Scenes/Neighbors II.unity
   - sceneAsset: {fileID: 102900000, guid: c66c0089f8ffe7941b06f761a723d138, type: 3}
     scenePath: Assets/Scenes/Mason.unity
   - sceneAsset: {fileID: 102900000, guid: ffbcfa86588290641bb777ab551c8b04, type: 3}

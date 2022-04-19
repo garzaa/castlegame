@@ -6,9 +6,11 @@ public class Blueprints : ButtonSource {
 	#pragma warning disable 0649
 	[SerializeField] BlueprintAction buttonTemplate;
 	[SerializeField] List<GameTile> tiles;
+	[SerializeField] bool keepBlueprintsUnlocked = true;
 	#pragma warning restore 0649
 
 	HashSet<GameTile> lastSourced = new HashSet<GameTile>();
+	HashSet<GameTile> permanentlyUnlocked = new HashSet<GameTile>();
 
 	TileTracker tileTracker;
 
@@ -25,16 +27,18 @@ public class Blueprints : ButtonSource {
 		if (tileTracker == null) tileTracker = GameObject.FindObjectOfType<TileTracker>();
 		List<ActionButton> buttons = new List<ActionButton>();
 		// for each blueprint
-		// if it's got a blueprint unlock, and it's satisfied, then make a new card, initialize it, and add it to the hand
+		// if it's got a blueprint unlock, and it's satisfied, then make a new button, initialize it, and add it to the bar
 		foreach (GameTile tile in tiles) {
 			if (tile == null) continue;
 			BlueprintUnlock unlock = tile.GetComponent<BlueprintUnlock>();
-			if (unlock && unlock.Unlocked(tileTracker)) {
+			if ((unlock && unlock.Unlocked(tileTracker)) || (unlock && keepBlueprintsUnlocked && permanentlyUnlocked.Contains(tile))) {
 				buttons.Add(SpawnButton(tile));
 				lastSourced.Add(tile);
+				AddPermanentUnlock(tile);
 			} else if (!unlock) {
 				buttons.Add(SpawnButton(tile));
 				lastSourced.Add(tile);
+				AddPermanentUnlock(tile);
 			}
 		}
 		return buttons;	
@@ -51,6 +55,10 @@ public class Blueprints : ButtonSource {
 			}
 		}
 		return newButtons;
+	}
+	
+	void AddPermanentUnlock(GameTile tile) {
+		permanentlyUnlocked.Add(tile);
 	}
 
 	BlueprintAction SpawnButton(GameTile tile) {

@@ -14,6 +14,6 @@ public class ResourceCriterion : GameStateRequirement {
 		foreach (ResourceAmount r in resources) {
 			s += r.amount + $" <color=\"#94fdff\">{r.resource}</color> "; 
 		}
-		return s;
+		return s.Remove(s.Length-1);
 	}
 }

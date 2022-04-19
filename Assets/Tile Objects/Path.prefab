@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 8316505087344916328}
   - component: {fileID: 201470595819385509}
   - component: {fileID: 2486738290067873539}
-  - component: {fileID: 3052238483360439111}
+  - component: {fileID: 8150980810983788349}
   - component: {fileID: -7507382468553651965}
   - component: {fileID: -5296859523029348281}
   - component: {fileID: -5042500655905532483}
@@ -86,7 +86,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   validBases:
   - {fileID: 11400000, guid: ea089a2b162bee14a83b010a12f19909, type: 2}
---- !u!114 &3052238483360439111
+--- !u!114 &8150980810983788349
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -95,10 +95,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 1742198634726585055}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f3278cbc2f6c8f34aaa94ebcde6aa858, type: 3}
+  m_Script: {fileID: 11500000, guid: 72709591c4b98c5479313b301369a859, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   cutTo: {fileID: 11400000, guid: ea089a2b162bee14a83b010a12f19909, type: 2}
+  stateRequirement: {fileID: -1673936283432939145}
 --- !u!114 &-7507382468553651965
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -158,7 +159,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   requirements:
   - {fileID: -1673936283432939145}
-  description: Unlocked by building a <color="#94fdff">Mason</color>.
 --- !u!114 &-1673936283432939145
 MonoBehaviour:
   m_ObjectHideFlags: 0
