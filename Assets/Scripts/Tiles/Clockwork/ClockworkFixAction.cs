@@ -35,8 +35,6 @@ public class ClockworkFixAction : ExclusiveClockworkAction {
 	}
 
 	float GetNearestDecay(GameTile tile) {
-		// doesn't account for multipliers but whatever
-		// maybe neighbor decay should just alter the base multiplier
 		int decayWindow = int.MaxValue;
 
 		foreach (TileDecay d in tile.GetComponents<TileDecay>()) {
