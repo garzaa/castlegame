@@ -107,7 +107,6 @@ public class TilemapVisuals : MonoBehaviour {
 	void CreateInfoBubbleCanvas() {
 		infoBubbleCanvas = Instantiate(doubleScaleCanvas, this.transform);
 		infoBubbleCanvas.name = "Info Bubble Canvas";
-		infoBubbleCanvas.sortingOrder = 90;
 	}
 
 	public GameObject GetDoubleScaleCanvas() {
