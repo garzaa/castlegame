@@ -14,7 +14,7 @@ public class ClockworkTargetDecayTo : ClockworkTargetNetworked {
 		if (base.IsTargetable(tile)) {
 			TileDecay[] decays = tile.GetComponents<TileDecay>();
 			foreach (TileDecay d in decays) {
-				if (decayToTiles.Contains(d.GetDecayTo().tileObject.GetComponent<GameTile>())) {
+				if (d.IsActive() && decayToTiles.Contains(d.GetDecayTo().tileObject.GetComponent<GameTile>())) {
 					return true;
 				}
 			}

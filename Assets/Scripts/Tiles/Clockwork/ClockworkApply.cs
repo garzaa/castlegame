@@ -3,11 +3,13 @@ using System.Collections.Generic;
 
 public class ClockworkApply {
 	public GameTile sourceTile;
-	public List<GameTile> targets;
+	public List<GameTile> targets = new List<GameTile>();
+	public ExclusiveClockworkAction actionType;
 
-	public ClockworkApply(GameTile f, List<GameTile> t) {
+	public ClockworkApply(GameTile f, List<GameTile> t, ExclusiveClockworkAction a) {
 		this.sourceTile = f;
 		this.targets = t;
+		this.actionType = a;
 	} 
 
 	public override string ToString() {

@@ -29,6 +29,10 @@ public class TileDecay : TileBehaviour, IStat, ICardStat {
 		return decayTo;
 	}
 
+	virtual public bool IsActive() {
+		return true;
+	}
+
 	public void Clockwork() {
 		// if it was already removed
 		if (gameTile == null) return;

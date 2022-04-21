@@ -21,6 +21,10 @@ public class NeighborPreventDecay : TileDecay, IStat, ICardStat {
 		return null;
 	}
 
+	public override bool IsActive() {
+		return !HasNeighbor();
+	}
+
 	bool HasNeighbor() {
 		List<GameTile> neighbors = gameTile.GetTracker().GetNeighbors(gameTile.boardPosition);
 		foreach (GameTile g in neighbors) {

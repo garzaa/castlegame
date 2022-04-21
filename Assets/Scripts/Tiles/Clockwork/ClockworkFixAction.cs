@@ -38,6 +38,7 @@ public class ClockworkFixAction : ExclusiveClockworkAction {
 		int decayWindow = int.MaxValue;
 
 		foreach (TileDecay d in tile.GetComponents<TileDecay>()) {
+			if (!d.IsActive()) continue;
 			decayWindow = Mathf.Min(d.GetDecayThreshold() - d.GetDecay(), decayWindow);
 		}
 

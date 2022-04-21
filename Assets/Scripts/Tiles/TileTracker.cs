@@ -17,7 +17,7 @@ public class TileTracker : MonoBehaviour {
 	Tilemap tilemap;
 	List<List<GameTile>> tiles = new List<List<GameTile>>();
 	Queue<TilePlacement> placements = new Queue<TilePlacement>();
-	Dictionary<ExclusiveClockworkAction, List<ClockworkApply>> exclusiveActions = new Dictionary<ExclusiveClockworkAction, List<ClockworkApply>>();
+	Dictionary<Type, List<ClockworkApply>> exclusiveActions = new Dictionary<Type, List<ClockworkApply>>();
 	Dictionary<TileWarpType, TileTraversal> tileWarps = new Dictionary<TileWarpType, TileTraversal>();
 	TileTraversal redirects = new TileTraversal();
 	TileTraversal copies = new TileTraversal();
@@ -187,7 +187,7 @@ public class TileTracker : MonoBehaviour {
 		}
 
 		GameTile newTileBackend = SpawnGameTile(newTile, boardPosition);
-		newTileBackend.SendMessage("OnBuild", SendMessageOptions.DontRequireReceiver);
+		if (fromPlayer) newTileBackend.SendMessage("OnBuild", SendMessageOptions.DontRequireReceiver);
 		RemoveTile(boardPosition, fromPlayer);
 
 		tilemap.SetTile(boardPosition+origin, newTile);
@@ -311,8 +311,11 @@ public class TileTracker : MonoBehaviour {
 		return neighbors;
 	}
 
-	public void QueueExclusiveAction(ExclusiveClockworkAction actionType, ClockworkApply spec) {
+	public void QueueExclusiveAction(ExclusiveClockworkAction action, ClockworkApply spec) {
+		// store these as types instead of classes so they can block each other
+		Type actionType = action.GetType();
 		if (!exclusiveActions.ContainsKey(actionType)) {
+			Debug.Log("adding new exclusive action");
 			exclusiveActions[actionType] = new List<ClockworkApply>();
 		}
 		exclusiveActions[actionType].Add(spec);
@@ -320,14 +323,18 @@ public class TileTracker : MonoBehaviour {
 
 	void ReconcileExclusiveActions() {
 		foreach (var action in exclusiveActions) {
-			ReconcileExclusiveAction(action.Key, action.Value);
+			ReconcileExclusiveAction(action.Value);
 		}
 		exclusiveActions.Clear();
 	}
 
-	void ReconcileExclusiveAction(ExclusiveClockworkAction actionType, List<ClockworkApply> actions) {
+	void ReconcileExclusiveAction(List<ClockworkApply> actions) {
 		// resolve actions with multiple targets that could apply to the same tile
 		// pick the ones with only one possible target out first, apply them, and keep doing that
+		// TODO: once that's been done, also prioritize targets that only have one targeter
+		// maybe sort them the same way the clockwork fix action sorts its targets...hmm...
+		// or expose a sort function for Clockwork Actions and then pass it to them pre-sorted
+		// how to store that...
 		// until there are no actions with single targets left
 
 		List<ClockworkApply> singularActions;
@@ -338,7 +345,7 @@ public class TileTracker : MonoBehaviour {
 			GameTile sourceTile = currentAction.sourceTile;
 			
 			// apply the action to that tile
-			actionType.ExecuteApply(currentAction);
+			currentAction.actionType.ExecuteApply(currentAction);
 
 			// then remove all references to that tile from the list of actions
 			PruneTargetsFromActions(currentAction.targets, actions);
@@ -350,7 +357,7 @@ public class TileTracker : MonoBehaviour {
 		// after this, there could just be multiple actions
 		// so do the same thing
 		while (actions.Count > 0) {
-			actionType.ExecuteApply(actions[0]);
+			actions[0].actionType.ExecuteApply(actions[0]);
 			PruneTargetsFromActions(actions[0].targets, actions);
 		}
 	}

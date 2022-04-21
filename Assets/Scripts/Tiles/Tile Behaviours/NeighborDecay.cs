@@ -37,6 +37,10 @@ public class NeighborDecay : TileDecay, IStat {
 		}
 	}
 
+	public override bool IsActive() {
+		return (GetNumNeighbors() != 0);
+	}
+
 	protected int GetNumNeighbors() {
 		int m = 0;
 		List<GameTile> neighbors = gameTile.GetNeighbors();
