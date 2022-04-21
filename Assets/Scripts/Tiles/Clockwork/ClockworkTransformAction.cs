@@ -16,16 +16,19 @@ public class ClockworkTransformAction : ExclusiveClockworkAction {
 		}
 	}
 
-	public override void ExecuteApply(ClockworkApply action) {
-		int amountTransformed = 0;
+	public override List<GameTile> ExecuteApply(in List<GameTile> sortedTargets, in GameTile source) {
+		List<GameTile> transformedTiles = new List<GameTile>();
 
-		foreach (GameTile t in action.targets) {
+		foreach (GameTile t in sortedTargets) {
 			if (transformSet.ContainsKey(t.name)) {
 				TileTracker tracker = t.GetTracker();
-				tracker.ReplaceTile(t.boardPosition, transformSet[t.name]);
-				if (++amountTransformed > limit && limit > 0) break;
+				GameTile g = tracker.ReplaceTile(t.boardPosition, transformSet[t.name]);
+				transformedTiles.Add(g);
+				if (transformedTiles.Count > limit && limit > 0) break;
 			}
 		}
+
+		return transformedTiles;
 	}
 
 

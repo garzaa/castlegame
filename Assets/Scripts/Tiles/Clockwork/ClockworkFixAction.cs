@@ -1,26 +1,31 @@
 using UnityEngine;
 using System.Collections.Generic;
 using System.Linq;
+using System;
 
 [CreateAssetMenu(menuName = "Clockwork/Fix Action")]
 public class ClockworkFixAction : ExclusiveClockworkAction {
 	public int limit = -1;
 
-	public override void ExecuteApply(ClockworkApply action) {
-		List<GameTile> toFix = action.targets
-			.Where(x=> x.GetComponent<TileAge>())
-			.OrderBy(x => GetNearestDecay(x))
-			.ToList();
-		
+	public override List<GameTile> ExecuteApply(in List<GameTile> sortedTargets, in GameTile source) {
+		List<GameTile> repairedTiles = new List<GameTile>();	
 		if (limit > 0) {
-			for (int i=0; i<limit && i<toFix.Count; i++) {
-				RepairTile(toFix[i], action.sourceTile);
+			for (int i=0; i<limit && i<sortedTargets.Count; i++) {
+				RepairTile(sortedTargets[i], source);
+				repairedTiles.Add(sortedTargets[i]);
 			}
 		} else {
-			foreach (GameTile t in toFix) {
-				RepairTile(t, action.sourceTile);
+			foreach (GameTile t in sortedTargets) {
+				RepairTile(t, source);
+				repairedTiles.Add(t);
 			}
 		}
+
+		return repairedTiles;
+	}
+
+	public override Func<GameTile, float> GetOrderingKey() {
+		return tile => tile.GetComponent<TileAge>() != null ? GetNearestDecay(tile) : int.MaxValue;
 	}
 
 	void RepairTile(GameTile targetTile, GameTile sourceTile) {

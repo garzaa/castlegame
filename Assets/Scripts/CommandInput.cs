@@ -300,7 +300,9 @@ public class CommandInput : MonoBehaviour {
 			Log("Unknown build command "+name);
 			return false;
 		}
-		return tileTracker.ReplaceTile(pos, buildTiles[name]);
+		// this is what it was used for? cmon
+		return true;
+		// return tileTracker.ReplaceTile(pos, buildTiles[name]);
 	}
 
 	void Tick() {
