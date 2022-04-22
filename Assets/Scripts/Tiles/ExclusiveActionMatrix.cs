@@ -10,14 +10,9 @@ using System.Collections.Generic;
 	This structure exists to make that happen
 */
 
-public class ExclusiveActionMatrix : MonoBehaviour {
-	List<ClockworkApply> applications;
-	Dictionary<GameTile, int> targeterAmounts;
-
-	public ExclusiveActionMatrix() {
-		applications = new List<ClockworkApply>();
-		targeterAmounts = new Dictionary<GameTile, int>();
-	}
+public class ExclusiveActionMatrix {
+	List<ClockworkApply> applications = new List<ClockworkApply>();
+	Dictionary<GameTile, int> targeterAmounts = new Dictionary<GameTile, int>();
 
 	public void Add(ClockworkApply spec) {
 		applications.Add(spec);
@@ -47,9 +42,6 @@ public class ExclusiveActionMatrix : MonoBehaviour {
 			PruneTargetsFromActions(affectedTiles);
 		}
 
-		// final pass for removal of singular actions
-		applications.RemoveAll(x => x.targets.Count == 0);
-
 		// then do the same thing for the rest of the actions with multiple targets
 		while (applications.Count > 0) {
 			// always pick the one with the least amount of targets
@@ -63,8 +55,8 @@ public class ExclusiveActionMatrix : MonoBehaviour {
 	void SortApplicationActions() {
 		// sort by action priority and then by targeter numbers for each tile
 		foreach (ClockworkApply apply in applications) {
-			List<GameTile> sortedTargets = apply.targets
-				.OrderBy(apply.actionType.GetOrderingKey())
+			apply.targets = apply.targets
+				.OrderBy(apply.actionType.GetPriorityComparator())
 				.ThenBy(tile => targeterAmounts[tile])
 				.ToList();
 		}

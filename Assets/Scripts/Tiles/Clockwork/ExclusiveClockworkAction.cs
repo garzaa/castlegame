@@ -7,7 +7,7 @@ public abstract class ExclusiveClockworkAction : ClockworkAction {
 		from.GetTracker().QueueExclusiveAction(this, new ClockworkApply(from, tiles, this));
 	}
 
-	virtual public Func<GameTile, float> GetOrderingKey() {
+	virtual public Func<GameTile, float> GetPriorityComparator() {
 		return tile => int.MaxValue;
 	}
 

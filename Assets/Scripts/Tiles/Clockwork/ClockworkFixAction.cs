@@ -24,7 +24,7 @@ public class ClockworkFixAction : ExclusiveClockworkAction {
 		return repairedTiles;
 	}
 
-	public override Func<GameTile, float> GetOrderingKey() {
+	public override Func<GameTile, float> GetPriorityComparator() {
 		return tile => tile.GetComponent<TileAge>() != null ? GetNearestDecay(tile) : int.MaxValue;
 	}
 
