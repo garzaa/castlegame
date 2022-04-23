@@ -1,19 +1,7 @@
 fileFormatVersion: 2
-guid: 031c2e42e008a7944b48ddb34309266b
+guid: d5d3ba76230c2f2418ee64fbb42413f0
 TextureImporter:
-  internalIDToNameTable:
-  - first:
-      213: 791336545582589345
-    second: dialogue_0
-  - first:
-      213: -6875433093473928017
-    second: dialogue_1
-  - first:
-      213: -3401809131681094416
-    second: dialogue_2
-  - first:
-      213: 7208788778547721126
-    second: dialogue_3
+  internalIDToNameTable: []
   externalObjects: {}
   serializedVersion: 11
   mipmaps:
@@ -52,11 +40,11 @@ TextureImporter:
   nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
-  spriteMode: 2
+  spriteMode: 1
   spriteExtrude: 1
   spriteMeshType: 0
   alignment: 7
-  spritePivot: {x: 0.5, y: 0}
+  spritePivot: {x: 0.5, y: 0.5}
   spritePixelsToUnits: 100
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
@@ -109,91 +97,7 @@ TextureImporter:
     forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
-    sprites:
-    - serializedVersion: 2
-      name: dialogue_0
-      rect:
-        serializedVersion: 2
-        x: 98
-        y: 91
-        width: 4
-        height: 21
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 1, y: 4, z: 1, w: 4}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 1a52c3145646bfa00800000000000000
-      internalID: 791336545582589345
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: dialogue_1
-      rect:
-        serializedVersion: 2
-        x: 107
-        y: 91
-        width: 4
-        height: 21
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 1, y: 4, z: 1, w: 4}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: fac7582770e8590a0800000000000000
-      internalID: -6875433093473928017
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: dialogue_2
-      rect:
-        serializedVersion: 2
-        x: 17
-        y: 16
-        width: 64
-        height: 96
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 19, y: 19, z: 19, w: 19}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 0f4e7784e985ac0d0800000000000000
-      internalID: -3401809131681094416
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: dialogue_3
-      rect:
-        serializedVersion: 2
-        x: 89
-        y: 80
-        width: 4
-        height: 32
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 1, y: 7, z: 1, w: 7}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 6a3b8264333ca0460800000000000000
-      internalID: 7208788778547721126
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
+    sprites: []
     outline: []
     physicsShape: []
     bones: []
