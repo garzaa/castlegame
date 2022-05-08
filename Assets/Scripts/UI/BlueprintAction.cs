@@ -79,6 +79,6 @@ public class BlueprintAction : ActionButton {
 
 	protected override void ApplyAction(Vector3Int boardPosition) {
 		GameObject.FindObjectOfType<CameraShake>().TinyShake();
-		tileTracker.ReplaceTile(boardPosition, this.gameTile.GetDefaultTile());
+		tileTracker.ReplaceTile(boardPosition, this.gameTile.GetDefaultTile(), fromPlayer: true);
 	}
 }
