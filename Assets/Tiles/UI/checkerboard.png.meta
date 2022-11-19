@@ -35,6 +35,8 @@ TextureImporter:
   isReadable: 0
   streamingMipmaps: 0
   streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMasterTextureLimit: 0
   grayScaleToAlpha: 0
   generateCubemap: 6
   cubemapConvolution: 0
@@ -44,8 +46,8 @@ TextureImporter:
   textureSettings:
     serializedVersion: 2
     filterMode: 0
-    aniso: -1
-    mipBias: -100
+    aniso: 1
+    mipBias: 0
     wrapU: 1
     wrapV: 1
     wrapW: 1
@@ -66,9 +68,12 @@ TextureImporter:
   textureType: 8
   textureShape: 1
   singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
   maxTextureSizeSet: 0
   compressionQualitySet: 0
   textureFormatSet: 0
+  ignorePngGamma: 0
   applyGammaDecoding: 0
   platformSettings:
   - serializedVersion: 3
@@ -126,7 +131,7 @@ TextureImporter:
       tessellationDetail: 0
       bones: []
       spriteID: 1b0ec5fc7bdbeabf0800000000000000
-      internalID: -311102727086350159
+      internalID: 1759384508628929331
       vertices: []
       indices: 
       edges: []
@@ -147,7 +152,7 @@ TextureImporter:
       tessellationDetail: 0
       bones: []
       spriteID: c186c59bc321b3280800000000000000
-      internalID: -9062629773135812580
+      internalID: 7132401190935237026
       vertices: []
       indices: 
       edges: []
@@ -162,6 +167,9 @@ TextureImporter:
     edges: []
     weights: []
     secondaryTextures: []
+    nameFileIdTable:
+      checkerboard_0: 1759384508628929331
+      checkerboard_1: 7132401190935237026
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0

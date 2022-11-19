@@ -59,6 +59,8 @@ TextureImporter:
   isReadable: 0
   streamingMipmaps: 0
   streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMasterTextureLimit: 0
   grayScaleToAlpha: 0
   generateCubemap: 6
   cubemapConvolution: 0
@@ -68,8 +70,8 @@ TextureImporter:
   textureSettings:
     serializedVersion: 2
     filterMode: 0
-    aniso: -1
-    mipBias: -100
+    aniso: 1
+    mipBias: 0
     wrapU: 1
     wrapV: 1
     wrapW: 1
@@ -90,9 +92,12 @@ TextureImporter:
   textureType: 8
   textureShape: 1
   singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
   maxTextureSizeSet: 0
   compressionQualitySet: 0
   textureFormatSet: 0
+  ignorePngGamma: 0
   applyGammaDecoding: 0
   platformSettings:
   - serializedVersion: 3
@@ -150,7 +155,7 @@ TextureImporter:
       tessellationDetail: 0
       bones: []
       spriteID: bcb8ddb3b6193fd70800000000000000
-      internalID: 9075757563833584587
+      internalID: -3887919879669387602
       vertices: []
       indices: 
       edges: []
@@ -171,7 +176,7 @@ TextureImporter:
       tessellationDetail: 0
       bones: []
       spriteID: dc4b8f91cbdd5ba80800000000000000
-      internalID: -8451605325731547955
+      internalID: -3569234785760238391
       vertices: []
       indices: 
       edges: []
@@ -192,7 +197,7 @@ TextureImporter:
       tessellationDetail: 0
       bones: []
       spriteID: 12f25327ef370f270800000000000000
-      internalID: 8282247251409317665
+      internalID: -2577124567801797784
       vertices: []
       indices: 
       edges: []
@@ -213,7 +218,7 @@ TextureImporter:
       tessellationDetail: 0
       bones: []
       spriteID: 7d6f99e89673825c0800000000000000
-      internalID: -4240078122665773353
+      internalID: 6849730134935603504
       vertices: []
       indices: 
       edges: []
@@ -312,6 +317,15 @@ TextureImporter:
     edges: []
     weights: []
     secondaryTextures: []
+    nameFileIdTable:
+      waterUnderneath_1: -3569234785760238391
+      waterUnderneath_7: -5328603687578029351
+      waterUnderneath_3: 6849730134935603504
+      waterUnderneath_5: -2335668185331239925
+      waterUnderneath_2: -2577124567801797784
+      waterUnderneath_6: -2964898411309813640
+      waterUnderneath_4: -5731274059353344095
+      waterUnderneath_0: -3887919879669387602
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0

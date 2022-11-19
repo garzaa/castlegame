@@ -20,7 +20,7 @@ GameObject:
   - component: {fileID: 7905479836425482680}
   - component: {fileID: 7905479836425482683}
   m_Layer: 0
-  m_Name: Mason
+  m_Name: Stonecutter
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

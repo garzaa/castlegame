@@ -146,6 +146,8 @@ TextureImporter:
   isReadable: 0
   streamingMipmaps: 0
   streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMasterTextureLimit: 0
   grayScaleToAlpha: 0
   generateCubemap: 6
   cubemapConvolution: 0
@@ -155,8 +157,8 @@ TextureImporter:
   textureSettings:
     serializedVersion: 2
     filterMode: 0
-    aniso: -1
-    mipBias: -100
+    aniso: 1
+    mipBias: 0
     wrapU: 1
     wrapV: 1
     wrapW: 1
@@ -177,9 +179,12 @@ TextureImporter:
   textureType: 8
   textureShape: 1
   singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
   maxTextureSizeSet: 0
   compressionQualitySet: 0
   textureFormatSet: 0
+  ignorePngGamma: 0
   applyGammaDecoding: 0
   platformSettings:
   - serializedVersion: 3
@@ -1050,6 +1055,46 @@ TextureImporter:
     edges: []
     weights: []
     secondaryTextures: []
+    nameFileIdTable:
+      tileInfo_18: -2192342855978008055
+      tileInfo_30: 465843963827438754
+      tileInfo_2: -4988870369635152724
+      tileInfo_34: -6523977689407919436
+      tileInfo_5: 8176361401311941651
+      tileInfo_6: -8022425701423285562
+      tileInfo_19: -1494683131844421402
+      tileInfo_22: -858421389417988938
+      tileInfo_12: 9118291706738254777
+      tileInfo_31: -1604155931822093483
+      tileInfo_14: 3316605929786230606
+      tileInfo_3: -6984531044513087652
+      tileInfo_11: -6630653727439459729
+      tileInfo_37: 7847991112895495022
+      tileInfo_25: -6161935998131931326
+      tileInfo_32: -6499974651507060647
+      tileInfo_17: -99130895484933285
+      tileInfo_8: 7393705307180330662
+      tileInfo_21: 2884372809446652473
+      tileInfo_24: 9130676578944377123
+      tileInfo_15: -1719867777078585368
+      tileInfo_4: 1580957064863068855
+      tileInfo_28: -8439471541467235849
+      tileInfo_33: 9094861088049046079
+      tileInfo_38: -3698763435342690207
+      tileInfo_35: 6689094095675781862
+      tileInfo_36: -7762995066740820955
+      tileInfo_23: -4980168732990460474
+      tileInfo_10: -5792744248298791317
+      tileInfo_9: 572421652275055525
+      tileInfo_13: 4605288048755630475
+      tileInfo_20: 3361099558270201020
+      tileInfo_40: -3162178864953989765
+      tileInfo_0: 7458829918074897532
+      tileInfo_16: -6806511125279565474
+      tileInfo_1: -3142117733122199340
+      tileInfo_7: 8413621373626081989
+      tileInfo_29: 3205581269363746250
+      tileInfo_39: 462831211026464169
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0
